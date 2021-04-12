@@ -12,11 +12,32 @@
     border-radius: 16px;
 }
 
+.check{
+    height: 20px;
+
+    &, .fas, .far{        
+        line-height: 20px !important;
+    }
+
+    .bonus{
+        width: 20px;
+    }
+}
+
+.menu{
+    &, .btn{
+        text-align: left;
+        min-width: 80px;
+        width: 80px;
+    }
+}
+
 .hex{
     background-color: var(--color);    
     color: var(--text);    
     width: 47px;
     height: 24px;
+    line-height: 24px;
     text-align: center;
     display: inline-block;
     position: relative;

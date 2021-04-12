@@ -10733,11 +10733,28 @@ textarea.form-control-lg {
   border-radius: 16px;
 }
 
+.check {
+  height: 20px;
+}
+.check, .check .fas, .check .far {
+  line-height: 20px !important;
+}
+.check .bonus {
+  width: 20px;
+}
+
+.menu, .menu .btn {
+  text-align: left;
+  min-width: 80px;
+  width: 80px;
+}
+
 .hex {
   background-color: var(--color);
   color: var(--text);
   width: 47px;
   height: 24px;
+  line-height: 24px;
   text-align: center;
   display: inline-block;
   position: relative;

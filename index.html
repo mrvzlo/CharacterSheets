@@ -71,9 +71,9 @@
                             </div>
                         </div>
                         <div class="col-7 p-0 d-flex flex-column justify-content-center">
-                            <div v-on:click="locked ? '' : check.inc()" class="text-start d-flex" v-for="check in attribute.getChecks(checkTypes.Skill)">
+                            <div v-on:click="locked ? '' : check.inc()" class="text-start d-flex check" v-for="check in attribute.getChecks(checkTypes.Skill)">
                                 <div :class="check.level()"></div>
-                                <span style="width: 20px;">{{check.get(character.proficiency(), attribute.bonus())}}</span>
+                                <span class="bonus px-1" class="text-center">{{check.get(character.proficiency(), attribute.bonus())}}</span>
                                 <span class="small">{{check.name}}</span>
                             </div>
                         </div>
@@ -81,9 +81,23 @@
                 </div>
             </div>
 
-            <div class="btn btn-warning position-absolute bottom-0 end-0 m-3" v-on:click="lock">
-                <div v-if="!locked"><span class="fas fa-lock me-2"></span>Lock</div>
-                <div v-if="locked"><span class="fas fa-unlock me-2"></span>Unlock</div>
+
+            <div class="position-absolute bottom-0 end-0 m-3 dropup">
+                <div class="fas fa-cog fa-2x" data-bs-toggle="dropdown"></div>
+                <ul class="dropdown-menu border-0 menu">
+                    <li class="my-1">
+                        <div class="btn btn-primary"><i class="fas fa-fw fa-upload me-1"></i>Import</div></li>
+                    <li class="my-1">
+                        <div class="btn btn-primary"><i class="fas fa-fw fa-download me-1"></i>Export</div></li>
+                    <li class="my-1">
+                        <div class="btn btn-success"><i class="fas fa-fw fa-save me-1"></i>Save</div></li>
+                    <li class="my-1">
+                        <div class="btn btn-success"><i class="fas fa-fw fa-redo me-1"></i>Reload</div></li>
+                    <li class="btn btn-warning" v-on:click="lock">
+                        <div v-if="!locked"><span class="fas fa-fw fa-lock me-1"></span>Lock</div>
+                        <div v-if="locked"><span class="fas fa-fw fa-unlock me-1"></span>Unlock</div>
+                    </li>
+                </ul>
             </div>
         </div>
         <script src="character.js"></script>
