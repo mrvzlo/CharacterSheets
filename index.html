@@ -8,7 +8,7 @@
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
         <script src="https://kit.fontawesome.com/5434606b68.js" crossorigin="anonymous"></script>
     </head>
-    <body class="m-3">
+    <body class="m-3 mb-5">
         <div id="app">
             <div class="text-center row">
                 <div class="col-12">
@@ -42,13 +42,34 @@
                             <div class="rt"></div>
                             <div class="rb"></div>
                         </div> 
-                        <span class="align-top">Мастерство</span>
+                        Мастерство
                     </div>
                 </div>
-                <div class="col-6"></div>
-                <div class="col-6" v-for="attribute in character.attributes">
-                    <div class="row">
-                        <div class="col-5">
+                <div class="col-6 text-start">
+                    <div class="d-flex mb-2">
+                        <div class="hex me-2" style="--color: #a75;" v-on:click="inspiration">    
+                            <input v-model="character.armor" class="plain w-100 border-bottom" type="number" :disabled="locked">  
+                            <div class="lt"></div>
+                            <div class="lb"></div>
+                            <div class="rt"></div>
+                            <div class="rb"></div>
+                        </div> 
+                        Класс брони
+                    </div>
+                    <div class="d-flex mb-2">
+                        <div class="hex me-2" style="--color: #5a5;">
+                            <input v-model="character.speed" class="plain w-100 border-bottom" type="number" :disabled="locked">           
+                            <div class="lt"></div>
+                            <div class="lb"></div>
+                            <div class="rt"></div>
+                            <div class="rb"></div>
+                        </div> 
+                        Скорость
+                    </div>
+                </div>
+                <div class="col-12" v-for="attribute in character.attributes">
+                    <div class="row mb-1 pb-1 border-bottom">
+                        <div class="col-3 my-2">
                             <div class="hex" style="--color: #000;">    
                                 <input v-model="attribute.value" class="plain w-100 text-white" type="number" min="1" max="20" :disabled="locked">    
                                 <div class="lt"></div>
@@ -57,20 +78,26 @@
                                 <div class="rb"></div>
                             </div> 
                             <div class="border pt-3 pb-1 rounded-4 d-flex flex-column">
-                                <div> </div>
+                                <div></div>
                                 <h1 class="m-0">{{attribute.bonus()}}</h1>
                                 {{attribute.name}}
                             </div>
-                            <div class="row mb-2" v-on:click="locked ? '' : attribute.getChecks(checkTypes.Saving)[0].inc()">
-                                <div class="col-6 text-end pe-0">
-                                    <div :class="attribute.getChecks(checkTypes.Saving)[0].level()"></div>
-                                </div>
-                                <div class="col-6 ps-0">
-                                    {{attribute.getChecks(checkTypes.Saving)[0].get(character.proficiency(), attribute.bonus())}}
-                                </div>
-                            </div>
                         </div>
                         <div class="col-7 p-0 d-flex flex-column justify-content-center">
+                            <div v-on:click="locked ? '' : check.inc()" class="text-start d-flex check" v-for="check in attribute.getChecks(checkTypes.Saving)">
+                                <div :class="'text-info '+ check.level()"></div>
+                                <span class="bonus px-1" class="text-center">
+                                    {{check.get(character.proficiency(), attribute.bonus())}}
+                                </span>                                                                
+                                <span class="small">{{check.name}}</span>
+                            </div>
+                            <div v-on:click="locked ? '' : ''" class="text-start d-flex check" v-for="check in attribute.getChecks(checkTypes.Static)">
+                                <div class="text-success fas fa-circle"></div>
+                                <span class="bonus px-1" class="text-center">
+                                    {{check.get(character.proficiency(), attribute.bonus())}}
+                                </span>                                                             
+                                <span class="small">{{check.name}}</span>
+                            </div>
                             <div v-on:click="locked ? '' : check.inc()" class="text-start d-flex check" v-for="check in attribute.getChecks(checkTypes.Skill)">
                                 <div :class="check.level()"></div>
                                 <span class="bonus px-1" class="text-center">{{check.get(character.proficiency(), attribute.bonus())}}</span>
@@ -82,22 +109,17 @@
             </div>
 
 
-            <div class="position-absolute bottom-0 end-0 m-3 dropup">
-                <div class="fas fa-cog fa-2x" data-bs-toggle="dropdown"></div>
-                <ul class="dropdown-menu border-0 menu">
-                    <li class="my-1">
-                        <div class="btn btn-primary"><i class="fas fa-fw fa-upload me-1"></i>Import</div></li>
-                    <li class="my-1">
-                        <div class="btn btn-primary"><i class="fas fa-fw fa-download me-1"></i>Export</div></li>
-                    <li class="my-1">
-                        <div class="btn btn-success"><i class="fas fa-fw fa-save me-1"></i>Save</div></li>
-                    <li class="my-1">
-                        <div class="btn btn-success"><i class="fas fa-fw fa-redo me-1"></i>Reload</div></li>
-                    <li class="btn btn-warning" v-on:click="lock">
-                        <div v-if="!locked"><span class="fas fa-fw fa-lock me-1"></span>Lock</div>
-                        <div v-if="locked"><span class="fas fa-fw fa-unlock me-1"></span>Unlock</div>
-                    </li>
-                </ul>
+            <div class="position-fixed bottom-0 end-0 mx-2 d-flex">
+                <div class="border-0 menu collapse">
+                    <div class="btn btn-secondary me-1"><i class="fas fa-fw fa-upload"></i></div>
+                    <div class="btn btn-secondary me-1"><i class="fas fa-fw fa-download"></i></div>
+                    <div class="btn btn-secondary me-1"><i class="fas fa-fw fa-save"></i></div>
+                    <div class="btn btn-secondary me-1"><i class="fas fa-fw fa-redo"></i></div>
+                    <div class="btn btn-warning me-2" v-on:click="lock">
+                        <i :class="'fas fa-fw '+(locked ? 'fa-lock': 'fa-unlock')"></i>
+                    </div>
+                </div>
+                <div class="mb-2" data-bs-toggle="collapse" href=".menu"><i class="fas fa-cog fa-2x"></i></div>
             </div>
         </div>
         <script src="character.js"></script>

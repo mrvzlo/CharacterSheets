@@ -4,6 +4,8 @@ class Character{
         this.level = 1;
         this.inspiration = false;
         this.attributes = [];
+        this.speed = 30;
+        this.armor = 10;
         var attributes = ["СИЛ","ЛОВ","ТЕЛ","ИНТ","МУД","ХАР"];
         attributes.forEach(
             type => this.attributes.push(
@@ -12,13 +14,12 @@ class Character{
         );
         
         for(var i=0; i<6; i++)
-            this.attributes[i].checks.push(new Check("Спас", CheckTypes.Saving));
+            this.attributes[i].checks.push(new Check("Спасбросок", CheckTypes.Saving));
 
         this.attributes[0].checks.push(new Check("Атлетика", CheckTypes.Skill));
         this.attributes[1].checks.push(new Check("Акробатика", CheckTypes.Skill));
         this.attributes[1].checks.push(new Check("Ловкость рук", CheckTypes.Skill));
         this.attributes[1].checks.push(new Check("Скрытность", CheckTypes.Skill));
-        this.attributes[1].checks.push(new Check("Инициатива", CheckTypes.Static));
         this.attributes[3].checks.push(new Check("Анализ", CheckTypes.Skill));
         this.attributes[3].checks.push(new Check("История", CheckTypes.Skill));
         this.attributes[3].checks.push(new Check("Магия", CheckTypes.Skill));
@@ -33,6 +34,7 @@ class Character{
         this.attributes[5].checks.push(new Check("Зпугивание", CheckTypes.Skill));
         this.attributes[5].checks.push(new Check("Обман", CheckTypes.Skill));
         this.attributes[5].checks.push(new Check("Убеждение", CheckTypes.Skill));
+        this.attributes[1].checks.push(new Check("Инициатива", CheckTypes.Static));
     }
 
     proficiency(){
