@@ -5,6 +5,45 @@
     text-align: center;
 }
 
-.alert{
-    padding: 5px;
+.mt-n3{
+    margin-top: -12px;
+}
+
+.rounded-4{
+    border-radius: 16px;
+}
+
+.hex{
+    background-color: var(--color);    
+    color: var(--text);    
+    width: 47px;
+    height: 24px;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+
+    .lt, .lb, .rt, .rb{
+        position: absolute;
+        border-top: $hex-border solid transparent;
+        border-left: $hex-border solid transparent;
+        border-right: $hex-border solid transparent;
+        border-bottom: $hex-border solid transparent;
+    }
+
+    .lt, .lb{
+        border-left: $hex-border solid white;
+        left: 0;
+    }
+    .rt, .rb{
+        border-right: $hex-border solid white;
+        right: 0;
+    }
+    .lt, .rt{
+        border-top: $hex-border solid white;
+        top: 0;
+    }
+    .lb, .rb{
+        border-bottom: $hex-border solid white;
+        bottom: 0;
+    }
 }

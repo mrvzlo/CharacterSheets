@@ -2,20 +2,14 @@ var app = new Vue({
     el: '#app',
     data: {
       locked: false,
-      character: Object
+      character: Character
     },
     methods:{
-      lock: function(){
-        this.locked = !this.locked;
-      }      
-    }
+      lock: function(){this.locked = !this.locked;},     
+      inspiration: function(){this.character.inspiration = !this.character.inspiration;}
+    },
+    created() {
+      this.character = new Character();
+    }  
   })
 
-  app.$data.character = character();
-
-function character(){
-  return {
-    name: 'Имя персонажа',
-    level: 1
-  }
-}
