@@ -2,7 +2,8 @@ var app = new Vue({
     el: '#app',
     data: {
       locked: false,
-      character: Character
+      character: Character,
+      checkTypes: CheckTypes
     },
     methods:{
       lock: function(){this.locked = !this.locked;},     
@@ -12,4 +13,3 @@ var app = new Vue({
       this.character = new Character();
     }  
   })
-

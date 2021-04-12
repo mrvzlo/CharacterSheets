@@ -13,12 +13,12 @@
             <div class="text-center row">
                 <div class="col-12">
                     <div class="alert alert-secondary">
-                        <input v-model="character.name" class="plain w-100 py-2" :disabled="locked">
+                        <input v-model="character.name" class="plain w-100 border-bottom py-2" placeholder="Имя персонажа" :disabled="locked">
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="alert alert-warning">
-                        <input v-model="character.level" class="plain w-100" type="number" min="1" max="20" :disabled="locked">
+                        <input v-model="character.level" class="plain w-100 border-bottom" type="number" min="1" max="20" :disabled="locked">
                         <div class="small text-secondary">Уровень</div>
                     </div>
                 </div>
@@ -56,8 +56,25 @@
                                 <div class="rt"></div>
                                 <div class="rb"></div>
                             </div> 
-                            <div class="border h2 mt-n3 py-4 rounded-4">
-                                {{attribute.bonus()}}
+                            <div class="border pt-3 pb-1 rounded-4 d-flex flex-column">
+                                <div> </div>
+                                <h1 class="m-0">{{attribute.bonus()}}</h1>
+                                {{attribute.name}}
+                            </div>
+                            <div class="row mb-2" v-on:click="locked ? '' : attribute.getChecks(checkTypes.Saving)[0].inc()">
+                                <div class="col-6 text-end pe-0">
+                                    <div :class="attribute.getChecks(checkTypes.Saving)[0].level()"></div>
+                                </div>
+                                <div class="col-6 ps-0">
+                                    {{attribute.getChecks(checkTypes.Saving)[0].get(character.proficiency(), attribute.bonus())}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-7 p-0 d-flex flex-column justify-content-center">
+                            <div v-on:click="locked ? '' : check.inc()" class="text-start d-flex" v-for="check in attribute.getChecks(checkTypes.Skill)">
+                                <div :class="check.level()"></div>
+                                <span style="width: 20px;">{{check.get(character.proficiency(), attribute.bonus())}}</span>
+                                <span class="small">{{check.name}}</span>
                             </div>
                         </div>
                     </div>
