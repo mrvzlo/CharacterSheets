@@ -22,86 +22,93 @@
                         <div class="small text-secondary">Уровень</div>
                     </div>
                 </div>
+                <div class="col-5">
+                    <div class="alert alert-warning">
+                        <input v-model="character.race" class="plain w-100 border-bottom" :disabled="locked">
+                        <div class="small text-secondary">Раса</div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="alert alert-warning">
+                        <input v-model="character.class" class="plain w-100 border-bottom" :disabled="locked">
+                        <div class="small text-secondary">Класс</div>
+                    </div>
+                </div>
                 <div class="col-9"></div>
                 <div class="col-6 text-start">
                     <div class="d-flex mb-2">
-                        <div class="hex me-2" style="--color: #a8a;" v-on:click="inspiration">                        
-                            <span v-if="character.inspiration" class="fas fa-check"></span>      
-                            <div class="lt"></div>
-                            <div class="lb"></div>
-                            <div class="rt"></div>
-                            <div class="rb"></div>
+                        <div class="hex me-2" style="--color: 250deg;" v-on:click="inspiration">                        
+                            <span v-if="character.inspiration" class="fas fa-check"></span>    
                         </div> 
                         Вдохновение
                     </div>
                     <div class="d-flex mb-2">
-                        <div class="hex me-2" style="--color: #a5a;">           
+                        <div class="hex me-2" style="--color: 300deg;">           
                             {{character.proficiency()}}
-                            <div class="lt"></div>
-                            <div class="lb"></div>
-                            <div class="rt"></div>
-                            <div class="rb"></div>
                         </div> 
                         Мастерство
                     </div>
                 </div>
                 <div class="col-6 text-start">
                     <div class="d-flex mb-2">
-                        <div class="hex me-2" style="--color: #a75;" v-on:click="inspiration">    
-                            <input v-model="character.armor" class="plain w-100 border-bottom" type="number" :disabled="locked">  
-                            <div class="lt"></div>
-                            <div class="lb"></div>
-                            <div class="rt"></div>
-                            <div class="rb"></div>
+                        <div class="hex me-2" style="--color: 40deg;">    
+                            <input v-model="character.armor" class="plain w-100" type="number" :disabled="locked">  
                         </div> 
                         Класс брони
                     </div>
                     <div class="d-flex mb-2">
-                        <div class="hex me-2" style="--color: #5a5;">
-                            <input v-model="character.speed" class="plain w-100 border-bottom" type="number" :disabled="locked">           
-                            <div class="lt"></div>
-                            <div class="lb"></div>
-                            <div class="rt"></div>
-                            <div class="rb"></div>
+                        <div class="hex me-2" style="--color: 150deg;">
+                            <input v-model="character.speed" class="plain w-100" type="number" :disabled="locked">    
                         </div> 
                         Скорость
                     </div>
                 </div>
                 <div class="col-12" v-for="attribute in character.attributes">
-                    <div class="row mb-1 pb-1 border-bottom">
+                    <div class="row mb-1 py-1 border-top">
                         <div class="col-3 my-2">
-                            <div class="hex" style="--color: #000;">    
-                                <input v-model="attribute.value" class="plain w-100 text-white" type="number" min="1" max="20" :disabled="locked">    
-                                <div class="lt"></div>
-                                <div class="lb"></div>
-                                <div class="rt"></div>
-                                <div class="rb"></div>
+                            <div class="hex gray">    
+                                <input v-model="attribute.value" class="plain w-100" type="number" min="1" max="20" :disabled="locked">    
                             </div> 
-                            <div class="border pt-3 pb-1 rounded-4 d-flex flex-column">
+                            <div class="border pt-3 pb-1 rounded-4 d-flex flex-column mt-n3">
                                 <div></div>
                                 <h1 class="m-0">{{attribute.bonus()}}</h1>
                                 {{attribute.name}}
                             </div>
+                            <div v-if="attribute.name == 'МУД'" class="small">Пассив {{10+attribute.bonus()}}</div>
                         </div>
-                        <div class="col-7 p-0 d-flex flex-column justify-content-center">
-                            <div v-on:click="locked ? '' : check.inc()" class="text-start d-flex check" v-for="check in attribute.getChecks(checkTypes.Saving)">
+                        <div class="text-start col-9 p-0 d-flex flex-column justify-content-center">
+                            <div v-on:click="locked ? '' : check.inc()" class="inline-flex check" v-for="check in attribute.getChecks(checkTypes.Saving)">
                                 <div :class="'text-info '+ check.level()"></div>
                                 <span class="bonus px-1" class="text-center">
                                     {{check.get(character.proficiency(), attribute.bonus())}}
                                 </span>                                                                
                                 <span class="small">{{check.name}}</span>
                             </div>
-                            <div v-on:click="locked ? '' : ''" class="text-start d-flex check" v-for="check in attribute.getChecks(checkTypes.Static)">
+                            <div v-on:click="locked ? '' : ''" class="inline-flex check" v-for="check in attribute.getChecks(checkTypes.Static)">
                                 <div class="text-success fas fa-circle"></div>
                                 <span class="bonus px-1" class="text-center">
                                     {{check.get(character.proficiency(), attribute.bonus())}}
                                 </span>                                                             
                                 <span class="small">{{check.name}}</span>
-                            </div>
-                            <div v-on:click="locked ? '' : check.inc()" class="text-start d-flex check" v-for="check in attribute.getChecks(checkTypes.Skill)">
+                            </div>                         
+                            <div v-on:click="locked ? '' : check.inc()" class="inline-flex check" v-for="check in attribute.getChecks(checkTypes.Skill)">
                                 <div :class="check.level()"></div>
                                 <span class="bonus px-1" class="text-center">{{check.get(character.proficiency(), attribute.bonus())}}</span>
                                 <span class="small">{{check.name}}</span>
+                            </div>                            
+                            <div v-if="attribute.name == 'ТЕЛ'" class="small my-2 border p-1 bones rounded">
+                                Кость здоровья
+                                <select v-model="character.healthBoneValue" class="plain float-end fw-bold">
+                                    <option value="6">Д6</option>
+                                    <option value="8">Д8</option>
+                                    <option value="10">Д10</option>
+                                    <option value="12">Д12</option>
+                                </select>
+                                <div class="d-flex justify-content-center">
+                                    <input v-model="character.healthBones" class="plain w-25" type="number" min="0" :max="character.healthBonesMax" :disabled="locked">  
+                                    <span>/</span>
+                                    <input v-model="character.healthBonesMax" class="plain w-25" type="number" min="1" max="20" :disabled="locked">  
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -116,7 +123,7 @@
                     <div class="btn btn-secondary me-1"><i class="fas fa-fw fa-save"></i></div>
                     <div class="btn btn-secondary me-1"><i class="fas fa-fw fa-redo"></i></div>
                     <div class="btn btn-warning me-2" v-on:click="lock">
-                        <i :class="'fas fa-fw '+(locked ? 'fa-lock': 'fa-unlock')"></i>
+                        <i :class="'fas fa-fw '+(locked ? 'fa-unlock': 'fa-lock')"></i>
                     </div>
                 </div>
                 <div class="mb-2" data-bs-toggle="collapse" href=".menu"><i class="fas fa-cog fa-2x"></i></div>

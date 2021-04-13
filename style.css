@@ -10740,7 +10740,8 @@ textarea.form-control-lg {
   line-height: 20px !important;
 }
 .check .bonus {
-  width: 20px;
+  width: 24px;
+  text-align: center;
 }
 
 .far::before, .fas::before {
@@ -10748,37 +10749,30 @@ textarea.form-control-lg {
 }
 
 .hex {
-  background-color: var(--color);
-  color: var(--text);
   width: 47px;
   height: 24px;
   line-height: 24px;
+  background-image: url(images/hexagon.svg);
+  background-size: cover;
   text-align: center;
   display: inline-block;
   position: relative;
+  filter: hue-rotate(var(--color));
 }
-.hex .lt, .hex .lb, .hex .rt, .hex .rb {
-  position: absolute;
-  border-top: 6px solid transparent;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-bottom: 6px solid transparent;
+.hex, .hex > * {
+  color: #fff;
 }
-.hex .lt, .hex .lb {
-  border-left: 6px solid white;
-  left: 0;
+.hex.gray {
+  filter: grayscale(1);
 }
-.hex .rt, .hex .rb {
-  border-right: 6px solid white;
-  right: 0;
+
+.mt-n3 {
+  margin-top: -14px;
 }
-.hex .lt, .hex .rt {
-  border-top: 6px solid white;
-  top: 0;
-}
-.hex .lb, .hex .rb {
-  border-bottom: 6px solid white;
-  bottom: 0;
+
+.bones {
+  width: 180px;
+  background-color: #e68037;
 }
 
 /*# sourceMappingURL=style.css.map */

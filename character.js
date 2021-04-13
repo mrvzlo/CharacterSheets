@@ -6,6 +6,9 @@ class Character{
         this.attributes = [];
         this.speed = 30;
         this.armor = 10;
+        this.healthBoneValue = 8;
+        this.healthBones = 1;
+        this.healthBonesMax = 1;
         var attributes = ["СИЛ","ЛОВ","ТЕЛ","ИНТ","МУД","ХАР"];
         attributes.forEach(
             type => this.attributes.push(

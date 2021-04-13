@@ -16,7 +16,8 @@
     }
 
     .bonus{
-        width: 20px;
+        width: 24px;
+        text-align: center;
     }
 }
 
@@ -26,38 +27,31 @@
     }
 }
 
-.hex{
-    background-color: var(--color);    
-    color: var(--text);    
+.hex{    
     width: 47px;
     height: 24px;
     line-height: 24px;
+    background-image: url(images/hexagon.svg);
+    background-size: cover;
     text-align: center;
     display: inline-block;
     position: relative;
+    filter: hue-rotate(var(--color));
 
-    .lt, .lb, .rt, .rb{
-        position: absolute;
-        border-top: $hex-border solid transparent;
-        border-left: $hex-border solid transparent;
-        border-right: $hex-border solid transparent;
-        border-bottom: $hex-border solid transparent;
+    &, > *{
+        color: #fff;
     }
 
-    .lt, .lb{
-        border-left: $hex-border solid white;
-        left: 0;
+    &.gray{
+        filter: grayscale(1);
     }
-    .rt, .rb{
-        border-right: $hex-border solid white;
-        right: 0;
-    }
-    .lt, .rt{
-        border-top: $hex-border solid white;
-        top: 0;
-    }
-    .lb, .rb{
-        border-bottom: $hex-border solid white;
-        bottom: 0;
-    }
+}
+
+.mt-n3{
+    margin-top: -14px;
+}
+
+.bones{
+    width: 180px;
+    background-color: rgb(230, 128, 55);
 }
