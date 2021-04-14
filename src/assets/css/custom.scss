@@ -1,0 +1,67 @@
+.plain {
+  border: none;
+  background: none;
+  text-align: center;
+}
+
+.rounded-4 {
+  border-radius: 16px;
+}
+
+.check {
+  height: 20px;
+
+  &,
+  .fas,
+  .far {
+    line-height: 20px !important;
+  }
+
+  .bonus {
+    width: 24px;
+    text-align: center;
+  }
+}
+
+.far,
+.fas {
+  &::before {
+    vertical-align: middle;
+  }
+}
+
+.hex {
+  width: 47px;
+  height: 24px;
+  line-height: 24px;
+  background-image: url("~@/assets/hexagon.svg");
+  background-size: cover;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  filter: hue-rotate(var(--color));
+
+  &,
+  > * {
+    color: #fff;
+  }
+
+  &.gray {
+    filter: grayscale(1);
+  }
+}
+
+.mt-n3 {
+  margin-top: -14px;
+}
+
+.bones {
+  width: 180px;
+  background-color: rgb(230, 128, 55);
+}
+
+.modal-body {
+  max-height: 400px;
+  overflow-y: auto;
+  word-break: break-all;
+}
