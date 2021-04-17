@@ -66,24 +66,18 @@
           <div v-if="attribute.name == 'МУД'" class="small">Пассив {{ 10 + attribute.bonus() }}</div>
         </div>
         <div class="text-start col-9 p-0 d-flex flex-column justify-content-center">
-          <div v-on:click="locked ? '' : check.inc()" class="inline-flex check" v-for="check in attribute.getChecks(checkTypes.Saving)" v-bind:key="check.name">
-            <div :class="'text-info ' + check.level()"></div>
-            <span class="bonus px-1 text-center">
-              {{ check.get(character.proficiency(), attribute.bonus()) }}
-            </span>
-            <span class="small">{{ check.name }}</span>
+          <div v-for="check in attribute.getChecks(checkTypes.Saving)" v-bind:key="check.name">
+            <check-component :check="check" :proficiency="character.proficiency()" :bonus="attribute.bonus()"></check-component>
           </div>
-          <div v-on:click="locked ? '' : ''" class="inline-flex check" v-for="check in attribute.getChecks(checkTypes.Static)" v-bind:key="check.name">
+          <div class="check" v-for="check in attribute.getChecks(checkTypes.Static)" v-bind:key="check.name">
             <div class="text-success fas fa-circle"></div>
             <span class="bonus px-1 text-center">
               {{ check.get(character.proficiency(), attribute.bonus()) }}
             </span>
             <span class="small">{{ check.name }}</span>
           </div>
-          <div v-on:click="locked ? '' : check.inc()" class="inline-flex check" v-for="check in attribute.getChecks(checkTypes.Skill)" v-bind:key="check.name">
-            <div :class="check.level()"></div>
-            <span class="bonus px-1 text-center">{{ check.get(character.proficiency(), attribute.bonus()) }}</span>
-            <span class="small">{{ check.name }}</span>
+          <div v-for="check in attribute.getChecks(checkTypes.Skill)" v-bind:key="check.name">
+            <check-component :check="check" :proficiency="character.proficiency()" :bonus="attribute.bonus()"></check-component>
           </div>
           <div v-if="attribute.name == 'ТЕЛ'" class="small my-2 border p-1 bones rounded">
             Кость здоровья
@@ -105,7 +99,7 @@
   </div>
 
   <div class="position-fixed bottom-0 end-0 mx-2 d-flex">
-    <div class="border-0 menu collapse">
+    <div class="border-0 collapse" :id="'menu'">
       <div class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#importModal">
         <i class="fas fa-fw fa-upload"></i>
       </div>
@@ -122,7 +116,7 @@
         <i :class="'fas fa-fw ' + (locked ? 'fa-unlock' : 'fa-lock')"></i>
       </div>
     </div>
-    <div class="mb-2" data-bs-toggle="collapse" href=".menu">
+    <div class="mb-2" data-bs-toggle="collapse" href="#menu">
       <i class="fas fa-cog fa-2x"></i>
     </div>
   </div>
@@ -172,8 +166,9 @@
 </template>
 
 <script>
-import Character from "./character";
-import CheckTypes from "./check-types";
+import Character from "../models/character";
+import CheckTypes from "../models/check-types";
+import CheckComponent from "./check-component.vue";
 
 export default {
   name: "character-component",
@@ -200,6 +195,9 @@ export default {
   created() {
     this.character = new Character();
     this.checkTypes = new CheckTypes();
+  },
+  components: {
+    'check-component': CheckComponent,
   },
 };
 </script>

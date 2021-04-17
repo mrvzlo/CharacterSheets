@@ -3,7 +3,7 @@
 </style>
 
 <template>
-  <CharacterComponent />
+  <character-component />
 </template>
 
 <script>
@@ -12,7 +12,7 @@ import CharacterComponent from "./components/character-component.vue";
 export default {
   name: "App",
   components: {
-    CharacterComponent,
+    'character-component': CharacterComponent,
   },
 };
 </script>
