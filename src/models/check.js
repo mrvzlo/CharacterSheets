@@ -1,3 +1,5 @@
+import CheckTypes from "./enums/check-types";
+
 export default class Check {
   constructor(name, type) {
     this.name = name;
@@ -14,6 +16,9 @@ export default class Check {
   }
 
   level() {
+    if (this.type === new CheckTypes().Static)
+      return "fas fa-circle";
+
     switch (this.knowledge) {
       case 0:
         return "far fa-circle";

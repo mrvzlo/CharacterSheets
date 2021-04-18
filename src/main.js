@@ -1,7 +1,10 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import VueClipboard from 'vue3-clipboard';
+import App from './App.vue';
 
-createApp(App).mount('#app')
+var app = createApp(App);
+app.mount('#app');
+app.use(VueClipboard);
 
 import '@popperjs/core/dist/cjs/popper';
 import 'bootstrap/dist/js/bootstrap';

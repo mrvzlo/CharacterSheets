@@ -1,6 +1,8 @@
-import CheckTypes from "./check-types";
+import CheckTypes from "./enums/check-types";
 import Attribute from "./attribute";
 import Check from "./check";
+import { compress, decompress } from 'compress-json'
+import LZString  from 'lz-string/libs/lz-string.js';
 
 export default class Character {
   constructor() {
@@ -16,12 +18,9 @@ export default class Character {
     var attributes = ["СИЛ", "ЛОВ", "ТЕЛ", "ИНТ", "МУД", "ХАР"];
     attributes.forEach((type) => this.attributes.push(new Attribute(type)));
 
-
     var checktype = new CheckTypes();
     for (var i = 0; i < 6; i++)
-      this.attributes[i].checks.push(
-        new Check("Спасбросок", checktype.Saving)
-      );
+      this.attributes[i].checks.push(new Check("Спасбросок", checktype.Saving));
 
     this.attributes[0].checks.push(new Check("Атлетика", checktype.Skill));
     this.attributes[1].checks.push(new Check("Акробатика", checktype.Skill));
@@ -32,21 +31,16 @@ export default class Character {
     this.attributes[3].checks.push(new Check("Магия", checktype.Skill));
     this.attributes[3].checks.push(new Check("Природа", checktype.Skill));
     this.attributes[3].checks.push(new Check("Религия", checktype.Skill));
-    this.attributes[4].checks.push(
-      new Check("Внимательность", checktype.Skill)
-    );
+    this.attributes[4].checks.push(new Check("Внимательность", checktype.Skill));
     this.attributes[4].checks.push(new Check("Выживание", checktype.Skill));
     this.attributes[4].checks.push(new Check("Медицина", checktype.Skill));
-    this.attributes[4].checks.push(
-      new Check("Проницательность", checktype.Skill)
-    );
-    this.attributes[4].checks.push(
-      new Check("Уход за животными", checktype.Skill)
-    );
+    this.attributes[4].checks.push(new Check("Проницательность", checktype.Skill));
+    this.attributes[4].checks.push(new Check("Уход за животными", checktype.Skill));
     this.attributes[5].checks.push(new Check("Выступление", checktype.Skill));
-    this.attributes[5].checks.push(new Check("Зпугивание", checktype.Skill));
+    this.attributes[5].checks.push(new Check("Запугивание", checktype.Skill));
     this.attributes[5].checks.push(new Check("Обман", checktype.Skill));
     this.attributes[5].checks.push(new Check("Убеждение", checktype.Skill));
+
     this.attributes[1].checks.push(new Check("Инициатива", checktype.Static));
   }
 
@@ -55,43 +49,21 @@ export default class Character {
   }
 
   export() {
-    var encrypted = this.encrypt(this);
-    return window.btoa(this.toBinary(encrypted));
-  }
-
-  encrypt(obj) {
-    var isArray = Array.isArray(obj);
-    var isObject = typeof obj === "object" && obj !== null;
-    if (!isArray && !isObject) return obj;
-
-    var values = [];
-    Object.keys(obj).forEach((key) => values.push(this.encrypt(obj[key])));
-    return isArray ? `[${values.toString()}]` : `{${values.toString()}}`;
+    var compressed = compress(this);
+    var string = JSON.stringify(compressed);
+    return LZString.compressToBase64(string);
   }
 
   import(encrypted) {
-    var decode = this.fromBinary(window.atob(encrypted));
-    this.decrypt(this, decode);
+    var decoded = LZString.decompressFromBase64(encrypted);
+    console.log(decoded);
+    var object = JSON.parse(decoded);
+    return decompress(object);
   }
 
   decrypt(obj, src) {
     src = src.slice(1, -1);
     var values = [];
     console.log(src);
-  }
-
-  toBinary(string) {
-    const codeUnits = new Uint16Array(string.length);
-    for (let i = 0; i < codeUnits.length; i++)
-      codeUnits[i] = string.charCodeAt(i);
-
-    return String.fromCharCode(...new Uint8Array(codeUnits.buffer));
-  }
-
-  fromBinary(binary) {
-    const bytes = new Uint8Array(binary.length);
-    for (let i = 0; i < bytes.length; i++) bytes[i] = binary.charCodeAt(i);
-
-    return String.fromCharCode(...new Uint16Array(bytes.buffer));
   }
 }

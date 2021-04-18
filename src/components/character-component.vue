@@ -54,7 +54,7 @@
     </div>
     <div class="col-12" v-for="attribute in character.attributes" v-bind:key="attribute.name">
       <div class="row mb-1 py-1 border-top">
-        <div class="col-3 my-2">
+        <div class="col-3 my-3">
           <div class="hex gray">
             <input v-model="attribute.value" class="plain w-100" type="number" min="1" max="20" :disabled="locked" />
           </div>
@@ -67,17 +67,16 @@
         </div>
         <div class="text-start col-9 p-0 d-flex flex-column justify-content-center">
           <div v-for="check in attribute.getChecks(checkTypes.Saving)" v-bind:key="check.name">
-            <check-component :check="check" :proficiency="character.proficiency()" :bonus="attribute.bonus()"></check-component>
+            <check-component :check="check" :proficiency="character.proficiency()" :bonus="attribute.bonus()" 
+            :color="'text-warning'" :locked="locked"></check-component>
           </div>
           <div class="check" v-for="check in attribute.getChecks(checkTypes.Static)" v-bind:key="check.name">
-            <div class="text-success fas fa-circle"></div>
-            <span class="bonus px-1 text-center">
-              {{ check.get(character.proficiency(), attribute.bonus()) }}
-            </span>
-            <span class="small">{{ check.name }}</span>
+            <check-component :check="check" :clickable="false" :bonus="attribute.bonus()" 
+            :color="'text-success'" :locked="locked"></check-component>
           </div>
           <div v-for="check in attribute.getChecks(checkTypes.Skill)" v-bind:key="check.name">
-            <check-component :check="check" :proficiency="character.proficiency()" :bonus="attribute.bonus()"></check-component>
+            <check-component :check="check" :proficiency="character.proficiency()" 
+            :bonus="attribute.bonus()" :locked="locked"></check-component>
           </div>
           <div v-if="attribute.name == 'ТЕЛ'" class="small my-2 border p-1 bones rounded">
             Кость здоровья
@@ -132,7 +131,7 @@
           {{ character.export() }}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" v-on:click="copy">
+          <button type="button" class="btn btn-primary">
             Copy
           </button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -167,7 +166,7 @@
 
 <script>
 import Character from "../models/character";
-import CheckTypes from "../models/check-types";
+import CheckTypes from "../models/enums/check-types";
 import CheckComponent from "./check-component.vue";
 
 export default {
@@ -188,7 +187,7 @@ export default {
       this.character.inspiration = !this.character.inspiration;
     },
     importStr: function() {
-      this.character.import(this.importData);
+      this.character = this.character.import(this.importData);
     },
     copy: function() {},
   },

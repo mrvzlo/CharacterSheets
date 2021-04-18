@@ -1,6 +1,6 @@
 <template>
-  <div class="check d-inline" v-on:click="locked ? '' : check.inc()">
-    <div :class="'text-info ' + check.level()"></div>
+  <div class="check d-inline" v-on:click="!locked && clickable ?  check.inc() : ''">
+    <div :class="color + ' ' + check.level()"></div>
     <span class="bonus px-1 text-center">
       {{ check.get(proficiency, bonus) }}
     </span>
@@ -10,15 +10,24 @@
 
 <script>
 import Character from "../models/character";
-import CheckTypes from "../models/check-types";
+import CheckTypes from "../models/enums/check-types";
 import Check from "../models/check";
 
 export default {
   name: "check-component",
   props: {
     check: Check,
-    proficiency: Number,
-    bonus: Number
+    color: String,
+    proficiency: {
+      type: Number,
+      default: 0,
+    },
+    bonus: Number,
+    clickable: {
+      type: Boolean,
+      default: true,
+    },
+    locked: Boolean
   },
   methods: {
   }
