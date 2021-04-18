@@ -166,7 +166,7 @@
 
 <script>
 import Character from "../models/character";
-import CheckTypes from "../models/enums/check-types";
+import {CheckTypes} from "../models/enums/check-types";
 import CheckComponent from "./check-component.vue";
 
 export default {
@@ -175,8 +175,10 @@ export default {
     return {
       locked: false,
       character: Character,
-      checkTypes: CheckTypes,
       importData: "",
+      checkTypes: {
+        default: CheckTypes //I dont give a **** why
+      },
     };
   },
   methods: {
@@ -193,7 +195,7 @@ export default {
   },
   created() {
     this.character = new Character();
-    this.checkTypes = new CheckTypes();
+    this.checkTypes = CheckTypes;
   },
   components: {
     'check-component': CheckComponent,
