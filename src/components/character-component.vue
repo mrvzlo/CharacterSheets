@@ -33,7 +33,7 @@
       </div>
       <div class="d-flex mb-2">
         <div class="hex me-2" style="--color: 300deg">
-          {{ character.proficiency() }}
+          {{ character.proficiency()}}
         </div>
         Мастерство
       </div>
@@ -61,24 +61,24 @@
           <div class="border pt-3 pb-1 rounded-4 d-flex flex-column mt-n3">
             <div></div>
             <h1 class="m-0">{{ attribute.bonus() }}</h1>
-            {{ attribute.name }}
+            {{ attribute.name() }}
           </div>
-          <div v-if="attribute.name == 'МУД'" class="small">Пассив {{ 10 + attribute.bonus() }}</div>
+          <div v-if="attribute.type == attributeType.Wisdom" class="small">Пассив {{ 10 + attribute.bonus() }}</div>
         </div>
         <div class="text-start col-9 p-0 d-flex flex-column justify-content-center">
-          <div v-for="check in attribute.getChecks(checkTypes.Saving)" v-bind:key="check.name">
+          <div v-for="check in attribute.getChecks(checkType.Saving)" v-bind:key="check.name">
             <check-component :check="check" :proficiency="character.proficiency()" :bonus="attribute.bonus()" 
             :color="'text-warning'" :locked="locked"></check-component>
           </div>
-          <div class="check" v-for="check in attribute.getChecks(checkTypes.Static)" v-bind:key="check.name">
+          <div class="check" v-for="check in attribute.getChecks(checkType.Initiative)" v-bind:key="check.name">
             <check-component :check="check" :clickable="false" :bonus="attribute.bonus()" 
             :color="'text-success'" :locked="locked"></check-component>
           </div>
-          <div v-for="check in attribute.getChecks(checkTypes.Skill)" v-bind:key="check.name">
+          <div v-for="check in attribute.getSkillChecks()" v-bind:key="check.name">
             <check-component :check="check" :proficiency="character.proficiency()" 
             :bonus="attribute.bonus()" :locked="locked"></check-component>
           </div>
-          <div v-if="attribute.name == 'ТЕЛ'" class="small my-2 border p-1 bones rounded">
+          <div v-if="attribute.type == attributeType.Constitution" class="small my-2 border p-1 bones rounded">
             Кость здоровья
             <select v-model="character.healthBoneValue" class="plain float-end fw-bold" :disabled="locked">
               <option value="6">Д6</option>
@@ -128,10 +128,10 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          {{ character.export() }}
+          <textarea :value="exportStr()" class="form-control" readonly rows="10" />
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-primary" v-on:click="copy">
             Copy
           </button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -149,7 +149,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <input v-model="importData" class="form-control" />
+          <textarea v-model="importData" class="form-control" rows="10" />
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" v-on:click="importStr">
@@ -166,8 +166,10 @@
 
 <script>
 import Character from "../models/character";
-import {CheckTypes} from "../models/enums/check-types";
+import {CheckType} from "../models/enums/check-type";
+import {AttributeType} from "../models/enums/attribute-type";
 import CheckComponent from "./check-component.vue";
+import Encoder from "../models/encoder";
 
 export default {
   name: "character-component",
@@ -176,9 +178,9 @@ export default {
       locked: false,
       character: Character,
       importData: "",
-      checkTypes: {
-        default: CheckTypes //I dont give a **** why
-      },
+      checkType: { default: CheckType }, //I dont give a **** why
+      attributeType: { default: AttributeType },
+      encoder: Encoder
     };
   },
   methods: {
@@ -189,13 +191,26 @@ export default {
       this.character.inspiration = !this.character.inspiration;
     },
     importStr: function() {
-      this.character = this.character.import(this.importData);
+      this.character = this.encoder.decode(this.importData);
     },
-    copy: function() {},
+    exportStr: function() {
+      return this.encoder.encode(this.character);
+    },
+    copy: function() {
+      const string = this.exportStr();
+      document.addEventListener('copy', event => {
+        event.clipboardData.setData('text/plain', string);
+        event.preventDefault();
+        document.removeEventListener('copy', this.event);
+      });
+      document.execCommand('copy');
+    },
   },
   created() {
     this.character = new Character();
-    this.checkTypes = CheckTypes;
+    this.attributeType = AttributeType;
+    this.checkType = CheckType;
+    this.encoder = new Encoder();
   },
   components: {
     'check-component': CheckComponent,

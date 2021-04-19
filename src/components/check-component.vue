@@ -4,13 +4,12 @@
     <span class="bonus px-1 text-center">
       {{ check.get(proficiency, bonus) }}
     </span>
-    <span class="small">{{ check.name }}</span>
+    <span class="small">{{ check.name() }}</span>
   </div>
 </template>
 
 <script>
 import Character from "../models/character";
-import CheckTypes from "../models/enums/check-types";
 import Check from "../models/check";
 
 export default {

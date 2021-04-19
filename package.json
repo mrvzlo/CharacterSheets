@@ -9,11 +9,11 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
+    "@lexriver/json-pack": "^1.0.1",
     "@popperjs/core": "^2.9.2",
     "bootstrap": "^5.0.0-beta3",
-    "compress-json": "^1.0.4",
     "core-js": "^3.6.5",
-    "lz-string": "^1.4.4",
+    "lzutf8": "^0.6.0",
     "sass": "^1.32.8",
     "sass-loader": "^10.1.1",
     "vue": "^3.0.0",

@@ -1,12 +1,10 @@
-import { CheckTypes } from "./enums/check-types";
+import { CheckType } from "./enums/check-type";
 
 export default class Check {
-  name: string;
-  type: CheckTypes;
+  type: CheckType;
   knowledge: number = 0;
 
-  constructor(name: string, type: CheckTypes) {
-    this.name = name;
+  constructor(type: CheckType) {
     this.type = type;
   }
 
@@ -18,8 +16,8 @@ export default class Check {
     this.knowledge = (this.knowledge + 1) % 3;
   }
 
-  level() {
-    if (this.type === CheckTypes.Static)
+  level(): string {
+    if (this.type === CheckType.Initiative)
       return "fas fa-circle";
 
     switch (this.knowledge) {
@@ -30,5 +28,34 @@ export default class Check {
       case 2:
         return "fas fa-circle";
     }
+
+    return '';
+  }
+
+  name(): string {
+    switch (this.type) {
+      case CheckType.Saving: return "Спасбросок";
+      case CheckType.Initiative: return "Инициатива";
+      case CheckType.Acrobatics: return "Акробатика";
+      case CheckType.AnimalHandling: return "Уход за животными";
+      case CheckType.Arcana: return "Магия";
+      case CheckType.Athletics: return "Атлетика";
+      case CheckType.Deception: return "Обман";
+      case CheckType.History: return "История";
+      case CheckType.Insight: return "Проницательность";
+      case CheckType.Intimidation: return "Запугивание";
+      case CheckType.Investigation: return "Анализ";
+      case CheckType.Medicine: return "Медицина";
+      case CheckType.Nature: return "Природа";
+      case CheckType.Perception: return "Внимательность";
+      case CheckType.Performance: return "Выступление";
+      case CheckType.Persuasion: return "Убеждение";
+      case CheckType.SleightOfHand: return "Ловкость рук";
+      case CheckType.Stealth: return "Скрытность";
+      case CheckType.Survival: return "Выживание";
+      case CheckType.Religion: return "Религия";
+    }
+
+    return '';
   }
 }

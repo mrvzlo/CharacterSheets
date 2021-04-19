@@ -1,72 +1,49 @@
-import { CheckTypes } from "./enums/check-types";
+import { CheckType } from "./enums/check-type";
 import Attribute from "./attribute";
-import Check from "./check";
-import { compress, decompress } from 'compress-json'
-//import LZString from 'lz-string/libs/lz-string.js';
+import { AttributeType } from './enums/attribute-type';
 
 export default class Character {
-  name: String;
-  level: number;
-  inspiration: Boolean;
-  speed: number;
-  armor: number;
-  healthBoneValue: number;
-  healthBones: number;
-  healthBonesMax: number;
-  attributes: Attribute[];
+  name: string = "";
+  class: string = "";
+  race: string = "";
+  level: number = 1;
+  inspiration: Boolean = false;
+  speed: number = 30;
+  armor: number = 10;
+  healthBoneValue: number = 8;
+  healthBones: number = 1;
+  healthBonesMax: number = 1;
+  attributes: Attribute[] = [];
 
   constructor() {
-    this.name = "";
-    this.level = 1;
-    this.inspiration = false;
-    this.attributes = [];
-    this.speed = 30;
-    this.armor = 10;
-    this.healthBoneValue = 8;
-    this.healthBones = 1;
-    this.healthBonesMax = 1;
-    const attributes = ["СИЛ", "ЛОВ", "ТЕЛ", "ИНТ", "МУД", "ХАР"];
-    attributes.forEach((type) => this.attributes.push(new Attribute(type)));
+    for (let i = 0; i < 6; i++)
+      this.attributes.push(new Attribute(i));
 
     for (let i = 0; i < 6; i++)
-      this.attributes[i].checks.push(new Check("Спасбросок", CheckTypes.Saving));
+      this.attributes[i].addCheck(CheckType.Saving);
 
-    this.attributes[0].checks.push(new Check("Атлетика", CheckTypes.Skill));
-    this.attributes[1].checks.push(new Check("Акробатика", CheckTypes.Skill));
-    this.attributes[1].checks.push(new Check("Ловкость рук", CheckTypes.Skill));
-    this.attributes[1].checks.push(new Check("Скрытность", CheckTypes.Skill));
-    this.attributes[3].checks.push(new Check("Анализ", CheckTypes.Skill));
-    this.attributes[3].checks.push(new Check("История", CheckTypes.Skill));
-    this.attributes[3].checks.push(new Check("Магия", CheckTypes.Skill));
-    this.attributes[3].checks.push(new Check("Природа", CheckTypes.Skill));
-    this.attributes[3].checks.push(new Check("Религия", CheckTypes.Skill));
-    this.attributes[4].checks.push(new Check("Внимательность", CheckTypes.Skill));
-    this.attributes[4].checks.push(new Check("Выживание", CheckTypes.Skill));
-    this.attributes[4].checks.push(new Check("Медицина", CheckTypes.Skill));
-    this.attributes[4].checks.push(new Check("Проницательность", CheckTypes.Skill));
-    this.attributes[4].checks.push(new Check("Уход за животными", CheckTypes.Skill));
-    this.attributes[5].checks.push(new Check("Выступление", CheckTypes.Skill));
-    this.attributes[5].checks.push(new Check("Запугивание", CheckTypes.Skill));
-    this.attributes[5].checks.push(new Check("Обман", CheckTypes.Skill));
-    this.attributes[5].checks.push(new Check("Убеждение", CheckTypes.Skill));
-
-    this.attributes[1].checks.push(new Check("Инициатива", CheckTypes.Static));
+    this.attributes[AttributeType.Dexterity].addCheck(CheckType.Initiative);
+    this.attributes[AttributeType.Strength].addCheck(CheckType.Athletics);
+    this.attributes[AttributeType.Dexterity].addCheck(CheckType.Acrobatics);
+    this.attributes[AttributeType.Dexterity].addCheck(CheckType.SleightOfHand);
+    this.attributes[AttributeType.Dexterity].addCheck(CheckType.Stealth);
+    this.attributes[AttributeType.Intelligence].addCheck(CheckType.Investigation);
+    this.attributes[AttributeType.Intelligence].addCheck(CheckType.History);
+    this.attributes[AttributeType.Intelligence].addCheck(CheckType.Arcana);
+    this.attributes[AttributeType.Intelligence].addCheck(CheckType.Nature);
+    this.attributes[AttributeType.Intelligence].addCheck(CheckType.Religion);
+    this.attributes[AttributeType.Wisdom].addCheck(CheckType.Perception);
+    this.attributes[AttributeType.Wisdom].addCheck(CheckType.Survival);
+    this.attributes[AttributeType.Wisdom].addCheck(CheckType.Medicine);
+    this.attributes[AttributeType.Wisdom].addCheck(CheckType.Insight);
+    this.attributes[AttributeType.Wisdom].addCheck(CheckType.AnimalHandling);
+    this.attributes[AttributeType.Charisma].addCheck(CheckType.Performance);
+    this.attributes[AttributeType.Charisma].addCheck(CheckType.Intimidation);
+    this.attributes[AttributeType.Charisma].addCheck(CheckType.Deception);
+    this.attributes[AttributeType.Charisma].addCheck(CheckType.Persuasion);
   }
 
   proficiency() {
     return Math.floor((this.level - 1) / 4) + 2;
-  }
-
-  export() {
-    const compressed = compress(this);
-    const string = JSON.stringify(compressed);
-    return '' //LZString.compressToBase64(string);
-  }
-
-  import(encrypted: string) {
-    const decoded = ''// LZString.decompressFromBase64(encrypted);
-    console.log(decoded);
-    const object = JSON.parse(decoded);
-    return decompress(object);
   }
 }
