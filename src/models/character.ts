@@ -16,7 +16,6 @@ export default class Character {
   healthBonus: number = 0;
   healthBoneValue: number = 8;
   healthBones: number = 1;
-  healthBonesMax: number = 1;
   attributes: Attribute[] = [];
 
   constructor() {

@@ -1,6 +1,6 @@
 <template>
   <div class="text-center row mx-0">
-    <div class="col-12">
+    <div class="col-12 mt-2">
       <div class="alert alert-secondary">
         <input v-model="character.name" class="plain w-100 border-bottom py-2" placeholder="Имя персонажа" :disabled="locked" />
       </div>
@@ -73,9 +73,9 @@
               <option value="12">Д12</option>
             </select>
             <div class="d-flex justify-content-center">
-              <input v-model="character.healthBones" class="plain w-25" type="number" min="0" :max="character.healthBonesMax" :disabled="locked" />
+              <input v-model="character.healthBones" class="plain w-25" type="number" min="0" :max="character.level" />
               <span>/</span>
-              <input v-model="character.healthBonesMax" class="plain w-25" type="number" min="1" max="20" :disabled="locked" />
+              <input v-model="character.level" class="plain w-25" type="number" readonly />
             </div>
           </div>
         </div>
@@ -104,11 +104,11 @@
         <div v-if="attribute.type == attributeType.Strength" class="col-5 d-flex flex-column justify-content-center border-start small pe-0 ps-2">          
           <div>          
             <div>          
-              <div class="hex" style="--color: -10deg">
+              <div class="hex big" style="--color: -10deg">
                 <input v-model="character.health" class="plain w-100" type="number" :max="character.healthMax" min="0" />
               </div>
-              <span class='mx-1'>/</span>            
-              <div class="hex" style="--color: -10deg">
+              <span class='m-1 h3'>/</span>            
+              <div class="hex big" style="--color: -10deg">
                 <input v-model="character.healthMax" class="plain w-100" type="number" min="0" :disabled="locked" />
               </div>
             </div>
@@ -126,17 +126,17 @@
 
   <div class="position-fixed bottom-0 end-0 mx-2 d-flex">
     <div class="border-0 collapse" :id="'menu'">
+      <div class="btn btn-secondary me-1">
+        <i class="fas fa-fw fa-save"></i>
+      </div>
+      <div class="btn btn-danger me-1">
+        <i class="fas fa-fw fa-redo" v-on:click="loadCharacter()"></i>
+      </div>
       <div class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#importModal">
         <i class="fas fa-fw fa-upload"></i>
       </div>
       <div class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#exportModal">
         <i class="fas fa-fw fa-download"></i>
-      </div>
-      <div class="btn btn-secondary me-1">
-        <i class="fas fa-fw fa-save"></i>
-      </div>
-      <div class="btn btn-secondary me-1">
-        <i class="fas fa-fw fa-redo"></i>
       </div>
       <div class="btn btn-warning me-2" v-on:click="lock">
         <i :class="'fas fa-fw ' + (locked ? 'fa-unlock' : 'fa-lock')"></i>
@@ -232,12 +232,15 @@ export default {
       });
       document.execCommand('copy');
     },
+    loadCharacter: function(){
+      this.character = new Character();
+    }
   },
   created() {
-    this.character = new Character();
     this.attributeType = AttributeType;
     this.checkType = CheckType;
     this.encoder = new Encoder();
+    this.loadCharacter();
   },
   components: {
     'check-component': CheckComponent,
