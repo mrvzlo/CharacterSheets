@@ -1,6 +1,5 @@
 export enum CheckType {
   Saving = 0,
-  Initiative = 1,
   Acrobatics = 10,
   AnimalHandling = 11,
   Arcana = 12,

@@ -31,6 +31,8 @@
         </div>
         Вдохновение
       </div>
+    </div>
+    <div class="col-6 text-start">
       <div class="d-flex mb-2">
         <div class="hex me-2" style="--color: 300deg">
           {{ character.proficiency()}}
@@ -38,23 +40,9 @@
         Мастерство
       </div>
     </div>
-    <div class="col-6 text-start">
-      <div class="d-flex mb-2">
-        <div class="hex me-2" style="--color: 40deg">
-          <input v-model="character.armor" class="plain w-100" type="number" :disabled="locked" />
-        </div>
-        Класс брони
-      </div>
-      <div class="d-flex mb-2">
-        <div class="hex me-2" style="--color: 150deg">
-          <input v-model="character.speed" class="plain w-100" type="number" :disabled="locked" />
-        </div>
-        Скорость
-      </div>
-    </div>
     <div class="col-12" v-for="attribute in character.attributes" v-bind:key="attribute.name">
-      <div class="row mb-1 py-1 border-top">
-        <div class="col-3 my-3">
+      <div class="row border-top">
+        <div class="col-3 my-4">
           <div class="hex gray">
             <input v-model="attribute.value" class="plain w-100" type="number" min="1" max="20" :disabled="locked" />
           </div>
@@ -65,19 +53,17 @@
           </div>
           <div v-if="attribute.type == attributeType.Wisdom" class="small">Пассив {{ 10 + attribute.bonus() }}</div>
         </div>
-        <div class="text-start col-9 p-0 d-flex flex-column justify-content-center">
+
+        <div :class="'text-start p-0 d-flex flex-column justify-content-center ' + (attribute.type > attributeType.Dexterity ? 'col-9' : ' col-4')">
           <div v-for="check in attribute.getChecks(checkType.Saving)" v-bind:key="check.name">
             <check-component :check="check" :proficiency="character.proficiency()" :bonus="attribute.bonus()" 
             :color="'text-warning'" :locked="locked"></check-component>
-          </div>
-          <div class="check" v-for="check in attribute.getChecks(checkType.Initiative)" v-bind:key="check.name">
-            <check-component :check="check" :clickable="false" :bonus="attribute.bonus()" 
-            :color="'text-success'" :locked="locked"></check-component>
           </div>
           <div v-for="check in attribute.getSkillChecks()" v-bind:key="check.name">
             <check-component :check="check" :proficiency="character.proficiency()" 
             :bonus="attribute.bonus()" :locked="locked"></check-component>
           </div>
+
           <div v-if="attribute.type == attributeType.Constitution" class="small my-2 border p-1 bones rounded">
             Кость здоровья
             <select v-model="character.healthBoneValue" class="plain float-end fw-bold" :disabled="locked">
@@ -93,6 +79,47 @@
             </div>
           </div>
         </div>
+
+        <div v-if="attribute.type == attributeType.Dexterity" class="col-5 d-flex flex-column justify-content-center border-start small text-start pe-0 ps-2">
+          <div class='my-1'>        
+            <div class="hex me-1" style="--color: 110deg">
+              <input v-model="character.speed" class="plain w-100" type="number" :disabled="locked" />
+            </div>
+            Скорость
+          </div>
+          <div class='my-1'>     
+            <div class="hex me-1" style="--color: 160deg">
+              <input v-model="character.initiative" class="plain w-100" type="number" :disabled="locked" />
+            </div>
+            Инициатива
+          </div>
+          <div class='my-1'>
+            <div class="hex me-1" style="--color: 40deg">
+              <input v-model="character.armor" class="plain w-100" type="number" :disabled="locked" />
+            </div>
+            Класс брони
+          </div>
+        </div>
+
+        <div v-if="attribute.type == attributeType.Strength" class="col-5 d-flex flex-column justify-content-center border-start small pe-0 ps-2">          
+          <div>          
+            <div>          
+              <div class="hex" style="--color: -10deg">
+                <input v-model="character.health" class="plain w-100" type="number" :max="character.healthMax" min="0" />
+              </div>
+              <span class='mx-1'>/</span>            
+              <div class="hex" style="--color: -10deg">
+                <input v-model="character.healthMax" class="plain w-100" type="number" min="0" :disabled="locked" />
+              </div>
+            </div>
+            <div>Здоровье</div>            
+            <div class="hex" style="--color: -10deg">
+                <input v-model="character.healthBonus" class="plain w-100" type="number" />
+              </div>
+            </div>
+            <div>Временный бонус</div>
+          </div>
+
       </div>
     </div>
   </div>
@@ -152,7 +179,7 @@
           <textarea v-model="importData" class="form-control" rows="10" />
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" v-on:click="importStr">
+          <button type="button" class="btn btn-primary" v-on:click="importStr" data-bs-dismiss="modal">
             Import
           </button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

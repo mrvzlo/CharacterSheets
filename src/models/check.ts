@@ -17,9 +17,6 @@ export default class Check {
   }
 
   level(): string {
-    if (this.type === CheckType.Initiative)
-      return "fas fa-circle";
-
     switch (this.knowledge) {
       case 0:
         return "far fa-circle";
@@ -35,7 +32,6 @@ export default class Check {
   name(): string {
     switch (this.type) {
       case CheckType.Saving: return "Спасбросок";
-      case CheckType.Initiative: return "Инициатива";
       case CheckType.Acrobatics: return "Акробатика";
       case CheckType.AnimalHandling: return "Уход за животными";
       case CheckType.Arcana: return "Магия";

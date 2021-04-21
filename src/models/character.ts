@@ -7,9 +7,13 @@ export default class Character {
   class: string = "";
   race: string = "";
   level: number = 1;
+  initiative: number = 0;
   inspiration: Boolean = false;
   speed: number = 30;
   armor: number = 10;
+  health: number = 8;
+  healthMax: number = 8;
+  healthBonus: number = 0;
   healthBoneValue: number = 8;
   healthBones: number = 1;
   healthBonesMax: number = 1;
@@ -22,7 +26,6 @@ export default class Character {
     for (let i = 0; i < 6; i++)
       this.attributes[i].addCheck(CheckType.Saving);
 
-    this.attributes[AttributeType.Dexterity].addCheck(CheckType.Initiative);
     this.attributes[AttributeType.Strength].addCheck(CheckType.Athletics);
     this.attributes[AttributeType.Dexterity].addCheck(CheckType.Acrobatics);
     this.attributes[AttributeType.Dexterity].addCheck(CheckType.SleightOfHand);
