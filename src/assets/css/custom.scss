@@ -51,10 +51,10 @@
   }
 
   &.big{
-    width: 51px;
-    height: 26px;
-    font-size: 20px;
-    line-height: 24px;
+    width: 47px;
+    height: 24px;
+    font-size: 18px;
+    line-height: 23px;
   }
 }
 
@@ -71,4 +71,11 @@
   max-height: 400px;
   overflow-y: auto;
   word-break: break-all;
+}
+
+.heart{  
+  background-image: url("~@/assets/heart.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }

@@ -101,8 +101,8 @@
           </div>
         </div>
 
-        <div v-if="attribute.type == attributeType.Strength" class="col-5 d-flex flex-column justify-content-center border-start small pe-0 ps-2">          
-          <div>          
+        <div v-if="attribute.type == attributeType.Strength" class="col-5 border-start small px-0">          
+          <div class='heart pt-3 pb-4 small'>          
             <div>          
               <div class="hex big" style="--color: -10deg">
                 <input v-model="character.health" class="plain w-100" type="number" :max="character.healthMax" min="0" />
@@ -112,14 +112,14 @@
                 <input v-model="character.healthMax" class="plain w-100" type="number" min="0" :disabled="locked" />
               </div>
             </div>
-            <div>Здоровье</div>            
+            <div class="mb-1">Здоровье</div>            
             <div class="hex" style="--color: -10deg">
-                <input v-model="character.healthBonus" class="plain w-100" type="number" />
-              </div>
+              <input v-model="character.healthBonus" class="plain w-100" type="number" />
             </div>
-            <div>Временный бонус</div>
+            <div>Бонус</div>
           </div>
-
+        </div>
+        
       </div>
     </div>
   </div>
