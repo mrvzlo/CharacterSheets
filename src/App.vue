@@ -3,16 +3,16 @@
 </style>
 
 <template>
-  <character-component />
+  <character />
 </template>
 
 <script>
-import CharacterComponent from "./components/character-component.vue";
+import CharacterComponent from "./components/character.vue";
 
 export default {
   name: "App",
   components: {
-    'character-component': CharacterComponent,
+    'character': CharacterComponent,
   },
 };
 </script>
