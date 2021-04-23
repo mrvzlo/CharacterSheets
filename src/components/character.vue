@@ -72,7 +72,7 @@
                   <div class="d-flex justify-content-center">
                      <input v-model="character.healthBones" class="plain w-25" type="number" min="0" :max="character.level" />
                      <span>/</span>
-                     <input v-model="character.level" class="plain w-25" type="number" readonly />
+                     <span class="plain w-25">{{ character.level }}</span>
                   </div>
                </div>
             </div>
@@ -121,8 +121,24 @@
    </div>
 
    <footer-menu :locked="locked"></footer-menu>
-   <export :character="character"></export>
-   <import />
+   <export-modal :character="character"></export-modal>
+   <save-modal :character="character"></save-modal>
+   <import-modal />
+   <reload-modal />
+
+   <div class="position-fixed top-0 start-0 w-100 p-2 text-center">
+      <transition name="fade">
+         <div class="bg-danger text-white rounded" v-if="hasError">
+            <div class="d-flex justify-content-center">
+               <i class="fas fa-exclamation-triangle m-auto ms-3"></i>
+               <div class="toast-body text-center">
+                  Ошибка загрузки
+               </div>
+               <button type="button" class="btn-close m-auto me-2 btn-close-white" v-on:click="closeError"></button>
+            </div>
+         </div>
+      </transition>
+   </div>
 </template>
 
 <script>
@@ -130,8 +146,10 @@ import Character from "../models/character";
 import { CheckType } from "../models/enums/check-type";
 import { AttributeType } from "../models/enums/attribute-type";
 import CheckComponent from "./check.vue";
-import ExportComponent from "./export.vue";
-import ImportComponent from "./import.vue";
+import ExportModalComponent from "./export-modal.vue";
+import ImportModalComponent from "./import-modal.vue";
+import ReloadModalComponent from "./reload-modal.vue";
+import SaveModalComponent from "./save-modal.vue";
 import FooterMenuComponent from "./footer-menu.vue";
 import Encoder from "../models/encoder";
 
@@ -144,6 +162,8 @@ export default {
          checkType: { default: CheckType }, //I dont give a **** why
          attributeType: { default: AttributeType },
          encoder: Encoder,
+         save: "",
+         hasError: false,
       };
    },
    methods: {
@@ -153,23 +173,49 @@ export default {
       inspiration: function() {
          this.character.inspiration = !this.character.inspiration;
       },
-      importStr: function(input) {
-         this.character = this.encoder.decode(input);
+      importCharacter: function(input) {
+         if (!this.isValid(input)) return this.clearCharacter();
+
+         try {
+            this.character = this.encoder.decode(input);
+         } catch {
+            this.hasError = true;
+            setTimeout(this.closeError, 3000);
+            this.clearCharacter();
+         }
       },
-      reloadCharacter: function() {
+      clearCharacter: function() {
          this.character = new Character();
+      },
+      loadSave: function() {
+         this.importCharacter(this.save);
+      },
+      applySave() {
+         localStorage.character = this.save;
+      },
+      hasSave: function() {
+         return this.isValid(this.save);
+      },
+      isValid: function(string) {
+         return !!string && string !== "null";
+      },
+      closeError() {
+         this.hasError = false;
       },
    },
    created() {
       this.attributeType = AttributeType;
       this.checkType = CheckType;
       this.encoder = new Encoder();
-      this.reloadCharacter();
+      this.save = localStorage.character;
+      this.loadSave();
    },
    components: {
       check: CheckComponent,
-      export: ExportComponent,
-      import: ImportComponent,
+      "export-modal": ExportModalComponent,
+      "import-modal": ImportModalComponent,
+      "reload-modal": ReloadModalComponent,
+      "save-modal": SaveModalComponent,
       "footer-menu": FooterMenuComponent,
    },
 };

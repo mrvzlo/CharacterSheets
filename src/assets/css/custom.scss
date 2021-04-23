@@ -1,81 +1,98 @@
 .plain {
-  border: none;
-  background: none;
-  text-align: center;
+   border: none;
+   background: none;
+   text-align: center;
 }
 
 .rounded-4 {
-  border-radius: 16px;
+   border-radius: 16px;
 }
 
 .check {
-  height: 20px;
+   height: 20px;
 
-  &,
-  .fas,
-  .far {
-    line-height: 20px !important;
-  }
+   &,
+   .fas,
+   .far {
+      line-height: 20px !important;
+   }
 
-  .bonus {
-    width: 24px;
-    text-align: center;
-  }
+   .bonus {
+      width: 24px;
+      text-align: center;
+   }
 }
 
 .far,
 .fas {
-  &::before {
-    vertical-align: middle;
-  }
+   &::before {
+      vertical-align: middle;
+   }
 }
 
 .hex {
-  width: 47px;
-  height: 24px;
-  line-height: 24px;
-  background-image: url("~@/assets/hexagon.svg");
-  background-size: cover;
-  text-align: center;
-  display: inline-block;
-  position: relative;
-  filter: hue-rotate(var(--color));
+   width: 47px;
+   height: 24px;
+   line-height: 24px;
+   background-image: url("~@/assets/hexagon.svg");
+   background-size: cover;
+   text-align: center;
+   display: inline-block;
+   position: relative;
+   filter: hue-rotate(var(--color));
 
-  &,
-  > * {
-    color: #fff;
-  }
+   &,
+   > * {
+      color: #fff;
+   }
 
-  &.gray {
-    filter: grayscale(1);
-  }
+   &.gray {
+      filter: grayscale(1);
+   }
 
-  &.big{
-    width: 47px;
-    height: 24px;
-    font-size: 18px;
-    line-height: 23px;
-  }
+   &.big {
+      width: 47px;
+      height: 24px;
+      font-size: 18px;
+      line-height: 23px;
+   }
 }
 
 .mt-n3 {
-  margin-top: -14px;
+   margin-top: -14px;
 }
 
 .bones {
-  width: 180px;
-  background-color: rgb(230, 128, 55);
+   width: 180px;
+   background-color: rgb(230, 128, 55);
 }
 
 .modal-body {
-  max-height: 400px;
-  overflow-y: auto;
-  word-break: break-all;
+   max-height: 400px;
+   overflow-y: auto;
+   word-break: break-all;
 }
 
-.heart{  
-  background-image: url("~@/assets/heart.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+.heart {
+   background-image: url("~@/assets/heart.svg");
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+   transition: opacity 0.5s;
+}
+
+.fade-fast-enter-active,
+.fade-fast-leave-active {
+   transition: opacity 0.3s;
+}
+
+.fade-enter-from,
+.fade-leave-to,
+.fade-fast-enter-from,
+.fade-fast-leave-to {
+   opacity: 0;
 }
