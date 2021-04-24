@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import Character from "../models/character";
-import Encoder from "../models/encoder";
+import Character from "../../models/character";
+import Encoder from "../../models/encoder";
 
 export default {
    name: "save-modal",

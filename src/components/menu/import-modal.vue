@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import Character from "../models/character";
+import Character from "../../models/character";
 
 export default {
    name: "import-modal",

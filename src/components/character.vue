@@ -38,14 +38,14 @@
          </div>
       </div>
       <div class="border-bottom"></div>
-      <div class="col-12 col-md-6 px-0 border-bottom" v-for="attribute in character.attributes" v-bind:key="attribute.name">
+      <div class="col-12 col-md-6 px-0 border-bottom" v-for="(attribute, index) in character.attributes" v-bind:key="attribute.name">
          <div class="d-flex justify-content-between">
             <div class="d-flex">
                <div class="my-4 px-2">
                   <div class="hex gray">
                      <input v-model="attribute.value" class="plain w-100" type="number" min="1" max="20" :disabled="locked" />
                   </div>
-                  <div class="border pt-3 pb-1 rounded-4 d-flex flex-column mt-n3 w-70px">
+                  <div class="border pt-3 pb-1 rounded-4 d-flex flex-column mt-n3 attribute" :style="'--color: ' + getColor(index) + 'deg'">
                      <div></div>
                      <h1 class="m-0">{{ attribute.bonus() }}</h1>
                      {{ attribute.name() }}
@@ -119,10 +119,11 @@
                   </div>
                   <div>Бонус</div>
                </div>
-               <div class="btn btn-success btn-sm bottom-0 start-0 m-1 position-absolute" v-on:click="longRest">
-                  <i class="fas fa-bed"></i>
-               </div>
             </div>
+            <div v-else-if="attribute.type == attributeType.Constitution" class="small px-3 px-md-4 d-flex justify-content-center flex-column">
+               <rest />
+            </div>
+
             <div v-else></div>
          </div>
       </div>
@@ -142,12 +143,13 @@ import Character from "../models/character";
 import { CheckType } from "../models/enums/check-type";
 import { AttributeType } from "../models/enums/attribute-type";
 import CheckComponent from "./check.vue";
-import ExportModalComponent from "./export-modal.vue";
-import ImportModalComponent from "./import-modal.vue";
-import ReloadModalComponent from "./reload-modal.vue";
-import SaveModalComponent from "./save-modal.vue";
-import FooterMenuComponent from "./footer-menu.vue";
+import ExportModalComponent from "./menu/export-modal.vue";
+import ImportModalComponent from "./menu/import-modal.vue";
+import ReloadModalComponent from "./menu/reload-modal.vue";
+import SaveModalComponent from "./menu/save-modal.vue";
+import FooterMenuComponent from "./menu/footer-menu.vue";
 import HeaderMessageComponent from "./header-message.vue";
+import RestComponent from "./rest.vue";
 import Encoder from "../models/encoder";
 import HeaderMessageModel from "../models/header-message-model";
 
@@ -167,6 +169,9 @@ export default {
    methods: {
       lock() {
          this.locked = !this.locked;
+      },
+      getColor(index) {
+         return 100 * index * index;
       },
       inspiration() {
          this.character.inspiration = !this.character.inspiration;
@@ -223,6 +228,7 @@ export default {
       "save-modal": SaveModalComponent,
       "footer-menu": FooterMenuComponent,
       "header-message": HeaderMessageComponent,
+      rest: RestComponent,
    },
 };
 </script>

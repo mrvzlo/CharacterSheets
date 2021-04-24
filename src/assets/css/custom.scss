@@ -31,6 +31,7 @@
 }
 
 .hex {
+   z-index: 1;
    width: 47px;
    height: 24px;
    line-height: 24px;
@@ -80,8 +81,14 @@
    background-position: center;
 }
 
-.w-70px {
+.attribute {
    width: 70px;
+   filter: hue-rotate(var(--color));
+   background-color: #fdd;
+}
+
+.loading-bar {
+   background: linear-gradient(90deg, #cfc var(--percent), #fff var(--percent));
 }
 
 .fade-enter-active,
