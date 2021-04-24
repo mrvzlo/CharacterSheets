@@ -60,19 +60,20 @@
                <div v-for="check in attribute.getSkillChecks()" v-bind:key="check.name">
                   <check :check="check" :proficiency="character.proficiency()" :bonus="attribute.bonus()" :locked="locked"></check>
                </div>
-
-               <div v-if="attribute.type == attributeType.Constitution" class="small my-2 border p-1 bones rounded">
-                  Кость здоровья
-                  <select v-model="character.healthBoneValue" class="plain float-end fw-bold" :disabled="locked">
-                     <option value="6">Д6</option>
-                     <option value="8">Д8</option>
-                     <option value="10">Д10</option>
-                     <option value="12">Д12</option>
-                  </select>
-                  <div class="d-flex justify-content-center">
-                     <input v-model="character.healthBones" class="plain w-25" type="number" min="0" :max="character.level" />
-                     <span>/</span>
-                     <span class="plain w-25">{{ character.level }}</span>
+               <div v-if="attribute.type == attributeType.Constitution">
+                  <div class="small my-2 border p-1 bones rounded">
+                     Кость здоровья
+                     <select v-model="character.healthBoneValue" class="plain float-end fw-bold" :disabled="locked">
+                        <option value="6">Д6</option>
+                        <option value="8">Д8</option>
+                        <option value="10">Д10</option>
+                        <option value="12">Д12</option>
+                     </select>
+                     <div class="d-flex justify-content-center">
+                        <input v-model="character.healthBones" class="plain w-25" type="number" min="0" :max="character.level" />
+                        <span>/</span>
+                        <span class="plain w-25">{{ character.level }}</span>
+                     </div>
                   </div>
                </div>
             </div>
@@ -98,7 +99,7 @@
                </div>
             </div>
 
-            <div v-if="attribute.type == attributeType.Strength" class="col-5 border-start small px-0">
+            <div v-if="attribute.type == attributeType.Strength" class="col-5 border-start small px-0 position-relative">
                <div class="heart pt-3 pb-4 small">
                   <div>
                      <div class="hex big" style="--color: -10deg">
@@ -115,6 +116,9 @@
                   </div>
                   <div>Бонус</div>
                </div>
+               <div class="btn btn-success btn-sm bottom-0 end-0 m-1 position-absolute" v-on:click="longRest">
+                  <i class="fas fa-bed"></i>
+               </div>
             </div>
          </div>
       </div>
@@ -126,20 +130,7 @@
    <save-modal :character="character"></save-modal>
    <import-modal />
    <reload-modal />
-
-   <div class="position-fixed top-0 start-0 w-100 p-2 text-center">
-      <transition name="fade">
-         <div class="bg-danger text-white rounded" v-if="hasError">
-            <div class="d-flex justify-content-center">
-               <i class="fas fa-exclamation-triangle m-auto ms-3"></i>
-               <div class="toast-body text-center">
-                  Ошибка загрузки
-               </div>
-               <button type="button" class="btn-close m-auto me-2 btn-close-white" v-on:click="closeError"></button>
-            </div>
-         </div>
-      </transition>
-   </div>
+   <header-message :model="headerMessage"></header-message>
 </template>
 
 <script>
@@ -152,7 +143,9 @@ import ImportModalComponent from "./import-modal.vue";
 import ReloadModalComponent from "./reload-modal.vue";
 import SaveModalComponent from "./save-modal.vue";
 import FooterMenuComponent from "./footer-menu.vue";
+import HeaderMessageComponent from "./header-message.vue";
 import Encoder from "../models/encoder";
+import HeaderMessageModel from "../models/header-message-model";
 
 export default {
    name: "character",
@@ -164,45 +157,48 @@ export default {
          attributeType: { default: AttributeType },
          encoder: Encoder,
          save: "",
-         hasError: false,
+         headerMessage: HeaderMessageModel,
       };
    },
    methods: {
-      lock: function() {
+      lock() {
          this.locked = !this.locked;
       },
-      inspiration: function() {
+      inspiration() {
          this.character.inspiration = !this.character.inspiration;
       },
-      importCharacter: function(input) {
+      importCharacter(input) {
          if (!this.isValid(input)) return this.clearCharacter();
 
          try {
             this.character = this.encoder.decode(input);
-            this.lock = true;
+            this.locked = true;
          } catch {
-            this.hasError = true;
-            setTimeout(this.closeError, 3000);
+            this.headerMessage.showError("Ошибка загрузки");
             this.clearCharacter();
          }
       },
-      clearCharacter: function() {
+      clearCharacter() {
          this.character = new Character();
       },
-      loadSave: function() {
+      loadSave() {
          this.importCharacter(this.save);
       },
       applySave() {
          localStorage.character = this.save;
       },
-      hasSave: function() {
+      hasSave() {
          return this.isValid(this.save);
       },
-      isValid: function(string) {
+      isValid(string) {
          return !!string && string !== "null";
       },
-      closeError() {
-         this.hasError = false;
+      longRest() {
+         this.headerMessage.showSuccess("Персонаж успешно отдохнул");
+         this.character.longRest();
+      },
+      closeHeader() {
+         this.headerMessage.closeHeader();
       },
    },
    created() {
@@ -210,6 +206,7 @@ export default {
       this.checkType = CheckType;
       this.encoder = new Encoder();
       this.save = localStorage.character;
+      this.headerMessage = new HeaderMessageModel();
       this.loadSave();
    },
    components: {
@@ -219,6 +216,7 @@ export default {
       "reload-modal": ReloadModalComponent,
       "save-modal": SaveModalComponent,
       "footer-menu": FooterMenuComponent,
+      "header-message": HeaderMessageComponent,
    },
 };
 </script>

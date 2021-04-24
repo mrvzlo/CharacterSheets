@@ -24,7 +24,6 @@
 
 <script>
 import Character from "../models/character";
-import Encoder from "../models/encoder";
 
 export default {
    name: "import-modal",
@@ -40,9 +39,6 @@ export default {
       importStr: function() {
          return this.$parent.importCharacter(this.importData);
       },
-   },
-   created() {
-      this.encoder = new Encoder();
    },
 };
 </script>
