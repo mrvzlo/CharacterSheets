@@ -13,9 +13,9 @@ npm run serve
 ```
 
 ### For publishing
-1) create or move .git folder to parent folder
+1) create or move ```.git``` folder to parent folder
 2) ```npm run build```
-3) move git in the built folder
+3) move ```.git``` folder in the built folder
 4) ```git commit```
 5) ```git push```
 
