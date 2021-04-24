@@ -1,8 +1,15 @@
 <template>
-   <div class="btn loading-bar btn-sm text-center text-success border-success border-2" @touchstart="start" @touchend="end" :style="'--percent:' + percent + '%'">
+   <span>Долгий отдых</span>
+   <div
+      class="btn loading-bar btn-sm text-center text-success border-success border-2"
+      @touchstart="start"
+      @touchend="end"
+      @mousedown="start"
+      @mouseup="end"
+      :style="'--percent:' + percent + '%'"
+   >
       <i class="fas fa-bed"></i>
    </div>
-   <span>Долгий отдых</span>
 </template>
 
 <script>
@@ -27,7 +34,6 @@ export default {
          this.percent = 0;
       },
       timer() {
-         console.log(this.percent);
          if (!this.toggled) {
             return;
          }
@@ -35,8 +41,8 @@ export default {
             this.longRest();
             return;
          }
-         this.percent += 10;
-         setTimeout(this.timer, 100);
+         this.percent += 4;
+         setTimeout(this.timer, 50);
       },
    },
 };

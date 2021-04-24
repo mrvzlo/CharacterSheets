@@ -58,7 +58,13 @@
 
                <div :class="'text-start p-0 d-flex flex-column justify-content-center '">
                   <div v-for="check in attribute.getChecks(checkType.Saving)" v-bind:key="check.name">
-                     <check :check="check" :proficiency="character.proficiency()" :bonus="attribute.bonus()" :color="'text-warning'" :locked="locked"></check>
+                     <check
+                        :check="check"
+                        :proficiency="character.proficiency()"
+                        :bonus="attribute.bonus()"
+                        :color="'text-warning'"
+                        :locked="locked"
+                     ></check>
                   </div>
                   <div v-for="check in attribute.getSkillChecks()" v-bind:key="check.name">
                      <check :check="check" :proficiency="character.proficiency()" :bonus="attribute.bonus()" :locked="locked"></check>
