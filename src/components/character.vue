@@ -118,6 +118,7 @@
             </div>
          </div>
       </div>
+      <div class="col-12 border-top small text-secondary py-1">D&D 5e лист персонажа v0.4 by AndrejevVE</div>
    </div>
 
    <footer-menu :locked="locked"></footer-menu>
@@ -178,6 +179,7 @@ export default {
 
          try {
             this.character = this.encoder.decode(input);
+            this.lock = true;
          } catch {
             this.hasError = true;
             setTimeout(this.closeError, 3000);
