@@ -84,11 +84,15 @@
 .attribute {
    width: 70px;
    filter: hue-rotate(var(--color));
-   background-color: #fdd;
+   background-color: #ffe3e3;
 }
 
 .loading-bar {
    background: linear-gradient(90deg, #cfc var(--percent), #fff var(--percent));
+}
+
+.message {
+   z-index: 1000;
 }
 
 .fade-enter-active,

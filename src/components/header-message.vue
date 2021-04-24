@@ -1,5 +1,5 @@
 <template>
-   <div class="position-fixed top-0 start-0 w-100 p-2 text-center">
+   <div class="position-fixed top-0 start-0 w-100 p-2 text-center message">
       <transition name="fade">
          <div :class="'text-white rounded ' + model.color" v-if="model.show">
             <div class="d-flex justify-content-center">

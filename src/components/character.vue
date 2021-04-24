@@ -133,7 +133,7 @@
             <div v-else></div>
          </div>
       </div>
-      <div class="col-12 small text-secondary py-1">D&D 5e лист персонажа v0.5 by AndrejevVE</div>
+      <div class="col-12 small text-secondary py-1">D&D 5e лист персонажа v0.6 by AndrejevVE</div>
    </div>
 
    <footer-menu :locked="locked"></footer-menu>
