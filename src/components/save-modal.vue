@@ -38,7 +38,7 @@ export default {
       },
       save: function() {
          var encoder = new Encoder();
-         this.$parent.save = encoder.encode(this.character);
+         this.$parent.save = encoder.encode256(this.character);
          this.$parent.applySave();
       },
    },

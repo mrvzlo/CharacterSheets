@@ -37,7 +37,7 @@ export default {
    },
    methods: {
       importStr: function() {
-         return this.$parent.importCharacter(this.importData);
+         return this.$parent.importCharacter(this.importData, 64);
       },
    },
 };

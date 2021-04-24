@@ -3,7 +3,11 @@
 </style>
 
 <template>
-   <character />
+   <div class="row mx-0 justify-content-center">
+      <div class="col-12 col-lg-9 col-xl-7">
+         <character />
+      </div>
+   </div>
 </template>
 
 <script>

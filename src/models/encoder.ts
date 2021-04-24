@@ -14,28 +14,57 @@ export default class Encoder {
       this.dict.push("health");
    }
 
-   encode(src: any): string {
-      let string = JSON.stringify(src);
+   compress(src: any): string {
+      let json = JSON.stringify(src);
       this.dict.forEach((value, index) => {
-         string = string.replaceAll(value, String.fromCharCode(index + 1));
+         json = json.replaceAll(value, String.fromCharCode(index + 1));
       });
-      const encoded = LZUTF8.encodeBase64(LZUTF8.encodeUTF8(string));
+      return json;
+   }
+
+   decompress(src: string): any {
+      this.dict.forEach((value, index) => {
+         src = src.replaceAll(String.fromCharCode(index + 1), value);
+      });
+      return JSON.parse(src);
+   }
+
+   encode64(src: any): string {
+      const string = this.compress(src);
+      const binary = LZUTF8.encodeUTF8(string);
+      const encoded = LZUTF8.encodeBase64(binary);
       return encoded;
    }
 
-   decode(src: string) {
-      let string: any = LZUTF8.decodeUTF8(LZUTF8.decodeBase64(src));
-      this.dict.forEach((value, index) => {
-         string = string.replaceAll(String.fromCharCode(index + 1), value);
-      });
-      const data = JSON.parse(string);
+   encode256(src: any): string {
+      const string = this.compress(src);
+      const binary = LZUTF8.encodeUTF8(string);
+      const encoded = LZUTF8.encodeStorageBinaryString(binary);
+      return encoded;
+   }
+
+   decode64(src: string) {
+      const binary = LZUTF8.decodeBase64(src);
+      const string: any = LZUTF8.decodeUTF8(binary);
+      const data = this.decompress(string);
+      return this.parse(data, new Character());
+   }
+
+   decode256(src: string) {
+      const binary = LZUTF8.decodeStorageBinaryString(src);
+      const string: any = LZUTF8.decodeUTF8(binary);
+      const data = this.decompress(string);
       return this.parse(data, new Character());
    }
 
    parse(data: any, object: any): any {
-      if (typeof data !== "object" || data === null) return data;
+      if (typeof data !== "object" || data === null) {
+         return data;
+      }
 
-      Object.keys(object).forEach((key) => (object[key] = this.parse(data[key], object[key])));
+      Object.keys(object).forEach((key) => {
+         object[key] = this.parse(data[key], object[key]);
+      });
       return object;
    }
 }

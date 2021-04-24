@@ -33,7 +33,7 @@ export default {
    },
    methods: {
       exportStr: function() {
-         return this.encoder.encode(this.character);
+         return this.encoder.encode64(this.character);
       },
       copy: function() {
          const string = this.exportStr();
