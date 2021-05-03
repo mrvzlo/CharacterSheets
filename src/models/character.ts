@@ -19,9 +19,10 @@ export default class Character {
    attributes: Attribute[] = [];
 
    constructor() {
-      for (let i = 0; i < 6; i++) this.attributes.push(new Attribute(i));
-
-      for (let i = 0; i < 6; i++) this.attributes[i].addCheck(CheckType.Saving);
+      for (let i = 0; i < 6; i++) {
+         this.attributes.push(new Attribute(i));
+         this.attributes[i].addCheck(CheckType.Saving);
+      }
 
       this.attributes[AttributeType.Strength].addCheck(CheckType.Athletics);
       this.attributes[AttributeType.Dexterity].addCheck(CheckType.Acrobatics);

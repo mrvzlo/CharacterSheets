@@ -1,42 +1,44 @@
 <template>
-   <div class="text-center row justify-content-center mt-2">
-      <div class="col-12 col-md-7 col-lg-4">
-         <div class="alert alert-secondary">
+   <div class="text-center row mx-0 justify-content-center mt-2">
+      <div class="px-1 col-12 col-md-7 col-lg-4">
+         <div class="alert alert-secondary mb-2">
             <input v-model="character.name" class="plain w-100 border-bottom py-2 h5 mb-1" placeholder="Имя персонажа" :disabled="locked" />
          </div>
       </div>
-      <div class="col-4 col-md-3">
-         <div class="alert alert-warning">
+      <div class="px-1 col-4 col-md-3">
+         <div class="alert alert-warning mb-2">
             <input v-model="character.class" class="plain w-100 border-bottom" :disabled="locked" />
             <div class="small text-secondary">Класс</div>
          </div>
       </div>
-      <div class="col-5 col-md-4 col-lg-3">
-         <div class="alert alert-warning">
+      <div class="px-1 col-5 col-md-4 col-lg-3">
+         <div class="alert alert-warning mb-2">
             <input v-model="character.race" class="plain w-100 border-bottom" :disabled="locked" />
             <div class="small text-secondary">Раса</div>
          </div>
       </div>
-      <div class="col-3 col-lg-2">
-         <div class="alert alert-warning">
+      <div class="px-1 col-3 col-lg-2">
+         <div class="alert alert-warning mb-2">
             <input v-model="character.level" class="plain w-100 border-bottom" type="number" min="1" max="20" :disabled="locked" />
             <div class="small text-secondary">Уровень</div>
          </div>
       </div>
       <div class="col-12 col-md-3 text-start d-flex d-md-block d-lg-flex justify-content-center">
-         <div class="d-flex mb-2 px-1">
+         <div class="d-flex px-1">
             <div class="hex me-2" style="--color: 250deg" v-on:click="inspiration">
                <span v-if="character.inspiration" class="fas fa-check"></span>
             </div>
             Вдохновение
          </div>
-         <div class="d-flex mb-2 px-1">
+         <div class="d-flex px-1">
             <div class="hex me-2" style="--color: 300deg">
                {{ character.proficiency() }}
             </div>
             Мастерство
          </div>
       </div>
+   </div>
+   <div class="text-center row justify-content-center mt-2">
       <div class="border-bottom"></div>
       <div class="col-12 col-md-6 px-0 border-bottom" v-for="(attribute, index) in character.attributes" v-bind:key="attribute.name">
          <div class="d-flex justify-content-between">
@@ -145,9 +147,11 @@
 </template>
 
 <script>
-import Character from "../models/character";
 import { CheckType } from "../models/enums/check-type";
 import { AttributeType } from "../models/enums/attribute-type";
+import Character from "../models/character";
+import Encoder from "../models/encoder";
+import HeaderMessageModel from "../models/header-message-model";
 import CheckComponent from "./check.vue";
 import ExportModalComponent from "./menu/export-modal.vue";
 import ImportModalComponent from "./menu/import-modal.vue";
@@ -156,8 +160,6 @@ import SaveModalComponent from "./menu/save-modal.vue";
 import FooterMenuComponent from "./menu/footer-menu.vue";
 import HeaderMessageComponent from "./header-message.vue";
 import RestComponent from "./rest.vue";
-import Encoder from "../models/encoder";
-import HeaderMessageModel from "../models/header-message-model";
 
 export default {
    name: "character",

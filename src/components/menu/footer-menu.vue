@@ -9,10 +9,10 @@
                <i class="fas fa-fw fa-redo"></i>
             </div>
             <div class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#importModal">
-               <i class="fas fa-fw fa-upload"></i>
+               <i class="fas fa-fw fa-download"></i>
             </div>
             <div class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#exportModal">
-               <i class="fas fa-fw fa-download"></i>
+               <i class="fas fa-fw fa-upload"></i>
             </div>
             <div class="btn btn-warning me-2" v-on:click="lock">
                <i :class="'fas fa-fw ' + (locked ? 'fa-unlock' : 'fa-lock')"></i>
