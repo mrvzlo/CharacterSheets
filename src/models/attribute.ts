@@ -1,47 +1,41 @@
-import Check from './check';
-import { CheckType } from './enums/check-type';
-import { AttributeType } from './enums/attribute-type';
+import Check from "./check";
+import { CheckType } from "../data-layer/checks/check-type";
+import AttributeData from "../data-layer/attributes/attribute-data";
+import { AttributeType } from "../data-layer/attributes/attribute-type";
 
 export default class Attribute {
-  type: AttributeType;
-  value: number;
-  checks: Check[];
+   type: AttributeType;
+   value: number;
+   checks: Check[];
 
-  constructor(type: AttributeType) {
-    this.value = 10;
-    this.checks = [];
-    this.type = type;
-  }
+   constructor(type: AttributeType) {
+      this.value = 10;
+      this.checks = [];
+      this.type = type;
+   }
 
-  bonus() {
-    return Math.floor(this.value / 2) - 5;
-  }
+   get bonus() {
+      return Math.floor(this.value / 2) - 5;
+   }
 
-  getChecks(type: CheckType) {
-    return this.checks.filter(function (x) {
-      return x.type === type;
-    });
-  }
+   getChecks(type: CheckType) {
+      return this.checks.filter(function(x) {
+         return x.type === type;
+      });
+   }
 
-  getSkillChecks() {
-    return this.checks.filter(function (x) {
-      return x.type >= 10;
-    });
-  }
+   get skillChecks() {
+      return this.checks.filter(function(x) {
+         return x.type >= 10;
+      });
+   }
 
-  addCheck(type: CheckType): void {
-    this.checks.push(new Check(type));
-  }
+   addCheck(type: CheckType): void {
+      this.checks.push(new Check(type));
+   }
 
-  name(): string {
-    switch (this.type) {
-      case AttributeType.Charisma: return "ХАР";
-      case AttributeType.Wisdom: return "МУД";
-      case AttributeType.Strength: return "СИЛ";
-      case AttributeType.Constitution: return "ТЕЛ";
-      case AttributeType.Dexterity: return "ЛОВ";
-      case AttributeType.Intelligence: return "ИНТ";
-    }
-    return '';
-  }
+   get name(): string {
+      const list: AttributeData[] = require("../data-layer/attributes/attributes.json");
+      return list.find((x) => x.id == this.type)?.short ?? "";
+   }
 }

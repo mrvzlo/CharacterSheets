@@ -32,7 +32,7 @@
          </div>
          <div class="d-flex px-1">
             <div class="hex me-2" style="--color: 300deg">
-               {{ character.proficiency() }}
+               {{ character.proficiency }}
             </div>
             Мастерство
          </div>
@@ -49,12 +49,12 @@
                   </div>
                   <div class="border pt-3 pb-1 rounded-4 d-flex flex-column mt-n3 attribute" :style="'--color: ' + getColor(index) + 'deg'">
                      <div></div>
-                     <h1 class="m-0">{{ attribute.bonus() }}</h1>
-                     {{ attribute.name() }}
+                     <h1 class="m-0">{{ attribute.bonus }}</h1>
+                     {{ attribute.name }}
                   </div>
                   <div v-if="attribute.type == attributeType.Wisdom" class="small">
                      Пассив
-                     {{ 10 + attribute.getChecks(checkType.Perception)[0].get(character.proficiency(), attribute.bonus()) }}
+                     {{ 10 + attribute.getChecks(checkType.Perception)[0].get(character.proficiency, attribute.bonus) }}
                   </div>
                </div>
 
@@ -62,14 +62,14 @@
                   <div v-for="check in attribute.getChecks(checkType.Saving)" v-bind:key="check.name">
                      <check
                         :check="check"
-                        :proficiency="character.proficiency()"
-                        :bonus="attribute.bonus()"
+                        :proficiency="character.proficiency"
+                        :bonus="attribute.bonus"
                         :color="'text-warning'"
                         :locked="locked"
                      ></check>
                   </div>
-                  <div v-for="check in attribute.getSkillChecks()" v-bind:key="check.name">
-                     <check :check="check" :proficiency="character.proficiency()" :bonus="attribute.bonus()" :locked="locked"></check>
+                  <div v-for="check in attribute.skillChecks" v-bind:key="check.name">
+                     <check :check="check" :proficiency="character.proficiency" :bonus="attribute.bonus" :locked="locked"></check>
                   </div>
                   <div v-if="attribute.type == attributeType.Constitution">
                      <div class="small my-2 border p-1 bones rounded">
@@ -147,8 +147,8 @@
 </template>
 
 <script>
-import { CheckType } from "../models/enums/check-type";
-import { AttributeType } from "../models/enums/attribute-type";
+import { CheckType } from "../data-layer/checks/check-type";
+import { AttributeType } from "../data-layer/attributes/attribute-type";
 import Character from "../models/character";
 import Encoder from "../models/encoder";
 import HeaderMessageModel from "../models/header-message-model";

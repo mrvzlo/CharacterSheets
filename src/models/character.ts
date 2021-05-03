@@ -1,16 +1,16 @@
-import { CheckType } from "./enums/check-type";
+import { CheckType } from "../data-layer/checks/check-type";
 import Attribute from "./attribute";
-import { AttributeType } from "./enums/attribute-type";
+import { AttributeType } from "../data-layer/attributes/attribute-type";
 
 export default class Character {
    name: string = "";
    class: string = "";
    race: string = "";
    level: number = 1;
-   initiative: number = 0;
-   inspiration: Boolean = false;
    speed: number = 30;
    armor: number = 10;
+   initiative: number = 0;
+   inspiration: Boolean = false;
    health: number = 8;
    healthMax: number = 8;
    healthBonus: number = 0;
@@ -44,7 +44,7 @@ export default class Character {
       this.attributes[AttributeType.Charisma].addCheck(CheckType.Persuasion);
    }
 
-   proficiency() {
+   get proficiency() {
       return Math.floor((this.level - 1) / 4) + 2;
    }
 

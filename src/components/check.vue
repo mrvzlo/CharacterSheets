@@ -1,10 +1,10 @@
 <template>
    <div class="check d-inline" v-on:click="!locked && clickable ? check.inc() : ''">
-      <div :class="color + ' ' + check.level()"></div>
+      <div :class="color + ' ' + check.level"></div>
       <span class="bonus px-1 text-center">
          {{ check.get(proficiency, bonus) }}
       </span>
-      <span class="small">{{ check.name() }}</span>
+      <span class="small">{{ check.name }}</span>
    </div>
 </template>
 
