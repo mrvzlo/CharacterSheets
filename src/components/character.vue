@@ -1,4 +1,6 @@
 <template>
+   <header-message :model="headerMessage"></header-message>
+
    <div class="text-center row mx-0 justify-content-center mt-2">
       <div class="px-1 col-12 col-md-7 col-lg-4">
          <div class="alert alert-secondary mb-2">
@@ -42,53 +44,7 @@
       <div class="border-bottom"></div>
       <div class="col-12 col-md-6 px-0 border-bottom" v-for="(attribute, index) in character.attributes" v-bind:key="attribute.name">
          <div class="d-flex justify-content-between">
-            <div class="d-flex">
-               <div class="my-4 px-2">
-                  <div class="hex gray">
-                     <input v-model="attribute.value" class="plain w-100" type="number" min="1" max="20" :disabled="locked" />
-                  </div>
-                  <div class="border pt-3 pb-1 rounded-4 d-flex flex-column mt-n3 attribute" :style="'--color: ' + getColor(index) + 'deg'">
-                     <div></div>
-                     <h1 class="m-0">{{ attribute.bonus }}</h1>
-                     {{ attribute.name }}
-                  </div>
-                  <div v-if="attribute.type == attributeType.Wisdom" class="small">
-                     Пассив
-                     {{ 10 + attribute.getChecks(checkType.Perception)[0].get(character.proficiency, attribute.bonus) }}
-                  </div>
-               </div>
-
-               <div :class="'text-start p-0 d-flex flex-column justify-content-center '">
-                  <div v-for="check in attribute.getChecks(checkType.Saving)" v-bind:key="check.name">
-                     <check
-                        :check="check"
-                        :proficiency="character.proficiency"
-                        :bonus="attribute.bonus"
-                        :color="'text-warning'"
-                        :locked="locked"
-                     ></check>
-                  </div>
-                  <div v-for="check in attribute.skillChecks" v-bind:key="check.name">
-                     <check :check="check" :proficiency="character.proficiency" :bonus="attribute.bonus" :locked="locked"></check>
-                  </div>
-                  <div v-if="attribute.type == attributeType.Constitution">
-                     <div class="small my-2 border p-1 bones rounded">
-                        Кость здоровья
-                        <select v-model="character.healthBoneValue" class="plain float-end fw-bold" :disabled="locked">
-                           <option value="6">Д6</option>
-                           <option value="8">Д8</option>
-                           <option value="10">Д10</option>
-                           <option value="12">Д12</option>
-                        </select>
-                        <div class="d-flex justify-content-center">
-                           <input v-model="character.healthBones" class="plain w-25" type="number" min="0" :max="character.level" />
-                           <span>/</span>
-                           <span class="plain w-25">{{ character.level }}</span>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
+            <attribute-with-checks :character="character" :locked="locked" :attribute="attribute" :index="index"></attribute-with-checks>
 
             <div v-if="attribute.type == attributeType.Dexterity" class="d-flex flex-column justify-content-center small text-start px-2 px-lg-4">
                <div class="my-1">
@@ -138,27 +94,17 @@
       <div class="col-12 small text-secondary py-1">D&D 5e лист персонажа v0.6 by AndrejevVE</div>
    </div>
 
-   <footer-menu :locked="locked"></footer-menu>
-   <export-modal :character="character"></export-modal>
-   <save-modal :character="character"></save-modal>
-   <import-modal />
-   <reload-modal />
-   <header-message :model="headerMessage"></header-message>
+   <footer-menu :locked="locked" :character="character" :save="save"></footer-menu>
 </template>
 
 <script>
-import { CheckType } from "../data-layer/checks/check-type";
 import { AttributeType } from "../data-layer/attributes/attribute-type";
 import Character from "../models/character";
 import Encoder from "../models/encoder";
 import HeaderMessageModel from "../models/header-message-model";
-import CheckComponent from "./check.vue";
-import ExportModalComponent from "./menu/export-modal.vue";
-import ImportModalComponent from "./menu/import-modal.vue";
-import ReloadModalComponent from "./menu/reload-modal.vue";
-import SaveModalComponent from "./menu/save-modal.vue";
 import FooterMenuComponent from "./menu/footer-menu.vue";
 import HeaderMessageComponent from "./header-message.vue";
+import AttributeWithChecksComponent from "./attribute-with-checks.vue";
 import RestComponent from "./rest.vue";
 
 export default {
@@ -167,8 +113,7 @@ export default {
       return {
          locked: false,
          character: Character,
-         checkType: { default: CheckType }, //I dont give a **** why
-         attributeType: { default: AttributeType },
+         attributeType: { default: AttributeType }, //I dont give a **** why
          encoder: Encoder,
          save: "",
          headerMessage: HeaderMessageModel,
@@ -177,9 +122,6 @@ export default {
    methods: {
       lock() {
          this.locked = !this.locked;
-      },
-      getColor(index) {
-         return 100 * index * index;
       },
       inspiration() {
          this.character.inspiration = !this.character.inspiration;
@@ -203,8 +145,9 @@ export default {
       loadSave() {
          this.importCharacter(this.save, 256);
       },
-      applySave() {
-         localStorage.character = this.save;
+      applySave(newSave) {
+         this.save = newSave;
+         localStorage.character = newSave;
       },
       hasSave() {
          return this.isValid(this.save);
@@ -221,21 +164,18 @@ export default {
       },
    },
    created() {
-      this.attributeType = AttributeType;
-      this.checkType = CheckType;
       this.encoder = new Encoder();
       this.save = localStorage.character;
+      this.attributeType = AttributeType;
       this.headerMessage = new HeaderMessageModel();
+   },
+   mounted() {
       this.loadSave();
    },
    components: {
-      check: CheckComponent,
-      "export-modal": ExportModalComponent,
-      "import-modal": ImportModalComponent,
-      "reload-modal": ReloadModalComponent,
-      "save-modal": SaveModalComponent,
-      "footer-menu": FooterMenuComponent,
-      "header-message": HeaderMessageComponent,
+      footerMenu: FooterMenuComponent,
+      headerMessage: HeaderMessageComponent,
+      attributeWithChecks: AttributeWithChecksComponent,
       rest: RestComponent,
    },
 };

@@ -52,4 +52,8 @@ export default class Character {
       this.health = this.healthMax;
       this.healthBones = this.level;
    }
+
+   upd(value: number) {
+      this.healthBones = value;
+   }
 }
