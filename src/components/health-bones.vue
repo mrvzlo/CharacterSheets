@@ -1,7 +1,7 @@
 <template>
    <div class="small my-2 border p-1 bones rounded">
       Кость здоровья
-      <span class="plain float-end fw-bold pe-2"> d{{ character.healthBoneValue }} </span>
+      <span class="plain float-end fw-bold pe-2"> d{{ character.class.bone }} </span>
       <div class="d-flex justify-content-center">
          <input v-model="bones" class="plain w-25" type="number" min="0" :max="character.level" @change="setData" />
          <span>/</span>

@@ -9,7 +9,11 @@
       </div>
       <div class="px-1 col-4 col-md-3">
          <div class="alert alert-warning mb-2">
-            <input v-model="character.class" class="plain w-100 border-bottom" :disabled="locked" />
+            <select v-model="character.class.type" class="plain w-100 border-bottom" :disabled="locked" v-if="character.class">
+               <option v-for="classType in character.class.all" v-bind:key="classType" :value="classType.id">
+                  {{ classType.name }}
+               </option>
+            </select>
             <div class="small text-secondary">Класс</div>
          </div>
       </div>
@@ -99,6 +103,7 @@
 
 <script>
 import { AttributeType } from "../data-layer/attributes/attribute-type";
+import { ClassType } from "../data-layer/classes/class-type";
 import Character from "../models/character";
 import Encoder from "../models/encoder";
 import HeaderMessageModel from "../models/header-message-model";
@@ -106,6 +111,7 @@ import FooterMenuComponent from "./menu/footer-menu.vue";
 import HeaderMessageComponent from "./header-message.vue";
 import AttributeWithChecksComponent from "./attribute-with-checks.vue";
 import RestComponent from "./rest.vue";
+import CharacterClass from "../models/character-class";
 
 export default {
    name: "character",
@@ -127,13 +133,14 @@ export default {
          this.character.inspiration = !this.character.inspiration;
       },
       importCharacter(input, method) {
+         console.log(input);
          if (!this.isValid(input)) {
             return this.clearCharacter();
          }
 
          try {
-            this.character = method == 64 ? this.encoder.decode64(input) : this.encoder.decode256(input);
             this.locked = true;
+            this.character = method == 64 ? this.encoder.decode64(input) : this.encoder.decode256(input);
          } catch {
             this.headerMessage.showError("Ошибка загрузки");
             this.clearCharacter();
@@ -141,6 +148,7 @@ export default {
       },
       clearCharacter() {
          this.character = new Character();
+         this.locked = false;
       },
       loadSave() {
          this.importCharacter(this.save, 256);
@@ -168,8 +176,6 @@ export default {
       this.save = localStorage.character;
       this.attributeType = AttributeType;
       this.headerMessage = new HeaderMessageModel();
-   },
-   mounted() {
       this.loadSave();
    },
    components: {

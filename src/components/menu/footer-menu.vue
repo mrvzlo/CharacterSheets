@@ -52,8 +52,8 @@ export default {
       lock: function() {
          return this.$parent.lock();
       },
-      importCharacter: function() {
-         return this.$parent.importCharacter();
+      importCharacter: function(a, b) {
+         return this.$parent.importCharacter(a, b);
       },
       loadSave() {
          return this.$parent.loadSave();

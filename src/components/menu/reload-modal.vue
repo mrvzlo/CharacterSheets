@@ -46,8 +46,7 @@ export default {
          this.$parent.loadSave();
       },
       clearSave: function() {
-         this.$parent.save = null;
-         this.$parent.applySave();
+         this.$parent.applySave(null);
       },
    },
 };

@@ -1,0 +1,15 @@
+export enum ClassType {
+   Unknown = 0,
+   Bard = 1,
+   Barbarian = 2,
+   Fighter = 3,
+   Wizard = 4,
+   Druid = 5,
+   Cleric = 6,
+   Warlock = 7,
+   Monk = 8,
+   Paladin = 9,
+   Rogue = 10,
+   Ranger = 11,
+   Sorcerer = 12,
+}
