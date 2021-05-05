@@ -23,13 +23,25 @@
          <i class="fas fa-cog fa-2x"></i>
       </div>
    </div>
+   <export-modal :character="character"></export-modal>
+   <save-modal :character="character"></save-modal>
+   <import-modal />
+   <reload-modal />
 </template>
 
 <script>
+import Character from "../../models/character";
+import ExportModalComponent from "./export-modal.vue";
+import ImportModalComponent from "./import-modal.vue";
+import ReloadModalComponent from "./reload-modal.vue";
+import SaveModalComponent from "./save-modal.vue";
+
 export default {
    name: "footer-menu",
    props: {
       locked: { type: Boolean },
+      character: Character,
+      save: { type: String },
    },
    data: function() {
       return {
@@ -40,9 +52,24 @@ export default {
       lock: function() {
          return this.$parent.lock();
       },
-      reloadCharacter: function() {
-         return this.$parent.reloadCharacter();
+      importCharacter: function(a, b) {
+         return this.$parent.importCharacter(a, b);
       },
+      loadSave() {
+         return this.$parent.loadSave();
+      },
+      applySave(newSave) {
+         return this.$parent.applySave(newSave);
+      },
+      hasSave() {
+         return this.$parent.hasSave();
+      },
+   },
+   components: {
+      exportModal: ExportModalComponent,
+      importModal: ImportModalComponent,
+      reloadModal: ReloadModalComponent,
+      saveModal: SaveModalComponent,
    },
 };
 </script>

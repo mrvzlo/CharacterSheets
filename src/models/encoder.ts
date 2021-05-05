@@ -16,6 +16,8 @@ export default class Encoder {
 
    compress(src: any): string {
       let json = JSON.stringify(src);
+      if (!json) return "";
+
       this.dict.forEach((value, index) => {
          json = json.replaceAll(value, String.fromCharCode(index + 1));
       });

@@ -1,10 +1,11 @@
 import { CheckType } from "../data-layer/checks/check-type";
 import Attribute from "./attribute";
+import CharacterClass from "./character-class";
 import { AttributeType } from "../data-layer/attributes/attribute-type";
+import { ClassType } from "@/data-layer/classes/class-type";
 
 export default class Character {
    name: string = "";
-   class: string = "";
    race: string = "";
    level: number = 1;
    speed: number = 30;
@@ -17,6 +18,7 @@ export default class Character {
    healthBoneValue: number = 8;
    healthBones: number = 1;
    attributes: Attribute[] = [];
+   class: CharacterClass = new CharacterClass(ClassType.Unknown);
 
    constructor() {
       for (let i = 0; i < 6; i++) {

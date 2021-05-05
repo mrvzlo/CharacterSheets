@@ -37,9 +37,9 @@ export default {
          return this.$parent.hasSave();
       },
       save: function() {
-         var encoder = new Encoder();
-         this.$parent.save = encoder.encode256(this.character);
-         this.$parent.applySave();
+         const encoder = new Encoder();
+         const newSave = encoder.encode256(this.character);
+         this.$parent.applySave(newSave);
       },
    },
 };
