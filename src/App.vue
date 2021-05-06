@@ -3,8 +3,8 @@
 </style>
 
 <template>
-   <div class="row mx-0 justify-content-center">
-      <div class="col-12 col-lg-9 col-xl-7">
+   <div class="row justify-content-center mx-0">
+      <div class="col-12 col-lg-9 col-xl-7 px-0 d-flex flex-column vh-100">
          <character />
       </div>
    </div>

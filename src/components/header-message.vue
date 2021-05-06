@@ -23,7 +23,12 @@ export default {
    },
    methods: {
       close() {
-         this.$parent.closeHeader();
+         this.model.closeHeader();
+      },
+   },
+   watch: {
+      model() {
+         this.getData();
       },
    },
 };

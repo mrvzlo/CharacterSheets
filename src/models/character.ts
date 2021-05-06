@@ -2,7 +2,7 @@ import { CheckType } from "../data-layer/checks/check-type";
 import Attribute from "./attribute";
 import CharacterClass from "./character-class";
 import { AttributeType } from "../data-layer/attributes/attribute-type";
-import { ClassType } from "@/data-layer/classes/class-type";
+import { ClassType } from "../data-layer/classes/class-type";
 
 export default class Character {
    name: string = "";

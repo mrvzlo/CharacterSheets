@@ -1,26 +1,26 @@
 <template>
-   <div class="position-fixed bottom-0 end-0 w-100 px-2 d-flex justify-content-end">
+   <div class="position-fixed bottom-0 end-0 w-100 d-flex justify-content-end">
       <transition name="fade-fast">
-         <div class="border-0 text-right bg-white py-2 ps-2" :id="'menu'" v-if="show">
-            <div class="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#saveModal">
+         <div class="border-0 text-right bg-white py-2" :id="'menu'" v-if="show">
+            <div class="btn btn-success ms-2" data-bs-toggle="modal" data-bs-target="#saveModal">
                <i class="fas fa-fw fa-save"></i>
             </div>
-            <div class="btn btn-danger me-1" data-bs-toggle="modal" data-bs-target="#reloadModal">
+            <div class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#reloadModal">
                <i class="fas fa-fw fa-redo"></i>
             </div>
-            <div class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#importModal">
+            <div class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#importModal">
                <i class="fas fa-fw fa-download"></i>
             </div>
-            <div class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#exportModal">
+            <div class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#exportModal">
                <i class="fas fa-fw fa-upload"></i>
             </div>
-            <div class="btn btn-warning me-2" v-on:click="lock">
+            <div class="btn btn-warning ms-2" v-on:click="lock">
                <i :class="'fas fa-fw ' + (locked ? 'fa-unlock' : 'fa-lock')"></i>
             </div>
          </div>
       </transition>
-      <div class="my-2" v-on:click="show = !show">
-         <i class="fas fa-cog fa-2x"></i>
+      <div class="m-2 bg-white" v-on:click="show = !show">
+         <i class="fas fa-cog fa-2x fa-fw"></i>
       </div>
    </div>
    <export-modal :character="character"></export-modal>
