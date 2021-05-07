@@ -7,6 +7,7 @@ export default class Encoder {
    constructor() {
       this.dict = [];
       this.dict.push('"knowledge":');
+      this.dict.push(',"id":');
       this.dict.push(',"type":');
       this.dict.push('"value":');
       this.dict.push(',"checks":');

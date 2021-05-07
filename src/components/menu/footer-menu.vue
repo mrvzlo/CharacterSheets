@@ -1,26 +1,44 @@
 <template>
-   <div class="position-fixed bottom-0 end-0 w-100 d-flex justify-content-end">
-      <transition name="fade-fast">
-         <div class="border-0 text-right bg-white py-2" :id="'menu'" v-if="show">
-            <div class="btn btn-success ms-2" data-bs-toggle="modal" data-bs-target="#saveModal">
-               <i class="fas fa-fw fa-save"></i>
-            </div>
-            <div class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#reloadModal">
-               <i class="fas fa-fw fa-redo"></i>
-            </div>
-            <div class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#importModal">
-               <i class="fas fa-fw fa-download"></i>
-            </div>
-            <div class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#exportModal">
-               <i class="fas fa-fw fa-upload"></i>
-            </div>
-            <div class="btn btn-warning ms-2" v-on:click="lock">
-               <i :class="'fas fa-fw ' + (locked ? 'fa-unlock' : 'fa-lock')"></i>
-            </div>
+   <div class="text-center bg-white py-2">
+      <div class="btn-group d-block my-3" v-on:click="lock">
+         <div class="btn btn-warning">
+            <i :class="'fas fa-fw ' + (locked ? 'fa-unlock' : 'fa-lock')"></i>
          </div>
-      </transition>
-      <div class="m-2 bg-white" v-on:click="show = !show">
-         <i class="fas fa-cog fa-2x fa-fw"></i>
+         <div class="btn border-warning col-6">
+            {{ locked ? "Разблокировать" : "Заблокировать" }}
+         </div>
+      </div>
+      <div class="btn-group d-block my-3" data-bs-toggle="modal" data-bs-target="#saveModal">
+         <div class="btn btn-success">
+            <i class="fas fa-fw fa-save"></i>
+         </div>
+         <div class="btn border-success col-6">
+            Сохранения
+         </div>
+      </div>
+      <div class="btn-group d-block my-3" data-bs-toggle="modal" data-bs-target="#reloadModal">
+         <div class="btn btn-danger">
+            <i class="fas fa-fw fa-redo"></i>
+         </div>
+         <div class="btn border-danger col-6">
+            Загрузка
+         </div>
+      </div>
+      <div class="btn-group d-block my-3" data-bs-toggle="modal" data-bs-target="#importModal">
+         <div class="btn btn-primary">
+            <i class="fas fa-fw fa-download"></i>
+         </div>
+         <div class="btn border-primary col-6">
+            Импорт строки
+         </div>
+      </div>
+      <div class="btn-group d-block my-3" data-bs-toggle="modal" data-bs-target="#exportModal">
+         <div class="btn btn-primary">
+            <i class="fas fa-fw fa-upload"></i>
+         </div>
+         <div class="btn border-primary col-6">
+            Экспорт строки
+         </div>
       </div>
    </div>
    <export-modal :character="character"></export-modal>
@@ -42,11 +60,6 @@ export default {
       locked: { type: Boolean },
       character: Character,
       save: { type: String },
-   },
-   data: function() {
-      return {
-         show: false,
-      };
    },
    methods: {
       lock: function() {

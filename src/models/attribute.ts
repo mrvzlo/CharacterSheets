@@ -1,6 +1,5 @@
 import Check from "./check";
 import { CheckType } from "../data-layer/checks/check-type";
-import AttributeData from "../data-layer/attributes/attribute-data";
 import { AttributeType } from "../data-layer/attributes/attribute-type";
 
 export default class Attribute {
@@ -35,7 +34,14 @@ export default class Attribute {
    }
 
    get name(): string {
-      const list: AttributeData[] = require("../data-layer/attributes/attributes.json");
-      return list.find((x) => x.id == this.type)?.short ?? "";
+      return this.all.find((x) => x.id == this.type)?.short ?? "";
+   }
+
+   get color(): string {
+      return this.all.find((x) => x.id == this.type)?.color ?? "";
+   }
+
+   get all(): any[] {
+      return require("../data-layer/attributes/attributes.json");
    }
 }

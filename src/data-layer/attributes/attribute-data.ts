@@ -1,4 +1,6 @@
+import { AttributeType } from "./attribute-type";
+
 export default class AttributeData {
-   id: number = 0;
+   id: AttributeType = 0;
    short: string = "";
 }

@@ -1,8 +1,7 @@
-import { CheckType } from "../data-layer/checks/check-type";
 import Attribute from "./attribute";
 import CharacterClass from "./character-class";
-import { AttributeType } from "../data-layer/attributes/attribute-type";
 import { ClassType } from "../data-layer/classes/class-type";
+import Check from "./check";
 
 export default class Character {
    name: string = "";
@@ -23,27 +22,11 @@ export default class Character {
    constructor() {
       for (let i = 0; i < 6; i++) {
          this.attributes.push(new Attribute(i));
-         this.attributes[i].addCheck(CheckType.Saving);
       }
 
-      this.attributes[AttributeType.Strength].addCheck(CheckType.Athletics);
-      this.attributes[AttributeType.Dexterity].addCheck(CheckType.Acrobatics);
-      this.attributes[AttributeType.Dexterity].addCheck(CheckType.SleightOfHand);
-      this.attributes[AttributeType.Dexterity].addCheck(CheckType.Stealth);
-      this.attributes[AttributeType.Intelligence].addCheck(CheckType.Investigation);
-      this.attributes[AttributeType.Intelligence].addCheck(CheckType.History);
-      this.attributes[AttributeType.Intelligence].addCheck(CheckType.Arcana);
-      this.attributes[AttributeType.Intelligence].addCheck(CheckType.Nature);
-      this.attributes[AttributeType.Intelligence].addCheck(CheckType.Religion);
-      this.attributes[AttributeType.Wisdom].addCheck(CheckType.Perception);
-      this.attributes[AttributeType.Wisdom].addCheck(CheckType.Survival);
-      this.attributes[AttributeType.Wisdom].addCheck(CheckType.Medicine);
-      this.attributes[AttributeType.Wisdom].addCheck(CheckType.Insight);
-      this.attributes[AttributeType.Wisdom].addCheck(CheckType.AnimalHandling);
-      this.attributes[AttributeType.Charisma].addCheck(CheckType.Performance);
-      this.attributes[AttributeType.Charisma].addCheck(CheckType.Intimidation);
-      this.attributes[AttributeType.Charisma].addCheck(CheckType.Deception);
-      this.attributes[AttributeType.Charisma].addCheck(CheckType.Persuasion);
+      new Check(0).all.forEach((check) => {
+         this.attributes[check.attribute].addCheck(check.id);
+      });
    }
 
    get proficiency() {

@@ -1,11 +1,12 @@
-import { CheckType } from "../data-layer/checks/check-type";
+import CheckData from "@/data-layer/checks/check-data";
+import { CheckType } from "@/data-layer/checks/check-type";
 
 export default class Check {
-   type: CheckType;
+   id: number;
    knowledge: number = 0;
 
-   constructor(type: CheckType) {
-      this.type = type;
+   constructor(id: number) {
+      this.id = id;
    }
 
    get(proficiency: number, value: number) {
@@ -30,47 +31,14 @@ export default class Check {
    }
 
    get name(): string {
-      switch (this.type) {
-         case CheckType.Saving:
-            return "Спасбросок";
-         case CheckType.Acrobatics:
-            return "Акробатика";
-         case CheckType.AnimalHandling:
-            return "Уход за животными";
-         case CheckType.Arcana:
-            return "Магия";
-         case CheckType.Athletics:
-            return "Атлетика";
-         case CheckType.Deception:
-            return "Обман";
-         case CheckType.History:
-            return "История";
-         case CheckType.Insight:
-            return "Проницательность";
-         case CheckType.Intimidation:
-            return "Запугивание";
-         case CheckType.Investigation:
-            return "Анализ";
-         case CheckType.Medicine:
-            return "Медицина";
-         case CheckType.Nature:
-            return "Природа";
-         case CheckType.Perception:
-            return "Внимательность";
-         case CheckType.Performance:
-            return "Выступление";
-         case CheckType.Persuasion:
-            return "Убеждение";
-         case CheckType.SleightOfHand:
-            return "Ловкость рук";
-         case CheckType.Stealth:
-            return "Скрытность";
-         case CheckType.Survival:
-            return "Выживание";
-         case CheckType.Religion:
-            return "Религия";
-      }
+      return this.all.find((x) => x.id == this.id)?.name ?? "";
+   }
 
-      return "";
+   get type(): CheckType {
+      return this.all.find((x) => x.id == this.id)?.type ?? 0;
+   }
+
+   get all(): any[] {
+      return require("../data-layer/checks/checks.json");
    }
 }

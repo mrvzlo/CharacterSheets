@@ -1,11 +1,9 @@
 <template>
    <header-message :model="headerMessage"></header-message>
-   <div class="d-flex justify-content-around bg-dark p-2">
-      <div :class="'btn ' + (tab != 1 ? 'btn-dark' : 'btn-light')" v-on:click="tab = 1"><i class="fas fa-id-card fa-fw"></i></div>
-      <div :class="'btn ' + (tab != 2 ? 'btn-dark' : 'btn-light')" v-on:click="tab = 2"><i class="fas fa-running fa-fw"></i></div>
-      <div :class="'btn ' + (tab != 3 ? 'btn-dark' : 'btn-light')" v-on:click="tab = 3"><i class="fas fa-suitcase fa-fw"></i></div>
-      <div :class="'btn ' + (tab != 4 ? 'btn-dark' : 'btn-light')" v-on:click="tab = 4"><i class="fas fa-hand-sparkles fa-fw"></i></div>
-      <div :class="'btn ' + (tab != 5 ? 'btn-dark' : 'btn-light')" v-on:click="tab = 5"><i class="fas fa-cog fa-fw"></i></div>
+   <div class="d-flex justify-content-center bg-dark p-2">
+      <div v-for="index in 5" :key="index" :class="'mx-3 btn ' + (tab != index ? 'btn-dark' : 'btn-light')" v-on:click="tab = index">
+         <i :class="'fas fa-fw fa-' + icons[index - 1]"></i>
+      </div>
    </div>
 
    <div class="flex-grow-1">
@@ -14,7 +12,7 @@
       <div class="text-center row justify-content-center mx-0" v-if="tab == 2">
          <attributes-list :locked="locked" :character="character" :headerMessage="headerMessage"></attributes-list>
       </div>
-   <footer-menu :locked="locked" :character="character" :save="save" v-if="tab == 5"></footer-menu>
+      <footer-menu :locked="locked" :character="character" :save="save" v-if="tab == 5"></footer-menu>
    </div>
    <div class="text-center small text-secondary py-1 border-top">D&D 5e лист персонажа {{ version }} by AndrejevVE</div>
 </template>
@@ -25,8 +23,8 @@ import Encoder from "../models/encoder";
 import HeaderMessageModel from "../models/header-message-model";
 import FooterMenuComponent from "./menu/footer-menu.vue";
 import HeaderMessageComponent from "./header-message.vue";
-import AttributesListComponent from "./attributes-list.vue";
-import MainInfoComponent from "./main-info";
+import AttributesListComponent from "./attributes-skills/attributes-list.vue";
+import MainInfoComponent from "./main-info/main-info";
 import CharacterClass from "../models/character-class";
 
 export default {
@@ -40,6 +38,7 @@ export default {
          headerMessage: HeaderMessageModel,
          version: "v0.7.1",
          tab: 1,
+         icons: ["id-card", "running", "suitcase", "hand-sparkles", "cog"],
       };
    },
    methods: {

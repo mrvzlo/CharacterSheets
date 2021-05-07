@@ -1,26 +1,32 @@
 [
    {
       "id": 0,
-      "short": "СИЛ"
+      "short": "СИЛ",
+      "color": "ecc"
    },
    {
       "id": 1,
-      "short": "ЛОВ"
+      "short": "ЛОВ",
+      "color": "cec"
    },
    {
       "id": 2,
-      "short": "ВЫН"
+      "short": "ВЫН",
+      "color": "eec"
    },
    {
       "id": 3,
-      "short": "ИНТ"
+      "short": "ИНТ",
+      "color": "cce"
    },
    {
       "id": 4,
-      "short": "МУД"
+      "short": "МУД",
+      "color": "cee"
    },
    {
       "id": 5,
-      "short": "ХАР"
+      "short": "ХАР",
+      "color": "ece"
    }
 ]

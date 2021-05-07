@@ -45,9 +45,9 @@
 </template>
 
 <script>
-import Character from "../models/character";
-import { ClassType } from "../data-layer/classes/class-type";
-import CharacterClass from "../models/character-class";
+import Character from "../../models/character";
+import { ClassType } from "../../data-layer/classes/class-type";
+import CharacterClass from "../../models/character-class";
 
 export default {
    name: "top-info",

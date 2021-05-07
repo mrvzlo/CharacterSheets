@@ -1,5 +1,7 @@
+import { ClassType } from "./class-type";
+
 export default class ClassData {
-   id: number = 0;
+   id: ClassType = 0;
    name: string = "";
    bone: number = 0;
 }

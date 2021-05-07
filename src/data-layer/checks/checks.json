@@ -1,0 +1,146 @@
+[
+   {
+      "id": 0,
+      "type": 0,
+      "attribute": 0,
+      "name": "Спасбросок"
+   },
+   {
+      "id": 1,
+      "type": 0,
+      "attribute": 1,
+      "name": "Спасбросок"
+   },
+   {
+      "id": 2,
+      "type": 0,
+      "attribute": 2,
+      "name": "Спасбросок"
+   },
+   {
+      "id": 3,
+      "type": 0,
+      "attribute": 3,
+      "name": "Спасбросок"
+   },
+   {
+      "id": 4,
+      "type": 0,
+      "attribute": 4,
+      "name": "Спасбросок"
+   },
+   {
+      "id": 5,
+      "type": 0,
+      "attribute": 5,
+      "name": "Спасбросок"
+   },
+   {
+      "id": 6,
+      "type": 10,
+      "attribute": 1,
+      "name": "Акробатика"
+   },
+   {
+      "id": 9,
+      "type": 13,
+      "attribute": 0,
+      "name": "Атлетика"
+   },
+   {
+      "id": 14,
+      "type": 18,
+      "attribute": 3,
+      "name": "Анализ"
+   },
+   {
+      "id": 17,
+      "type": 21,
+      "attribute": 4,
+      "name": "Внимательность"
+   },
+   {
+      "id": 21,
+      "type": 25,
+      "attribute": 4,
+      "name": "Выживание"
+   },
+   {
+      "id": 18,
+      "type": 22,
+      "attribute": 5,
+      "name": "Выступление"
+   },
+   {
+      "id": 13,
+      "type": 17,
+      "attribute": 5,
+      "name": "Запугивание"
+   },
+   {
+      "id": 11,
+      "type": 15,
+      "attribute": 3,
+      "name": "История"
+   },
+   {
+      "id": 20,
+      "type": 24,
+      "attribute": 1,
+      "name": "Ловкость рук"
+   },
+   {
+      "id": 8,
+      "type": 12,
+      "attribute": 3,
+      "name": "Магия"
+   },
+   {
+      "id": 15,
+      "type": 19,
+      "attribute": 4,
+      "name": "Медицина"
+   },
+   {
+      "id": 10,
+      "type": 14,
+      "attribute": 5,
+      "name": "Обман"
+   },
+   {
+      "id": 12,
+      "type": 16,
+      "attribute": 4,
+      "name": "Проницательность"
+   },
+   {
+      "id": 16,
+      "type": 20,
+      "attribute": 3,
+      "name": "Природа"
+   },
+   {
+      "id": 19,
+      "type": 23,
+      "attribute": 5,
+      "name": "Убеждение"
+   },
+   {
+      "id": 7,
+      "type": 11,
+      "attribute": 4,
+      "name": "Уход за животными"
+   },
+   {
+      "id": 22,
+      "type": 26,
+      "attribute": 1,
+      "name": "Скрытность"
+   },
+   {
+      "id": 23,
+      "type": 27,
+      "attribute": 3,
+      "name": "Религия"
+   }
+]
