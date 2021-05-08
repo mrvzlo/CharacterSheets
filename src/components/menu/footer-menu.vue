@@ -44,7 +44,7 @@
    <export-modal :character="character" />
    <save-modal :character="character" :saveService="saveService" />
    <import-modal />
-   <reload-modal />
+   <reload-modal :saveService="saveService" />
 </template>
 
 <script>
@@ -68,15 +68,6 @@ export default {
       },
       importCharacter: function(a, b) {
          return this.$parent.importCharacter(a, b);
-      },
-      loadSave() {
-         return this.$parent.loadSave();
-      },
-      applySave(newSave) {
-         return this.$parent.applySave(newSave);
-      },
-      hasSave() {
-         return this.$parent.hasSave();
       },
    },
    components: {

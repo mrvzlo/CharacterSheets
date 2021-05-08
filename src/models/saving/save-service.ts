@@ -16,7 +16,7 @@ export default class SaveService {
    }
 
    importCharacter(input: string, method: number, headerMessage: HeaderMessageModel): SaveResult {
-      if (!this.isValid(input)) {
+      if (method == 0 || !this.isValid(input)) {
          return this.clearCharacter();
       }
 
@@ -43,6 +43,9 @@ export default class SaveService {
 
    applySave(character: Character, id: number) {
       const encoded = this.encoder.encode256(character);
+      if (character.name.length === 0) {
+         character.name = "Неизвестный";
+      }
       this.saveSlots[id].setData(encoded, character.name, id);
    }
 
@@ -52,5 +55,29 @@ export default class SaveService {
 
    clearCharacter(): SaveResult {
       return new SaveResult(false, new Character());
+   }
+
+   savedName(id: number) {
+      if (!this.hasSave(id)) return "Свободный слот";
+      const save = this.getSave(id);
+      return save.name + " - " + this.dateFormat(save.datetime);
+   }
+
+   dateFormat(date: Date) {
+      if (!date) return "";
+      const formatted = new Date(date);
+      return (
+         this.formatTwoDigits(formatted.getDate()) +
+         "." +
+         this.formatTwoDigits(1 + formatted.getMonth()) +
+         " " +
+         formatted.getHours() +
+         ":" +
+         formatted.getMinutes()
+      );
+   }
+
+   formatTwoDigits(number: number) {
+      return number > 9 ? number : "0" + number;
    }
 }

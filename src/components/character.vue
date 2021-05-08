@@ -57,16 +57,6 @@ export default {
       loadSave() {
          this.importCharacter(this.save, 256);
       },
-      applySave(newSave) {
-         this.save = newSave;
-         localStorage.autoSave = newSave;
-      },
-      hasSave() {
-         return this.isValid(this.save);
-      },
-      isValid(string) {
-         return !!string && string !== "null";
-      },
    },
    created() {
       this.encoder = new Encoder();
