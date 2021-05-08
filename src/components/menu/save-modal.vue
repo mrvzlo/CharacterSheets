@@ -6,12 +6,26 @@
                <h5 class="modal-title">Сохранить персонажа</h5>
                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body">
-               <div>Сохранить персонажа?</div>
-               <div v-if="hasSave()">Текущее сохранение будет перезаписано</div>
+            <div class="modal-body py-0">
+               <div v-for="index in 3" :key="index" class="my-3 d-flex rounded position-relative">
+                  <div
+                     :class="'rounded border p-1 flex-grow-1 ' + (index == selected ? 'bg-success text-white' : '')"
+                     v-on:click="selected = selected == index ? 0 : index"
+                  >
+                     {{ index }} - {{ savedName(index) }}
+                  </div>
+                  <button
+                     type="button"
+                     class="btn btn-danger position-absolute end-0 bottom-0 top-0 border-dark"
+                     v-on:click="deleteSave(index)"
+                     v-if="hasSave(index)"
+                  >
+                     <i class="fas fa-times"></i>
+                  </button>
+               </div>
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-success" v-on:click="save" data-bs-dismiss="modal">
+               <button type="button" class="btn btn-success" v-on:click="save" v-if="selected > 0">
                   Сохранить
                </button>
                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -24,23 +38,38 @@
 </template>
 
 <script>
-import Character from "../../models/character";
-import Encoder from "../../models/encoder";
+import SaveService from "@/models/saving/save-service";
+import Character from "@/models/character";
 
 export default {
    name: "save-modal",
    props: {
       character: Character,
+      saveService: SaveService,
+   },
+   data() {
+      return {
+         selected: Number,
+      };
    },
    methods: {
-      hasSave: function() {
-         return this.$parent.hasSave();
+      hasSave: function(id) {
+         return this.saveService.hasSave(id);
+      },
+      savedName: function(id) {
+         return this.hasSave(id) ? this.saveService.getSave(id).name : "Свободный слот";
       },
       save: function() {
-         const encoder = new Encoder();
-         const newSave = encoder.encode256(this.character);
-         this.$parent.applySave(newSave);
+         this.saveService.applySave(this.character, this.selected);
+         this.selected = 0;
       },
+      deleteSave: function(id) {
+         this.saveService.deleteSave(id);
+         this.selected = 0;
+      },
+   },
+   created() {
+      this.selected = 0;
    },
 };
 </script>

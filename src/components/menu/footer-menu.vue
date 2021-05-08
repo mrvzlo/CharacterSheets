@@ -41,25 +41,26 @@
          </div>
       </div>
    </div>
-   <export-modal :character="character"></export-modal>
-   <save-modal :character="character"></save-modal>
+   <export-modal :character="character" />
+   <save-modal :character="character" :saveService="saveService" />
    <import-modal />
    <reload-modal />
 </template>
 
 <script>
-import Character from "../../models/character";
+import Character from "@/models/character";
 import ExportModalComponent from "./export-modal.vue";
 import ImportModalComponent from "./import-modal.vue";
 import ReloadModalComponent from "./reload-modal.vue";
 import SaveModalComponent from "./save-modal.vue";
+import SaveService from "@/models/saving/save-service";
 
 export default {
    name: "footer-menu",
    props: {
       locked: { type: Boolean },
       character: Character,
-      save: { type: String },
+      saveService: SaveService,
    },
    methods: {
       lock: function() {

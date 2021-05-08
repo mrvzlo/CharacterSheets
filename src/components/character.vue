@@ -12,7 +12,7 @@
       <div class="text-center row justify-content-center mx-0" v-if="tab == 2">
          <attributes-list :locked="locked" :character="character" />
       </div>
-      <footer-menu :locked="locked" :character="character" :save="save" v-if="tab == 5" />
+      <footer-menu :locked="locked" :character="character" :saveService="saveService" v-if="tab == 5" />
    </div>
    <div class="text-center small text-secondary py-1 border-top">D&D 5e лист персонажа {{ version }} by AndrejevVE</div>
 </template>
@@ -25,6 +25,7 @@ import FooterMenuComponent from "./menu/footer-menu.vue";
 import HeaderMessageComponent from "./header-message.vue";
 import AttributesListComponent from "./attributes-skills/attributes-list.vue";
 import MainInfoComponent from "./main-info/main-info";
+import SaveService from "../models/saving/save-service";
 
 export default {
    name: "character",
@@ -33,11 +34,11 @@ export default {
          locked: false,
          character: Character,
          encoder: Encoder,
-         save: "",
          headerMessage: HeaderMessageModel,
          version: "v0.8.0",
          tab: 1,
          icons: ["id-card", "running", "suitcase", "hand-sparkles", "cog"],
+         saveService: SaveService,
       };
    },
    methods: {
@@ -45,17 +46,9 @@ export default {
          this.locked = !this.locked;
       },
       importCharacter(input, method) {
-         if (!this.isValid(input)) {
-            return this.clearCharacter();
-         }
-
-         try {
-            this.locked = true;
-            this.character = method == 64 ? this.encoder.decode64(input) : this.encoder.decode256(input);
-         } catch {
-            this.headerMessage.showError("Ошибка загрузки");
-            this.clearCharacter();
-         }
+         var result = this.saveService.importCharacter(input, method, this.headerMessage);
+         this.character = result.character;
+         this.locked = result.locked;
       },
       clearCharacter() {
          this.character = new Character();
@@ -66,7 +59,7 @@ export default {
       },
       applySave(newSave) {
          this.save = newSave;
-         localStorage.character = newSave;
+         localStorage.autoSave = newSave;
       },
       hasSave() {
          return this.isValid(this.save);
@@ -77,8 +70,8 @@ export default {
    },
    created() {
       this.encoder = new Encoder();
-      this.save = localStorage.character;
       this.headerMessage = new HeaderMessageModel();
+      this.saveService = new SaveService();
       this.loadSave();
    },
    components: {
