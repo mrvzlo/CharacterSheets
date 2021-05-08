@@ -35,16 +35,13 @@
    }
 }
 
+.block,
 .hex {
    z-index: 1;
    width: 47px;
    height: 24px;
    line-height: 24px;
-   background-image: url("~@/assets/hexagon.svg");
    background-size: cover;
-   text-align: center;
-   display: inline-block;
-   position: relative;
    filter: hue-rotate(var(--color));
 
    &,
@@ -62,6 +59,16 @@
       font-size: 18px;
       line-height: 23px;
    }
+   display: inline-block;
+   position: relative;
+}
+
+.block {
+   background-image: url("~@/assets/block.svg");
+}
+
+.hex {
+   background-image: url("~@/assets/hexagon.svg");
 }
 
 .mt-n3 {
@@ -69,7 +76,6 @@
 }
 
 .bones {
-   width: 180px;
    background-color: rgb(230, 188, 155);
 }
 

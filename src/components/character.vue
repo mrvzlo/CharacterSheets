@@ -1,5 +1,5 @@
 <template>
-   <header-message :model="headerMessage"></header-message>
+   <header-message :model="headerMessage" />
    <div class="d-flex justify-content-center bg-dark p-2">
       <div v-for="index in 5" :key="index" :class="'mx-3 btn ' + (tab != index ? 'btn-dark' : 'btn-light')" v-on:click="tab = index">
          <i :class="'fas fa-fw fa-' + icons[index - 1]"></i>
@@ -7,12 +7,12 @@
    </div>
 
    <div class="flex-grow-1">
-      <main-info :locked="locked" :character="character" v-if="tab == 1"></main-info>
+      <main-info :locked="locked" :character="character" :headerMessage="headerMessage" v-if="tab == 1" />
 
       <div class="text-center row justify-content-center mx-0" v-if="tab == 2">
-         <attributes-list :locked="locked" :character="character" :headerMessage="headerMessage"></attributes-list>
+         <attributes-list :locked="locked" :character="character" />
       </div>
-      <footer-menu :locked="locked" :character="character" :save="save" v-if="tab == 5"></footer-menu>
+      <footer-menu :locked="locked" :character="character" :save="save" v-if="tab == 5" />
    </div>
    <div class="text-center small text-secondary py-1 border-top">D&D 5e лист персонажа {{ version }} by AndrejevVE</div>
 </template>
@@ -25,7 +25,6 @@ import FooterMenuComponent from "./menu/footer-menu.vue";
 import HeaderMessageComponent from "./header-message.vue";
 import AttributesListComponent from "./attributes-skills/attributes-list.vue";
 import MainInfoComponent from "./main-info/main-info";
-import CharacterClass from "../models/character-class";
 
 export default {
    name: "character",
@@ -36,7 +35,7 @@ export default {
          encoder: Encoder,
          save: "",
          headerMessage: HeaderMessageModel,
-         version: "v0.7.1",
+         version: "v0.8.0",
          tab: 1,
          icons: ["id-card", "running", "suitcase", "hand-sparkles", "cog"],
       };

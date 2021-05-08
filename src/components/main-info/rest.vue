@@ -1,5 +1,5 @@
 <template>
-   <span>Долгий отдых</span>
+   <div>Долгий отдых</div>
    <div
       class="btn loading-bar btn-sm text-center text-success border-success border-2"
       @touchstart="start"
@@ -8,11 +8,14 @@
       @mouseup="end"
       :style="'--percent:' + percent + '%'"
    >
-      <i class="fas fa-bed"></i>
+      <i class="fas fa-bed px-4"></i>
    </div>
 </template>
 
 <script>
+import HeaderMessageModel from "@/models/header-message-model";
+import Character from "@/models/character";
+
 export default {
    name: "rest",
    data() {
@@ -21,9 +24,15 @@ export default {
          toggled: false,
       };
    },
+   props: {
+      character: Character,
+      headerMessage: HeaderMessageModel,
+   },
    methods: {
       longRest() {
-         this.$parent.longRest();
+         this.headerMessage.showSuccess("Персонаж успешно отдохнул");
+         this.character.longRest();
+         this.$parent.getData();
       },
       start() {
          this.toggled = true;

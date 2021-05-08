@@ -1,18 +1,18 @@
 <template>
-   <div class="my-1">
-      <div class="hex me-1" style="--color: 110deg">
+   <div class="d-flex p-1">
+      <div class="hex me-2" style="--color: 110deg">
          <input v-model="speed" class="plain w-100" type="number" min="0" :disabled="locked" @change="setData" />
       </div>
       Скорость
    </div>
-   <div class="my-1">
-      <div class="hex me-1" style="--color: 160deg">
+   <div class="d-flex p-1">
+      <div class="hex me-2" style="--color: 160deg">
          <input v-model="initiative" class="plain w-100" type="number" :disabled="locked" @change="setData" />
       </div>
       Инициатива
    </div>
-   <div class="my-1">
-      <div class="hex me-1" style="--color: 40deg">
+   <div class="d-flex p-1">
+      <div class="hex me-2" style="--color: 40deg">
          <input v-model="armor" class="plain w-100" type="number" :disabled="locked" @change="setData" />
       </div>
       Класс брони
@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import Character from "../models/character";
+import Character from "../../models/character";
 
 export default {
-   name: "dextrecity-derivatives",
+   name: "derivatives",
    props: {
       character: Character,
       locked: Boolean,
@@ -48,12 +48,13 @@ export default {
       },
    },
    watch: {
-      character() {
-         this.getData();
+      character: {
+         handler() {
+            this.getData();
+         },
+         deep: true,
+         immediate: true,
       },
-   },
-   created() {
-      this.getData();
    },
 };
 </script>

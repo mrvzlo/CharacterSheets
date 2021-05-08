@@ -6,11 +6,15 @@ import Check from "./check";
 export default class Character {
    name: string = "";
    race: string = "";
+   story: string = "";
    level: number = 1;
+   size: number = 2;
+   alignment: number = 4;
    speed: number = 30;
    armor: number = 10;
    initiative: number = 0;
-   inspiration: Boolean = false;
+   masterInspiration: Boolean = false;
+   bardInspiration: number = 0;
    health: number = 8;
    healthMax: number = 8;
    healthBonus: number = 0;

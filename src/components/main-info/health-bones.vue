@@ -1,5 +1,5 @@
 <template>
-   <div class="small my-2 border p-1 bones rounded">
+   <div class="small my-2 border px-2 py-1 bones rounded text-start">
       Кость здоровья
       <span class="plain float-end fw-bold pe-2"> d{{ character.class.bone }} </span>
       <div class="d-flex justify-content-center">
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Character from "../models/character";
+import Character from "../../models/character";
 
 export default {
    name: "health-bones",
@@ -33,12 +33,13 @@ export default {
       },
    },
    watch: {
-      character() {
-         this.getData();
+      character: {
+         handler() {
+            this.getData();
+         },
+         deep: true,
+         immediate: true,
       },
-   },
-   created() {
-      this.getData();
    },
 };
 </script>

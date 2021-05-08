@@ -29,14 +29,12 @@ import { AttributeType } from "../../data-layer/attributes/attribute-type";
 import { CheckType } from "../../data-layer/checks/check-type";
 import AttributeComponent from "./attribute.vue";
 import CheckComponent from "./check.vue";
-import HeaderMessageModel from "../../models/header-message-model";
 import Character from "../../models/character";
 
 export default {
    name: "attributes-list",
    props: {
       character: Character,
-      headerMessage: HeaderMessageModel,
       locked: Boolean,
    },
    data() {
@@ -52,10 +50,6 @@ export default {
       },
       getData() {
          this.bones = this.character.healthBones;
-      },
-      longRest() {
-         this.headerMessage.showSuccess("Персонаж успешно отдохнул");
-         this.character.longRest();
       },
    },
    watch: {

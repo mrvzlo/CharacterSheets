@@ -1,10 +1,10 @@
 <template>
    <div class="heart p-3 pb-4 small mt-1">
-      <div>
+      <div class="d-flex justify-content-center mt-2">
          <div class="hex big" style="--color: -10deg">
             <input v-model="current" class="plain w-100" type="number" :max="character.healthMax" min="0" @change="setData" />
          </div>
-         <span class="m-1 h3">/</span>
+         <span class="mx-1 my-0 h3">/</span>
          <div class="hex big" style="--color: -10deg">
             <input v-model="max" class="plain w-100" type="number" min="0" :disabled="locked" @change="setData" />
          </div>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Character from "../models/character";
+import Character from "../../models/character";
 
 export default {
    name: "health",
@@ -46,12 +46,13 @@ export default {
       },
    },
    watch: {
-      character() {
-         this.getData();
+      character: {
+         handler() {
+            this.getData();
+         },
+         deep: true,
+         immediate: true,
       },
-   },
-   created() {
-      this.getData();
    },
 };
 </script>
