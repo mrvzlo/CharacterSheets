@@ -6,12 +6,14 @@ export default class Encoder {
 
    constructor() {
       this.dict = [];
-      this.dict.push('"knowledge":');
+      this.dict.push('{"knowledge":');
       this.dict.push(',"id":');
       this.dict.push(',"type":');
-      this.dict.push('"value":');
-      this.dict.push(',"checks":');
-      this.dict.push("},{");
+      this.dict.push('{"value":');
+      this.dict.push(',"checks":[');
+      this.dict.push(',"inventory":[');
+      this.dict.push('{"name":');
+      this.dict.push(',"capacity":');
       this.dict.push("health");
    }
 
@@ -57,7 +59,8 @@ export default class Encoder {
       const binary = LZUTF8.decodeStorageBinaryString(src);
       const string: any = LZUTF8.decodeUTF8(binary);
       const data = this.decompress(string);
-      return this.parse(data, new Character());
+      const parsed = this.parse(data, new Character());
+      return parsed;
    }
 
    parse(data: any, object: any): any {
@@ -65,7 +68,12 @@ export default class Encoder {
          return data;
       }
 
+      while (Array.isArray(data) && object.length < data.length) {
+         object.pushNew();
+      }
+
       Object.keys(object).forEach((key) => {
+         if (key == "ctor") return;
          object[key] = this.parse(data[key], object[key]);
       });
       return object;

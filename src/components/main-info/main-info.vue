@@ -165,10 +165,13 @@ export default {
       },
    },
    watch: {
-      character: "getData",
-   },
-   created() {
-      this.getData();
+      character: {
+         handler() {
+            this.getData();
+         },
+         deep: true,
+         immediate: true,
+      },
    },
    components: {
       derivatives: DerivativesComponent,

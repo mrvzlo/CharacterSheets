@@ -4,7 +4,7 @@ import ClassData from "../data-layer/classes/class-data";
 export default class CharacterClass {
    type: ClassType;
 
-   constructor(type: ClassType) {
+   constructor(type: ClassType = ClassType.Unknown) {
       this.type = type;
    }
 

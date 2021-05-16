@@ -12,6 +12,11 @@
       <div class="text-center row justify-content-center mx-0" v-if="tab == 2">
          <attributes-list :locked="locked" :character="character" />
       </div>
+
+      <div class="text-center row justify-content-center mx-0" v-if="tab == 3">
+         <inventory :character="character" />
+      </div>
+
       <footer-menu :locked="locked" :character="character" :saveService="saveService" v-if="tab == 5" />
    </div>
    <div class="text-center small text-secondary py-1 border-top">D&D 5e лист персонажа {{ version }} by AndrejevVE</div>
@@ -23,6 +28,7 @@ import Encoder from "../models/encoder";
 import HeaderMessageModel from "../models/header-message-model";
 import FooterMenuComponent from "./menu/footer-menu.vue";
 import HeaderMessageComponent from "./header-message.vue";
+import InventoryComponent from "./inventory/inventory.vue";
 import AttributesListComponent from "./attributes-skills/attributes-list.vue";
 import MainInfoComponent from "./main-info/main-info";
 import SaveService from "../models/saving/save-service";
@@ -55,7 +61,8 @@ export default {
          this.locked = false;
       },
       loadSave() {
-         this.importCharacter(this.save, 256);
+         var save = this.saveService.saveSlots[0].value;
+         this.importCharacter(save, 256);
       },
    },
    created() {
@@ -69,6 +76,7 @@ export default {
       headerMessage: HeaderMessageComponent,
       attributesList: AttributesListComponent,
       mainInfo: MainInfoComponent,
+      inventory: InventoryComponent,
    },
 };
 </script>

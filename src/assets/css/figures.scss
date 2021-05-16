@@ -1,0 +1,50 @@
+.block,
+.hex {
+   z-index: 1;
+   width: 46px;
+   height: 24px;
+   line-height: 24px;
+   background-size: cover;
+   filter: hue-rotate(var(--color));
+   display: inline-block;
+   position: relative;
+
+   &:not(.light) {
+      &,
+      > * {
+         color: #fff;
+      }
+   }
+
+   &.gray {
+      filter: grayscale(1);
+   }
+
+   &.light {
+      filter: grayscale(1) brightness(5);
+      color: #000;
+   }
+
+   &.big {
+      width: 47px;
+      height: 24px;
+      font-size: 18px;
+      line-height: 23px;
+   }
+
+   option {
+      background-color: black;
+   }
+
+   &:focus-visible {
+      border: none;
+   }
+}
+
+.block {
+   background-image: url("~@/assets/block.svg");
+}
+
+.hex {
+   background-image: url("~@/assets/hexagon.svg");
+}

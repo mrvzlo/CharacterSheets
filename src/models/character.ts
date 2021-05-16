@@ -1,7 +1,8 @@
 import Attribute from "./attribute";
+import TypedArray from "./base/typed-array";
 import CharacterClass from "./character-class";
-import { ClassType } from "../data-layer/classes/class-type";
 import Check from "./check";
+import Container from "./inventory/container";
 
 export default class Character {
    name: string = "";
@@ -21,20 +22,26 @@ export default class Character {
    healthBoneValue: number = 8;
    healthBones: number = 1;
    attributes: Attribute[] = [];
-   class: CharacterClass = new CharacterClass(ClassType.Unknown);
+   inventory: TypedArray<Container>;
+   class: CharacterClass = new CharacterClass();
 
    constructor() {
+      this.inventory = new TypedArray<Container>(Container);
       for (let i = 0; i < 6; i++) {
          this.attributes.push(new Attribute(i));
       }
 
-      new Check(0).all.forEach((check) => {
+      new Check().all.forEach((check) => {
          this.attributes[check.attribute].addCheck(check.id);
       });
    }
 
    get proficiency() {
       return Math.floor((this.level - 1) / 4) + 2;
+   }
+
+   addContainer() {
+      this.inventory.pushNew();
    }
 
    longRest() {

@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import Character from "../../models/character";
 import Check from "../../models/check";
 import { CheckType } from "../../data-layer/checks/check-type";
 

@@ -35,42 +35,6 @@
    }
 }
 
-.block,
-.hex {
-   z-index: 1;
-   width: 47px;
-   height: 24px;
-   line-height: 24px;
-   background-size: cover;
-   filter: hue-rotate(var(--color));
-
-   &,
-   > * {
-      color: #fff;
-   }
-
-   &.gray {
-      filter: grayscale(1);
-   }
-
-   &.big {
-      width: 47px;
-      height: 24px;
-      font-size: 18px;
-      line-height: 23px;
-   }
-   display: inline-block;
-   position: relative;
-}
-
-.block {
-   background-image: url("~@/assets/block.svg");
-}
-
-.hex {
-   background-image: url("~@/assets/hexagon.svg");
-}
-
 .mt-n3 {
    margin-top: -14px;
 }
@@ -127,4 +91,20 @@ select {
 .fade-fast-enter-from,
 .fade-fast-leave-to {
    opacity: 0;
+}
+
+.card-header {
+   &,
+   input {
+      background-color: #000;
+      color: #fff;
+   }
+}
+
+.w-50px {
+   width: 50px;
+}
+
+.lh-0 {
+   line-height: 0;
 }

@@ -4,12 +4,10 @@ import { AttributeType } from "../data-layer/attributes/attribute-type";
 
 export default class Attribute {
    type: AttributeType;
-   value: number;
-   checks: Check[];
+   value: number = 10;
+   checks: Check[] = [];
 
    constructor(type: AttributeType) {
-      this.value = 10;
-      this.checks = [];
       this.type = type;
    }
 
@@ -42,6 +40,6 @@ export default class Attribute {
    }
 
    get all(): any[] {
-      return require("../data-layer/attributes/attributes.json");
+      return require("@/data-layer/attributes/attributes.json");
    }
 }

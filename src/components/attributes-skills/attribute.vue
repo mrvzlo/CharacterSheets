@@ -32,7 +32,7 @@ export default {
    },
    methods: {
       setData() {
-         Object.assign(this.character.attributes[this.index], { value: this.attributeValue });
+         Object.assign(this.attribute, { value: this.attributeValue });
       },
       getData() {
          this.attributeValue = this.attribute.value;

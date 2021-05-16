@@ -3,10 +3,18 @@
       <div class="modal-dialog">
          <div class="modal-content">
             <div class="modal-header">
-               <h5 class="modal-title">Сбросить персонажа</h5>
+               <h5 class="modal-title">Загрузить персонажа</h5>
                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body py-0">
+               <div class="my-3 d-flex rounded position-relative">
+                  <div
+                     :class="'rounded border p-1 text-center w-100 ' + (selected == 10 ? 'bg-dark text-white' : '')"
+                     v-on:click="selected = selected == 10 ? -1 : 10"
+                  >
+                     Новый персонаж
+                  </div>
+               </div>
                <div class="mt-3 text-center">Автосохранение</div>
                <div class="my-3 d-flex rounded position-relative">
                   <div
@@ -23,14 +31,6 @@
                      v-on:click="selected = selected == index ? -1 : index"
                   >
                      {{ index }} - {{ savedName(index) }}
-                  </div>
-               </div>
-               <div class="mt-4 mb-3 d-flex rounded position-relative">
-                  <div
-                     :class="'rounded border p-1 flex-grow-1 ' + (selected == 10 ? 'bg-dark text-white' : '')"
-                     v-on:click="selected = selected == 10 ? -1 : 10"
-                  >
-                     Новый персонаж
                   </div>
                </div>
             </div>
