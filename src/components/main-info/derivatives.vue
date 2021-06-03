@@ -1,17 +1,19 @@
 <template>
-   <div class="d-flex p-1">
+   <div class="d-inline-flex p-1">
       <div class="hex me-2" style="--color: 110deg">
          <input v-model="speed" class="plain w-100" type="number" min="0" :disabled="locked" @change="setData" />
       </div>
       Скорость
    </div>
-   <div class="d-flex p-1">
+   <br />
+   <div class="d-inline-flex p-1">
       <div class="hex me-2" style="--color: 160deg">
          <input v-model="initiative" class="plain w-100" type="number" :disabled="locked" @change="setData" />
       </div>
       Инициатива
    </div>
-   <div class="d-flex p-1">
+   <br />
+   <div class="d-inline-flex p-1">
       <div class="hex me-2" style="--color: 40deg">
          <input v-model="armor" class="plain w-100" type="number" :disabled="locked" @change="setData" />
       </div>

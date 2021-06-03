@@ -6,7 +6,7 @@
       </div>
    </div>
 
-   <div class="flex-grow-1">
+   <div class="col-12 col-lg-9 col-xl-7 px-0 mx-auto flex-grow-1">
       <main-info :locked="locked" :character="character" :headerMessage="headerMessage" v-if="tab == 1" />
 
       <div class="text-center row justify-content-center mx-0" v-if="tab == 2">

@@ -1,6 +1,6 @@
 <template>
    <div class="text-center row mx-1 justify-content-center mt-2">
-      <div class="px-1 col-12 col-md-7 col-lg-4">
+      <div class="px-1 col-12 col-md-6 col-lg-5">
          <div class="alert alert-secondary mb-2">
             <input v-model="name" class="plain w-100 border-bottom py-2 h5 mb-1" placeholder="Имя персонажа" :disabled="locked" @change="setData" />
          </div>
@@ -15,25 +15,25 @@
             <div class="small text-secondary">Класс</div>
          </div>
       </div>
-      <div class="px-1 col-4 col-md-4 col-lg-3">
+      <div class="px-1 col-4 col-md-3">
          <div class="alert alert-warning mb-2">
             <input v-model="race" class="plain w-100 border-bottom" :disabled="locked" @change="setData" />
             <div class="small text-secondary">Раса</div>
          </div>
       </div>
-      <div class="px-1 col-4 col-md-4 col-lg-3">
+      <div class="px-1 col-4 col-md-3">
          <div class="alert alert-warning mb-2">
             <input v-model="story" class="plain w-100 border-bottom" :disabled="locked" @change="setData" />
             <div class="small text-secondary">Предыстория</div>
          </div>
       </div>
-      <div class="px-1 col-3 col-lg-2">
+      <div class="px-1 col-3 col-md-3 col-lg-2">
          <div class="alert alert-warning mb-2">
             <input v-model="level" class="plain w-100 border-bottom" type="number" min="1" max="20" :disabled="locked" @change="setData" />
             <div class="small text-secondary">Уровень</div>
          </div>
       </div>
-      <div class="px-1 col-4 col-md-4 col-lg-3">
+      <div class="px-1 col-4 col-md-3">
          <div class="alert alert-warning mb-2">
             <select v-model="size" class="plain w-100 border-bottom" :disabled="locked" @change="setData">
                <option value="0">Крошечный</option>
@@ -45,7 +45,7 @@
             <div class="small text-secondary">Размер</div>
          </div>
       </div>
-      <div class="px-1 col-5 col-md-4 col-lg-3">
+      <div class="px-1 col-5 col-md-3">
          <div class="alert alert-warning mb-2">
             <select v-model="alignment" class="plain w-100 border-bottom" :disabled="locked" @change="setData">
                <option value="0">Законно-добрый</option>
@@ -61,7 +61,7 @@
             <div class="small text-secondary">Мировоззрение</div>
          </div>
       </div>
-      <div class="col-6 col-md-3">
+      <div class="col-6 px-1">
          <div class="my-3">
             Вдохновение
             <div class="d-flex px-1 justify-content-center">
@@ -83,15 +83,18 @@
                </div>
             </div>
          </div>
-         <div class="d-flex p-1">
-            <div class="hex me-2" style="--color: 300deg">
-               {{ character.proficiency }}
+         <div class="text-start mx-auto d-inline-block">
+            <div class="d-inline-flex p-1">
+               <div class="hex me-2 text-center" style="--color: 300deg">
+                  {{ character.proficiency }}
+               </div>
+               Мастерство
             </div>
-            Мастерство
+            <br />
+            <derivatives :locked="locked" :character="character" />
          </div>
-         <derivatives :locked="locked" :character="character" />
       </div>
-      <div class="col-6 d-flex flex-column justify-content-between">
+      <div class="px-1 col-6 d-flex flex-column justify-content-between">
          <health :locked="locked" :character="character" />
          <health-bones :locked="locked" :character="character" />
       </div>
