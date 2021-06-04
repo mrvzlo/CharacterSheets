@@ -1,7 +1,7 @@
 <template>
    <div class="col-3">
       <div v-for="(attribute, index) in character.attributes" v-bind:key="attribute.name">
-         <attribute :character="character" :locked="locked" :attribute="attribute" :index="index"></attribute>
+         <attribute :character="character" :attribute="attribute" :index="index"></attribute>
       </div>
    </div>
    <div class="col-9 px-0 d-flex flex-column justify-content-center">
@@ -17,7 +17,7 @@
                v-bind:key="check.name"
                :style="check.type == checkType.Saving ? 'background-color: #' + attribute.color : ''"
             >
-               <check :check="check" :proficiency="character.proficiency" :bonus="attribute.bonus" :locked="locked"></check>
+               <check :check="check" :proficiency="character.proficiency" :bonus="attribute.bonus" :locked="character.settings.locked"></check>
             </div>
          </div>
       </div>

@@ -1,16 +1,16 @@
 <template>
    <div class="card border">
-      <div class="card-header border-bottom d-flex justify-content-between px-1">
+      <div class="card-header border-bottom d-flex justify-content-between px-1 bg-primary text-white">
          <div data-bs-toggle="collapse" :data-bs-target="'.collapse_' + index">
             <i class="fas fa-eye text-white pt-1 my-1 ps-2 pe-3"></i>
          </div>
          <div class="flex-grow-1">
-            <input type="text" v-model="name" @change="setData" class="border-0 border-bottom border-white px-1 w-100 h-100" />
+            <input type="text" v-model="name" @change="setData" class="border-0 border-bottom border-white px-1 w-100 h-100 text-white bg-primary" />
          </div>
          <div class="d-flex" v-if="!deleteMode">
-            <span class="w-50px py-1">{{ container.weight }}</span>
+            <span :class="'w-50px py-1 ' + (container.weight > capacity ? 'text-danger' : '')">{{ container.weight }}</span>
             <span class="py-1">/</span>
-            <input type="number" v-model="capacity" @change="setData" class="plain w-50px" min="0" />
+            <input type="number" v-model="capacity" @change="setData" class="plain w-50px text-white" min="0" />
          </div>
          <div v-if="deleteMode" class="block light m-1">
             <div v-on:click="toggleDelete" class="w-100 h-100">

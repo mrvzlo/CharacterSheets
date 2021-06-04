@@ -72,7 +72,7 @@ export default class Encoder {
          object.pushNew();
       }
 
-      Object.keys(object).forEach((key) => {
+      Object.keys(data).forEach((key) => {
          if (key == "ctor") return;
          object[key] = this.parse(data[key], object[key]);
       });

@@ -96,18 +96,14 @@ select {
    opacity: 0;
 }
 
-.card-header {
-   &,
-   input {
-      background-color: #000;
-      color: #fff;
-   }
-}
-
 .w-50px {
    width: 50px;
 }
 
 .lh-0 {
    line-height: 0;
+}
+
+.op-50 {
+   opacity: 50%;
 }

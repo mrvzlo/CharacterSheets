@@ -1,23 +1,26 @@
 <template>
    <header-message :model="headerMessage" />
-   <div class="d-flex justify-content-center bg-dark p-2">
-      <div v-for="index in 5" :key="index" :class="'mx-3 btn ' + (tab != index ? 'btn-dark' : 'btn-light')" v-on:click="tab = index">
+   <div class="d-flex justify-content-center bg-primary p-2">
+      <div v-for="index in 5" :key="index" :class="'mx-3 btn ' + (tab != index ? 'btn-primary' : 'btn-light')" v-on:click="tab = index">
          <i :class="'fas fa-fw fa-' + icons[index - 1]"></i>
       </div>
    </div>
 
    <div class="col-12 col-lg-9 col-xl-7 px-0 mx-auto flex-grow-1">
-      <main-info :locked="locked" :character="character" :headerMessage="headerMessage" v-if="tab == 1" />
+      <main-info :character="character" :headerMessage="headerMessage" v-if="tab == 1" />
 
       <div class="text-center row justify-content-center mx-0" v-if="tab == 2">
-         <attributes-list :locked="locked" :character="character" />
+         <attributes-list :character="character" />
       </div>
 
       <div class="text-center d-flex flex-column h-100" v-if="tab == 3">
          <inventory :character="character" />
       </div>
 
-      <footer-menu :locked="locked" :character="character" :saveService="saveService" v-if="tab == 5" />
+      <footer-menu :character="character" :saveService="saveService" v-if="tab == 5" />
+   </div>
+   <div class="position-fixed end-0 bottom-0 op-50" v-if="character.settings.locked && tab < 3">
+      <i class="fas fa-lock fa-2x m-2" v-on:click="tab = 5"></i>
    </div>
    <div class="text-center small text-secondary py-1 border-top">D&D 5e лист персонажа {{ version }} by AndrejevVE</div>
 </template>
@@ -37,7 +40,6 @@ export default {
    name: "character",
    data() {
       return {
-         locked: false,
          character: Character,
          encoder: Encoder,
          headerMessage: HeaderMessageModel,
@@ -48,21 +50,22 @@ export default {
       };
    },
    methods: {
-      lock() {
-         this.locked = !this.locked;
-      },
       importCharacter(input, method) {
-         var result = this.saveService.importCharacter(input, method, this.headerMessage);
-         this.character = result.character;
-         this.locked = result.locked;
+         this.character = this.saveService.importCharacter(input, method, this.headerMessage);
       },
       clearCharacter() {
          this.character = new Character();
-         this.locked = false;
       },
       loadSave() {
          var save = this.saveService.saveSlots[0].value;
          this.importCharacter(save, 256);
+      },
+      autoSave() {
+         if (this.character.settings.autoSavesEnabled) {
+            this.headerMessage.showSuccess("Автосохранение завершено");
+            this.saveService.applySave(this.character, 0);
+         }
+         setTimeout(this.autoSave, this.character.settings.autoSavesInterval);
       },
    },
    created() {
@@ -70,6 +73,7 @@ export default {
       this.headerMessage = new HeaderMessageModel();
       this.saveService = new SaveService();
       this.loadSave();
+      setTimeout(this.autoSave, this.character.settings.autoSavesInterval);
    },
    components: {
       footerMenu: FooterMenuComponent,

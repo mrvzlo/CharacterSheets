@@ -17,7 +17,6 @@ export default {
    name: "health-bones",
    props: {
       character: Character,
-      locked: Boolean,
    },
    data() {
       return {
@@ -26,6 +25,11 @@ export default {
    },
    methods: {
       setData() {
+         if (this.bones > this.character.level) {
+            this.bones = this.character.level;
+         } else if (this.bones < 0) {
+            this.bones = 0;
+         }
          Object.assign(this.character, { healthBones: this.bones });
       },
       getData() {

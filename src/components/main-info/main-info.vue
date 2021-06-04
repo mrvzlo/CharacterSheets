@@ -91,12 +91,12 @@
                Мастерство
             </div>
             <br />
-            <derivatives :locked="locked" :character="character" />
+            <derivatives :character="character" />
          </div>
       </div>
       <div class="px-1 col-6 d-flex flex-column justify-content-between">
-         <health :locked="locked" :character="character" />
-         <health-bones :locked="locked" :character="character" />
+         <health :character="character" />
+         <health-bones :character="character" />
       </div>
       <div class="col-6 my-3">
          <rest :headerMessage="headerMessage" :character="character" />
@@ -118,7 +118,6 @@ export default {
    name: "top-info",
    props: {
       character: Character,
-      locked: Boolean,
       headerMessage: HeaderMessageModel,
    },
    data() {
@@ -132,6 +131,7 @@ export default {
          alignment: Number,
          size: Number,
          characterClass: ClassType,
+         locked: Boolean,
       };
    },
    methods: {
@@ -150,6 +150,7 @@ export default {
          Object.assign(this.character, { bardInspiration: this.bardInspiration });
       },
       getData() {
+         this.locked = this.character.settings.locked;
          this.race = this.character.race;
          this.name = this.character.name;
          this.size = this.character.size;

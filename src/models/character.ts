@@ -3,6 +3,7 @@ import TypedArray from "./base/typed-array";
 import CharacterClass from "./character-class";
 import Check from "./check";
 import Container from "./inventory/container";
+import Settings from "./settings";
 
 export default class Character {
    name: string = "";
@@ -24,6 +25,7 @@ export default class Character {
    attributes: Attribute[] = [];
    inventory: TypedArray<Container>;
    class: CharacterClass = new CharacterClass();
+   settings: Settings = new Settings();
 
    constructor() {
       this.inventory = new TypedArray<Container>(Container);

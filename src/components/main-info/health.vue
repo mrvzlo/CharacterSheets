@@ -6,7 +6,7 @@
          </div>
          <span class="mx-1 my-0 h3">/</span>
          <div class="hex big" style="--color: -10deg">
-            <input v-model="max" class="plain w-100" type="number" min="0" :disabled="locked" @change="setData" />
+            <input v-model="max" class="plain w-100" type="number" min="0" :disabled="character.settings.locked" @change="setData" />
          </div>
       </div>
       <div class="mb-1">Здоровье</div>
@@ -24,7 +24,6 @@ export default {
    name: "health",
    props: {
       character: Character,
-      locked: Boolean,
    },
    data() {
       return {
@@ -35,6 +34,9 @@ export default {
    },
    methods: {
       setData() {
+         if (this.current > this.max) {
+            this.current = this.max;
+         }
          Object.assign(this.character, { health: this.current });
          Object.assign(this.character, { healthBonus: this.bonus });
          Object.assign(this.character, { healthMax: this.max });

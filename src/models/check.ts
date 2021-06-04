@@ -1,4 +1,3 @@
-import CheckData from "@/data-layer/checks/check-data";
 import { CheckType } from "@/data-layer/checks/check-type";
 
 export default class Check {

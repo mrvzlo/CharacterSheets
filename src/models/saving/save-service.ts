@@ -2,7 +2,6 @@ import Character from "../character";
 import Encoder from "../encoder";
 import HeaderMessageModel from "../header-message-model";
 import SaveData from "./save-data";
-import SaveResult from "./save-result";
 
 export default class SaveService {
    saveSlots: SaveData[];
@@ -15,17 +14,17 @@ export default class SaveService {
       }
    }
 
-   importCharacter(input: string, method: number, headerMessage: HeaderMessageModel): SaveResult {
+   importCharacter(input: string, method: number, headerMessage: HeaderMessageModel): Character {
       if (method == 0 || !this.isValid(input)) {
-         return this.clearCharacter();
+         return new Character();
       }
 
       try {
          const character = method == 64 ? this.encoder.decode64(input) : this.encoder.decode256(input);
-         return new SaveResult(true, character);
+         return character;
       } catch {
          headerMessage.showError("Ошибка загрузки");
-         return this.clearCharacter();
+         return new Character();
       }
    }
 
@@ -53,10 +52,6 @@ export default class SaveService {
       this.saveSlots[id].setData("", "", id);
    }
 
-   clearCharacter(): SaveResult {
-      return new SaveResult(false, new Character());
-   }
-
    savedName(id: number) {
       if (!this.hasSave(id)) return "Свободный слот";
       const save = this.getSave(id);
@@ -71,9 +66,9 @@ export default class SaveService {
          "." +
          this.formatTwoDigits(1 + formatted.getMonth()) +
          " " +
-         formatted.getHours() +
+         this.formatTwoDigits(formatted.getHours()) +
          ":" +
-         formatted.getMinutes()
+         this.formatTwoDigits(formatted.getMinutes())
       );
    }
 
