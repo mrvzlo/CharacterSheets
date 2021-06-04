@@ -5,7 +5,10 @@
       </div>
       <input v-model="name" class="border-0 px-1 border-bottom flex-grow-1" />
       <div class="block light mt-1 mx-1">
-         <input v-model="weight" class="plain w-100" type="number" min="0" max="999" @change="setData" />
+         <input v-model="weight" v-if="!deleteMode" class="plain w-100" type="number" min="0" max="999" @change="setData" />
+         <div v-on:click="toggleDelete" class="w-100 h-100" v-if="deleteMode">
+            <i v-if="item.delete || container.delete" class="fas fa-times"></i>
+         </div>
       </div>
    </div>
 </template>
@@ -20,12 +23,14 @@ export default {
       item: Item,
       container: Container,
       index: Number,
+      deleteMode: Boolean,
    },
    data() {
       return {
          name: String,
          count: Number,
          weight: Number,
+         delete: Boolean,
       };
    },
    methods: {
@@ -33,11 +38,17 @@ export default {
          this.name = this.item.name;
          this.count = this.item.count;
          this.weight = this.item.weight;
+         this.delete = this.item.delete;
       },
       setData() {
          Object.assign(this.item, { name: this.name });
          Object.assign(this.item, { count: this.count });
          Object.assign(this.item, { weight: this.weight });
+         Object.assign(this.item, { delete: this.delete });
+      },
+      toggleDelete() {
+         this.delete = !this.delete;
+         this.setData();
       },
    },
    watch: {

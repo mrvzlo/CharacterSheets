@@ -13,7 +13,7 @@
          <attributes-list :locked="locked" :character="character" />
       </div>
 
-      <div class="text-center row justify-content-center mx-0" v-if="tab == 3">
+      <div class="text-center d-flex flex-column h-100" v-if="tab == 3">
          <inventory :character="character" />
       </div>
 

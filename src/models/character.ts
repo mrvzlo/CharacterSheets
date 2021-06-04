@@ -48,4 +48,14 @@ export default class Character {
       this.health = this.healthMax;
       this.healthBones = this.level;
    }
+
+   clearInventory() {
+      for (let i = 0; i < this.inventory.length; i++) {
+         if (this.inventory[i].delete) {
+            this.inventory.splice(i, 1);
+            i--;
+         }
+      }
+      this.inventory.forEach((x) => x.confirmDelete());
+   }
 }
