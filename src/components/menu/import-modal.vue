@@ -10,7 +10,7 @@
                <textarea v-model="importData" class="form-control" rows="10" />
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-primary" v-on:click="importStr" data-bs-dismiss="modal">
+               <button type="button" class="btn btn-info" v-on:click="importStr" data-bs-dismiss="modal">
                   Загрузить
                </button>
                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

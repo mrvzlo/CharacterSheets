@@ -43,7 +43,7 @@ export default {
          character: Character,
          encoder: Encoder,
          headerMessage: HeaderMessageModel,
-         version: "v0.8.0",
+         version: "v1.0.0",
          tab: 1,
          icons: ["id-card", "running", "suitcase", "hand-sparkles", "cog"],
          saveService: SaveService,
