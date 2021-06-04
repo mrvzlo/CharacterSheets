@@ -9,7 +9,7 @@ export default class Container {
 
    get weight() {
       const sum = this.inner.reduce((sum, x) => sum + x.count * x.weight, 0);
-      return sum;
+      return Math.round(sum * 100) / 100;
    }
 
    addItem() {
