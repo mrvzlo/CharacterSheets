@@ -1,1 +1,1 @@
-{"name":"DnD character sheet","short_name":"DnDSheet","theme_color":"#333333","icons":[{"src":"./favicon-1.png","type":"image/png","sizes":"256x256"}],"start_url":".","display":"standalone","background_color":"#000000"}
+{"name":"DnD character sheet","short_name":"DnDSheet","theme_color":"#333333","icons":[{"src":"./favicon-1.png","type":"image/png","sizes":"256x256"}],"start_url":"/DnDSheet/","display":"standalone","background_color":"#000000"}
