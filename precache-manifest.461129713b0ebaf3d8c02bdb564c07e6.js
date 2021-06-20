@@ -1,15 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d178df8a46be3ea7f599296e24430ce0",
-    "url": "/DnDSheet/_config.yml"
+    "revision": "a1f749dd54493ece77b0",
+    "url": "/DnDSheet/css/app.2dbd2948.css"
   },
   {
-    "revision": "6a04e61bf14957d2edfc",
-    "url": "/DnDSheet/css/app.2dbd2948.css"
+    "revision": "a1f749dd54493ece77b0",
+    "url": "/DnDSheet/css/app.2dbd2948.css.map"
   },
   {
     "revision": "990193dfec0fee4b01e5712e3ca2195f",
     "url": "/DnDSheet/favicon-1.png"
+  },
+  {
+    "revision": "c2febc12a45db2772e0ef467ff8f933f",
+    "url": "/DnDSheet/favicon.ico"
   },
   {
     "revision": "1f77739ca9ff2188b539c36f30ffa2be",
@@ -64,19 +68,27 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/DnDSheet/img/hexagon.191e63d0.svg"
   },
   {
-    "revision": "94d55e122992c895d38caa8f4a2d1a0b",
+    "revision": "2a39bb2b647abb055bf72a5b5f99f599",
     "url": "/DnDSheet/index.html"
   },
   {
-    "revision": "6a04e61bf14957d2edfc",
-    "url": "/DnDSheet/js/app.ce59b7e1.js"
+    "revision": "a1f749dd54493ece77b0",
+    "url": "/DnDSheet/js/app.946add4b.js"
+  },
+  {
+    "revision": "a1f749dd54493ece77b0",
+    "url": "/DnDSheet/js/app.946add4b.js.map"
   },
   {
     "revision": "88f052305a8545d9fc07",
     "url": "/DnDSheet/js/chunk-vendors.8d2e8bcb.js"
   },
   {
-    "revision": "22aa1d10e56c8c2e660d07c29198ca78",
+    "revision": "88f052305a8545d9fc07",
+    "url": "/DnDSheet/js/chunk-vendors.8d2e8bcb.js.map"
+  },
+  {
+    "revision": "a2de5426c46e3615c7566662e690b38c",
     "url": "/DnDSheet/manifest.json"
   },
   {
