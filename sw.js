@@ -6,7 +6,14 @@ importScripts(
 var APP_PREFIX = "DnDSheet";
 var VERSION = "v_1.0.2";
 var CACHE_NAME = APP_PREFIX + VERSION;
-var URLS = ["/DnDSheet/"].concat(self.__precacheManifest.map((a) => a.url) || []);
+var URLS = [
+   "/DnDSheet/",
+   "/DnDSheet/index.html",
+   "/DnDSheet/img/icons/favicon-256x256.png",
+   "/DnDSheet/img/icons/favicon-32x32.png",
+   "/DnDSheet/img/icons/favicon-16x16.png",
+   "/DnDSheet/manifest.json",
+];
 
 self.addEventListener("fetch", function (e) {
    e.respondWith(
