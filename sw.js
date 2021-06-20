@@ -6,7 +6,7 @@ importScripts(
 var APP_PREFIX = "DnDSheet";
 var VERSION = "v_1.0.1";
 var CACHE_NAME = APP_PREFIX + VERSION;
-var URLS = self.__precacheManifest.map((a) => a.url);
+var URLS = ["/DnDSheet/"].concat(self.__precacheManifest.map((a) => a.url) || []);
 
 self.addEventListener("fetch", function (e) {
    console.log("fetch request : " + e.request.url);
