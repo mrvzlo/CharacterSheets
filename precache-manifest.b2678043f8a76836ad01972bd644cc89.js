@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/DnDSheet/_config.yml"
   },
   {
-    "revision": "39435730233d6af31b42",
+    "revision": "21e5ce9b0e8e8be3c204",
     "url": "/DnDSheet/css/app.2dbd2948.css"
   },
   {
@@ -64,16 +64,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/DnDSheet/img/hexagon.191e63d0.svg"
   },
   {
-    "revision": "ca14bf2b7fd40b3ce5e434bd707fa661",
+    "revision": "4cd021bcaa5f1c1e3cffa61ae6edf06a",
     "url": "/DnDSheet/index.html"
   },
   {
-    "revision": "39435730233d6af31b42",
-    "url": "/DnDSheet/js/app.e734c385.js"
+    "revision": "21e5ce9b0e8e8be3c204",
+    "url": "/DnDSheet/js/app.3c298e9e.js"
   },
   {
-    "revision": "88f052305a8545d9fc07",
-    "url": "/DnDSheet/js/chunk-vendors.8d2e8bcb.js"
+    "revision": "2aa0cd6749163c2352e4",
+    "url": "/DnDSheet/js/chunk-vendors.0b9e6b56.js"
   },
   {
     "revision": "a2de5426c46e3615c7566662e690b38c",
