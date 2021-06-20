@@ -7,9 +7,9 @@ var APP_PREFIX = "DnDSheet";
 var VERSION = "v_1.0.1";
 var CACHE_NAME = APP_PREFIX + VERSION;
 var URLS = ["/DnDSheet/", "/DnDSheet/index.html"];
+console.log(URLS.concat(self.__precacheManifest.map((a) => a.url) || []));
 
 self.addEventListener("fetch", function (e) {
-   console.log("fetch request : " + e.request.url);
    e.respondWith(
       caches.match(e.request).then(function (request) {
          if (request) {
@@ -26,7 +26,6 @@ self.addEventListener("fetch", function (e) {
 self.addEventListener("install", function (e) {
    e.waitUntil(
       caches.open(CACHE_NAME).then(function (cache) {
-         console.log("installing cache : " + CACHE_NAME);
          return cache.addAll(URLS);
       })
    );
@@ -43,7 +42,6 @@ self.addEventListener("activate", function (e) {
          return Promise.all(
             keyList.map(function (key, i) {
                if (cacheWhitelist.indexOf(key) === -1) {
-                  console.log("deleting cache : " + keyList[i]);
                   return caches.delete(keyList[i]);
                }
             })
