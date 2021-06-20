@@ -1,6 +1,0 @@
-{
-   "name": "Dnd character sheet",
-   "short_name": "DnDSheet",
-   "start_url": "public/index.html",
-   "display": "standalone"
-}
