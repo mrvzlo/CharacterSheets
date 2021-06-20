@@ -8,18 +8,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/DnDSheet/css/app.2dbd2948.css"
   },
   {
-    "revision": "ffa2a8ca887801b7b9efc122a9650be6",
-    "url": "/DnDSheet/favicon-16x16.png"
-  },
-  {
-    "revision": "990193dfec0fee4b01e5712e3ca2195f",
-    "url": "/DnDSheet/favicon-256x256.png"
-  },
-  {
-    "revision": "3f88da7d9593ac5fe1cef7b0ce694f9e",
-    "url": "/DnDSheet/favicon-32x32.png"
-  },
-  {
     "revision": "1f77739ca9ff2188b539c36f30ffa2be",
     "url": "/DnDSheet/fonts/fa-regular-400.1f77739c.ttf"
   },
@@ -84,7 +72,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/DnDSheet/js/chunk-vendors.0b9e6b56.js"
   },
   {
-    "revision": "dcb4142f763ca74c8159168066f68840",
+    "revision": "049f689a5efe045c4cee3f3b4d5d9ea6",
     "url": "/DnDSheet/manifest.json"
   },
   {

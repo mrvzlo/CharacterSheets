@@ -1,4 +1,4 @@
-importScripts("/DnDSheet/precache-manifest.5f2645946d24ad66b1a9b3783e700cb4.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/DnDSheet/precache-manifest.42b1123c417bcf7eae4c5d458a68354a.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
    "/DnDSheet/precache-manifest.b2678043f8a76836ad01972bd644cc89.js",

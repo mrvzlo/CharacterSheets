@@ -1,1 +1,1 @@
-{"name":"dndsheet","short_name":"dndsheet","theme_color":"#333333","icons":[{"src":"./favicon-256x256.png","type":"image/png","sizes":"256x256"}],"start_url":"/DnDSheet/","display":"standalone","background_color":"#000000"}
+{"name":"dndsheet","short_name":"dndsheet","theme_color":"#333333","icons":[{"src":"./img/icons/favicon-256x256.png","type":"image/png","sizes":"256x256"}],"start_url":"/DnDSheet/","display":"standalone","background_color":"#000000"}
