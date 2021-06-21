@@ -1,5 +1,5 @@
 module.exports = {
-   publicPath: process.env.NODE_ENV === "production" ? "/DnDSheet/" : "/",
+   publicPath: "/DnDSheet/",
    pwa: {
       themeColor: "#333333",
       msTileColor: "#333333",
@@ -8,14 +8,15 @@ module.exports = {
          start_url: "/DnDSheet/",
          icons: [
             {
-               src: "./favicon-1.png",
+               src: "./img/icons/favicon-256x256.png",
                type: "image/png",
                sizes: "256x256",
             },
          ],
       },
+      workboxPluginMode: "InjectManifest",
       workboxOptions: {
-         exclude: [/_config.yml/],
+         swSrc: "src/sw.js",
       },
    },
 };
