@@ -2,7 +2,7 @@
    <div class="flex-grow-1">
       <div class="row justify-content-center mx-0">
          <div class="col-12 col-md-6 my-2" v-for="(container, index) in character.inventory" v-bind:key="index">
-            <container :character="character" :container="container" :index="index" :deleteMode="deleteMode" />
+            <container :container="container" :index="index" :deleteMode="deleteMode" />
          </div>
       </div>
    </div>
@@ -43,7 +43,6 @@ export default {
       };
    },
    methods: {
-      getData() {},
       addContainer() {
          this.character.addContainer();
       },
@@ -54,15 +53,6 @@ export default {
       confirmDelete() {
          this.deleteMode = false;
          this.character.clearInventory();
-      },
-   },
-   watch: {
-      character: {
-         handler() {
-            this.getData();
-         },
-         deep: true,
-         immediate: true,
       },
    },
    components: {

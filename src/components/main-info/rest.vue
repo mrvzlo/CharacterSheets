@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import HeaderMessageModel from "@/models/header-message-model";
+import HeaderMessageModel from "@/models/header-message";
 import Character from "@/models/character";
 
 export default {

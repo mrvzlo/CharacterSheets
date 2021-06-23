@@ -3,7 +3,7 @@
       <div class="hex light mt-1 mx-1">
          <input v-model="count" class="plain w-100" type="number" min="0" max="999" @change="setData" />
       </div>
-      <input v-model="name" class="border-0 px-1 border-bottom flex-grow-1" @change="setData" />
+      <input v-model="name" class="border-0 px-1 border-bottom flex-grow-1" @change="setData" placeholder="Предмет" />
       <div class="block light mt-1 mx-1">
          <input v-model="weight" v-if="!deleteMode" class="plain w-100" type="number" min="0" max="999" @change="setData" />
          <div v-on:click="toggleDelete" class="w-100 h-100" v-if="deleteMode">

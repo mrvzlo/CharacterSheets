@@ -17,9 +17,13 @@
          <inventory :character="character" />
       </div>
 
+      <div class="text-center d-flex flex-column h-100" v-if="tab == 4">
+         <slots-list :character="character" />
+      </div>
+
       <footer-menu :character="character" :saveService="saveService" v-if="tab == 5" />
    </div>
-   <div class="position-fixed end-0 bottom-0 op-50" v-if="character.settings.locked && tab < 3">
+   <div class="position-fixed end-0 bottom-0 op-05" v-if="character.settings.locked && (tab < 3 || tab == 4)">
       <i class="fas fa-lock fa-2x m-2" v-on:click="tab = 5"></i>
    </div>
    <div class="text-center small text-secondary py-1 border-top">D&D 5e лист персонажа {{ version }} by AndrejevVE</div>
@@ -28,13 +32,14 @@
 <script>
 import Character from "../models/character";
 import Encoder from "../models/encoder";
-import HeaderMessageModel from "../models/header-message-model";
+import HeaderMessage from "../models/header-message";
 import FooterMenuComponent from "./menu/footer-menu.vue";
 import HeaderMessageComponent from "./header-message.vue";
 import InventoryComponent from "./inventory/inventory.vue";
 import AttributesListComponent from "./attributes-skills/attributes-list.vue";
 import MainInfoComponent from "./main-info/main-info";
 import SaveService from "../models/saving/save-service";
+import SlotsListComponent from "./magic/slots-list.vue";
 
 export default {
    name: "character",
@@ -42,8 +47,8 @@ export default {
       return {
          character: Character,
          encoder: Encoder,
-         headerMessage: HeaderMessageModel,
-         version: "v1.0.1",
+         headerMessage: HeaderMessage,
+         version: "v1.1.0",
          tab: 1,
          icons: ["id-card", "running", "suitcase", "hand-sparkles", "cog"],
          saveService: SaveService,
@@ -70,7 +75,7 @@ export default {
    },
    created() {
       this.encoder = new Encoder();
-      this.headerMessage = new HeaderMessageModel();
+      this.headerMessage = new HeaderMessage();
       this.saveService = new SaveService();
       this.loadSave();
       setTimeout(this.autoSave, this.character.settings.autoSavesInterval);
@@ -81,6 +86,7 @@ export default {
       attributesList: AttributesListComponent,
       mainInfo: MainInfoComponent,
       inventory: InventoryComponent,
+      slotsList: SlotsListComponent,
    },
 };
 </script>

@@ -1,4 +1,4 @@
-export default class HeaderMessageModel {
+export default class HeaderMessage {
    text: string = "";
    icon: string = "";
    color: string = "";

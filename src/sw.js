@@ -1,5 +1,5 @@
 var APP_PREFIX = "DnDSheet";
-var VERSION = "v_1.0.2";
+var VERSION = "v_1.1.0";
 var CACHE_NAME = APP_PREFIX + VERSION;
 var URLS = [
    "/DnDSheet/",

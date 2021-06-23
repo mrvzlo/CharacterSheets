@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import HeaderMessageModel from "../models/header-message-model";
+import HeaderMessageModel from "../models/header-message";
 export default {
    name: "header-message",
    props: {

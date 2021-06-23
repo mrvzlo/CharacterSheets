@@ -2,7 +2,7 @@
    <div class="card border">
       <div class="card-header border-bottom d-flex justify-content-between px-1 bg-primary text-white">
          <div data-bs-toggle="collapse" :data-bs-target="'.collapse_' + index">
-            <i class="fas fa-eye text-white pt-1 my-1 ps-2 pe-3"></i>
+            <i class="fas fa-eye text-white pt-1 my-1 px-3"></i>
          </div>
          <div class="flex-grow-1">
             <input type="text" v-model="name" @change="setData" class="border-0 border-bottom border-white px-1 w-100 h-100 text-white bg-primary" />

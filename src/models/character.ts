@@ -1,8 +1,10 @@
+import { AttributeType } from "@/data-layer/attributes/attribute-type";
 import Attribute from "./attribute";
 import TypedArray from "./base/typed-array";
 import CharacterClass from "./character-class";
 import Check from "./check";
 import Container from "./inventory/container";
+import MagicSlot from "./magic/magic-slot";
 import Settings from "./settings";
 
 export default class Character {
@@ -22,15 +24,21 @@ export default class Character {
    healthBonus: number = 0;
    healthBoneValue: number = 8;
    healthBones: number = 1;
+   magicAttribute: AttributeType = AttributeType.Unknown;
+   magicLimit: number = 0;
+   magicSlots: MagicSlot[] = [];
    attributes: Attribute[] = [];
-   inventory: TypedArray<Container>;
+   inventory: TypedArray<Container> = new TypedArray<Container>(Container);
    class: CharacterClass = new CharacterClass();
    settings: Settings = new Settings();
 
    constructor() {
-      this.inventory = new TypedArray<Container>(Container);
       for (let i = 0; i < 6; i++) {
          this.attributes.push(new Attribute(i));
+      }
+
+      for (let i = 0; i < 11; i++) {
+         this.magicSlots.push(new MagicSlot());
       }
 
       new Check().all.forEach((check) => {
@@ -49,6 +57,7 @@ export default class Character {
    longRest() {
       this.health = this.healthMax;
       this.healthBones = this.level;
+      this.magicSlots.forEach((x) => x.reset());
    }
 
    clearInventory() {
@@ -59,5 +68,17 @@ export default class Character {
          }
       }
       this.inventory.forEach((x) => x.confirmDelete());
+   }
+
+   clearSpells() {
+      this.magicSlots.forEach((x) => x.confirmDelete());
+   }
+
+   get magicBonus() {
+      return (this.magicAttribute < 0 ? 0 : this.attributes[this.magicAttribute].bonus) + this.proficiency;
+   }
+
+   get spellDifficulty() {
+      return 8 + this.magicBonus;
    }
 }

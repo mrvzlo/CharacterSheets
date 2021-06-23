@@ -1,14 +1,14 @@
 .plain {
    border: none;
-   background: none;
    text-align: center;
    text-align-last: center;
    text-align: -webkit-center;
    padding: 0;
 }
 
-.vh-100 {
-   height: 100vh;
+input, select{
+   min-width: 0;
+   background: none;
 }
 
 .rounded-4 {
@@ -104,6 +104,6 @@ select {
    line-height: 0;
 }
 
-.op-50 {
-   opacity: 50%;
+.op-05 {
+   opacity: 0.5;
 }

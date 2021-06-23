@@ -1,6 +1,6 @@
 import Character from "../character";
 import Encoder from "../encoder";
-import HeaderMessageModel from "../header-message-model";
+import HeaderMessageModel from "../header-message";
 import SaveData from "./save-data";
 
 export default class SaveService {

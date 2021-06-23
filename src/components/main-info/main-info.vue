@@ -112,7 +112,7 @@ import DerivativesComponent from "./derivatives.vue";
 import HealthComponent from "./health.vue";
 import HealthBonesComponent from "./health-bones.vue";
 import RestComponent from "./rest.vue";
-import HeaderMessageModel from "@/models/header-message-model";
+import HeaderMessageModel from "@/models/header-message";
 
 export default {
    name: "top-info",
