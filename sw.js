@@ -1,10 +1,7 @@
-importScripts(
-   "/DnDSheet/precache-manifest.42b1123c417bcf7eae4c5d458a68354a.js",
-   "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js"
-);
+importScripts("/DnDSheet/precache-manifest.7e884d48f27d2456a5b6b94527d1b77d.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 var APP_PREFIX = "DnDSheet";
-var VERSION = "v_1.0.2";
+var VERSION = "v_1.1.0";
 var CACHE_NAME = APP_PREFIX + VERSION;
 var URLS = [
    "/DnDSheet/",
@@ -15,9 +12,9 @@ var URLS = [
    "/DnDSheet/manifest.json",
 ];
 
-self.addEventListener("fetch", function (e) {
+self.addEventListener("fetch", function(e) {
    e.respondWith(
-      caches.match(e.request).then(function (request) {
+      caches.match(e.request).then(function(request) {
          if (request) {
             return request;
          } else {
@@ -27,24 +24,24 @@ self.addEventListener("fetch", function (e) {
    );
 });
 
-self.addEventListener("install", function (e) {
+self.addEventListener("install", function(e) {
    e.waitUntil(
-      caches.open(CACHE_NAME).then(function (cache) {
+      caches.open(CACHE_NAME).then(function(cache) {
          return cache.addAll(URLS);
       })
    );
 });
 
-self.addEventListener("activate", function (e) {
+self.addEventListener("activate", function(e) {
    e.waitUntil(
-      caches.keys().then(function (keyList) {
-         var cacheWhitelist = keyList.filter(function (key) {
+      caches.keys().then(function(keyList) {
+         var cacheWhitelist = keyList.filter(function(key) {
             return key.indexOf(APP_PREFIX);
          });
          cacheWhitelist.push(CACHE_NAME);
 
          return Promise.all(
-            keyList.map(function (key, i) {
+            keyList.map(function(key, i) {
                if (cacheWhitelist.indexOf(key) === -1) {
                   return caches.delete(keyList[i]);
                }
@@ -53,3 +50,4 @@ self.addEventListener("activate", function (e) {
       })
    );
 });
+

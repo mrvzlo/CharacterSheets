@@ -4,8 +4,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/DnDSheet/_config.yml"
   },
   {
-    "revision": "7670f5cdfd497a7c001e",
-    "url": "/DnDSheet/css/app.2dbd2948.css"
+    "revision": "b799f1c7ebc51132a40e",
+    "url": "/DnDSheet/css/app.3dbc4d74.css"
   },
   {
     "revision": "1f77739ca9ff2188b539c36f30ffa2be",
@@ -60,16 +60,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/DnDSheet/img/hexagon.191e63d0.svg"
   },
   {
-    "revision": "b552c55c411298f624e38e64cac26791",
+    "revision": "bde39fe90a3dab8d32497fff4baab906",
     "url": "/DnDSheet/index.html"
   },
   {
-    "revision": "7670f5cdfd497a7c001e",
-    "url": "/DnDSheet/js/app.28370e78.js"
+    "revision": "b799f1c7ebc51132a40e",
+    "url": "/DnDSheet/js/app.526207c5.js"
   },
   {
-    "revision": "2aa0cd6749163c2352e4",
-    "url": "/DnDSheet/js/chunk-vendors.0b9e6b56.js"
+    "revision": "d48450cb39034f88d458",
+    "url": "/DnDSheet/js/chunk-vendors.e56a552c.js"
   },
   {
     "revision": "049f689a5efe045c4cee3f3b4d5d9ea6",
