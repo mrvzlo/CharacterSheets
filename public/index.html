@@ -9,11 +9,6 @@
       <title><%= htmlWebpackPlugin.options.title %></title>
    </head>
    <body>
-      <script>
-         if (navigator.serviceWorker) {
-            navigator.serviceWorker.register("/DnDSheet/sw.js", { scope: "/DnDSheet/" });
-         }
-      </script>
       <div id="app"></div>
    </body>
 </html>

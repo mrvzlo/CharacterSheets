@@ -22,14 +22,14 @@ export default class Encoder {
       if (!json) return "";
 
       this.dict.forEach((value, index) => {
-         json = json.replaceAll(value, String.fromCharCode(index + 1));
+         json = json.split(value).join(String.fromCharCode(index + 1));
       });
       return json;
    }
 
    decompress(src: string): any {
       this.dict.forEach((value, index) => {
-         src = src.replaceAll(String.fromCharCode(index + 1), value);
+         src = src.split(String.fromCharCode(index + 1)).join(value);
       });
       return JSON.parse(src);
    }
