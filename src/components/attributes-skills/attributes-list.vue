@@ -15,7 +15,7 @@
                class="p-small"
                v-for="check in attribute.checks"
                v-bind:key="check.name"
-               :style="check.type == checkType.Saving ? 'background-color: #' + attribute.color : ''"
+               :style="check.type == checkType.Saving ? `background-color: rgba(${attribute.color},.3)` : ''"
             >
                <check :check="check" :proficiency="character.proficiency" :bonus="attribute.bonus" :locked="character.settings.locked"></check>
             </div>

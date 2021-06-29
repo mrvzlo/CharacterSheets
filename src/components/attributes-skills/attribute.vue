@@ -12,7 +12,7 @@
                @change="setData"
             />
          </div>
-         <div class="border pt-3 pb-1 rounded-4 d-flex flex-column mt-n3 attribute" :style="'background-color: #' + attribute.color">
+         <div class="border pt-3 pb-1 rounded-4 d-flex flex-column mt-n3 attribute" :style="`background-color: rgba(${attribute.color},.3)`">
             <div></div>
             <h1 class="m-0">{{ attribute.bonus }}</h1>
             {{ attribute.name }}

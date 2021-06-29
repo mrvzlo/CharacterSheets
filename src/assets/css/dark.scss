@@ -1,0 +1,37 @@
+.dark-mode {
+   --border: #888;
+   --input-bg: #333;
+   --input-color: #eee;
+   --input-focus-bg: #333;
+   --input-focus-color: #eee;
+   --input-disabled-bg: #333;
+
+   &,
+   .card-body,
+   .modal-content {
+      background-color: #111;
+   }
+
+   &,
+   input,
+   select,
+   .btn:not(.btn-light) {
+      color: #eee;
+   }
+
+   .alert-warning {
+      background-color: rgba(235, 215, 190, 0.3);
+      border-color: rgba(235, 215, 190, 0.5);
+      .text-secondary {
+         filter: brightness(1.5);
+      }
+   }
+   .alert-secondary {
+      background-color: #555;
+      border-color: #777;
+   }
+
+   .card {
+      border-color: #fff;
+   }
+}

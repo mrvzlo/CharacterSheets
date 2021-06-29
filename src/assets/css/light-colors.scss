@@ -1,0 +1,23 @@
+:root {
+   --border: #000;
+   --input-bg: #fff;
+   --input-color: #000;
+   --input-focus-bg: #fff;
+   --input-focus-color: #000;
+   --input-disabled-bg: #eee;
+}
+
+$border-color: var(--border);
+$input-bg: var(--input-bg);
+$input-color: var(--input-color);
+$input-focus-bg: var(--input-focus-bg);
+$input-focus-color: var(--input-focus-color);
+$input-disabled-bg: var(--input-disabled-bg);
+
+$primary: #333;
+$blue: #44a;
+$green: #484;
+$red: #b44;
+$warning: #a61;
+$secondary: #666;
+$info: $blue;

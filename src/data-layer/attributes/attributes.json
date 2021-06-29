@@ -2,31 +2,31 @@
    {
       "id": 0,
       "short": "СИЛ",
-      "color": "ecc"
+      "color": "240,150,150"
    },
    {
       "id": 1,
       "short": "ЛОВ",
-      "color": "cec"
+      "color": "150,240,150"
    },
    {
       "id": 2,
       "short": "ВЫН",
-      "color": "eec"
+      "color": "240,240,150"
    },
    {
       "id": 3,
       "short": "ИНТ",
-      "color": "cce"
+      "color": "150,150,240"
    },
    {
       "id": 4,
       "short": "МУД",
-      "color": "cee"
+      "color": "150,240,240"
    },
    {
       "id": 5,
       "short": "ХАР",
-      "color": "ece"
+      "color": "240,150,240"
    }
 ]

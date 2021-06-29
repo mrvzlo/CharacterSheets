@@ -2,9 +2,8 @@
    <div class="modal fade" id="exportModal">
       <div class="modal-dialog">
          <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header text-center">
                <h5 class="modal-title">Экспортировать персонажа</h5>
-               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                <textarea :value="exportStr()" class="form-control" readonly rows="10" />

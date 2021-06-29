@@ -1,5 +1,5 @@
 <template>
-   <div class="text-center bg-white py-2">
+   <div class="text-center py-2">
       <div class="my-3">
          Редактирование персонажа
          <div class="btn-group d-block" v-on:click="lock">

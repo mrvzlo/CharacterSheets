@@ -4,7 +4,7 @@
          <div class="hex big" style="--color: -10deg">
             <input v-model="current" class="plain w-100" type="number" :max="character.healthMax" min="0" @change="setData" />
          </div>
-         <span class="mx-1 my-0 h3">/</span>
+         <div class="mx-1 my-0 h3 lh-1">/</div>
          <div class="hex big" style="--color: -10deg">
             <input v-model="max" class="plain w-100" type="number" min="0" :disabled="character.settings.locked" @change="setData" />
          </div>
