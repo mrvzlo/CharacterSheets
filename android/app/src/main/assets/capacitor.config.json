@@ -1,6 +1,6 @@
 {
-	"appId": "ru.dndsheet",
-	"appName": "dndsheet",
+	"appId": "ru.character.sheets",
+	"appName": "Чарники",
 	"webDir": "dist",
 	"bundledWebRuntime": false
 }

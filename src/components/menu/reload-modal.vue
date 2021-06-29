@@ -68,8 +68,9 @@ export default {
          if (this.selected == 10) {
             return this.clearSave();
          }
-         var data = this.saveService.getSave(this.selected).value;
-         this.$parent.importCharacter(data, 256);
+         this.saveService.getSaveData(this.selected).then((data) => {
+            this.$parent.importCharacter(data, 256);
+         });
       },
       clearSave: function() {
          this.$parent.importCharacter(null, 0);

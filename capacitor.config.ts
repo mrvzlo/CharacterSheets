@@ -1,10 +1,10 @@
-import { CapacitorConfig } from '@capacitor/cli';
+import { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: 'ru.dndsheet',
-  appName: 'dndsheet',
-  webDir: 'dist',
-  bundledWebRuntime: false
+   appId: "ru.character.sheets",
+   appName: "Чарники",
+   webDir: "dist",
+   bundledWebRuntime: false,
 };
 
 export default config;

@@ -29,32 +29,34 @@ export default class SaveService {
    }
 
    hasSave(id: number) {
-      return this.isValid(this.getSave(id).value);
+      const name = this.saveSlots[id].name;
+      const check = this.isValid(name);
+      return check;
    }
 
-   getSave(id: number) {
-      return this.saveSlots[id];
+   async getSaveData(id: number) {
+      return await this.saveSlots[id].getEncoded();
    }
 
    isValid(string: string) {
       return !!string && string !== "null";
    }
 
-   applySave(character: Character, id: number) {
+   applySave(character: Character, id: number = 0) {
       const encoded = this.encoder.encode256(character);
       if (character.name.length === 0) {
          character.name = "Неизвестный";
       }
-      this.saveSlots[id].setData(encoded, character.name, id);
+      this.saveSlots[id].setData(encoded, character.name);
    }
 
    deleteSave(id: number) {
-      this.saveSlots[id].setData("", "", id);
+      this.saveSlots[id].setData("", "");
    }
 
    savedName(id: number) {
       if (!this.hasSave(id)) return "Свободный слот";
-      const save = this.getSave(id);
+      const save = this.saveSlots[id];
       return save.name + " - " + this.dateFormat(save.datetime);
    }
 

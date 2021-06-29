@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">dndsheet</string>
-    <string name="title_activity_main">dndsheet</string>
-    <string name="package_name">ru.dndsheet</string>
-    <string name="custom_url_scheme">ru.dndsheet</string>
+    <string name="app_name">Character sheets RUS</string>
+    <string name="title_activity_main">Чарники</string>
+    <string name="package_name">ru.character.sheets</string>
+    <string name="custom_url_scheme">ru.character.sheets</string>
 </resources>
