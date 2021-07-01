@@ -1,5 +1,5 @@
 {
-	"appId": "ru.character.sheets",
+	"appId": "ru.charactersheets",
 	"appName": "Чарники",
 	"webDir": "dist",
 	"bundledWebRuntime": false
