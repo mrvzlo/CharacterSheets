@@ -1,11 +1,8 @@
 <template>
-   <div class="card border">
+   <div class="card">
       <div class="card-header border-bottom d-flex justify-content-between px-1 bg-primary text-white">
-         <div data-bs-toggle="collapse" :data-bs-target="'.collapse_' + index">
-            <i class="fas fa-eye text-white pt-1 my-1 px-3"></i>
-         </div>
-         <div class="flex-grow-1 text-start">
-            <div class="border-bottom border-white px-1 h-100">{{ name }}</div>
+         <div class="flex-grow-1 text-start" data-bs-toggle="collapse" :data-bs-target="'.collapse_' + index">
+            <div class="py-1 ps-2">{{ name }}</div>
          </div>
          <div class="d-flex" v-if="index > 0 && index <= 9">
             <input type="number" v-model="uses" @change="setData" class="plain w-50px text-white" min="0" />
@@ -14,12 +11,12 @@
          </div>
       </div>
       <div :class="'card-body p-1 collapse show collapse_' + index">
-         <div  v-if="magicSlot.spells.length == 0">Ничего не изучено</div>
+         <div v-if="magicSlot.spells.length == 0">Ничего не изучено</div>
          <div v-for="(item, itemIndex) in magicSlot.spells" v-bind:key="itemIndex">
             <spell :spell="item" :index="itemIndex" :magicSlot="magicSlot" :deleteMode="deleteMode" :locked="locked" />
          </div>
          <div class="text-start mt-2" v-if="!locked">
-            <button class="btn btn-success p-1 btn-sm lh-0" v-on:click="addItem">
+            <button class="btn btn-success rounded-circle p-1 btn-sm lh-0" v-on:click="addItem">
                <i class="fas fa-plus-circle"></i>
             </button>
          </div>
@@ -38,7 +35,7 @@ export default {
       index: Number,
       deleteMode: Boolean,
       name: String,
-      locked: Boolean
+      locked: Boolean,
    },
    data() {
       return {

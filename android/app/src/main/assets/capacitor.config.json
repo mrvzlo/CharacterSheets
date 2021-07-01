@@ -1,0 +1,6 @@
+{
+	"appId": "ru.charactersheets",
+	"appName": "Чарники",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}

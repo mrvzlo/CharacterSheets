@@ -2,9 +2,8 @@
    <div class="modal fade" id="reloadModal">
       <div class="modal-dialog">
          <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header text-center">
                <h5 class="modal-title">Загрузить персонажа</h5>
-               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body py-0">
                <div class="my-3 d-flex rounded position-relative">
@@ -68,8 +67,9 @@ export default {
          if (this.selected == 10) {
             return this.clearSave();
          }
-         var data = this.saveService.getSave(this.selected).value;
-         this.$parent.importCharacter(data, 256);
+         this.saveService.getSaveData(this.selected).then((data) => {
+            this.$parent.importCharacter(data, 256);
+         });
       },
       clearSave: function() {
          this.$parent.importCharacter(null, 0);

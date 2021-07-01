@@ -2,9 +2,8 @@
    <div class="modal fade" id="importModal">
       <div class="modal-dialog">
          <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header text-center">
                <h5 class="modal-title">Загрузить сохранение</h5>
-               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                <textarea v-model="importData" class="form-control" rows="10" />

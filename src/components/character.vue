@@ -26,7 +26,7 @@
    <div class="position-fixed end-0 bottom-0 op-05" v-if="character.settings.locked && (tab < 3 || tab == 4)">
       <i class="fas fa-lock fa-2x m-2" v-on:click="tab = 5"></i>
    </div>
-   <div class="text-center small text-secondary py-1 border-top">D&D 5e лист персонажа {{ version }} by AndrejevVE</div>
+   <div class="text-center small text-secondary py-1 border-top">Лист персонажа {{ version }} by AndrejevVE</div>
 </template>
 
 <script>
@@ -68,12 +68,13 @@ export default {
       autoSave() {
          if (this.character.settings.autoSavesEnabled) {
             this.headerMessage.showSuccess("Автосохранение завершено");
-            this.saveService.applySave(this.character, 0);
+            this.saveService.applySave(this.character);
          }
          setTimeout(this.autoSave, this.character.settings.autoSavesInterval);
       },
    },
    created() {
+      this.clearCharacter();
       this.encoder = new Encoder();
       this.headerMessage = new HeaderMessage();
       this.saveService = new SaveService();

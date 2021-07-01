@@ -9,6 +9,10 @@
    display: inline-block;
    position: relative;
 
+   &.light > input {
+      color: #000;
+   }
+
    &:not(.light) {
       &,
       > * {
@@ -26,10 +30,7 @@
    }
 
    &.big {
-      width: 47px;
-      height: 24px;
       font-size: 18px;
-      line-height: 23px;
    }
 
    option {

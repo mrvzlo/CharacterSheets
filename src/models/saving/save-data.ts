@@ -1,58 +1,52 @@
+import { Filesystem, Directory, Encoding, ReadFileResult } from "@capacitor/filesystem";
+
 export default class SaveData {
-   value: string;
-   name: string;
-   datetime: Date;
+   id: number;
+   name: string = "";
+   datetime: Date = new Date();
 
    constructor(id: number) {
-      switch (id) {
-         case 1:
-            this.value = localStorage.save1;
-            this.name = localStorage.save1Name;
-            this.datetime = localStorage.save1Date;
-            return;
-         case 2:
-            this.value = localStorage.save2;
-            this.name = localStorage.save2Name;
-            this.datetime = localStorage.save2Date;
-            return;
-         case 3:
-            this.value = localStorage.save3;
-            this.name = localStorage.save3Name;
-            this.datetime = localStorage.save3Date;
-            return;
-         default:
-            this.value = localStorage.autoSave;
-            this.name = localStorage.autoSaveName;
-            this.datetime = localStorage.autoSaveDate;
-            return;
-      }
+      this.id = id;
+      this.getData()
+         .then((res: string) => {
+            const splitted = res.split("\n");
+            this.name = splitted[0];
+            this.datetime = new Date(splitted[1]);
+         })
+         .catch(() => {});
    }
 
-   setData(value: string, name: string, id: number) {
-      this.value = value;
+   getEncoded = async () => {
+      const result = await this.getData();
+      const splitted = result.split("\n");
+      return !splitted ? null : splitted[2];
+   };
+
+   getData = async () => {
+      const result = await Filesystem.readFile({
+         path: this.fileName(),
+         directory: Directory.Data,
+         encoding: Encoding.UTF8,
+      });
+      return result.data;
+   };
+
+   setData(value: string, name: string) {
       this.name = name;
       this.datetime = new Date();
-      switch (id) {
-         case 1:
-            localStorage.save1 = this.value;
-            localStorage.save1Name = this.name;
-            localStorage.save1Date = this.datetime;
-            return;
-         case 2:
-            localStorage.save2 = this.value;
-            localStorage.save2Name = this.name;
-            localStorage.save2Date = this.datetime;
-            return;
-         case 3:
-            localStorage.save3 = this.value;
-            localStorage.save3Name = this.name;
-            localStorage.save3Date = this.datetime;
-            return;
-         default:
-            localStorage.autoSave = this.value;
-            localStorage.autoSaveName = this.name;
-            localStorage.autoSaveDate = this.datetime;
-            return;
-      }
+      this.saveData(value);
+   }
+
+   saveData = async (value: string) => {
+      await Filesystem.writeFile({
+         path: this.fileName(),
+         data: `${this.name}\n${this.datetime}\n${value}`,
+         directory: Directory.Data,
+         encoding: Encoding.UTF8,
+      });
+   };
+
+   fileName() {
+      return `SaveSlot${this.id}.txt`;
    }
 }

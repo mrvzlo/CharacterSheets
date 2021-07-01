@@ -1,5 +1,5 @@
 <template>
-   <div class="card border">
+   <div class="card">
       <div class="card-header border-bottom d-flex justify-content-between px-1 bg-primary text-white">
          <div data-bs-toggle="collapse" :data-bs-target="'.collapse_' + index">
             <i class="fas fa-eye text-white pt-1 my-1 px-3"></i>
@@ -23,9 +23,9 @@
             <item :item="item" :index="itemIndex" :container="container" :deleteMode="deleteMode" />
          </div>
          <div class="text-start mt-2">
-            <button class="btn btn-success p-1 btn-sm lh-0" v-on:click="addItem">
+            <div class="btn btn-success p-1 btn-sm lh-0 rounded-circle" v-on:click="addItem">
                <i class="fas fa-plus-circle"></i>
-            </button>
+            </div>
          </div>
       </div>
    </div>

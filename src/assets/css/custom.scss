@@ -1,3 +1,7 @@
+.min-vh-100 {
+   min-height: 100vh;
+}
+
 .plain {
    border: none;
    text-align: center;
@@ -6,7 +10,15 @@
    padding: 0;
 }
 
-input, select{
+.card {
+   border-top: none;
+   border-left: none;
+   border-right: none;
+   border-color: black;
+}
+
+input,
+select {
    min-width: 0;
    background: none;
 }
@@ -42,7 +54,7 @@ input, select{
 }
 
 .bones {
-   background-color: rgb(230, 188, 155);
+   background-color: rgba(230, 188, 155, 0.5);
    width: 160px;
 }
 
@@ -65,6 +77,7 @@ input, select{
 
 .loading-bar {
    background: linear-gradient(90deg, #cfc var(--percent), #fff var(--percent));
+   opacity: 0.8;
 }
 
 .message {
