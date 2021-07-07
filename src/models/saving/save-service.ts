@@ -43,10 +43,10 @@ export default class SaveService {
    }
 
    applySave(character: Character, id: number = 0) {
-      const encoded = this.encoder.encode256(character);
       if (character.name.length === 0) {
          character.name = "Неизвестный";
       }
+      const encoded = this.encoder.encode256(character);
       this.saveSlots[id].setData(encoded, character.name);
    }
 

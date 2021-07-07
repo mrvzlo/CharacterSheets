@@ -11,18 +11,21 @@
       </div>
    </div>
    <div class="d-flex my-1 py-1">
-      <div v-on:click="locked ? null : editModel.verbal = !editModel.verbal" :class='editModel.verbal ? "" : "op-05"'>
+      <div v-on:click="locked ? null : (editModel.verbal = !editModel.verbal)" :class="editModel.verbal ? '' : 'op-05'">
          <i class="fas fa-comment-dots mx-2 h4"></i>
       </div>
-      <div v-on:click="locked ? null : editModel.somatic = !editModel.somatic" :class='editModel.somatic ? "" : "op-05"'>
+      <div v-on:click="locked ? null : (editModel.somatic = !editModel.somatic)" :class="editModel.somatic ? '' : 'op-05'">
          <i class="fas fa-hand-paper mx-2 h4"></i>
       </div>
-      <div v-on:click="locked ? null : editModel.material = !editModel.material" :class='editModel.material ? "" : "op-05"'>
+      <div v-on:click="locked ? null : (editModel.material = !editModel.material)" :class="editModel.material ? '' : 'op-05'">
          <i class="fas fa-magic mx-2 h4"></i>
       </div>
-      <input v-model="editModel.components" class="border-0 px-1 border-bottom flex-grow-1" placeholder="" :disabled="locked"/>
-      <div v-on:click="locked ? null : editModel.ritual = !editModel.ritual" :class='editModel.ritual ? "" : "op-05"'>
+      <input v-model="editModel.components" class="border-0 px-1 border-bottom flex-grow-1" placeholder="" :disabled="locked" />
+      <div v-on:click="locked ? null : (editModel.ritual = !editModel.ritual)" :class="editModel.ritual ? '' : 'op-05'">
          <i class="fas fa-clock mx-2 h4"></i>
+      </div>
+      <div v-on:click="locked ? null : (editModel.concentration = !editModel.concentration)" :class="editModel.concentration ? '' : 'op-05'">
+         <i class="fas fa-brain mx-2 h4"></i>
       </div>
    </div>
 </template>
@@ -38,11 +41,11 @@ export default {
       magicSlot: MagicSlot,
       index: Number,
       deleteMode: Boolean,
-      locked: Boolean
+      locked: Boolean,
    },
    data() {
       return {
-         editModel: Spell
+         editModel: Spell,
       };
    },
    methods: {

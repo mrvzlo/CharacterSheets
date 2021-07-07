@@ -16,7 +16,7 @@
                   </div>
                </div>
                <div class="mt-3 text-center">Слоты сохранений</div>
-               <div v-for="index in 3" :key="index" class="my-3 d-flex rounded position-relative">
+               <div v-for="index in 3" :key="index" class="my-3 d-flex rounded position-relative input-group">
                   <div
                      :class="'rounded border p-1 flex-grow-1 ' + (index == selected ? 'bg-dark text-white' : '')"
                      v-on:click="selected = selected == index ? -1 : index"

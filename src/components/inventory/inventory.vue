@@ -1,7 +1,7 @@
 <template>
    <div class="flex-grow-1">
       <div class="row justify-content-center mx-0">
-         <div class="col-12 col-md-6 my-2" v-for="(container, index) in character.inventory" v-bind:key="index">
+         <div class="col-12 col-md-6 mt-2" v-for="(container, index) in character.inventory" v-bind:key="index">
             <container :container="container" :index="index" :deleteMode="deleteMode" />
          </div>
       </div>

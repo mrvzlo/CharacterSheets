@@ -35,7 +35,7 @@
       </div>
 
       <div v-if="magicLimit > 0" class="row mx-0">
-         <div v-for="(magicSlot, index) in magicLimit" :key="index" class="col-12 col-md-6 my-2">
+         <div v-for="(magicSlot, index) in magicLimit" :key="index" class="col-12 col-md-6 mt-2">
             <magic-slot
                :magicSlot="character.magicSlots[index]"
                :index="index"
@@ -46,12 +46,18 @@
          </div>
       </div>
       <div class="row mx-0">
-         <div class="col-12 col-md-6 my-2">
-            <magic-slot :magicSlot="otherSpells()" :index="10" :deleteMode="deleteMode" :name="'Прочие заклинания'" :locked="character.settings.locked" />
+         <div class="col-12 col-md-6 mt-2">
+            <magic-slot
+               :magicSlot="otherSpells()"
+               :index="10"
+               :deleteMode="deleteMode"
+               :name="'Прочие заклинания'"
+               :locked="character.settings.locked"
+            />
          </div>
       </div>
    </div>
-   
+
    <div v-if="!deleteMode">
       <button class="btn btn-danger m-2 pe-3" v-on:click="openDeleteMode">
          <i class="fas fa-trash me-2"></i>

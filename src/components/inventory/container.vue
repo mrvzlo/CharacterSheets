@@ -1,7 +1,7 @@
 <template>
    <div class="card">
       <div class="card-header border-bottom d-flex justify-content-between px-1 bg-primary text-white">
-         <div data-bs-toggle="collapse" :data-bs-target="'.collapse_' + index">
+         <div @click="expand = !expand">
             <i class="fas fa-eye text-white pt-1 my-1 px-3"></i>
          </div>
          <div class="flex-grow-1">
@@ -18,7 +18,7 @@
             </div>
          </div>
       </div>
-      <div :class="'card-body p-1 collapse show collapse_' + index">
+      <div class="card-body p-1" v-if="expand">
          <div v-for="(item, itemIndex) in container.inner" v-bind:key="itemIndex">
             <item :item="item" :index="itemIndex" :container="container" :deleteMode="deleteMode" />
          </div>
@@ -47,6 +47,7 @@ export default {
          name: String,
          capacity: Number,
          delete: Boolean,
+         expand: true,
       };
    },
    methods: {

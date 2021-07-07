@@ -1,7 +1,7 @@
 <template>
    <div class="card">
       <div class="card-header border-bottom d-flex justify-content-between px-1 bg-primary text-white">
-         <div class="flex-grow-1 text-start" data-bs-toggle="collapse" :data-bs-target="'.collapse_' + index">
+         <div class="flex-grow-1 text-start" @click="expand = !expand">
             <div class="py-1 ps-2">{{ name }}</div>
          </div>
          <div class="d-flex" v-if="index > 0 && index <= 9">
@@ -10,7 +10,7 @@
             <input type="number" v-model="limit" @change="setData" class="plain w-50px text-white" min="0" />
          </div>
       </div>
-      <div :class="'card-body p-1 collapse show collapse_' + index">
+      <div class="card-body p-1" v-if="expand">
          <div v-if="magicSlot.spells.length == 0">Ничего не изучено</div>
          <div v-for="(item, itemIndex) in magicSlot.spells" v-bind:key="itemIndex">
             <spell :spell="item" :index="itemIndex" :magicSlot="magicSlot" :deleteMode="deleteMode" :locked="locked" />
@@ -42,6 +42,7 @@ export default {
          limit: Number,
          uses: Number,
          delete: Boolean,
+         expand: true,
       };
    },
    methods: {

@@ -7,6 +7,7 @@ export default class Spell {
    somatic = false;
    ritual = false;
    delete = false;
+   concentration = false;
 
    toggleDeleteMode(mode: boolean) {
       this.delete = mode;

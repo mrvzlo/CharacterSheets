@@ -56,7 +56,8 @@ export default class Character {
 
    longRest() {
       this.health = this.healthMax;
-      this.healthBones = this.level;
+      this.healthBones += this.level >> 1;
+      if (this.healthBones > this.level) this.healthBones = this.level;
       this.magicSlots.forEach((x) => x.reset());
    }
 
