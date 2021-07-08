@@ -21,6 +21,7 @@ export default class SaveService {
 
       try {
          const character = method == 64 ? this.encoder.decode64(input) : this.encoder.decode256(input);
+         headerMessage.showSuccess("Загрузка завершена");
          return character;
       } catch {
          headerMessage.showError("Ошибка загрузки");
@@ -29,6 +30,7 @@ export default class SaveService {
    }
 
    hasSave(id: number) {
+      if (!this.saveSlots[id]) return false;
       const name = this.saveSlots[id].name;
       const check = this.isValid(name);
       return check;
@@ -55,13 +57,14 @@ export default class SaveService {
    }
 
    savedName(id: number) {
-      if (!this.hasSave(id)) return "Свободный слот";
-      const save = this.saveSlots[id];
-      return save.name + " - " + this.dateFormat(save.datetime);
+      if (!this.hasSave(id)) return "Пустой слот";
+      const name = this.saveSlots[id].name;
+      return name.length > 20 ? name.substring(0, 19) + "..." : name;
    }
 
-   dateFormat(date: Date) {
-      if (!date) return "";
+   dateFormat(id: number) {
+      if (!this.hasSave(id)) return "";
+      const date = this.saveSlots[id].datetime;
       const formatted = new Date(date);
       return (
          this.formatTwoDigits(formatted.getDate()) +

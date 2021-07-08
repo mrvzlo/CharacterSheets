@@ -2,10 +2,11 @@ import TypedArray from "../base/typed-array";
 import Item from "./item";
 
 export default class Container {
-   name: string = "";
-   capacity: number = 30;
-   inner: TypedArray<Item> = new TypedArray<Item>(Item);
-   delete: boolean = false;
+   name = "";
+   capacity = 30;
+   inner = new TypedArray<Item>(Item);
+   delete = false;
+   expand = true;
 
    get weight() {
       const sum = this.inner.reduce((sum, x) => sum + x.count * x.weight, 0);

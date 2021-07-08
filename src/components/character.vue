@@ -23,10 +23,10 @@
 
       <footer-menu :character="character" :saveService="saveService" v-if="tab == 5" />
    </div>
-   <div class="position-fixed end-0 bottom-0 op-05" v-if="character.settings.locked && (tab < 3 || tab == 4)">
+   <div class="position-fixed end-0 bottom-0 op-05 m-1" v-if="character.settings.locked && (tab < 3 || tab == 4)">
       <i class="fas fa-lock fa-2x m-2" v-on:click="tab = 5"></i>
    </div>
-   <div class="text-center small text-secondary py-1 border-top">Лист персонажа {{ version }} by AndrejevVE</div>
+   <div class="text-center small text-secondary py-1 border-top">Чарники {{ version }} by AndrejevVE</div>
 </template>
 
 <script>
@@ -48,7 +48,7 @@ export default {
          character: Character,
          encoder: Encoder,
          headerMessage: HeaderMessage,
-         version: "v1.1.0",
+         version: "v1.1.1",
          tab: 1,
          icons: ["id-card", "running", "suitcase", "hand-sparkles", "cog"],
          saveService: SaveService,

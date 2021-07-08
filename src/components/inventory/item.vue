@@ -1,11 +1,11 @@
 <template>
    <div class="d-flex my-1">
       <div class="hex light mt-1 mx-1">
-         <input v-model="count" class="plain w-100" type="number" min="0" max="999" @change="setData" />
+         <input v-model="editModel.count" class="plain w-100" type="number" min="0" max="999" />
       </div>
-      <input v-model="name" class="border-0 px-1 border-bottom flex-grow-1" @change="setData" placeholder="Предмет" />
+      <input v-model="editModel.name" class="border-0 px-1 border-bottom flex-grow-1" placeholder="Предмет" />
       <div class="block light mt-1 mx-1">
-         <input v-model="weight" v-if="!deleteMode" class="plain w-100" type="number" min="0" max="999" @change="setData" />
+         <input v-model="editModel.weight" v-if="!deleteMode" class="plain w-100" type="number" min="0" max="999" />
          <div v-on:click="toggleDelete" class="w-100 h-100" v-if="deleteMode">
             <i v-if="item.delete || container.delete" class="fas fa-times"></i>
          </div>
@@ -27,27 +27,21 @@ export default {
    },
    data() {
       return {
-         name: String,
-         count: Number,
-         weight: Number,
-         delete: Boolean,
+         editModel: Item,
       };
    },
    methods: {
       getData() {
-         this.name = this.item.name;
-         this.count = this.item.count;
-         this.weight = this.item.weight;
-         this.delete = this.item.delete;
+         this.editModel = this.item;
       },
       setData() {
-         Object.assign(this.item, { name: this.name });
-         Object.assign(this.item, { count: this.count });
-         Object.assign(this.item, { weight: this.weight });
-         Object.assign(this.item, { delete: this.delete });
+         Object.assign(this.item, { name: this.editModel.name });
+         Object.assign(this.item, { count: this.editModel.count });
+         Object.assign(this.item, { weight: this.editModel.weight });
+         Object.assign(this.item, { delete: this.editModel.delete });
       },
       toggleDelete() {
-         this.delete = !this.delete;
+         this.editModel.delete = !this.editModel.delete;
          this.setData();
       },
    },
@@ -58,6 +52,11 @@ export default {
          },
          deep: true,
          immediate: true,
+      },
+      editModel: {
+         handler() {
+            this.setData();
+         },
       },
    },
    components: {},

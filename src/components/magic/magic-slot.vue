@@ -1,16 +1,16 @@
 <template>
    <div class="card">
       <div class="card-header border-bottom d-flex justify-content-between px-1 bg-primary text-white">
-         <div class="flex-grow-1 text-start" @click="expand = !expand">
+         <div class="flex-grow-1 text-start" @click="editModel.expand = !editModel.expand">
             <div class="py-1 ps-2">{{ name }}</div>
          </div>
          <div class="d-flex" v-if="index > 0 && index <= 9">
-            <input type="number" v-model="uses" @change="setData" class="plain w-50px text-white" min="0" />
+            <input type="number" v-model="editModel.uses" @change="setData" class="plain w-50px text-white" min="0" />
             <span class="py-1">/</span>
-            <input type="number" v-model="limit" @change="setData" class="plain w-50px text-white" min="0" />
+            <input type="number" v-model="editModel.limit" @change="setData" class="plain w-50px text-white" min="0" />
          </div>
       </div>
-      <div class="card-body p-1" v-if="expand">
+      <div class="card-body p-1" v-if="editModel.expand">
          <div v-if="magicSlot.spells.length == 0">Ничего не изучено</div>
          <div v-for="(item, itemIndex) in magicSlot.spells" v-bind:key="itemIndex">
             <spell :spell="item" :index="itemIndex" :magicSlot="magicSlot" :deleteMode="deleteMode" :locked="locked" />
@@ -39,17 +39,12 @@ export default {
    },
    data() {
       return {
-         limit: Number,
-         uses: Number,
-         delete: Boolean,
-         expand: true,
+         editModel: MagicSlot,
       };
    },
    methods: {
       getData() {
-         this.limit = this.magicSlot.limit;
-         this.uses = this.magicSlot.uses;
-         this.delete = this.magicSlot.delete;
+         this.editModel = this.magicSlot;
       },
       setData() {
          Object.assign(this.magicSlot, { uses: this.uses });
@@ -60,9 +55,8 @@ export default {
          this.magicSlot.addItem();
       },
       toggleDelete() {
-         this.delete = !this.delete;
+         this.editModel.delete = !this.editModel.delete;
          this.magicSlot.toggleDeleteMode(true);
-         this.setData();
       },
    },
    watch: {
@@ -72,6 +66,11 @@ export default {
          },
          deep: true,
          immediate: true,
+      },
+      editModel: {
+         handler() {
+            this.setData();
+         },
       },
    },
    components: { spell: SpellComponent },

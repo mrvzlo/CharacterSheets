@@ -1,16 +1,16 @@
 <template>
    <div class="card">
       <div class="card-header border-bottom d-flex justify-content-between px-1 bg-primary text-white">
-         <div @click="expand = !expand">
+         <div @click="editModel.expand = !editModel.expand">
             <i class="fas fa-eye text-white pt-1 my-1 px-3"></i>
          </div>
          <div class="flex-grow-1">
-            <input type="text" v-model="name" @change="setData" class="border-0 border-bottom border-white px-1 w-100 h-100 text-white bg-primary" />
+            <input type="text" v-model="editModel.name" class="border-0 border-bottom border-white px-1 w-100 h-100 text-white bg-primary" />
          </div>
          <div class="d-flex" v-if="!deleteMode">
-            <span :class="'w-50px py-1 ' + (container.weight > capacity ? 'text-danger' : '')">{{ container.weight }}</span>
+            <span :class="'w-50px py-1 ' + (container.weight > container.capacity ? 'text-danger' : '')">{{ container.weight }}</span>
             <span class="py-1">/</span>
-            <input type="number" v-model="capacity" @change="setData" class="plain w-50px text-white" min="0" />
+            <input type="number" v-model="editModel.capacity" class="plain w-50px text-white" min="0" />
          </div>
          <div v-if="deleteMode" class="block light m-1">
             <div v-on:click="toggleDelete" class="w-100 h-100">
@@ -18,7 +18,7 @@
             </div>
          </div>
       </div>
-      <div class="card-body p-1" v-if="expand">
+      <div class="card-body p-1" v-if="editModel.expand">
          <div v-for="(item, itemIndex) in container.inner" v-bind:key="itemIndex">
             <item :item="item" :index="itemIndex" :container="container" :deleteMode="deleteMode" />
          </div>
@@ -44,30 +44,25 @@ export default {
    },
    data() {
       return {
-         name: String,
-         capacity: Number,
-         delete: Boolean,
-         expand: true,
+         editModel: Container,
       };
    },
    methods: {
       getData() {
-         this.name = this.container.name;
-         this.capacity = this.container.capacity;
-         this.delete = this.container.delete;
+         this.editModel = this.container;
       },
       setData() {
-         Object.assign(this.container, { name: this.name });
-         Object.assign(this.container, { capacity: this.capacity });
-         Object.assign(this.container, { delete: this.delete });
+         Object.assign(this.container, { name: this.editModel.name });
+         Object.assign(this.container, { capacity: this.editModel.capacity });
+         Object.assign(this.container, { expand: this.editModel.expand });
+         Object.assign(this.container, { delete: this.editModel.delete });
       },
       addItem() {
          this.container.addItem();
       },
       toggleDelete() {
-         this.delete = !this.delete;
+         this.editModel.delete = !this.editModel.delete;
          this.container.toggleDeleteMode(true);
-         this.setData();
       },
    },
    watch: {
@@ -77,6 +72,11 @@ export default {
          },
          deep: true,
          immediate: true,
+      },
+      editModel: {
+         handler() {
+            this.setData();
+         },
       },
    },
    components: { item: ItemComponent },

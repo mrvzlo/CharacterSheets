@@ -15,8 +15,9 @@
       border-radius: $border-radius;
    }
 
+   background: none;
    border-radius: $border-radius;
-   box-shadow: inset 0px 0px 0px 1px #000;
+   box-shadow: inset 0px 0px 0px 1px var(--border);
 }
 
 input,
@@ -129,6 +130,7 @@ select {
    background-color: unset;
    border: none;
    .popover-body {
+      color: var(--input-color);
       padding-left: 5px;
       padding-right: 5px;
       border: 1px var(--border) solid;
@@ -146,5 +148,18 @@ select {
       &::before {
          border-top-color: var(--border);
       }
+   }
+}
+
+.rounded-row {
+   > *:first-child {
+      width: 60px;
+      text-align: center;
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+   }
+   > *:last-child {
+      border-top-right-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
    }
 }

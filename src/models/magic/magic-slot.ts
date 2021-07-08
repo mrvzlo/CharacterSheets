@@ -5,7 +5,8 @@ export default class MagicSlot {
    name = "";
    uses = 0;
    limit = 0;
-   spells: TypedArray<Spell> = new TypedArray<Spell>(Spell);
+   expand = true;
+   spells = new TypedArray<Spell>(Spell);
 
    reset() {
       this.uses = this.limit;

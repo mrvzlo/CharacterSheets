@@ -8,36 +8,27 @@
             <div class="modal-body py-0">
                <div class="my-3 d-flex rounded position-relative">
                   <div
-                     :class="'rounded border p-1 text-center w-100 ' + (selected == 10 ? 'bg-dark text-white' : '')"
-                     v-on:click="selected = selected == 10 ? -1 : 10"
+                     :class="'rounded border p-1 text-center w-100 ' + (selected == appConfig.clearSave ? 'bg-primary text-white' : '')"
+                     v-on:click="select(appConfig.clearSave)"
                   >
                      Новый персонаж
                   </div>
                </div>
-               <div class="mt-3 text-center">Автосохранение</div>
-               <div class="my-3 d-flex rounded position-relative">
+               <div v-for="(_, index) in appConfig.saveSlots + 1" :key="index" class="mb-3 d-flex rounded-row">
+                  <div class="border bg-primary text-light px-2 py-1">{{ index == 0 ? "Авто" : index }}</div>
                   <div
-                     :class="'rounded border p-1 flex-grow-1 ' + (selected == 0 ? 'bg-dark text-white' : '')"
-                     v-on:click="selected = selected == 0 ? -1 : 0"
+                     :class="'border py-1 px-2 flex-grow-1 border-start-0 ' + (index == selected ? 'bg-primary text-white' : '')"
+                     v-on:click="select(index)"
                   >
-                     {{ savedName(0) }}
-                  </div>
-               </div>
-               <div class="mt-3 text-center">Слоты сохранений</div>
-               <div v-for="index in 3" :key="index" class="my-3 d-flex rounded position-relative">
-                  <div
-                     :class="'rounded border p-1 flex-grow-1 ' + (index == selected ? 'bg-dark text-white' : '')"
-                     v-on:click="selected = selected == index ? -1 : index"
-                  >
-                     {{ index }} - {{ savedName(index) }}
+                     {{ savedName(index) }} <span class="float-end text-secondary">{{ savedDate(index) }}</span>
                   </div>
                </div>
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-danger" data-bs-dismiss="modal" v-on:click="load" v-if="selected >= 0">
+               <button type="button" class="btn btn-danger" data-bs-dismiss="modal" v-on:click="load" v-if="hasSave(selected)">
                   Загрузить
                </button>
-               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" v-on:click="selected = appConfig.unselectedSave">
                   Закрыть
                </button>
             </div>
@@ -48,6 +39,8 @@
 
 <script>
 import SaveService from "@/models/saving/save-service";
+import AppConfig from "@/app-config";
+
 export default {
    name: "reload-modal",
    props: {
@@ -57,11 +50,17 @@ export default {
       return {
          importData: "",
          selected: Number,
+         appConfig: AppConfig,
       };
    },
    methods: {
+      select: function(num) {
+         if (this.hasSave(num)) {
+            this.selected = this.selected == num ? this.appConfig.unselectedSave : num;
+         }
+      },
       hasSave: function(id) {
-         return this.saveService.hasSave(id);
+         return id == this.appConfig.clearSave || this.saveService.hasSave(id);
       },
       load: function() {
          if (this.selected == 10) {
@@ -70,16 +69,26 @@ export default {
          this.saveService.getSaveData(this.selected).then((data) => {
             this.$parent.importCharacter(data, 256);
          });
+         this.selected = this.appConfig.unselectedSave;
       },
       clearSave: function() {
-         this.$parent.importCharacter(null, 0);
+         this.$parent.importCharacter();
       },
       savedName: function(id) {
          return this.saveService.savedName(id);
       },
+      savedDate: function(id) {
+         return this.saveService.dateFormat(id);
+      },
    },
    created() {
-      this.selected = -1;
+      this.appConfig = new AppConfig();
+      this.selected = this.appConfig.unselectedSave;
+   },
+   computed: {
+      autoSave() {
+         return 0;
+      },
    },
 };
 </script>

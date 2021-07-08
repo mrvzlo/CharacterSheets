@@ -7,7 +7,6 @@
    --input-disabled-bg: #333;
 
    &,
-   .card-body,
    .modal-content {
       background-color: #111;
    }
@@ -16,7 +15,7 @@
    input,
    select,
    .btn:not(.btn-light) {
-      color: #eee;
+      color: var(--input-color);
    }
 
    .alert-warning {
@@ -32,6 +31,6 @@
    }
 
    .card {
-      border-color: #fff;
+      border-color: var(--input-color);
    }
 }
