@@ -1,0 +1,26 @@
+.popover {
+   padding-left: 5px;
+   padding-right: 5px;
+   background-color: unset;
+   border: none;
+   .popover-body {
+      color: var(--input-color);
+      padding-left: 5px;
+      padding-right: 5px;
+      border: 1px var(--border) solid;
+      border-radius: $border-radius;
+      background-color: var(--input-disabled-bg);
+   }
+}
+
+.bs-popover-top {
+   .popover-arrow {
+      bottom: -0.5rem;
+      &::after {
+         border-top-color: var(--input-disabled-bg);
+      }
+      &::before {
+         border-top-color: var(--border);
+      }
+   }
+}

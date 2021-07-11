@@ -1,5 +1,5 @@
 <template>
-   <div class="col-3 px-1">
+   <div class="col-3 px-1 attributes">
       <div v-for="(attribute, index) in character.attributes" v-bind:key="attribute.name">
          <attribute :character="character" :attribute="attribute" :index="index"></attribute>
       </div>
@@ -15,7 +15,7 @@
                class="p-small"
                v-for="check in attribute.checks"
                v-bind:key="check.name"
-               :style="check.type == checkType.Saving ? `background-color: rgba(${attribute.color},.3)` : ''"
+               :style="check.type == checkType.Saving ? `background-color: rgba(${attribute.color},.9)` : ''"
             >
                <check :check="check" :proficiency="character.proficiency" :bonus="attribute.bonus" :locked="character.settings.locked"></check>
             </div>
@@ -29,7 +29,7 @@
          data-bs-placement="top"
          data-bs-content="Бонус добавляется, начиная с 2 уровня барда или с 7 уровня воина чемпиона, к проверкам навыков характеристик, указанных в правилах"
       >
-         <div class="hex me-2" style="--color: 10deg">
+         <div class="hex me-2" style="--color: 310deg">
             {{ character.proficiency >> 1 }}
          </div>
          Половинный бонус

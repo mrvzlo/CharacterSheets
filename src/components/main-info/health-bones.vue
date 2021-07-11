@@ -1,5 +1,5 @@
 <template>
-   <div class="small my-2 mx-auto border px-2 py-1 bones rounded text-start">
+   <div class="small my-2 mx-auto px-2 py-1 bones text-start position-relative">
       Кость здоровья
       <span class="plain float-end fw-bold pe-2"> d{{ character.class.bone }} </span>
       <div class="d-flex justify-content-center">
@@ -7,11 +7,13 @@
          <span>/</span>
          <span class="plain w-25">{{ character.level }}</span>
       </div>
+      <octagon />
    </div>
 </template>
 
 <script>
 import Character from "../../models/character";
+import OctagonComponent from "@/components/helpers/octagon.vue";
 
 export default {
    name: "health-bones",
@@ -44,6 +46,9 @@ export default {
          deep: true,
          immediate: true,
       },
+   },
+   components: {
+      octagon: OctagonComponent,
    },
 };
 </script>

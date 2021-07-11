@@ -2,6 +2,21 @@
    min-height: 100vh;
 }
 
+body,
+.modal-content {
+   background-color: var(--background);
+}
+
+body,
+input,
+select {
+   color: var(--input-color);
+}
+
+.btn:not(.btn-light) {
+   color: #fff;
+}
+
 .plain {
    border: none;
    text-align: center;
@@ -57,8 +72,8 @@ select {
 }
 
 .bones {
-   background-color: rgba(230, 188, 155, 0.5);
    width: 160px;
+   --oct-bg: var(--bones-bg);
 }
 
 .modal-body {
@@ -67,19 +82,12 @@ select {
    word-break: break-all;
 }
 
-.heart {
-   background-image: url("~@/assets/heart.svg");
-   background-size: contain;
-   background-repeat: no-repeat;
-   background-position: center;
-}
-
 .attribute {
    width: 70px;
 }
 
 .loading-bar {
-   background: linear-gradient(90deg, #cfc var(--percent), #fff var(--percent));
+   background: linear-gradient(90deg, #cfc var(--percent), var(--background) var(--percent));
    opacity: 0.8;
 }
 
@@ -87,7 +95,8 @@ select {
    z-index: 1000;
 }
 
-select {
+select,
+.lh-27 {
    height: 27px;
 }
 
@@ -122,33 +131,6 @@ select {
 
 .op-05 {
    opacity: 0.5;
-}
-
-.popover {
-   padding-left: 5px;
-   padding-right: 5px;
-   background-color: unset;
-   border: none;
-   .popover-body {
-      color: var(--input-color);
-      padding-left: 5px;
-      padding-right: 5px;
-      border: 1px var(--border) solid;
-      border-radius: $border-radius;
-      background-color: var(--input-disabled-bg);
-   }
-}
-
-.bs-popover-top {
-   .popover-arrow {
-      bottom: -0.5rem;
-      &::after {
-         border-top-color: var(--input-disabled-bg);
-      }
-      &::before {
-         border-top-color: var(--border);
-      }
-   }
 }
 
 .rounded-row {

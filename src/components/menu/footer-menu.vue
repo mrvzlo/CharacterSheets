@@ -61,6 +61,16 @@
          </div>
          <div class="btn btn-info"><i class="fa-fw fas">&nbsp;</i></div>
       </div>
+      <div class="my-5"></div>
+      <a class="btn-group d-block my-3" href="https://vk.com/andrejevve" target="_blank">
+         <div class="btn btn-primary">
+            <i class="fab fa-fw fa-vk"></i>
+         </div>
+         <div class="btn border-primary col-6">
+            Связаться с автором
+         </div>
+         <div class="btn btn-primary"><i class="fa-fw fas">&nbsp;</i></div>
+      </a>
    </div>
    <export-modal :character="character" />
    <save-modal :character="character" :saveService="saveService" />

@@ -1,41 +1,46 @@
 <template>
-   <div class="text-center row mx-1 justify-content-center mt-2">
+   <div class="text-center row mx-1 justify-content-center mt-2 yellow-oct">
       <div class="px-1 col-12 col-md-6 col-lg-5">
-         <div class="alert alert-secondary mb-2">
-            <input v-model="name" class="plain w-100 border-bottom py-2 h5 mb-1" placeholder="Имя персонажа" :disabled="locked" @change="setData" />
+         <div class="position-relative mb-2 py-1 gray-oct">
+            <input v-model="name" class="plain w-octagon p-2 h5 m-0" placeholder="Имя персонажа" :disabled="locked" @change="setData" />
+            <octagon />
          </div>
       </div>
       <div class="px-1 col-4 col-md-3">
-         <div class="alert alert-warning mb-2">
-            <select v-model="characterClass" class="plain w-100 border-bottom" :disabled="locked" v-if="this.character.class" @change="setData">
+         <div class="position-relative mb-2 py-1">
+            <select v-model="characterClass" class="plain w-octagon border-bottom" :disabled="locked" v-if="this.character.class" @change="setData">
                <option v-for="classType in classOptions()" v-bind:key="classType" :value="classType.id">
                   {{ classType.name }}
                </option>
             </select>
             <div class="small text-secondary">Класс</div>
+            <octagon />
          </div>
       </div>
       <div class="px-1 col-4 col-md-3">
-         <div class="alert alert-warning mb-2">
-            <input v-model="race" class="plain w-100 border-bottom" :disabled="locked" @change="setData" />
+         <div class="position-relative mb-2 py-1">
+            <input v-model="race" class="plain w-octagon border-bottom" :disabled="locked" @change="setData" />
             <div class="small text-secondary">Раса</div>
+            <octagon />
          </div>
       </div>
       <div class="px-1 col-4 col-md-3">
-         <div class="alert alert-warning mb-2">
-            <input v-model="story" class="plain w-100 border-bottom" :disabled="locked" @change="setData" />
+         <div class="position-relative mb-2 py-1">
+            <input v-model="story" class="plain w-octagon border-bottom" :disabled="locked" @change="setData" />
             <div class="small text-secondary">Предыстория</div>
+            <octagon />
          </div>
       </div>
       <div class="px-1 col-3 col-md-3 col-lg-2">
-         <div class="alert alert-warning mb-2">
-            <input v-model="level" class="plain w-100 border-bottom" type="number" min="1" max="20" :disabled="locked" @change="setData" />
+         <div class="position-relative mb-2 py-1">
+            <input v-model="level" class="plain w-octagon border-bottom lh-27" type="number" min="1" max="20" :disabled="locked" @change="setData" />
             <div class="small text-secondary">Уровень</div>
+            <octagon />
          </div>
       </div>
       <div class="px-1 col-4 col-md-3">
-         <div class="alert alert-warning mb-2">
-            <select v-model="size" class="plain w-100 border-bottom" :disabled="locked" @change="setData">
+         <div class="position-relative mb-2 py-1">
+            <select v-model="size" class="plain w-octagon border-bottom" :disabled="locked" @change="setData">
                <option value="0">Крошечный</option>
                <option value="1">Маленький</option>
                <option value="2">Средний</option>
@@ -43,11 +48,12 @@
                <option value="4">Огромный</option>
             </select>
             <div class="small text-secondary">Размер</div>
+            <octagon />
          </div>
       </div>
       <div class="px-1 col-5 col-md-3">
-         <div class="alert alert-warning mb-2">
-            <select v-model="alignment" class="plain w-100 border-bottom" :disabled="locked" @change="setData">
+         <div class="position-relative mb-2 py-1">
+            <select v-model="alignment" class="plain w-octagon border-bottom" :disabled="locked" @change="setData">
                <option value="0">Законно-добрый</option>
                <option value="1">Законный</option>
                <option value="2">Законно-злой</option>
@@ -59,6 +65,7 @@
                <option value="8">Хаотично-злой</option>
             </select>
             <div class="small text-secondary">Мировоззрение</div>
+            <octagon />
          </div>
       </div>
       <div class="col-6 px-1">
@@ -105,14 +112,15 @@
 </template>
 
 <script>
-import Character from "../../models/character";
-import { ClassType } from "../../data-layer/classes/class-type";
-import CharacterClass from "../../models/character-class";
+import Character from "@/models/character";
+import { ClassType } from "@/data-layer/classes/class-type";
+import CharacterClass from "@/models/character-class";
 import DerivativesComponent from "./derivatives.vue";
 import HealthComponent from "./health.vue";
 import HealthBonesComponent from "./health-bones.vue";
 import RestComponent from "./rest.vue";
 import HeaderMessageModel from "@/models/header-message";
+import OctagonComponent from "@/components/helpers/octagon.vue";
 
 export default {
    name: "top-info",
@@ -182,6 +190,7 @@ export default {
       health: HealthComponent,
       rest: RestComponent,
       healthBones: HealthBonesComponent,
+      octagon: OctagonComponent,
    },
 };
 </script>

@@ -10,9 +10,9 @@ $alert-padding-y: 0.25rem;
 $popover-body-padding-y: 0.25rem;
 $popover-body-padding-x: 0.25rem;
 
-$border-radius: 0.6rem;
-$border-radius-sm: 0.3rem;
-$border-radius-lg: 1rem;
+$border-radius: 0;
+$border-radius-sm: 0;
+$border-radius-lg: 0;
 $border-radius-pill: 50rem;
 
 $hex-border: 6px;
@@ -22,3 +22,7 @@ $card-border-width: 0;
 $card-border-radius: 0;
 
 $popover-border-color: rgba(#000, 0.5);
+
+:root {
+   --oct-size: 10px;
+}

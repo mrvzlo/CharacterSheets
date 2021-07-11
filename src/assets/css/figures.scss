@@ -49,3 +49,10 @@
 .hex {
    background-image: url("~@/assets/hexagon.svg");
 }
+
+.heart {
+   background-image: url("~@/assets/heart.svg");
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: center;
+}
