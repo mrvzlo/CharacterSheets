@@ -10,7 +10,7 @@ export default class HeaderMessage {
    showHeader(text: string) {
       this.text = text;
       this.show = true;
-      setTimeout(() => this.closeHeader(), 300000);
+      setTimeout(() => this.closeHeader(), 3000);
    }
    showError(text: string) {
       this.showHeader(text);

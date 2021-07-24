@@ -1,10 +1,10 @@
 <template>
-   <div class="heart p-3 pb-4 small mt-1">
+   <div class="heart p-3 pb-4 small my-2">
       <div class="d-flex justify-content-center mt-2">
          <div class="hex big" style="--color: -10deg">
             <input v-model="current" class="plain w-100" type="number" :max="character.healthMax" min="0" @change="setData" />
          </div>
-         <div class="mx-1 my-0 h3 lh-1">/</div>
+         <div class="mx-1 mb-0 mt-auto h3 lh-1">/</div>
          <div class="hex big" style="--color: -10deg">
             <input v-model="max" class="plain w-100" type="number" min="0" :disabled="character.settings.locked" @change="setData" />
          </div>
@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import Character from "../../models/character";
+import Character from '@/models/character';
 
 export default {
-   name: "health",
+   name: 'health',
    props: {
       character: Character,
    },

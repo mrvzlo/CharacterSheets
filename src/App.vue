@@ -1,5 +1,5 @@
 <style lang="scss">
-@import "@/assets/css/style.scss";
+@import '@/assets/css/style.scss';
 </style>
 
 <template>
@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import CharacterComponent from "./components/character.vue";
-import { App } from "@capacitor/app";
+import CharacterComponent from './components/character.vue';
+import { App } from '@capacitor/app';
 
 export default {
-   name: "App",
+   name: 'App',
    components: {
       character: CharacterComponent,
    },
@@ -24,14 +24,14 @@ export default {
    },
    methods: {
       updateTheme() {
-         this.darkTheme = window.navigator.userAgent.includes("AndroidDarkMode");
-         if (this.darkTheme) document.body.classList.add("dark-mode");
-         else document.body.classList.remove("dark-mode");
+         this.darkTheme = window.navigator.userAgent.includes('AndroidDarkMode');
+         if (this.darkTheme) document.body.classList.add('dark-mode');
+         else document.body.classList.remove('dark-mode');
       },
    },
    created() {
       this.updateTheme();
-      App.addListener("appStateChange", this.updateTheme);
+      App.addListener('appStateChange', this.updateTheme);
    },
 };
 </script>

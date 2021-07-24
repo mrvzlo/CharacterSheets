@@ -1,6 +1,6 @@
 <template>
    <div class="d-flex">
-      <div class="my-2 mx-auto text-white">
+      <div class="my-2 mx-auto">
          <div class="hex gray">
             <input
                v-model="attributeValue"
@@ -12,9 +12,9 @@
                @change="setData"
             />
          </div>
-         <div class="pt-3 pb-1 position-relative d-flex flex-column mt-n3 attribute" :style="`--oct-bg: rgba(${attribute.color})`">
+         <div class="pt-3 pb-1 position-relative d-flex flex-column mt-n3 attribute" :style="'--oct-bg:rgb(' + attribute.color + ')'">
             <div></div>
-            <h1 class="m-0">{{ attribute.bonus }}</h1>
+            <h1 class="m-0">{{ attribute.bonus > 0 ? '+' + attribute.bonus : attribute.bonus }}</h1>
             {{ attribute.name }}
             <octagon />
          </div>
@@ -23,12 +23,12 @@
 </template>
 
 <script>
-import Character from "../../models/character";
-import Attribute from "../../models/attribute";
-import OctagonComponent from "@/components/helpers/octagon.vue";
+import Character from '@/models/character';
+import Attribute from '@/models/attribute';
+import OctagonComponent from '@/components/helpers/octagon.vue';
 
 export default {
-   name: "attribute-with-checks",
+   name: 'attribute-with-checks',
    props: {
       character: Character,
       attribute: Attribute,

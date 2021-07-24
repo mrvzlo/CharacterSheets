@@ -9,11 +9,12 @@ body,
 
 body,
 input,
-select {
+select,
+.btn-outline {
    color: var(--input-color);
 }
 
-.btn:not(.btn-light) {
+.btn:not(.btn-light):not(.btn-outline) {
    color: #fff;
 }
 
@@ -55,7 +56,8 @@ select {
    }
 
    .bonus {
-      width: 24px;
+      display: inline-block;
+      width: 30px;
       text-align: center;
    }
 }
@@ -74,6 +76,7 @@ select {
 .bones {
    width: 160px;
    --oct-bg: var(--bones-bg);
+   --oct-border: #000;
 }
 
 .modal-body {
@@ -84,10 +87,11 @@ select {
 
 .attribute {
    width: 70px;
+   --oct-bg: var(--gray-bg);
 }
 
 .loading-bar {
-   background: linear-gradient(90deg, #cfc var(--percent), var(--background) var(--percent));
+   background: linear-gradient(90deg, rgba(150, 255, 150, 0.7) var(--percent), var(--background) var(--percent));
    opacity: 0.8;
 }
 
@@ -129,8 +133,16 @@ select,
    line-height: 0;
 }
 
+.lh-inherit {
+   line-height: inherit;
+}
+
 .op-05 {
    opacity: 0.5;
+}
+
+.op-03 {
+   opacity: 0.3;
 }
 
 .rounded-row {
@@ -144,4 +156,19 @@ select,
       border-top-right-radius: $border-radius;
       border-bottom-right-radius: $border-radius;
    }
+}
+
+.shadow-success {
+   box-shadow: inset 0 0 0 3px $green;
+}
+
+.btn {
+   &:focus,
+   &:active {
+      box-shadow: none;
+   }
+}
+
+.btn.fw {
+   width: 120px;
 }

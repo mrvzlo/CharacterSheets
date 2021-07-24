@@ -1,20 +1,20 @@
 <template>
    <div class="d-inline-flex p-1">
-      <div class="hex me-2" style="--color: 110deg">
+      <div class="hex me-2" style="--color: 140deg">
          <input v-model="speed" class="plain w-100" type="number" min="0" :disabled="character.settings.locked" @change="setData" />
       </div>
       Скорость
    </div>
    <br />
    <div class="d-inline-flex p-1">
-      <div class="hex me-2" style="--color: 160deg">
+      <div class="hex me-2" style="--color: 120deg">
          <input v-model="initiative" class="plain w-100" type="number" :disabled="character.settings.locked" @change="setData" />
       </div>
       Инициатива
    </div>
    <br />
    <div class="d-inline-flex p-1">
-      <div class="hex me-2" style="--color: 40deg">
+      <div class="hex me-2 op" style="--color: 100deg">
          <input v-model="armor" class="plain w-100" type="number" :disabled="character.settings.locked" @change="setData" />
       </div>
       Класс брони

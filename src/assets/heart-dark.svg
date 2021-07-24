@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="63px" height="63px" viewBox="-1 -1 62 62"><g>
-<path d="M 30 60 L 0 30 L 0 10 L 10 0 L 20 0 L 30 10 L 40 0 L 50 0 L 60 10 L 60 30 L 30 60" fill="#fcc" stroke="#333" opacity="1"/>
+<path d="M 30 60 L 0 30 L 0 10 L 10 0 L 20 0 L 30 10 L 40 0 L 50 0 L 60 10 L 60 30 L 30 60" fill="#583f3f" stroke="#000" opacity="1"/>
 </g></svg>

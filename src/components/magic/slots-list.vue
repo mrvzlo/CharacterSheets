@@ -59,17 +59,17 @@
    </div>
 
    <div v-if="!deleteMode">
-      <button class="btn btn-danger m-2 pe-3" v-on:click="openDeleteMode">
+      <button class="btn fw btn-danger m-2 pe-3" v-on:click="openDeleteMode">
          <i class="fas fa-trash me-2"></i>
          Удалить
       </button>
    </div>
    <div v-if="deleteMode">
-      <button class="btn btn-danger m-2 pe-3" v-on:click="confirmDelete">
+      <button class="btn fw btn-danger m-2 pe-3" v-on:click="confirmDelete">
          <i class="fas fa-trash me-2"></i>
          Удалить
       </button>
-      <button class="btn btn-secondary m-2 pe-3" v-on:click="this.deleteMode = false">
+      <button class="btn fw btn-secondary m-2 pe-3" v-on:click="this.deleteMode = false">
          <i class="fas fa-times me-2"></i>
          Отмена
       </button>
@@ -77,11 +77,11 @@
 </template>
 
 <script>
-import Character from "@/models/character";
-import MagicSlotComponent from "./magic-slot";
+import Character from '@/models/character';
+import MagicSlotComponent from './magic-slot';
 
 export default {
-   name: "slots-list",
+   name: 'slots-list',
    props: {
       character: Character,
    },

@@ -1,36 +1,38 @@
-import { AttributeType } from "@/data-layer/attributes/attribute-type";
-import Attribute from "./attribute";
-import TypedArray from "./base/typed-array";
-import CharacterClass from "./character-class";
-import Check from "./check";
-import Container from "./inventory/container";
-import MagicSlot from "./magic/magic-slot";
-import Settings from "./settings";
+import { AttributeType } from '@/data-layer/attributes/attribute-type';
+import Attribute from './attribute';
+import TypedArray from './base/typed-array';
+import CharacterClass from './character-class';
+import Check from './check';
+import Countable from './countable';
+import Container from './inventory/container';
+import MagicSlot from './magic/magic-slot';
+import Settings from './settings';
 
 export default class Character {
-   name: string = "";
-   race: string = "";
-   story: string = "";
-   level: number = 1;
-   size: number = 2;
-   alignment: number = 4;
-   speed: number = 30;
-   armor: number = 10;
-   initiative: number = 0;
-   masterInspiration: Boolean = false;
-   bardInspiration: number = 0;
-   health: number = 8;
-   healthMax: number = 8;
-   healthBonus: number = 0;
-   healthBoneValue: number = 8;
-   healthBones: number = 1;
-   magicAttribute: AttributeType = AttributeType.Unknown;
-   magicLimit: number = 0;
+   name = '';
+   race = '';
+   story = '';
+   level = 1;
+   size = 2;
+   alignment = 4;
+   speed = 30;
+   armor = 10;
+   initiative = 0;
+   masterInspiration = false;
+   bardInspiration = 0;
+   health = 8;
+   healthMax = 8;
+   healthBonus = 0;
+   healthBoneValue = 8;
+   healthBones = 1;
+   magicAttribute = AttributeType.Unknown;
+   magicLimit = 0;
    magicSlots: MagicSlot[] = [];
    attributes: Attribute[] = [];
-   inventory: TypedArray<Container> = new TypedArray<Container>(Container);
-   class: CharacterClass = new CharacterClass();
-   settings: Settings = new Settings();
+   inventory = new TypedArray<Container>(Container);
+   countable = new TypedArray<Countable>(Countable);
+   class = new CharacterClass();
+   settings = new Settings();
 
    constructor() {
       for (let i = 0; i < 6; i++) {
@@ -54,6 +56,10 @@ export default class Character {
       this.inventory.pushNew();
    }
 
+   addCountable() {
+      this.countable.pushNew();
+   }
+
    longRest() {
       this.health = this.healthMax;
       this.healthBones += this.level >> 1;
@@ -69,6 +75,15 @@ export default class Character {
          }
       }
       this.inventory.forEach((x) => x.confirmDelete());
+   }
+
+   clearCountable() {
+      for (let i = 0; i < this.countable.length; i++) {
+         if (this.countable[i].delete) {
+            this.countable.splice(i, 1);
+            i--;
+         }
+      }
    }
 
    clearSpells() {

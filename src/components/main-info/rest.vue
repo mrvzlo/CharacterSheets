@@ -1,23 +1,22 @@
 <template>
-   <div>Долгий отдых</div>
    <div
-      class="btn loading-bar btn-sm text-center text-success border-success border-2"
+      class="btn loading-bar text-center text-success shadow-success border-success"
       @touchstart="start"
       @touchend="end"
       @mousedown="start"
       @mouseup="end"
       :style="'--percent:' + percent + '%'"
    >
-      <i class="fas fa-bed px-4"></i>
+      <div class="px-2"><i class="fas fa-bed pe-2"></i>Отдых</div>
    </div>
 </template>
 
 <script>
-import HeaderMessageModel from "@/models/header-message";
-import Character from "@/models/character";
+import HeaderMessageModel from '@/models/header-message';
+import Character from '@/models/character';
 
 export default {
-   name: "rest",
+   name: 'rest',
    data() {
       return {
          percent: 0,
@@ -30,7 +29,7 @@ export default {
    },
    methods: {
       longRest() {
-         this.headerMessage.showSuccess("Персонаж успешно отдохнул");
+         this.headerMessage.showSuccess('Персонаж успешно отдохнул');
          this.character.longRest();
          this.$parent.getData();
       },

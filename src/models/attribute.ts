@@ -1,6 +1,7 @@
-import Check from "./check";
-import { CheckType } from "../data-layer/checks/check-type";
-import { AttributeType } from "../data-layer/attributes/attribute-type";
+import Check from './check';
+import { CheckType } from '../data-layer/checks/check-type';
+import { AttributeType } from '../data-layer/attributes/attribute-type';
+import AttributeData from '@/data-layer/attributes/attribute-data';
 
 export default class Attribute {
    type: AttributeType;
@@ -32,14 +33,22 @@ export default class Attribute {
    }
 
    get name(): string {
-      return this.all.find((x) => x.id == this.type)?.short ?? "";
+      return this.data?.short ?? '';
+   }
+
+   get longName(): string {
+      return this.data?.long ?? '';
    }
 
    get color(): string {
-      return this.all.find((x) => x.id == this.type)?.color ?? "";
+      return this.data?.color ?? '';
+   }
+
+   get data(): AttributeData {
+      return this.all.find((x) => x.id == this.type);
    }
 
    get all(): any[] {
-      return require("@/data-layer/attributes/attributes.json");
+      return require('@/data-layer/attributes/attributes.json');
    }
 }

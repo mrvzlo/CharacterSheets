@@ -1,6 +1,8 @@
-import { AttributeType } from "./attribute-type";
+import { AttributeType } from './attribute-type';
 
 export default class AttributeData {
    id: AttributeType = 0;
-   short: string = "";
+   short = '';
+   long = '';
+   color = '';
 }

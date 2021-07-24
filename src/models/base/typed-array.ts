@@ -1,4 +1,4 @@
-import { ParameterlessConstructor } from "./parameterless-constructor";
+import { ParameterlessConstructor } from './parameterless-constructor';
 
 export default class TypedArray<T> extends Array<T> {
    constructor(private ctor: ParameterlessConstructor<T>) {

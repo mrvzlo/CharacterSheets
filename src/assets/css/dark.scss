@@ -5,8 +5,8 @@
    --input-focus-bg: #333;
    --input-focus-color: #eee;
    --input-disabled-bg: #333;
-   --background: #111;
-   --bones-bg: #420;
+   --background: #222;
+   --bones-bg: #583f3f;
    --oct-border: #000;
    --gray-bg: #444;
    --yellow-bg: #543;
@@ -17,5 +17,23 @@
 
    .card {
       border-color: var(--input-color);
+   }
+
+   .heart {
+      background-image: url('~@/assets/heart-dark.svg');
+   }
+
+   .hex.light,
+   .block.light {
+      filter: grayscale(1);
+      input {
+         color: var(--input-color);
+      }
+   }
+}
+
+body:not(.dark-mode) {
+   .attribute {
+      filter: brightness(2) saturate(0.5);
    }
 }

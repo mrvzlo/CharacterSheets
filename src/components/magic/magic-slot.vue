@@ -16,7 +16,7 @@
             <spell :spell="item" :index="itemIndex" :magicSlot="magicSlot" :deleteMode="deleteMode" :locked="locked" />
          </div>
          <div class="text-start mt-2" v-if="!locked">
-            <button class="btn btn-success rounded-circle p-1 btn-sm lh-0" v-on:click="addItem">
+            <button class="btn btn-success p-1 btn-sm lh-0" v-on:click="addItem">
                <i class="fas fa-plus-circle"></i>
             </button>
          </div>
@@ -25,11 +25,11 @@
 </template>
 
 <script>
-import MagicSlot from "@/models/magic/magic-slot";
-import SpellComponent from "./spell";
+import MagicSlot from '@/models/magic/magic-slot';
+import SpellComponent from './spell';
 
 export default {
-   name: "magic-slot",
+   name: 'magic-slot',
    props: {
       magicSlot: MagicSlot,
       index: Number,

@@ -23,7 +23,7 @@
             <item :item="item" :index="itemIndex" :container="container" :deleteMode="deleteMode" />
          </div>
          <div class="text-start mt-2">
-            <div class="btn btn-success p-1 btn-sm lh-0 rounded-circle" v-on:click="addItem">
+            <div class="btn btn-success p-1 btn-sm lh-0" v-on:click="addItem">
                <i class="fas fa-plus-circle"></i>
             </div>
          </div>
@@ -32,11 +32,11 @@
 </template>
 
 <script>
-import Container from "@/models/inventory/container";
-import ItemComponent from "./item.vue";
+import Container from '@/models/inventory/container';
+import ItemComponent from './item.vue';
 
 export default {
-   name: "container",
+   name: 'container',
    props: {
       container: Container,
       index: Number,

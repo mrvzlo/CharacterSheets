@@ -1,4 +1,5 @@
-import { CheckType } from "@/data-layer/checks/check-type";
+import CheckData from '@/data-layer/checks/check-data';
+import { CheckType } from '@/data-layer/checks/check-type';
 
 export default class Check {
    id: number;
@@ -13,31 +14,36 @@ export default class Check {
    }
 
    inc() {
-      this.knowledge = (this.knowledge + 1) % 3;
+      this.knowledge = this.knowledge + 1;
+      this.knowledge %= this.type == CheckType.Saving ? 2 : 3;
    }
 
    get level(): string {
       switch (this.knowledge) {
          case 0:
-            return "far fa-circle";
+            return 'far fa-circle';
          case 1:
-            return "fas fa-dot-circle";
+            return 'fas fa-dot-circle';
          case 2:
-            return "fas fa-circle";
+            return 'fas fa-circle';
       }
 
-      return "";
+      return '';
    }
 
    get name(): string {
-      return this.all.find((x) => x.id == this.id)?.name ?? "";
+      return this.data?.name ?? '';
    }
 
    get type(): CheckType {
-      return this.all.find((x) => x.id == this.id)?.type ?? 0;
+      return this.data?.type ?? 0;
+   }
+
+   get data(): CheckData {
+      return this.all.find((x) => x.id == this.id);
    }
 
    get all(): any[] {
-      return require("../data-layer/checks/checks.json");
+      return require('../data-layer/checks/checks.json');
    }
 }

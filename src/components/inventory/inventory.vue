@@ -7,21 +7,21 @@
       </div>
    </div>
    <div v-if="!deleteMode">
-      <button class="btn btn-success m-2" v-on:click="addContainer">
+      <button class="btn fw btn-success m-2" v-on:click="addContainer">
          <i class="fas fa-plus-circle me-2"></i>
          Добавить
       </button>
-      <button class="btn btn-danger m-2 pe-3" v-on:click="openDeleteMode" :disabled="!character.inventory.length">
+      <button class="btn fw btn-danger m-2" v-on:click="openDeleteMode" :disabled="!character.inventory.length">
          <i class="fas fa-trash me-2"></i>
          Удалить
       </button>
    </div>
    <div v-if="deleteMode">
-      <button class="btn btn-danger m-2 pe-3" v-on:click="confirmDelete">
+      <button class="btn fw btn-danger m-2" v-on:click="confirmDelete">
          <i class="fas fa-trash me-2"></i>
          Удалить
       </button>
-      <button class="btn btn-secondary m-2 pe-3" v-on:click="this.deleteMode = false">
+      <button class="btn fw btn-secondary m-2" v-on:click="this.deleteMode = false">
          <i class="fas fa-times me-2"></i>
          Отмена
       </button>
@@ -29,11 +29,11 @@
 </template>
 
 <script>
-import Character from "../../models/character";
-import ContainerComponent from "./container";
+import Character from '../../models/character';
+import ContainerComponent from './container';
 
 export default {
-   name: "inventory",
+   name: 'inventory',
    props: {
       character: Character,
    },
