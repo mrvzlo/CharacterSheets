@@ -67,7 +67,7 @@
             <i class="fab fa-fw fa-vk"></i>
          </div>
          <div class="btn btn-outline border-primary col-6">
-            Связаться с автором
+            Обратная связь
          </div>
          <div class="btn btn-primary"><i class="fa-fw fas">&nbsp;</i></div>
       </a>

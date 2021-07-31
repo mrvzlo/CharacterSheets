@@ -30,6 +30,10 @@
          color: var(--input-color);
       }
    }
+
+   .border-dark {
+      border-color: var(--border) !important;
+   }
 }
 
 body:not(.dark-mode) {

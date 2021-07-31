@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body py-0">
                <div v-for="(_, index) in appConfig.saveSlots + 1" :key="index" class="my-3 d-flex rounded-row">
-                  <div class="border bg-primary text-light px-2 py-1">{{ index == 0 ? "Авто" : index }}</div>
+                  <div class="border bg-primary text-light px-2 py-1">{{ index == 0 ? 'Авто' : index }}</div>
                   <div
                      :class="'border py-1 px-2 flex-grow-1 border-start-0 ' + (index == selected ? 'bg-primary text-white' : '')"
                      v-on:click="select(index)"
@@ -34,12 +34,12 @@
 </template>
 
 <script>
-import SaveService from "@/models/saving/save-service";
-import Character from "@/models/character";
-import AppConfig from "@/app-config";
+import SaveService from '@/models/saving/save-service';
+import Character from '@/models/character';
+import AppConfig from '@/app-config';
 
 export default {
-   name: "save-modal",
+   name: 'save-modal',
    props: {
       character: Character,
       saveService: SaveService,
@@ -58,7 +58,7 @@ export default {
          return this.saveService.hasSave(id);
       },
       save: function() {
-         this.saveService.applySave(this.character, this.selected);
+         this.saveService.makeSave(this.character, this.selected);
          this.selected = this.appConfig.unselectedSave;
       },
       deleteSave: function() {

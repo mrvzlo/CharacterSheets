@@ -38,15 +38,11 @@ export default class SaveService {
       return check;
    }
 
-   async getSaveData(id: number) {
-      return await this.saveSlots[id].getEncoded();
-   }
-
    isValid(string: string) {
       return !!string && string !== 'null';
    }
 
-   applySave(character: Character, id: number = 0) {
+   makeSave(character: Character, id: number = 0) {
       if (character.name.length === 0) {
          character.name = 'Неизвестный';
       }
@@ -55,13 +51,14 @@ export default class SaveService {
    }
 
    deleteSave(id: number) {
-      this.saveSlots[id].setData('', '');
+      this.saveSlots[id].delete();
    }
 
    savedName(id: number) {
       if (!this.hasSave(id)) return 'Пустой слот';
+      const textLimit = 15;
       const name = this.saveSlots[id].name;
-      return name.length > 20 ? name.substring(0, 19) + '...' : name;
+      return name.length > textLimit ? name.substring(0, textLimit) + '...' : name;
    }
 
    dateFormat(id: number) {
@@ -77,6 +74,10 @@ export default class SaveService {
          ':' +
          this.formatTwoDigits(formatted.getMinutes())
       );
+   }
+
+   async getSaveData(id: number = 0): Promise<string> {
+      return await this.saveSlots[id].getEncoded();
    }
 
    formatTwoDigits(number: number) {

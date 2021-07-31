@@ -10,15 +10,15 @@
     <path
         android:strokeWidth="1"
         android:pathData="M22,50h136v80h-136z"
-        android:fillColor="#ffa"/>
+        android:fillColor="#ffd991"/>
     <path
         android:strokeWidth="1"
         android:pathData="m22.27,129.73l68,38.349l68,-38.349l-137,0l0,0l1,0z"
-        android:fillColor="#ffa"/>
+        android:fillColor="#ffd991"/>
     <path
         android:strokeWidth="1"
         android:pathData="m22,50l68,-39l68,39l-137,0l0,0l1,0z"
-        android:fillColor="#ffa"/>
+        android:fillColor="#ffd991"/>
     <path
         android:strokeWidth="1"
         android:pathData="M40,118.5L140,118.5"

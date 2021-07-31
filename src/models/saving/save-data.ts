@@ -1,28 +1,28 @@
-import { Filesystem, Directory, Encoding, ReadFileResult } from "@capacitor/filesystem";
+import { Filesystem, Directory, Encoding, ReadFileResult } from '@capacitor/filesystem';
 
 export default class SaveData {
    id: number;
-   name: string = "";
+   name: string = '';
    datetime: Date = new Date();
 
    constructor(id: number) {
       this.id = id;
       this.getData()
          .then((res: string) => {
-            const splitted = res.split("\n");
+            const splitted = res.split('\n');
             this.name = splitted[0];
             this.datetime = new Date(splitted[1]);
          })
          .catch(() => {});
    }
 
-   getEncoded = async () => {
+   getEncoded = async (): Promise<string> => {
       const result = await this.getData();
-      const splitted = result.split("\n");
-      return !splitted ? null : splitted[2];
+      const splitted = result.split('\n');
+      return !splitted ? '' : splitted[2];
    };
 
-   getData = async () => {
+   private getData = async () => {
       const result = await Filesystem.readFile({
          path: this.fileName(),
          directory: Directory.Data,
@@ -34,15 +34,22 @@ export default class SaveData {
    setData(value: string, name: string) {
       this.name = name;
       this.datetime = new Date();
-      this.saveData(value);
+      this.save(value);
    }
 
-   saveData = async (value: string) => {
+   private save = async (value: string) => {
       await Filesystem.writeFile({
          path: this.fileName(),
          data: `${this.name}\n${this.datetime}\n${value}`,
          directory: Directory.Data,
          encoding: Encoding.UTF8,
+      });
+   };
+
+   delete = async () => {
+      await Filesystem.deleteFile({
+         path: this.fileName(),
+         directory: Directory.Data,
       });
    };
 

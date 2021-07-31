@@ -1,6 +1,6 @@
 <template>
    <div class="gray-oct position-relative pt-1">
-      <div class="d-flex px-1 border-bottom">
+      <div class="d-flex mx-1 border-bottom">
          <input v-model="editModel.name" class="border-0 plain" placeholder="Название" :disabled="locked" />
       </div>
       <div class="d-flex px-1 justify-content-center">

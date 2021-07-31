@@ -7,39 +7,39 @@
                <octagon />
             </div>
          </div>
-         <div class="px-1 col-4 col-md-3">
-            <div class="position-relative mb-2 py-1">
+         <div class=" px-1 col-4 col-md-3">
+            <div class="oct-small position-relative mb-2 py-1">
                <select v-model="editModel.class.type" class="plain w-octagon border-bottom" :disabled="locked" v-if="this.character.class">
                   <option v-for="classType in classOptions()" v-bind:key="classType" :value="classType.id">
                      {{ classType.name }}
                   </option>
                </select>
-               <div class="small text-secondary">Класс</div>
+               <div class="text-secondary">Класс</div>
                <octagon />
             </div>
          </div>
-         <div class="px-1 col-4 col-md-3">
+         <div class="oct-small px-1 col-4 col-md-3">
             <div class="position-relative mb-2 py-1">
                <input v-model="editModel.race" class="plain w-octagon border-bottom" :disabled="locked" />
-               <div class="small text-secondary">Раса</div>
+               <div class="text-secondary">Раса</div>
                <octagon />
             </div>
          </div>
-         <div class="px-1 col-4 col-md-3">
+         <div class="oct-small px-1 col-4 col-md-3">
             <div class="position-relative mb-2 py-1">
                <input v-model="editModel.story" class="plain w-octagon border-bottom" :disabled="locked" />
-               <div class="small text-secondary">Предыстория</div>
+               <div class="text-secondary">Предыстория</div>
                <octagon />
             </div>
          </div>
-         <div class="px-1 col-3 col-md-3 col-lg-2">
+         <div class="oct-small px-1 col-3 col-md-3 col-lg-2">
             <div class="position-relative mb-2 py-1">
-               <input v-model="editModel.level" class="plain w-octagon border-bottom lh-27" type="number" min="1" max="20" :disabled="locked" />
-               <div class="small text-secondary">Уровень</div>
+               <input v-model="editModel.level" class="plain w-octagon border-bottom" type="number" min="1" max="20" :disabled="locked" />
+               <div class="text-secondary">Уровень</div>
                <octagon />
             </div>
          </div>
-         <div class="px-1 col-4 col-md-3">
+         <div class="oct-small px-1 col-4 col-md-3">
             <div class="position-relative mb-2 py-1">
                <select v-model="editModel.size" class="plain w-octagon border-bottom" :disabled="locked">
                   <option value="0">Крошечный</option>
@@ -48,11 +48,11 @@
                   <option value="3">Большой</option>
                   <option value="4">Огромный</option>
                </select>
-               <div class="small text-secondary">Размер</div>
+               <div class="text-secondary">Размер</div>
                <octagon />
             </div>
          </div>
-         <div class="px-1 col-5 col-md-3">
+         <div class="oct-small px-1 col-5 col-md-3">
             <div class="position-relative mb-2 py-1">
                <select v-model="editModel.alignment" class="plain w-octagon border-bottom" :disabled="locked">
                   <option value="0">Законно-добрый</option>
@@ -65,14 +65,14 @@
                   <option value="7">Хаотичный</option>
                   <option value="8">Хаотично-злой</option>
                </select>
-               <div class="small text-secondary">Мировоззрение</div>
+               <div class="text-secondary">Мировоззрение</div>
                <octagon />
             </div>
          </div>
       </div>
       <div class="row mx-1">
          <div class="col-6 px-1">
-            <div class="my-3">
+            <div class="my-2">
                Вдохновение
                <div class="d-flex px-1 justify-content-center">
                   <div class="mx-2">
@@ -110,7 +110,7 @@
          </div>
       </div>
    </div>
-   <hr class="mt-2 mb-0" />
+   <div class="mt-2 mb-0 border-top border-dark"></div>
 
    <countable-list :character="character" />
 </template>
@@ -136,7 +136,6 @@ export default {
    data() {
       return {
          editModel: Character,
-         locked: Boolean,
       };
    },
    methods: {
@@ -150,19 +149,23 @@ export default {
          Object.assign(this.character, { story: this.editModel.story });
          Object.assign(this.character, { level: this.editModel.level });
          Object.assign(this.character, { alignment: this.editModel.alignment });
-         Object.assign(this.character, { class: new CharacterClass(this.editModel.class) });
+         Object.assign(this.character, { class: this.editModel.class });
          Object.assign(this.character, { masterInspiration: this.editModel.masterInspiration });
          Object.assign(this.character, { bardInspiration: this.editModel.bardInspiration });
       },
       getData() {
          this.editModel = this.character;
-         this.locked = this.character.settings.locked;
       },
       toggleInspiration() {
          this.editModel.masterInspiration = !this.editModel.masterInspiration;
       },
       longRest() {
          this.$parent.longRest();
+      },
+   },
+   computed: {
+      locked: function() {
+         return this.character.settings.locked;
       },
    },
    watch: {

@@ -1,5 +1,5 @@
 <template>
-   <div class="col-3 attributes">
+   <div class="col-3 attributes d-flex flex-column justify-content-around">
       <div v-for="(attribute, index) in character.attributes" v-bind:key="attribute.name">
          <attribute :character="character" :attribute="attribute" :index="index"></attribute>
       </div>
@@ -32,28 +32,27 @@
    </div>
    <div class="col-12 text-center">
       <div
-         class="d-inline-flex m-1"
+         class="d-inline-flex m-2"
          data-bs-toggle="popover"
-         data-bs-placement="top"
          data-bs-content="Бонус добавляется только к проверкам навыков для тех характеристик, которые указаны в правилах выбранного класса"
       >
          <div class="hex me-2" style="--color: 310deg">
             {{ character.proficiency >> 1 }}
          </div>
          Половинный бонус
-         <button class="fas fa-question-circle p-0 mx-2 my-0 btn btn-light"></button>
+         <button class="fas fa-question-circle p-0 mx-2 my-0 btn btn-outline"></button>
       </div>
    </div>
 </template>
 
 <script>
-import { AttributeType } from '../../data-layer/attributes/attribute-type';
-import { CheckType } from '../../data-layer/checks/check-type';
+import { AttributeType } from '@/data-layer/attributes/attribute-type';
+import { CheckType } from '@/data-layer/checks/check-type';
 import AttributeComponent from './attribute.vue';
 import CheckComponent from './check.vue';
-import Character from '../../models/character';
-import { Popover } from 'bootstrap';
+import Character from '@/models/character';
 import OctagonComponent from '@/components/helpers/octagon.vue';
+import BootstrapHelper from '@/helpers/bootstrap-helper';
 
 export default {
    name: 'attributes-list',
@@ -97,9 +96,7 @@ export default {
       this.getData();
    },
    mounted() {
-      [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]')).map(function(e) {
-         return new Popover(e, { placement: 'top', trigger: 'focus' });
-      });
+      new BootstrapHelper().initTooltips();
    },
    components: {
       attribute: AttributeComponent,

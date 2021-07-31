@@ -1,6 +1,4 @@
 .popover {
-   padding-left: 5px;
-   padding-right: 5px;
    background-color: unset;
    border: none;
    .popover-body {
@@ -21,6 +19,18 @@
       }
       &::before {
          border-top-color: var(--border);
+      }
+   }
+}
+
+.bs-popover-start {
+   .popover-arrow {
+      right: -0.5rem;
+      &::after {
+         border-left-color: var(--input-disabled-bg);
+      }
+      &::before {
+         border-left-color: var(--border);
       }
    }
 }
