@@ -1,5 +1,5 @@
 <template>
-   <div class="heart p-3 pb-4 small my-2">
+   <div class="heart p-3 pb-4 small mt-2 text-center">
       <div class="d-flex justify-content-center mt-2">
          <div class="hex big" style="--color: -10deg">
             <input v-model="current" class="plain w-100" type="number" :max="character.healthMax" min="0" @change="setData" />

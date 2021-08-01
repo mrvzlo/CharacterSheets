@@ -1,7 +1,7 @@
 <template>
-   <header-message :model="headerMessage" />
-   <div class="d-flex justify-content-center bg-primary p-2">
-      <div v-for="index in 5" :key="index" :class="'mx-3 btn ' + (tab != index ? 'op-03' : '')" v-on:click="tab = index">
+   <fixed-message :model="headerMessage" :msgClass="'top-0 start-0 w-100'" />
+   <div class="d-flex justify-content-around bg-primary p-2">
+      <div v-for="index in icons.length" :key="index" :class="'mx-2 btn ' + (tab != index ? 'op-03' : '')" v-on:click="tab = index">
          <i :class="'fas fa-fw fa-' + icons[index - 1]"></i>
       </div>
    </div>
@@ -11,21 +11,25 @@
          <main-info :character="character" :headerMessage="headerMessage" />
       </div>
 
-      <div class="text-center row justify-content-center mx-0" v-if="tab == 2">
+      <div class="row justify-content-center mx-0" v-if="tab == 2">
          <attributes-list :character="character" />
       </div>
 
-      <div class="text-center d-flex flex-column h-100" v-if="tab == 3">
+      <div class="d-flex flex-column h-100" v-if="tab == 3">
+         <perks-list :character="character" />
+      </div>
+
+      <div class="d-flex flex-column h-100" v-if="tab == 4">
          <inventory :character="character" />
       </div>
 
-      <div class="text-center d-flex flex-column h-100" v-if="tab == 4">
+      <div class="d-flex flex-column h-100" v-if="tab == 5">
          <slots-list :character="character" />
       </div>
 
-      <footer-menu :character="character" :saveService="saveService" v-if="tab == 5" />
+      <settings :character="character" :saveService="saveService" v-if="tab == 6" />
    </div>
-   <div class="position-fixed end-0 bottom-0 op-03 m-1" v-if="tab < 3 || tab == 4">
+   <div class="position-fixed end-0 bottom-0 op-03 m-1" v-if="tab < 4 || tab == 5">
       <i class="fas fa-lock fa-2x m-2" v-if="character.settings.locked"></i>
       <i class="fas fa-unlock fa-2x m-2" v-else></i>
    </div>
@@ -38,9 +42,10 @@
 import Character from '../models/character';
 import Encoder from '../models/encoder';
 import HeaderMessage from '../models/header-message';
-import FooterMenuComponent from './menu/footer-menu.vue';
-import HeaderMessageComponent from './header-message.vue';
+import SettingsComponent from './menu/settings.vue';
+import FixedMessageComponent from './fixed-message.vue';
 import InventoryComponent from './inventory/inventory.vue';
+import PerksListComponent from './perks/perks-list.vue';
 import AttributesListComponent from './attributes-skills/attributes-list.vue';
 import MainInfoComponent from './main-info/main-info';
 import SaveService from '../models/saving/save-service';
@@ -56,7 +61,7 @@ export default {
          headerMessage: HeaderMessage,
          version: 'v1.2.2',
          tab: 1,
-         icons: ['id-card', 'running', 'suitcase', 'hand-sparkles', 'cog'],
+         icons: ['id-card', 'running', 'clipboard-list', 'suitcase', 'hand-sparkles', 'cog'],
          saveService: SaveService,
       };
    },
@@ -92,12 +97,13 @@ export default {
       new BootstrapHelper().initTooltips();
    },
    components: {
-      footerMenu: FooterMenuComponent,
-      headerMessage: HeaderMessageComponent,
+      settings: SettingsComponent,
+      fixedMessage: FixedMessageComponent,
       attributesList: AttributesListComponent,
       mainInfo: MainInfoComponent,
       inventory: InventoryComponent,
       slotsList: SlotsListComponent,
+      perksList: PerksListComponent,
    },
 };
 </script>

@@ -12,18 +12,6 @@
             <div class="btn btn-warning"><i class="fa-fw fas">&nbsp;</i></div>
          </div>
       </div>
-      <div class="my-3">
-         Автосохранения (каждые {{ character.settings.autoSavesInterval / 60000 }} минут)
-         <div class="btn-group d-block" v-on:click="toggleAutoSave">
-            <div class="btn btn-info">
-               <i :class="'fas fa-fw ' + (!character.settings.autoSavesEnabled ? 'fa-play-circle' : 'fa-stop-circle')"></i>
-            </div>
-            <div class="btn btn-outline border-info col-6">
-               {{ !character.settings.autoSavesEnabled ? 'Включить' : 'Отключить' }}
-            </div>
-            <div class="btn btn-info"><i class="fa-fw fas">&nbsp;</i></div>
-         </div>
-      </div>
       <div class="my-5"></div>
       <div class="btn-group d-block my-3" data-bs-toggle="modal" data-bs-target="#saveModal">
          <div class="btn btn-success">
@@ -87,7 +75,7 @@ import SaveModalComponent from './save-modal.vue';
 import SaveService from '@/models/saving/save-service';
 
 export default {
-   name: 'footer-menu',
+   name: 'settings',
    props: {
       character: Character,
       saveService: SaveService,
@@ -95,9 +83,6 @@ export default {
    methods: {
       lock: function() {
          Object.assign(this.character.settings, { locked: !this.character.settings.locked });
-      },
-      toggleAutoSave: function() {
-         Object.assign(this.character.settings, { autoSavesEnabled: !this.character.settings.autoSavesEnabled });
       },
       importCharacter: function(a, b) {
          return this.$parent.importCharacter(a, b);

@@ -1,5 +1,5 @@
 <template>
-   <div class="position-fixed top-0 start-0 w-100 px-2 mt-3 text-center message">
+   <div :class="'position-fixed px-2 mt-3 text-center message ' + msgClass">
       <transition name="fade">
          <div :class="'text-white rounded ' + model.color" v-if="model.show" v-on:click="close">
             <div class="d-flex justify-content-center">
@@ -15,11 +15,14 @@
 </template>
 
 <script>
-import HeaderMessageModel from "../models/header-message";
+import HeaderMessageModel from '../models/header-message';
 export default {
-   name: "header-message",
+   name: 'header-message',
    props: {
       model: HeaderMessageModel,
+      closeBtn: Boolean,
+      msgClass: String,
+      hasBody: Boolean,
    },
    methods: {
       close() {

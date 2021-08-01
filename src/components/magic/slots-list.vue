@@ -1,41 +1,43 @@
 <template>
    <div class="flex-grow-1">
-      <div class="text-start mx-auto d-inline-block p-1">
-         <div class="d-inline-flex p-1">
-            <select v-model="magicAttribute" class="plain block me-2" @change="setData" style="--color: 250deg">
-               <option value="-1">Нет</option>
-               <option value="3">Инт</option>
-               <option value="4">Муд</option>
-               <option value="5">Хар</option>
-            </select>
-            Заклинательная характеристика
-         </div>
-         <br />
-         <div class="d-inline-flex p-1">
-            <select v-model="magicLimit" class="plain block me-2" @change="setData" style="--color: 200deg">
-               <option value="0">Нет</option>
-               <option v-for="(slotOption, slotIndex) in 10" :key="slotIndex" :value="slotOption">{{ slotIndex }}</option>
-            </select>
-            Максимальная ячейка
-         </div>
-         <br />
-         <div class="d-inline-flex p-1">
-            <div class="hex me-2 text-center" style="--color: 350deg">
-               {{ character.magicBonus }}
+      <div class="text-center">
+         <div class="text-start mx-auto d-inline-block mt-2">
+            <div class="d-inline-flex p-1">
+               <select v-model="magicAttribute" class="plain block me-2" @change="setData" style="--color: 250deg">
+                  <option value="-1">Нет</option>
+                  <option value="3">Инт</option>
+                  <option value="4">Муд</option>
+                  <option value="5">Хар</option>
+               </select>
+               Заклинательная характеристика
             </div>
-            Модификатор атак
-         </div>
-         <br />
-         <div class="d-inline-flex p-1">
-            <div class="hex me-2 text-center" style="--color: 330deg">
-               {{ character.spellDifficulty }}
+            <br />
+            <div class="d-inline-flex p-1">
+               <select v-model="magicLimit" class="plain block me-2" @change="setData" style="--color: 200deg">
+                  <option value="0">Нет</option>
+                  <option v-for="(slotOption, slotIndex) in 10" :key="slotIndex" :value="slotOption">{{ slotIndex }}</option>
+               </select>
+               Максимальная ячейка
             </div>
-            Сложность спасбросков
+            <br />
+            <div class="d-inline-flex p-1">
+               <div class="hex me-2 text-center" style="--color: 350deg">
+                  {{ character.magicBonus }}
+               </div>
+               Модификатор атак
+            </div>
+            <br />
+            <div class="d-inline-flex p-1">
+               <div class="hex me-2 text-center" style="--color: 330deg">
+                  {{ character.spellDifficulty }}
+               </div>
+               Сложность спасбросков
+            </div>
          </div>
       </div>
 
       <div v-if="magicLimit > 0" class="row mx-0">
-         <div v-for="(magicSlot, index) in magicLimit" :key="index" class="col-12 col-md-6 mt-2">
+         <div v-for="(magicSlot, index) in magicLimit" :key="index" class="col-12 col-md-6 mt-2 px-2">
             <magic-slot
                :magicSlot="character.magicSlots[index]"
                :index="index"
@@ -58,13 +60,13 @@
       </div>
    </div>
 
-   <div v-if="!deleteMode">
+   <div v-if="!deleteMode" class="text-center">
       <button class="btn fw btn-danger m-2 pe-3" v-on:click="openDeleteMode">
          <i class="fas fa-trash me-2"></i>
          Удалить
       </button>
    </div>
-   <div v-if="deleteMode">
+   <div v-if="deleteMode" class="text-center">
       <button class="btn fw btn-danger m-2 pe-3" v-on:click="confirmDelete">
          <i class="fas fa-trash me-2"></i>
          Удалить
@@ -102,6 +104,7 @@ export default {
       },
       openDeleteMode() {
          this.deleteMode = true;
+         this.character.magicSlots.forEach((x) => x.toggleDeleteMode(false));
       },
       confirmDelete() {
          this.deleteMode = false;

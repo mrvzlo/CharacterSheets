@@ -1,8 +1,9 @@
 <template>
    <div class="card">
-      <div class="card-header border-bottom d-flex justify-content-between px-1 bg-primary text-white">
+      <div class="card-header d-flex justify-content-between px-1 bg-primary text-white">
          <div class="flex-grow-1 text-start" @click="editModel.expand = !editModel.expand">
-            <div class="py-1 ps-2">{{ name }}</div>
+            <i class="fas fa-eye text-white py-1 px-2"></i>
+            <span class="py-1 px-1">{{ name }}</span>
          </div>
          <div class="d-flex" v-if="index > 0 && index <= 9">
             <input type="number" v-model="editModel.uses" @change="setData" class="plain w-50px text-white" min="0" />
@@ -15,7 +16,7 @@
          <div v-for="(item, itemIndex) in magicSlot.spells" v-bind:key="itemIndex">
             <spell :spell="item" :index="itemIndex" :magicSlot="magicSlot" :deleteMode="deleteMode" :locked="locked" />
          </div>
-         <div class="text-start mt-2" v-if="!locked">
+         <div class="mt-2" v-if="!locked">
             <button class="btn btn-success p-1 btn-sm lh-0" v-on:click="addItem">
                <i class="fas fa-plus-circle"></i>
             </button>

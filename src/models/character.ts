@@ -1,11 +1,13 @@
 import { AttributeType } from '@/data-layer/attributes/attribute-type';
 import Attribute from './attribute';
+import DynamicArray from './base/dynamic-array';
 import TypedArray from './base/typed-array';
 import CharacterClass from './character-class';
 import Check from './check';
 import Countable from './countable';
 import Container from './inventory/container';
 import MagicSlot from './magic/magic-slot';
+import Perk from './perks/perk';
 import Settings from './settings';
 
 export default class Character {
@@ -29,8 +31,9 @@ export default class Character {
    magicLimit = 0;
    magicSlots: MagicSlot[] = [];
    attributes: Attribute[] = [];
-   inventory = new TypedArray<Container>(Container);
-   countable = new TypedArray<Countable>(Countable);
+   inventory = new DynamicArray<Container>(Container);
+   countable = new DynamicArray<Countable>(Countable);
+   perks = new DynamicArray<Perk>(Perk);
    class = new CharacterClass();
    settings = new Settings();
 
@@ -48,46 +51,37 @@ export default class Character {
       });
    }
 
-   get proficiency() {
-      return Math.floor((this.level - 1) / 4) + 2;
-   }
-
    addContainer() {
       this.inventory.pushNew();
+   }
+
+   clearInventory() {
+      this.inventory.clear();
+      this.inventory.forEach((x) => x.clear());
    }
 
    addCountable() {
       this.countable.pushNew();
    }
 
-   longRest() {
-      this.health = this.healthMax;
-      this.healthBones += this.level >> 1;
-      if (this.healthBones > this.level) this.healthBones = this.level;
-      this.magicSlots.forEach((x) => x.reset());
-   }
-
-   clearInventory() {
-      for (let i = 0; i < this.inventory.length; i++) {
-         if (this.inventory[i].delete) {
-            this.inventory.splice(i, 1);
-            i--;
-         }
-      }
-      this.inventory.forEach((x) => x.confirmDelete());
-   }
-
    clearCountable() {
-      for (let i = 0; i < this.countable.length; i++) {
-         if (this.countable[i].delete) {
-            this.countable.splice(i, 1);
-            i--;
-         }
-      }
+      this.countable.clear();
+   }
+
+   addPerk() {
+      this.perks.pushNew();
+   }
+
+   clearPerks() {
+      this.perks.clear();
    }
 
    clearSpells() {
-      this.magicSlots.forEach((x) => x.confirmDelete());
+      this.magicSlots.forEach((x) => x.clear());
+   }
+
+   get proficiency() {
+      return Math.floor((this.level - 1) / 4) + 2;
    }
 
    get magicBonus() {

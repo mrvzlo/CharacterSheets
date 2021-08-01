@@ -1,41 +1,41 @@
 <template>
-   <div class="d-flex my-1">
+   <div class="d-flex mt-2">
       <div v-on:click="editModel.marked = !editModel.marked">
-         <i :class="'px-1 py-2 ' + (editModel.marked ? 'fas fa-circle' : 'far fa-circle')"></i>
+         <i :class="'p-1 ' + (editModel.marked ? 'fas fa-circle' : 'far fa-circle')"></i>
       </div>
-      <input v-model="editModel.name" class="border-0 px-1 border-bottom flex-grow-1" placeholder="Название" :disabled="locked" />
-      <div class="block light mt-1 mx-1" v-if="deleteMode">
+      <input v-model="editModel.name" class="border-0 px-1 py-0 border-bottom flex-grow-1" placeholder="Название" :disabled="locked" />
+      <div class="block light mx-1" v-if="deleteMode">
          <div v-on:click="editModel.delete = !editModel.delete" class="w-100 h-100">
             <i v-if="spell.delete" class="fas fa-times"></i>
          </div>
       </div>
    </div>
-   <div class="d-flex my-1 py-1">
+   <div class="d-flex py-1 h4">
       <div v-on:click="locked ? null : (editModel.verbal = !editModel.verbal)" :class="editModel.verbal ? '' : 'op-05'">
-         <i class="fas fa-comment-dots mx-2 h4"></i>
+         <i class="fas fa-comment-dots mx-2"></i>
       </div>
       <div v-on:click="locked ? null : (editModel.somatic = !editModel.somatic)" :class="editModel.somatic ? '' : 'op-05'">
-         <i class="fas fa-hand-paper mx-2 h4"></i>
+         <i class="fas fa-hand-paper mx-2"></i>
       </div>
       <div v-on:click="locked ? null : (editModel.material = !editModel.material)" :class="editModel.material ? '' : 'op-05'">
-         <i class="fas fa-magic mx-2 h4"></i>
+         <i class="fas fa-magic mx-2"></i>
       </div>
-      <input v-model="editModel.components" class="border-0 px-1 border-bottom flex-grow-1" placeholder="" :disabled="locked" />
+      <input v-model="editModel.components" class="border-0 px-1 py-0 border-bottom flex-grow-1" placeholder="" :disabled="locked" />
       <div v-on:click="locked ? null : (editModel.ritual = !editModel.ritual)" :class="editModel.ritual ? '' : 'op-05'">
-         <i class="fas fa-clock mx-2 h4"></i>
+         <i class="fas fa-clock mx-2"></i>
       </div>
       <div v-on:click="locked ? null : (editModel.concentration = !editModel.concentration)" :class="editModel.concentration ? '' : 'op-05'">
-         <i class="fas fa-brain mx-2 h4"></i>
+         <i class="fas fa-brain mx-2"></i>
       </div>
    </div>
 </template>
 
 <script>
-import Spell from "@/models/magic/spell";
-import MagicSlot from "@/models/magic/magic-slot";
+import Spell from '@/models/magic/spell';
+import MagicSlot from '@/models/magic/magic-slot';
 
 export default {
-   name: "spell",
+   name: 'spell',
    props: {
       spell: Spell,
       magicSlot: MagicSlot,

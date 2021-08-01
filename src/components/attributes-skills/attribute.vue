@@ -1,5 +1,5 @@
 <template>
-   <div class="d-flex">
+   <div class="text-center d-flex">
       <div class="my-2 mx-auto">
          <div class="hex gray">
             <input

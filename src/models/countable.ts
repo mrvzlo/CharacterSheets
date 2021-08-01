@@ -1,12 +1,9 @@
-export default class Countable {
+import Deletable from './base/deletable';
+
+export default class Countable extends Deletable {
    name = '';
    count = 0;
    max = 1;
-   delete = false;
-
-   toggleDeleteMode(mode: boolean) {
-      this.delete = mode;
-   }
 
    inc() {
       if (this.count < this.max) this.count++;

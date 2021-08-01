@@ -1,11 +1,11 @@
-import TypedArray from "../base/typed-array";
-import Item from "./item";
+import Deletable from '../base/deletable';
+import DynamicArray from '../base/dynamic-array';
+import Item from './item';
 
-export default class Container {
-   name = "";
+export default class Container extends Deletable {
+   name = '';
    capacity = 30;
-   inner = new TypedArray<Item>(Item);
-   delete = false;
+   inner = new DynamicArray<Item>(Item);
    expand = true;
 
    get weight() {
@@ -18,16 +18,11 @@ export default class Container {
    }
 
    toggleDeleteMode(mode: boolean) {
-      this.delete = mode;
+      super.toggleDeleteMode(mode);
       this.inner.forEach((x) => x.toggleDeleteMode(mode));
    }
 
-   confirmDelete() {
-      for (let i = 0; i < this.inner.length; i++) {
-         if (this.inner[i].delete) {
-            this.inner.splice(i, 1);
-            i--;
-         }
-      }
+   clear() {
+      this.inner.clear();
    }
 }

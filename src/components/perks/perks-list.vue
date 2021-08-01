@@ -1,18 +1,16 @@
 <template>
-   <div class="text-center h4 my-2">Инвентарь</div>
+   <div class="text-center h4 my-2">Способности</div>
    <div class="flex-grow-1">
-      <div class="row justify-content-center mx-0">
-         <div class="col-12 col-md-6 my-1 px-2" v-for="(container, index) in character.inventory" v-bind:key="index">
-            <container :container="container" :index="index" :deleteMode="deleteMode" />
-         </div>
+      <div class="py-1" v-for="item in character.perks" :key="item">
+         <perk :item="item" :character="character" :deleteMode="deleteMode" />
       </div>
    </div>
-   <div v-if="!deleteMode" class="text-center">
-      <button class="btn fw btn-success m-2" v-on:click="addContainer">
+   <div v-if="!deleteMode && !locked" class="text-center">
+      <button class="btn fw btn-success m-2" v-on:click="add">
          <i class="fas fa-plus-circle me-2"></i>
          Добавить
       </button>
-      <button class="btn fw btn-danger m-2" v-on:click="openDeleteMode" :disabled="!character.inventory.length">
+      <button class="btn fw btn-danger m-2" v-on:click="openDeleteMode" :disabled="!character.perks.length">
          <i class="fas fa-trash me-2"></i>
          Удалить
       </button>
@@ -30,34 +28,38 @@
 </template>
 
 <script>
-import Character from '../../models/character';
-import ContainerComponent from './container';
+import Character from '@/models/character';
+import PerkComponent from './perk.vue';
 
 export default {
-   name: 'inventory',
+   name: 'container',
    props: {
       character: Character,
    },
    data() {
       return {
          deleteMode: false,
+         expand: false,
       };
    },
    methods: {
-      addContainer() {
-         this.character.addContainer();
+      add() {
+         this.character.addPerk();
       },
       openDeleteMode() {
          this.deleteMode = true;
-         this.character.inventory.forEach((x) => x.toggleDeleteMode(false));
+         this.character.perks.forEach((x) => x.toggleDeleteMode(false));
       },
       confirmDelete() {
          this.deleteMode = false;
-         this.character.clearInventory();
+         this.character.clearPerks();
       },
    },
-   components: {
-      container: ContainerComponent,
+   computed: {
+      locked: function() {
+         return this.character.settings.locked;
+      },
    },
+   components: { perk: PerkComponent },
 };
 </script>

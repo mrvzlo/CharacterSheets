@@ -28,10 +28,13 @@ select,
 
 .plain {
    border: none;
-   text-align: center;
+   padding: 0;
+}
+
+input.text-center,
+select.text-center {
    text-align-last: center;
    text-align: -webkit-center;
-   padding: 0;
 }
 
 .clear {
@@ -41,8 +44,13 @@ select,
 }
 
 .card {
-   .card-header {
+   .card-header,
+   .card-footer {
       border-radius: $border-radius;
+   }
+
+   .card-footer {
+      background: none;
    }
 
    background: none;
@@ -54,6 +62,11 @@ input,
 select {
    min-width: 0;
    background: none;
+}
+
+textarea {
+   background-color: var(--input-disabled-bg);
+   border-color: var(--border);
 }
 
 hr {
@@ -144,6 +157,10 @@ hr {
 
 .w-50px {
    width: 50px;
+}
+
+.h-24px {
+   height: 24px;
 }
 
 .lh-0 {

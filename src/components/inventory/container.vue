@@ -1,18 +1,18 @@
 <template>
    <div class="card">
-      <div class="card-header border-bottom d-flex justify-content-between px-1 bg-primary text-white">
+      <div class="card-header d-flex justify-content-between px-1 bg-primary text-white">
          <div @click="editModel.expand = !editModel.expand">
-            <i class="fas fa-eye text-white pt-1 my-1 px-3"></i>
+            <i class="fas fa-eye text-white px-3"></i>
          </div>
          <div class="flex-grow-1">
             <input type="text" v-model="editModel.name" class="border-0 border-bottom border-white px-1 w-100 h-100 text-white bg-primary" />
          </div>
-         <div class="d-flex" v-if="!deleteMode">
-            <span :class="'w-50px py-1 ' + (container.weight > container.capacity ? 'text-danger' : '')">{{ container.weight }}</span>
-            <span class="py-1">/</span>
-            <input type="number" v-model="editModel.capacity" class="plain w-50px text-white" min="0" />
+         <div class="d-flex text-center" v-if="!deleteMode">
+            <span :class="'w-50px ' + (container.weight > container.capacity ? 'text-danger' : '')">{{ container.weight }}</span>
+            <span>/</span>
+            <input type="number" v-model="editModel.capacity" class="plain w-50px text-white text-center" min="0" />
          </div>
-         <div v-if="deleteMode" class="block light m-1">
+         <div v-if="deleteMode" class="block light mx-1">
             <div v-on:click="toggleDelete" class="w-100 h-100">
                <i v-if="container.delete" class="fas fa-times"></i>
             </div>

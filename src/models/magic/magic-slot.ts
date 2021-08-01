@@ -1,12 +1,12 @@
-import TypedArray from "../base/typed-array";
-import Spell from "./spell";
+import DynamicArray from '../base/dynamic-array';
+import Spell from './spell';
 
 export default class MagicSlot {
-   name = "";
+   name = '';
    uses = 0;
    limit = 0;
    expand = true;
-   spells = new TypedArray<Spell>(Spell);
+   spells = new DynamicArray<Spell>(Spell);
 
    reset() {
       this.uses = this.limit;
@@ -20,12 +20,7 @@ export default class MagicSlot {
       this.spells.forEach((x) => x.toggleDeleteMode(mode));
    }
 
-   confirmDelete() {
-      for (let i = 0; i < this.spells.length; i++) {
-         if (this.spells[i].delete) {
-            this.spells.splice(i, 1);
-            i--;
-         }
-      }
+   clear() {
+      this.spells.clear();
    }
 }

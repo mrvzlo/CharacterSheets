@@ -9,6 +9,12 @@
    display: inline-block;
    position: relative;
 
+   > * {
+      text-align: center;
+      text-align-last: center;
+      text-align: -webkit-center;
+   }
+
    &.light > input {
       color: #000;
    }
@@ -43,15 +49,15 @@
 }
 
 .block {
-   background-image: url("~@/assets/block.svg");
+   background-image: url('~@/assets/block.svg');
 }
 
 .hex {
-   background-image: url("~@/assets/hexagon.svg");
+   background-image: url('~@/assets/hexagon.svg');
 }
 
 .heart {
-   background-image: url("~@/assets/heart.svg");
+   background-image: url('~@/assets/heart.svg');
    background-size: contain;
    background-repeat: no-repeat;
    background-position: center;

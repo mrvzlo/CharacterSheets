@@ -1,60 +1,60 @@
 <template>
-   <div class="text-center mt-2">
-      <div class="row yellow-oct mx-1">
+   <div class="mt-2">
+      <div class="row yellow-oct mx-1 text-center">
          <div class="px-1 col-12 col-md-6 col-lg-5">
             <div class="position-relative mb-2 py-1 gray-oct">
-               <input v-model="editModel.name" class="plain w-octagon p-2 h5 m-0" placeholder="Имя персонажа" :disabled="locked" />
+               <input v-model="editModel.name" class="plain w-octagon p-2 h5 m-0 text-center" placeholder="Имя персонажа" :disabled="locked" />
                <octagon />
             </div>
          </div>
-         <div class=" px-1 col-4 col-md-3">
+         <div class="px-1 col-4 col-md-3">
             <div class="oct-small position-relative mb-2 py-1">
-               <select v-model="editModel.class.type" class="plain w-octagon border-bottom" :disabled="locked" v-if="this.character.class">
+               <select v-model="editModel.class.type" class="plain w-octagon text-center" :disabled="locked" v-if="this.character.class">
                   <option v-for="classType in classOptions()" v-bind:key="classType" :value="classType.id">
                      {{ classType.name }}
                   </option>
                </select>
-               <div class="text-secondary">Класс</div>
+               <div class="text-secondary border-top mx-2">Класс</div>
                <octagon />
             </div>
          </div>
          <div class="oct-small px-1 col-4 col-md-3">
             <div class="position-relative mb-2 py-1">
-               <input v-model="editModel.race" class="plain w-octagon border-bottom" :disabled="locked" />
-               <div class="text-secondary">Раса</div>
+               <input v-model="editModel.race" class="plain w-octagon text-center" :disabled="locked" />
+               <div class="text-secondary border-top mx-2">Раса</div>
                <octagon />
             </div>
          </div>
          <div class="oct-small px-1 col-4 col-md-3">
             <div class="position-relative mb-2 py-1">
-               <input v-model="editModel.story" class="plain w-octagon border-bottom" :disabled="locked" />
-               <div class="text-secondary">Предыстория</div>
+               <input v-model="editModel.story" class="plain w-octagon text-center" :disabled="locked" />
+               <div class="text-secondary border-top mx-2">Предыстория</div>
                <octagon />
             </div>
          </div>
          <div class="oct-small px-1 col-3 col-md-3 col-lg-2">
             <div class="position-relative mb-2 py-1">
-               <input v-model="editModel.level" class="plain w-octagon border-bottom" type="number" min="1" max="20" :disabled="locked" />
-               <div class="text-secondary">Уровень</div>
+               <input v-model="editModel.level" class="plain w-octagon text-center" type="number" min="1" max="20" :disabled="locked" />
+               <div class="text-secondary border-top mx-2">Уровень</div>
                <octagon />
             </div>
          </div>
          <div class="oct-small px-1 col-4 col-md-3">
             <div class="position-relative mb-2 py-1">
-               <select v-model="editModel.size" class="plain w-octagon border-bottom" :disabled="locked">
+               <select v-model="editModel.size" class="plain w-octagon text-center" :disabled="locked">
                   <option value="0">Крошечный</option>
                   <option value="1">Маленький</option>
                   <option value="2">Средний</option>
                   <option value="3">Большой</option>
                   <option value="4">Огромный</option>
                </select>
-               <div class="text-secondary">Размер</div>
+               <div class="text-secondary border-top mx-2">Размер</div>
                <octagon />
             </div>
          </div>
          <div class="oct-small px-1 col-5 col-md-3">
             <div class="position-relative mb-2 py-1">
-               <select v-model="editModel.alignment" class="plain w-octagon border-bottom" :disabled="locked">
+               <select v-model="editModel.alignment" class="plain w-octagon text-center" :disabled="locked">
                   <option value="0">Законно-добрый</option>
                   <option value="1">Законный</option>
                   <option value="2">Законно-злой</option>
@@ -65,21 +65,21 @@
                   <option value="7">Хаотичный</option>
                   <option value="8">Хаотично-злой</option>
                </select>
-               <div class="text-secondary">Мировоззрение</div>
+               <div class="text-secondary border-top mx-2">Мировоззрение</div>
                <octagon />
             </div>
          </div>
       </div>
       <div class="row mx-1">
-         <div class="col-6 px-1">
+         <div class="col-6 px-1 text-center">
             <div class="my-2">
                Вдохновение
-               <div class="d-flex px-1 justify-content-center">
+               <div class="d-flex px-1 justify-content-center small">
                   <div class="mx-2">
                      <div class="hex m-auto d-block" style="--color: 250deg" v-on:click="toggleInspiration">
                         <span v-if="editModel.masterInspiration" class="fas fa-check"></span>
                      </div>
-                     Мастера
+                     <div class="mt-n1">Мастера</div>
                   </div>
                   <div class="px-2 mx-2">
                      <select v-model="editModel.bardInspiration" class="block plain d-block" style="--color: 250deg">
@@ -89,7 +89,7 @@
                         <option value="10">d10</option>
                         <option value="12">d12</option>
                      </select>
-                     Барда
+                     <div class="mt-n1">Барда</div>
                   </div>
                </div>
             </div>

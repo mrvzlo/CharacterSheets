@@ -1,13 +1,13 @@
 <template>
-   <div class="col-3 attributes d-flex flex-column justify-content-around">
+   <div class="col-3 p-0 attributes d-flex flex-column justify-content-around">
       <div v-for="(attribute, index) in character.attributes" v-bind:key="attribute.name">
          <attribute :character="character" :attribute="attribute" :index="index"></attribute>
       </div>
    </div>
    <div class="col-9 ps-0 pe-2 d-flex flex-column justify-content-center">
       <div class="mt-2 position-relative gray-oct py-2">
-         <span class="mb-2 fw-bold">Спасброски</span>
-         <div class="text-start" v-for="check in saving()" v-bind:key="check.id">
+         <div class="mb-1 fw-bold text-center">Спасброски</div>
+         <div v-for="check in saving()" v-bind:key="check.id">
             <check
                :check="check"
                :proficiency="character.proficiency"
@@ -18,14 +18,14 @@
          <octagon />
       </div>
       <div class="mt-2 position-relative gray-oct py-2">
-         <span class="mb-2 fw-bold">Навыки</span>
-         <div class="text-start position-relative" v-for="check in skills()" v-bind:key="check.id">
+         <div class="mb-1 fw-bold text-center">Навыки</div>
+         <div class="position-relative" v-for="check in skills()" v-bind:key="check.id">
             <check
                :check="check"
                :proficiency="character.proficiency"
                :attribute="getAttributeByCheck(check.id)"
                :locked="character.settings.locked"
-            ></check>
+            />
          </div>
          <octagon />
       </div>
