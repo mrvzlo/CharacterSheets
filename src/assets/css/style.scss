@@ -1,13 +1,18 @@
-@import "light-colors.scss";
-@import "variables.scss";
-@import "~bootstrap/scss/bootstrap";
-@import "~@fortawesome/fontawesome-free/scss/regular.scss";
-@import "~@fortawesome/fontawesome-free/scss/solid.scss";
-@import "~@fortawesome/fontawesome-free/scss/brands.scss";
-@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
-@import "custom.scss";
-@import "figures.scss";
-@import "popover.scss";
-@import "octagon.scss";
+@import 'light-colors.scss';
+@import 'variables.scss';
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/regular.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
 
-@import "dark.scss";
+@import 'fonts.scss';
+
+@import 'custom.scss';
+@import 'figures.scss';
+@import 'popover.scss';
+@import 'octagon.scss';
+@import 'form.scss';
+@import 'one-lines.scss';
+
+@import 'dark.scss';

@@ -15,14 +15,12 @@
 </template>
 
 <script>
-import HeaderMessageModel from '../models/header-message';
+import FixedMessageModel from '../models/fixed-message';
 export default {
-   name: 'header-message',
+   name: 'fixed-message',
    props: {
-      model: HeaderMessageModel,
-      closeBtn: Boolean,
+      model: FixedMessageModel,
       msgClass: String,
-      hasBody: Boolean,
    },
    methods: {
       close() {

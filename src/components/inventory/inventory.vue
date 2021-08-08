@@ -1,8 +1,8 @@
 <template>
-   <div class="text-center h4 my-2">Инвентарь</div>
+   <div class="text-center h4 my-3 fw-bold">Инвентарь</div>
    <div class="flex-grow-1">
       <div class="row justify-content-center mx-0">
-         <div class="col-12 col-md-6 my-1 px-2" v-for="(container, index) in character.inventory" v-bind:key="index">
+         <div class="col-12 col-md-6 mb-2 px-2" v-for="(container, index) in character.inventory" v-bind:key="index">
             <container :container="container" :index="index" :deleteMode="deleteMode" />
          </div>
       </div>

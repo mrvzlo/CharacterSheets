@@ -1,19 +1,19 @@
 <template>
-   <div class="heart p-3 pb-4 small mt-2 text-center">
-      <div class="d-flex justify-content-center mt-2">
+   <div class="heart p-3 pb-4  mt-2 text-center">
+      <div class="d-flex justify-content-center mt-2 pt-1">
          <div class="hex big" style="--color: -10deg">
-            <input v-model="current" class="plain w-100" type="number" :max="character.healthMax" min="0" @change="setData" />
+            <input v-model="editModel.health" class="plain w-100" type="number" :max="editModel.healthMax" min="0" />
          </div>
          <div class="mx-1 mb-0 mt-auto h3 lh-1">/</div>
          <div class="hex big" style="--color: -10deg">
-            <input v-model="max" class="plain w-100" type="number" min="0" :disabled="character.settings.locked" @change="setData" />
+            <input v-model="editModel.healthMax" class="plain w-100" type="number" min="0" :disabled="character.settings.locked" />
          </div>
       </div>
       <div class="mb-1">Здоровье</div>
       <div class="hex" style="--color: -10deg">
-         <input v-model="bonus" class="plain w-100" type="number" min="0" @change="setData" />
+         <input v-model="editModel.healthBonus" class="plain w-100" type="number" min="0" />
       </div>
-      <div>Бонус</div>
+      <div class="small">Бонус</div>
    </div>
 </template>
 
@@ -27,24 +27,20 @@ export default {
    },
    data() {
       return {
-         current: 0,
-         max: 0,
-         bonus: 0,
+         editModel: Character,
       };
    },
    methods: {
       setData() {
-         if (this.current > this.max) {
-            this.current = this.max;
+         if (+this.editModel.health > +this.editModel.healthMax) {
+            this.editModel.health = this.editModel.healthMax;
          }
-         Object.assign(this.character, { health: this.current });
-         Object.assign(this.character, { healthBonus: this.bonus });
-         Object.assign(this.character, { healthMax: this.max });
+         Object.assign(this.character, { health: this.editModel.health });
+         Object.assign(this.character, { healthBonus: this.editModel.healthBonus });
+         Object.assign(this.character, { healthMax: this.editModel.healthMax });
       },
       getData() {
-         this.current = this.character.health;
-         this.bonus = this.character.healthBonus;
-         this.max = this.character.healthMax;
+         this.editModel = this.character;
       },
    },
    watch: {
@@ -54,6 +50,12 @@ export default {
          },
          deep: true,
          immediate: true,
+      },
+      editModel: {
+         handler() {
+            this.setData();
+         },
+         deep: true,
       },
    },
 };

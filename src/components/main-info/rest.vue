@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import HeaderMessageModel from '@/models/header-message';
+import FixedMessageModel from '@/models/fixed-message';
 import Character from '@/models/character';
 
 export default {
@@ -25,7 +25,7 @@ export default {
    },
    props: {
       character: Character,
-      headerMessage: HeaderMessageModel,
+      headerMessage: FixedMessageModel,
    },
    methods: {
       longRest() {

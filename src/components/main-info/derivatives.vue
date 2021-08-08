@@ -1,6 +1,6 @@
 <template>
    <div class="d-inline-flex p-1">
-      <div class="hex me-2" style="--color: 140deg">
+      <div class="hex me-2" style="--color: 120deg">
          <input v-model="speed" class="plain w-100" type="number" min="0" :disabled="character.settings.locked" @change="setData" />
       </div>
       Скорость
@@ -14,7 +14,7 @@
    </div>
    <br />
    <div class="d-inline-flex p-1">
-      <div class="hex me-2 op" style="--color: 100deg">
+      <div class="hex me-2 op" style="--color: 120deg">
          <input v-model="armor" class="plain w-100" type="number" :disabled="character.settings.locked" @change="setData" />
       </div>
       Класс брони
@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import Character from "../../models/character";
+import Character from '../../models/character';
 
 export default {
-   name: "derivatives",
+   name: 'derivatives',
    props: {
       character: Character,
    },

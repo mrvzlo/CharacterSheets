@@ -1,12 +1,12 @@
 <template>
    <div class="my-2 flex-grow-1">
-      <div class="row mx-2 justify-content-center" v-if="character.countable.length">
+      <div class="row mx-1 justify-content-center" v-if="character.countable.length">
          <div class="col-6 px-1 my-1" v-for="item in character.countable" :key="item">
             <countable :item="item" :character="character" :deleteMode="deleteMode" />
          </div>
       </div>
    </div>
-   <div class="d-flex m-2 mt-0" v-if="!character.settings.locked">
+   <div class="d-flex my-2 mx-1 mt-0" v-if="!character.settings.locked">
       <div class="mx-1 btn btn-primary" @click="toggleExpand">
          Счётчики
          <i :class="'fas px-1 fa-angle-' + (expand ? 'left' : 'right')"></i>

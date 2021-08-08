@@ -99,3 +99,16 @@
 .attributes {
    --oct-border: #000;
 }
+
+.attribute {
+   width: 70px;
+   --oct-bg: var(--gray-bg);
+}
+
+.oct-small {
+   font-size: 14px;
+   select,
+   input {
+      height: 20px;
+   }
+}

@@ -2,17 +2,17 @@
    <div class="card">
       <div class="card-header d-flex justify-content-between px-1 bg-primary text-white">
          <div class="flex-grow-1 text-start" @click="editModel.expand = !editModel.expand">
-            <i class="fas fa-eye text-white py-1 px-2"></i>
-            <span class="py-1 px-1">{{ name }}</span>
+            <i class="fas fa-eye text-white px-2"></i>
+            <span class="px-1">{{ name }}</span>
          </div>
-         <div class="d-flex" v-if="index > 0 && index <= 9">
-            <input type="number" v-model="editModel.uses" @change="setData" class="plain w-50px text-white" min="0" />
-            <span class="py-1">/</span>
-            <input type="number" v-model="editModel.limit" @change="setData" class="plain w-50px text-white" min="0" />
+         <div class="d-flex align-items-center" v-if="index > 0 && index <= 9">
+            <input type="number" v-model="editModel.uses" @change="setData" class="plain w-50px text-white text-center" min="0" />
+            <span class="">/</span>
+            <input type="number" v-model="editModel.limit" @change="setData" class="plain w-50px text-white text-center" min="0" />
          </div>
       </div>
       <div class="card-body p-1" v-if="editModel.expand">
-         <div v-if="magicSlot.spells.length == 0">Ничего не изучено</div>
+         <div v-if="magicSlot.spells.length == 0" class="text-center">Ничего не изучено</div>
          <div v-for="(item, itemIndex) in magicSlot.spells" v-bind:key="itemIndex">
             <spell :spell="item" :index="itemIndex" :magicSlot="magicSlot" :deleteMode="deleteMode" :locked="locked" />
          </div>

@@ -1,0 +1,27 @@
+.plain {
+   border: none;
+   padding: 0;
+   display: block;
+}
+
+input.text-center,
+select.text-center {
+   text-align-last: center;
+   text-align: -webkit-center;
+}
+
+input,
+select {
+   min-width: 0;
+   background: none;
+}
+
+textarea {
+   background-color: var(--input-disabled-bg);
+   border-color: $primary;
+}
+
+.dropdown-menu,
+.dropdown-item {
+   color: var(--input-color);
+}

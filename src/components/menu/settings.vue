@@ -12,6 +12,15 @@
             <div class="btn btn-warning"><i class="fa-fw fas">&nbsp;</i></div>
          </div>
       </div>
+      <div class="btn-group d-block my-3" v-on:click="toggleTheme">
+         <div class="btn btn-primary">
+            <i class="fas fa-fw fa-palette"></i>
+         </div>
+         <div class="btn btn-outline border-primary col-6">
+            {{ themeSwitch.isDark ? 'Светлая тема' : 'Тёмная тема' }}
+         </div>
+         <div class="btn btn-primary"><i class="fa-fw fas">&nbsp;</i></div>
+      </div>
       <div class="my-5"></div>
       <div class="btn-group d-block my-3" data-bs-toggle="modal" data-bs-target="#saveModal">
          <div class="btn btn-success">
@@ -73,12 +82,14 @@ import ImportModalComponent from './import-modal.vue';
 import ReloadModalComponent from './reload-modal.vue';
 import SaveModalComponent from './save-modal.vue';
 import SaveService from '@/models/saving/save-service';
+import ThemeSwitch from '@/helpers/theme-switch';
 
 export default {
    name: 'settings',
    props: {
       character: Character,
       saveService: SaveService,
+      themeSwitch: ThemeSwitch,
    },
    methods: {
       lock: function() {
@@ -86,6 +97,9 @@ export default {
       },
       importCharacter: function(a, b) {
          return this.$parent.importCharacter(a, b);
+      },
+      toggleTheme() {
+         this.themeSwitch.toggleTheme();
       },
    },
    components: {

@@ -7,7 +7,7 @@
          <div class="flex-grow-1">
             <input type="text" v-model="editModel.name" class="border-0 border-bottom border-white px-1 w-100 h-100 text-white bg-primary" />
          </div>
-         <div class="d-flex text-center" v-if="!deleteMode">
+         <div class="d-flex align-items-center text-center" v-if="!deleteMode">
             <span :class="'w-50px ' + (container.weight > container.capacity ? 'text-danger' : '')">{{ container.weight }}</span>
             <span>/</span>
             <input type="number" v-model="editModel.capacity" class="plain w-50px text-white text-center" min="0" />
@@ -62,7 +62,7 @@ export default {
       },
       toggleDelete() {
          this.editModel.delete = !this.editModel.delete;
-         this.container.toggleDeleteMode(true);
+         this.container.toggleDeleteMode(this.editModel.delete);
       },
    },
    watch: {

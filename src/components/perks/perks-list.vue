@@ -1,7 +1,7 @@
 <template>
-   <div class="text-center h4 my-2">Способности</div>
+   <div class="text-center h4 my-3 fw-bold">Способности</div>
    <div class="flex-grow-1">
-      <div class="py-1" v-for="item in character.perks" :key="item">
+      <div class="pb-2" v-for="item in character.perks" :key="item">
          <perk :item="item" :character="character" :deleteMode="deleteMode" />
       </div>
    </div>

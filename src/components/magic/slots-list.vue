@@ -3,7 +3,7 @@
       <div class="text-center">
          <div class="text-start mx-auto d-inline-block mt-2">
             <div class="d-inline-flex p-1">
-               <select v-model="magicAttribute" class="plain block me-2" @change="setData" style="--color: 250deg">
+               <select v-model="magicAttribute" class="plain block me-2" @change="setData" style="--color: 200deg">
                   <option value="-1">Нет</option>
                   <option value="3">Инт</option>
                   <option value="4">Муд</option>
@@ -21,14 +21,14 @@
             </div>
             <br />
             <div class="d-inline-flex p-1">
-               <div class="hex me-2 text-center" style="--color: 350deg">
+               <div class="hex me-2 text-center" style="--color: 300deg">
                   {{ character.magicBonus }}
                </div>
                Модификатор атак
             </div>
             <br />
             <div class="d-inline-flex p-1">
-               <div class="hex me-2 text-center" style="--color: 330deg">
+               <div class="hex me-2 text-center" style="--color: 300deg">
                   {{ character.spellDifficulty }}
                </div>
                Сложность спасбросков
@@ -48,7 +48,7 @@
          </div>
       </div>
       <div class="row mx-0">
-         <div class="col-12 col-md-6 mt-2">
+         <div class="col-12 col-md-6 mt-2 px-2">
             <magic-slot
                :magicSlot="otherSpells()"
                :index="10"

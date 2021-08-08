@@ -1,5 +1,5 @@
 export default class Settings {
-   locked: boolean = false;
-   autoSavesEnabled: boolean = true;
-   autoSavesInterval: number = 1000 * 3;
+   locked = false;
+   autoSavesEnabled = true;
+   autoSavesIntervalMs = 1000 * 30;
 }

@@ -1,14 +1,14 @@
 :root {
+   --background: #fef8f5;
    --border: #000;
-   --input-bg: #fff;
+   --input-bg: var(--background);
    --input-color: #000;
-   --input-focus-bg: #fff;
+   --input-focus-bg: var(--input-bg);
    --input-focus-color: #000;
    --input-disabled-bg: #eee;
-   --background: #fefefe;
-   --bones-bg: #fcc;
+   --bones-bg: #fdd;
    --yellow-bg: #fec;
-   --gray-bg: #eee;
+   --gray-bg: #fef8f5;
    --oct-border: #333;
 }
 
@@ -19,7 +19,7 @@ $input-focus-bg: var(--input-focus-bg);
 $input-focus-color: var(--input-focus-color);
 $input-disabled-bg: var(--input-disabled-bg);
 
-$primary: #404039;
+$primary: #414039;
 $blue: #44a;
 $green: #484;
 $red: #b44;

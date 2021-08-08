@@ -27,21 +27,21 @@
          <slots-list :character="character" />
       </div>
 
-      <settings :character="character" :saveService="saveService" v-if="tab == 6" />
+      <settings :character="character" :saveService="saveService" :themeSwitch="themeSwitch" v-if="tab == 6" />
    </div>
-   <div class="position-fixed end-0 bottom-0 op-03 m-1" v-if="tab < 4 || tab == 5">
-      <i class="fas fa-lock fa-2x m-2" v-if="character.settings.locked"></i>
-      <i class="fas fa-unlock fa-2x m-2" v-else></i>
+   <div class="position-fixed end-0 bottom-0 op-05 m-1" v-if="tab < 4 || tab == 5">
+      <i class="fas fa-2x fa-lock mx-2" v-if="character.settings.locked"></i>
+      <i class="fas fa-2x fa-unlock mx-2" v-else></i>
    </div>
-   <div class="text-center small py-1 border-top border-dark">
-      <span class=" text-secondary">Чарники {{ version }} by AndrejevVE</span>
+   <div class="text-center py-2 bg-primary text-white">
+      <span class="small">Чарники {{ version }} by AndrejevVE</span>
    </div>
 </template>
 
 <script>
 import Character from '../models/character';
 import Encoder from '../models/encoder';
-import HeaderMessage from '../models/header-message';
+import FixedMessage from '../models/fixed-message';
 import SettingsComponent from './menu/settings.vue';
 import FixedMessageComponent from './fixed-message.vue';
 import InventoryComponent from './inventory/inventory.vue';
@@ -51,6 +51,7 @@ import MainInfoComponent from './main-info/main-info';
 import SaveService from '../models/saving/save-service';
 import SlotsListComponent from './magic/slots-list.vue';
 import BootstrapHelper from '@/helpers/bootstrap-helper';
+import ThemeSwitch from '@/helpers/theme-switch';
 
 export default {
    name: 'character',
@@ -58,11 +59,12 @@ export default {
       return {
          character: Character,
          encoder: Encoder,
-         headerMessage: HeaderMessage,
-         version: 'v1.2.2',
+         headerMessage: FixedMessage,
+         version: 'v1.3.1',
          tab: 1,
          icons: ['id-card', 'running', 'clipboard-list', 'suitcase', 'hand-sparkles', 'cog'],
          saveService: SaveService,
+         themeSwitch: ThemeSwitch,
       };
    },
    methods: {
@@ -79,19 +81,19 @@ export default {
       },
       autoSave() {
          if (this.character.settings.autoSavesEnabled) {
-            this.headerMessage.showSuccess('Автосохранение завершено');
             this.saveService.makeSave(this.character);
          }
-         setTimeout(this.autoSave, this.character.settings.autoSavesInterval);
+         setTimeout(this.autoSave, this.character.settings.autoSavesIntervalMs);
       },
    },
    created() {
       this.clearCharacter();
       this.encoder = new Encoder();
-      this.headerMessage = new HeaderMessage();
+      this.headerMessage = new FixedMessage();
       this.saveService = new SaveService();
       this.loadAutosave();
-      setTimeout(this.autoSave, this.character.settings.autoSavesInterval);
+      this.themeSwitch = new ThemeSwitch();
+      setTimeout(this.autoSave, this.character.settings.autoSavesIntervalMs);
    },
    mounted() {
       new BootstrapHelper().initTooltips();

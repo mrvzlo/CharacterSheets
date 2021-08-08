@@ -1,116 +1,104 @@
 <template>
-   <div class="mt-2">
-      <div class="row yellow-oct mx-1 text-center">
-         <div class="px-1 col-12 col-md-6 col-lg-5">
-            <div class="position-relative mb-2 py-1 gray-oct">
-               <input v-model="editModel.name" class="plain w-octagon p-2 h5 m-0 text-center" placeholder="Имя персонажа" :disabled="locked" />
-               <octagon />
-            </div>
-         </div>
-         <div class="px-1 col-4 col-md-3">
-            <div class="oct-small position-relative mb-2 py-1">
-               <select v-model="editModel.class.type" class="plain w-octagon text-center" :disabled="locked" v-if="this.character.class">
-                  <option v-for="classType in classOptions()" v-bind:key="classType" :value="classType.id">
-                     {{ classType.name }}
-                  </option>
-               </select>
-               <div class="text-secondary border-top mx-2">Класс</div>
-               <octagon />
-            </div>
-         </div>
-         <div class="oct-small px-1 col-4 col-md-3">
-            <div class="position-relative mb-2 py-1">
-               <input v-model="editModel.race" class="plain w-octagon text-center" :disabled="locked" />
-               <div class="text-secondary border-top mx-2">Раса</div>
-               <octagon />
-            </div>
-         </div>
-         <div class="oct-small px-1 col-4 col-md-3">
-            <div class="position-relative mb-2 py-1">
-               <input v-model="editModel.story" class="plain w-octagon text-center" :disabled="locked" />
-               <div class="text-secondary border-top mx-2">Предыстория</div>
-               <octagon />
-            </div>
-         </div>
-         <div class="oct-small px-1 col-3 col-md-3 col-lg-2">
-            <div class="position-relative mb-2 py-1">
-               <input v-model="editModel.level" class="plain w-octagon text-center" type="number" min="1" max="20" :disabled="locked" />
-               <div class="text-secondary border-top mx-2">Уровень</div>
-               <octagon />
-            </div>
-         </div>
-         <div class="oct-small px-1 col-4 col-md-3">
-            <div class="position-relative mb-2 py-1">
-               <select v-model="editModel.size" class="plain w-octagon text-center" :disabled="locked">
-                  <option value="0">Крошечный</option>
-                  <option value="1">Маленький</option>
-                  <option value="2">Средний</option>
-                  <option value="3">Большой</option>
-                  <option value="4">Огромный</option>
-               </select>
-               <div class="text-secondary border-top mx-2">Размер</div>
-               <octagon />
-            </div>
-         </div>
-         <div class="oct-small px-1 col-5 col-md-3">
-            <div class="position-relative mb-2 py-1">
-               <select v-model="editModel.alignment" class="plain w-octagon text-center" :disabled="locked">
-                  <option value="0">Законно-добрый</option>
-                  <option value="1">Законный</option>
-                  <option value="2">Законно-злой</option>
-                  <option value="3">Добрый</option>
-                  <option value="4">Нейтральный</option>
-                  <option value="5">Злой</option>
-                  <option value="6">Хаотично-добрый</option>
-                  <option value="7">Хаотичный</option>
-                  <option value="8">Хаотично-злой</option>
-               </select>
-               <div class="text-secondary border-top mx-2">Мировоззрение</div>
-               <octagon />
-            </div>
+   <div class="row mx-1 text-center">
+      <div class="px-1 col-12 col-md-6 col-lg-5">
+         <div class="border-bottom mt-3 mb-2 mx-1">
+            <input v-model="editModel.name" class="plain w-100 px-2 h4 m-0 text-center" placeholder="Имя персонажа" :disabled="locked" />
          </div>
       </div>
-      <div class="row mx-1">
-         <div class="col-6 px-1 text-center">
-            <div class="my-2">
-               Вдохновение
-               <div class="d-flex px-1 justify-content-center small">
-                  <div class="mx-2">
-                     <div class="hex m-auto d-block" style="--color: 250deg" v-on:click="toggleInspiration">
-                        <span v-if="editModel.masterInspiration" class="fas fa-check"></span>
-                     </div>
-                     <div class="mt-n1">Мастера</div>
-                  </div>
-                  <div class="px-2 mx-2">
-                     <select v-model="editModel.bardInspiration" class="block plain d-block" style="--color: 250deg">
-                        <option value="0"></option>
-                        <option value="6">d6</option>
-                        <option value="8">d8</option>
-                        <option value="10">d10</option>
-                        <option value="12">d12</option>
-                     </select>
-                     <div class="mt-n1">Барда</div>
-                  </div>
-               </div>
+      <div class="px-1 col-4 col-md-3">
+         <div class="mt-2">
+            <div v-on:click="showClasses = !showClasses">
+               {{ editModel.class.name }}
             </div>
-            <div class="text-start mx-auto d-inline-block">
-               <div class="d-inline-flex p-1">
-                  <div class="hex me-2 text-center" style="--color: 300deg">
-                     {{ character.proficiency }}
-                  </div>
-                  Мастерство
-               </div>
-               <br />
-               <derivatives :character="character" />
-            </div>
+            <ul :class="'dropdown-menu ' + (showClasses ? 'show' : '')">
+               <a class="dropdown-item" v-for="classType in classOptions()" v-bind:key="classType" v-on:click="setClass(classType.id)">
+                  {{ classType.name }}
+               </a>
+            </ul>
+            <div class="text-secondary small border-top mx-1">Класс</div>
          </div>
-         <div class="px-1 col-6 d-flex flex-column justify-content-end">
-            <health :character="character" />
-            <health-bones :character="character" />
+      </div>
+      <div class="px-1 col-5 col-md-4">
+         <div class="mt-2">
+            <input v-model="editModel.race" class="plain w-100 text-center" :disabled="locked" />
+            <div class="text-secondary small border-top mx-1">Раса</div>
+         </div>
+      </div>
+      <div class="px-1 col-3 col-md-3 col-lg-2">
+         <div class="mt-2">
+            <input v-model="editModel.level" class="plain w-100 text-center" type="number" min="1" max="20" :disabled="locked" />
+            <div class="text-secondary small border-top mx-1">Уровень</div>
+         </div>
+      </div>
+      <div class="px-1 col-6 col-md-3">
+         <div class="mt-2">
+            <div v-on:click="showSizes = !showSizes">
+               {{ sizes[editModel.size] }}
+            </div>
+            <ul :class="'dropdown-menu ' + (showSizes ? 'show' : '')">
+               <a class="dropdown-item" v-for="(sizeType, index) in sizes" v-bind:key="sizeType" v-on:click="setSize(index)">
+                  {{ sizeType }}
+               </a>
+            </ul>
+            <div class="text-secondary small border-top mx-1">Размер</div>
+         </div>
+      </div>
+      <div class="px-1 col-6 col-md-3">
+         <div class="mt-2">
+            <div v-on:click="showAlignments = !showAlignments">
+               {{ alignments[editModel.alignment] }}
+            </div>
+            <ul :class="'dropdown-menu ' + (showAlignments ? 'show' : '')">
+               <a class="dropdown-item" v-for="(alignment, index) in alignments" v-bind:key="alignment" v-on:click="setAlignment(index)">
+                  {{ alignment }}
+               </a>
+            </ul>
+            <div class="text-secondary small border-top mx-1">Мировоззрение</div>
          </div>
       </div>
    </div>
-   <div class="mt-2 mb-0 border-top border-dark"></div>
+   <div class="row mx-1">
+      <div class="col-6 px-1 text-center">
+         <div class="my-2">
+            Вдохновение
+            <div class="d-flex px-1 justify-content-center small">
+               <div class="mx-2">
+                  <div class="hex m-auto d-block" style="--color: 250deg" v-on:click="toggleInspiration">
+                     <span v-if="editModel.masterInspiration" class="fas fa-check"></span>
+                  </div>
+                  <div class="mt-n1 text-secondary">Мастера</div>
+               </div>
+               <div class="px-2 mx-2">
+                  <select v-model="editModel.bardInspiration" class="block plain d-block" style="--color: 250deg">
+                     <option value="0"></option>
+                     <option value="6">d6</option>
+                     <option value="8">d8</option>
+                     <option value="10">d10</option>
+                     <option value="12">d12</option>
+                  </select>
+                  <div class="mt-n1 text-secondary">Барда</div>
+               </div>
+            </div>
+         </div>
+         <div class="text-start mx-auto d-inline-block">
+            <div class="d-inline-flex p-1">
+               <div class="hex me-2 text-center" style="--color: 300deg">
+                  {{ character.proficiency }}
+               </div>
+               Мастерство
+            </div>
+            <br />
+            <derivatives :character="character" />
+         </div>
+      </div>
+      <div class="px-1 col-6 d-flex flex-column justify-content-end">
+         <health :character="character" />
+         <health-bones :character="character" />
+      </div>
+   </div>
+   <div class="m-2 mb-0 px-1">
+      <div class="border-top"></div>
+   </div>
 
    <countable-list :character="character" />
 </template>
@@ -123,7 +111,7 @@ import DerivativesComponent from './derivatives.vue';
 import HealthComponent from './health.vue';
 import HealthBonesComponent from './health-bones.vue';
 import RestComponent from './rest.vue';
-import HeaderMessageModel from '@/models/header-message';
+import FixedMessageModel from '@/models/fixed-message';
 import OctagonComponent from '@/components/helpers/octagon.vue';
 import CountableListComponent from './countable-list.vue';
 
@@ -131,11 +119,16 @@ export default {
    name: 'top-info',
    props: {
       character: Character,
-      headerMessage: HeaderMessageModel,
+      headerMessage: FixedMessageModel,
    },
    data() {
       return {
          editModel: Character,
+         showClasses: false,
+         showSizes: false,
+         showAlignments: false,
+         sizes: ['Крошечный', 'Маленький', 'Средний', 'Большой', 'Огромный'],
+         alignments: ['Законно-добрый', 'Законный', 'Законно-злой', 'Добрый', 'Нейтральный', 'Злой', 'Хаотично-добрый', 'Хаотичный', 'Хаотично-злой'],
       };
    },
    methods: {
@@ -161,6 +154,18 @@ export default {
       },
       longRest() {
          this.$parent.longRest();
+      },
+      setClass(id) {
+         this.editModel.class.type = id;
+         this.showClasses = false;
+      },
+      setSize(id) {
+         this.editModel.size = id;
+         this.showSizes = false;
+      },
+      setAlignment(id) {
+         this.editModel.alignment = id;
+         this.showAlignments = false;
       },
    },
    computed: {

@@ -1,17 +1,19 @@
-.min-vh-100 {
-   min-height: 100vh;
-}
-
 body,
 .modal-content {
    background-color: var(--background);
 }
 
+.dropdown-menu {
+   background-color: var(--input-bg);
+}
+
 body,
 input,
 select,
+textarea,
 .btn-outline {
    &,
+   &:hover,
    &:active,
    &:focus {
       color: var(--input-color);
@@ -26,21 +28,9 @@ select,
    }
 }
 
-.plain {
-   border: none;
-   padding: 0;
-}
-
-input.text-center,
-select.text-center {
-   text-align-last: center;
-   text-align: -webkit-center;
-}
-
-.clear {
-   padding: 0;
-   background: none;
-   border: none;
+.btn.fw {
+   width: 120px;
+   white-space: nowrap;
 }
 
 .card {
@@ -55,18 +45,7 @@ select.text-center {
 
    background: none;
    border-radius: $border-radius;
-   box-shadow: inset 0px 0px 0px 1px var(--border);
-}
-
-input,
-select {
-   min-width: 0;
-   background: none;
-}
-
-textarea {
-   background-color: var(--input-disabled-bg);
-   border-color: var(--border);
+   box-shadow: inset 0px 0px 0px 1px $primary;
 }
 
 hr {
@@ -96,10 +75,6 @@ hr {
    }
 }
 
-.mt-n3 {
-   margin-top: -14px;
-}
-
 .bones {
    width: 160px;
    --oct-bg: var(--bones-bg);
@@ -112,11 +87,6 @@ hr {
    word-break: break-all;
 }
 
-.attribute {
-   width: 70px;
-   --oct-bg: var(--gray-bg);
-}
-
 .loading-bar {
    background: linear-gradient(90deg, rgba(150, 255, 150, 0.7) var(--percent), var(--background) var(--percent));
    opacity: 0.8;
@@ -124,14 +94,6 @@ hr {
 
 .message {
    z-index: 1000;
-}
-
-.oct-small {
-   font-size: 14px;
-   select,
-   input {
-      height: 24px;
-   }
 }
 
 .p-small {
@@ -153,30 +115,6 @@ hr {
 .fade-fast-enter-from,
 .fade-fast-leave-to {
    opacity: 0;
-}
-
-.w-50px {
-   width: 50px;
-}
-
-.h-24px {
-   height: 24px;
-}
-
-.lh-0 {
-   line-height: 0;
-}
-
-.lh-inherit {
-   line-height: inherit;
-}
-
-.op-05 {
-   opacity: 0.5;
-}
-
-.op-03 {
-   opacity: 0.3;
 }
 
 .rounded-row {
@@ -201,8 +139,4 @@ hr {
    &:active {
       box-shadow: none;
    }
-}
-
-.btn.fw {
-   width: 120px;
 }

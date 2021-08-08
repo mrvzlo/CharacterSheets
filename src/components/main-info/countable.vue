@@ -1,27 +1,27 @@
 <template>
-   <div class="gray-oct position-relative pt-1">
+   <div class="position-relative pt-1">
       <div class="d-flex mx-1 border-bottom">
          <input v-model="editModel.name" class="border-0 plain text-center" placeholder="Название" :disabled="locked" />
       </div>
-      <div class="d-flex px-1 justify-content-center">
-         <template v-if="!deleteMode">
-            <button class="btn btn-sm text-primary" type="button" v-on:click="editModel.inc()" v-if="locked">
-               <i class="fas fa-fw fa-plus-circle"></i>
-            </button>
-            <input v-model="editModel.count" class="plain w-50px text-center" type="number" :max="editModel.max" min="0" />
-            <div>/</div>
-            <input v-model="editModel.max" class="plain w-50px text-center" type="number" min="0" :disabled="locked" />
-            <button class="btn btn-sm text-primary" type="button" v-on:click="editModel.dec()" v-if="locked">
-               <i class="fas fa-fw fa-minus-circle"></i>
-            </button>
-         </template>
-         <div class="block light m-1" v-else>
+      <div class="d-flex justify-content-center align-items-center p-1" v-if="!deleteMode">
+         <button class="btn p-0 text-primary lh-0" type="button" v-on:click="editModel.inc()" v-if="locked">
+            <i class="fas fa-fw fa-plus-circle"></i>
+         </button>
+         <input v-model="editModel.count" class="plain w-50px text-center" type="number" :max="editModel.max" min="0" />
+         <div>/</div>
+         <input v-model="editModel.max" class="plain w-50px text-center" type="number" min="0" :disabled="locked" />
+         <button class="btn p-0 text-primary lh-0" type="button" v-on:click="editModel.dec()" v-if="locked">
+            <i class="fas fa-fw fa-minus-circle"></i>
+         </button>
+      </div>
+      <div v-else class="text-center align-items-center p-1">
+         <div class="block light">
             <div v-on:click="toggleDelete" class="w-100 h-100 text-center">
                <i v-if="item.delete" class="fas fa-times"></i>
+               <i v-else>&nbsp;</i>
             </div>
          </div>
       </div>
-      <octagon />
    </div>
 </template>
 

@@ -1,7 +1,7 @@
 import AppConfig from '@/app-config';
 import Character from '../character';
 import Encoder from '../encoder';
-import HeaderMessageModel from '../header-message';
+import FixedMessage from '../fixed-message';
 import SaveData from './save-data';
 
 export default class SaveService {
@@ -16,7 +16,7 @@ export default class SaveService {
       }
    }
 
-   importCharacter(input: string, method: number, headerMessage: HeaderMessageModel): Character {
+   importCharacter(input: string, method: number, headerMessage: FixedMessage): Character {
       if (method == 0 || !this.isValid(input)) {
          return new Character();
       }

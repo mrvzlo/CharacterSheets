@@ -3,7 +3,7 @@
    --input-bg: #444;
    --input-color: #eee;
    --input-focus-bg: #333;
-   --input-focus-color: #eee;
+   --input-focus-color: var(--input-color);
    --input-disabled-bg: #333;
    --background: #222;
    --bones-bg: #583f3f;
@@ -12,11 +12,7 @@
    --yellow-bg: #543;
 
    .text-secondary {
-      filter: brightness(1.5);
-   }
-
-   .card {
-      border-color: var(--input-color);
+      color: var(--border) !important;
    }
 
    .heart {
@@ -26,13 +22,20 @@
    .hex.light,
    .block.light {
       filter: grayscale(1);
-      input {
+      input,
+      div {
          color: var(--input-color);
       }
    }
 
    .border-dark {
       border-color: var(--border) !important;
+   }
+}
+
+body.dark-mode {
+   .attribute {
+      filter: brightness(0.9) saturate(0.9);
    }
 }
 

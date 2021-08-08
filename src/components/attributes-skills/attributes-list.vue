@@ -5,8 +5,8 @@
       </div>
    </div>
    <div class="col-9 ps-0 pe-2 d-flex flex-column justify-content-center">
-      <div class="mt-2 position-relative gray-oct py-2">
-         <div class="mb-1 fw-bold text-center">Спасброски</div>
+      <div class="mt-2 position-relative py-2">
+         <div class="mb-1 fw-bold text-center h5">Спасброски</div>
          <div v-for="check in saving()" v-bind:key="check.id">
             <check
                :check="check"
@@ -15,10 +15,9 @@
                :locked="character.settings.locked"
             ></check>
          </div>
-         <octagon />
       </div>
-      <div class="mt-2 position-relative gray-oct py-2">
-         <div class="mb-1 fw-bold text-center">Навыки</div>
+      <div class="mt-2 position-relative py-2 border-top">
+         <div class="mb-1 fw-bold text-center h5">Навыки</div>
          <div class="position-relative" v-for="check in skills()" v-bind:key="check.id">
             <check
                :check="check"
@@ -27,7 +26,6 @@
                :locked="character.settings.locked"
             />
          </div>
-         <octagon />
       </div>
    </div>
    <div class="col-12 text-center">

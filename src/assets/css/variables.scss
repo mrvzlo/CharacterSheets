@@ -21,6 +21,10 @@ $card-border-radius: 0;
 
 $popover-border-color: rgba(#000, 0.5);
 
+$dropdown-border-color: var(--border);
+$dropdown-border-radius: 0;
+$dropdown-padding-y: 0;
+
 :root {
    --oct-size: 10px;
 }

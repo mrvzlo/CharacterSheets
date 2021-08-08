@@ -1,9 +1,9 @@
-import { CapacitorConfig } from "@capacitor/cli";
+import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-   appId: "ru.charactersheets",
-   appName: "Чарники",
-   webDir: "dist",
+   appId: 'ru.charactersheets',
+   appName: 'Чарники',
+   webDir: 'dist',
    bundledWebRuntime: false,
 };
 
