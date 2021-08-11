@@ -1,7 +1,7 @@
 .dark-mode {
    --border: #888;
    --input-bg: #444;
-   --input-color: #eee;
+   --input-color: #ddd;
    --input-focus-bg: #333;
    --input-focus-color: var(--input-color);
    --input-disabled-bg: #333;
@@ -10,6 +10,7 @@
    --oct-border: #000;
    --gray-bg: #444;
    --yellow-bg: #543;
+   --light: #ddd;
 
    .text-secondary {
       color: var(--border) !important;

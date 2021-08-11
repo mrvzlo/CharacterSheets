@@ -9,6 +9,7 @@ export default class ThemeSwitch {
       this.checkTheme().then((res) => {
          this.isDark = res == this.darkThemeClass;
          this.applyTheme();
+         document.body.classList.remove('bg-primary');
       });
       setTimeout(() => this.addAnimation(), 1000);
    }

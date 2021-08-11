@@ -4,13 +4,13 @@
          <input v-model="editModel.name" class="border-0 plain text-center" placeholder="Название" :disabled="locked" />
       </div>
       <div class="d-flex justify-content-center align-items-center p-1" v-if="!deleteMode">
-         <button class="btn p-0 text-primary lh-0" type="button" v-on:click="editModel.inc()" v-if="locked">
+         <button class="btn p-0 btn-outline lh-0" type="button" v-on:click="editModel.inc()" v-if="locked">
             <i class="fas fa-fw fa-plus-circle"></i>
          </button>
          <input v-model="editModel.count" class="plain w-50px text-center" type="number" :max="editModel.max" min="0" />
          <div>/</div>
          <input v-model="editModel.max" class="plain w-50px text-center" type="number" min="0" :disabled="locked" />
-         <button class="btn p-0 text-primary lh-0" type="button" v-on:click="editModel.dec()" v-if="locked">
+         <button class="btn p-0 btn-outline lh-0" type="button" v-on:click="editModel.dec()" v-if="locked">
             <i class="fas fa-fw fa-minus-circle"></i>
          </button>
       </div>

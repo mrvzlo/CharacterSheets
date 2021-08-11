@@ -1,5 +1,5 @@
 <template>
-   <div class="col-3 p-0 attributes d-flex flex-column justify-content-around">
+   <div class="col-3 p-0 attributes d-flex flex-column justify-content-center">
       <div v-for="(attribute, index) in character.attributes" v-bind:key="attribute.name">
          <attribute :character="character" :attribute="attribute" :index="index"></attribute>
       </div>

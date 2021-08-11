@@ -12,4 +12,12 @@ export default class Perk {
    toggleDeleteMode(mode: boolean) {
       this.delete = mode;
    }
+
+   inc() {
+      if (this.count < this.max) this.count++;
+   }
+
+   dec() {
+      if (this.count > 0) this.count--;
+   }
 }

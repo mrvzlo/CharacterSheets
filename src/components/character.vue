@@ -55,6 +55,9 @@ import ThemeSwitch from '@/helpers/theme-switch';
 
 export default {
    name: 'character',
+   props: {
+      themeSwitch: ThemeSwitch,
+   },
    data() {
       return {
          character: Character,
@@ -64,7 +67,6 @@ export default {
          tab: 1,
          icons: ['id-card', 'running', 'clipboard-list', 'suitcase', 'hand-sparkles', 'cog'],
          saveService: SaveService,
-         themeSwitch: ThemeSwitch,
       };
    },
    methods: {
@@ -92,7 +94,6 @@ export default {
       this.headerMessage = new FixedMessage();
       this.saveService = new SaveService();
       this.loadAutosave();
-      this.themeSwitch = new ThemeSwitch();
       setTimeout(this.autoSave, this.character.settings.autoSavesIntervalMs);
    },
    mounted() {

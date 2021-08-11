@@ -22,7 +22,7 @@
    &:not(.light) {
       &,
       > * {
-         color: #fff;
+         color: var(--light);
       }
    }
 

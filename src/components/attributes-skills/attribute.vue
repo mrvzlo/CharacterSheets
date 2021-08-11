@@ -14,7 +14,7 @@
          </div>
          <div class="pt-3 pb-1 position-relative d-flex flex-column mt-n3 attribute" :style="'--oct-bg:rgb(' + attribute.color + ')'">
             <div></div>
-            <h1 class="m-0">{{ attribute.bonus > 0 ? '+' + attribute.bonus : attribute.bonus }}</h1>
+            <div class="m-0 h1">{{ attribute.bonus > 0 ? '+' + attribute.bonus : attribute.bonus }}</div>
             {{ attribute.name }}
             <octagon />
          </div>

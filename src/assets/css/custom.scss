@@ -3,6 +3,10 @@ body,
    background-color: var(--background);
 }
 
+html {
+   background-color: $primary;
+}
+
 .dropdown-menu {
    background-color: var(--input-bg);
 }
@@ -24,7 +28,7 @@ textarea,
    &,
    &:active,
    &:focus {
-      color: #fff;
+      color: var(--light);
    }
 }
 

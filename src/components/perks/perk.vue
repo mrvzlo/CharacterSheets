@@ -30,19 +30,21 @@
             </select>
          </div>
          <div class="px-2 py-1">Описание</div>
-         <textarea v-model="editModel.description" class="w-100 p-1 d-block" rows="2" :disabled="locked"></textarea>
+         <textarea v-model="editModel.description" class="w-100 py-1 px-2 d-block" rows="2" :disabled="locked"></textarea>
       </div>
-      <div class="card-footer d-flex p-0 py-1 align-items-center" v-if="editModel.cooldown !== cooldownType.Permanent">
-         <div class="py-0 ps-2">Заряды</div>
-         <button class="btn btn-sm text-white" type="button" v-on:click="editModel.inc()" v-if="locked">
-            <i class="fas fa-fw fa-plus-circle"></i>
-         </button>
-         <input v-model="editModel.count" class="plain w-50px text-center" type="number" :max="editModel.max" min="0" />
-         <div class="mx-1 lh-inherit">/</div>
-         <input v-model="editModel.max" class="plain w-50px text-center" type="number" min="0" :disabled="locked" />
-         <button class="btn btn-sm text-white" type="button" v-on:click="editModel.dec()" v-if="locked">
-            <i class="fas fa-fw fa-minus-circle"></i>
-         </button>
+      <div class="card-footer d-flex px-0 py-1 align-items-center" v-if="editModel.cooldown !== cooldownType.Permanent">
+         <div class="py-0 px-2 col-3">Заряды</div>
+         <div class="d-flex align-items-center col-6 justify-content-center">
+            <button class="btn btn-sm btn-outline" type="button" v-on:click="editModel.inc()" v-if="locked">
+               <i class="fas fa-fw fa-plus-circle"></i>
+            </button>
+            <input v-model="editModel.count" class="plain w-50px text-center" type="number" :max="editModel.max" min="0" />
+            <div class="mx-1 lh-inherit">/</div>
+            <input v-model="editModel.max" class="plain w-50px text-center" type="number" min="0" :disabled="locked" />
+            <button class="btn btn-sm btn-outline" type="button" v-on:click="editModel.dec()" v-if="locked">
+               <i class="fas fa-fw fa-minus-circle"></i>
+            </button>
+         </div>
       </div>
    </div>
 </template>
