@@ -5,6 +5,18 @@ import android.webkit.WebSettings;
 import com.getcapacitor.BridgeActivity;
 
 public class MainActivity extends BridgeActivity {
+    @Override
+    public void onStart() {
+        super.onStart();
+        syncDarkMode();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        syncDarkMode();
+    }
+
     void syncDarkMode() {
         int nightModeFlags = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
         WebSettings webSettings = this.bridge.getWebView().getSettings();
@@ -24,16 +36,5 @@ public class MainActivity extends BridgeActivity {
         }
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        syncDarkMode();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        syncDarkMode();
-    }
 }
 

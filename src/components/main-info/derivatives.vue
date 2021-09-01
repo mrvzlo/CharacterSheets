@@ -14,7 +14,7 @@
    </div>
    <br />
    <div class="d-inline-flex p-1">
-      <div class="hex me-2 op" style="--color: 120deg">
+      <div class="hex me-2" style="--color: 120deg">
          <input v-model="armor" class="plain w-100" type="number" :disabled="character.settings.locked" @change="setData" />
       </div>
       Класс брони

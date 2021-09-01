@@ -22,9 +22,6 @@ export default {
          themeSwitch: ThemeSwitch,
       };
    },
-   beforeCreate() {
-      document.body.classList.add('bg-primary');
-   },
    created() {
       this.themeSwitch = new ThemeSwitch();
    },
