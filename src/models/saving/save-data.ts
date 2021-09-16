@@ -7,29 +7,42 @@ export default class SaveData {
 
    constructor(id: number) {
       this.id = id;
-      this.getData()
-         .then((res: string) => {
-            const splitted = res.split('\n');
-            this.name = splitted[0];
-            this.datetime = new Date(splitted[1]);
-         })
-         .catch(() => {});
    }
 
-   getEncoded = async (): Promise<string> => {
-      const result = await this.getData();
-      const splitted = result.split('\n');
-      return !splitted ? '' : splitted[2];
-   };
+   async fillFields(): Promise<void> {
+      const result = await this.getSave();
+      if (!result) return;
+      const splitted = result.data.split('\n');
+      this.name = splitted[0];
+      this.datetime = new Date(splitted[1]);
+   }
 
-   private getData = async () => {
+   async getEncoded(): Promise<string> {
+      const result = await await this.getSave();
+      if (!result) return '';
+      const splitted = result.data.split('\n');
+      return !splitted ? '' : splitted[2];
+   }
+
+   private async getSave(): Promise<ReadFileResult | null> {
+      if (!(await this.check(this.fileName()))) {
+         return null;
+      }
       const result = await Filesystem.readFile({
          path: this.fileName(),
          directory: Directory.Data,
          encoding: Encoding.UTF8,
       });
-      return result.data;
-   };
+      return result;
+   }
+
+   private async check(name: string): Promise<boolean> {
+      const dir = await Filesystem.readdir({
+         path: '',
+         directory: Directory.Data,
+      });
+      return dir.files.filter((x) => x === name).length > 0;
+   }
 
    setData(value: string, name: string) {
       this.name = name;
@@ -37,21 +50,21 @@ export default class SaveData {
       this.save(value);
    }
 
-   private save = async (value: string) => {
+   private async save(value: string) {
       await Filesystem.writeFile({
          path: this.fileName(),
          data: `${this.name}\n${this.datetime}\n${value}`,
          directory: Directory.Data,
          encoding: Encoding.UTF8,
       });
-   };
+   }
 
-   delete = async () => {
+   async delete() {
       await Filesystem.deleteFile({
          path: this.fileName(),
          directory: Directory.Data,
       });
-   };
+   }
 
    fileName() {
       return `SaveSlot${this.id}.txt`;

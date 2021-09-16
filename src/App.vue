@@ -4,21 +4,27 @@
 
 <template>
    <div class="d-flex flex-column vh-100 position-relative">
-      <character :themeSwitch="themeSwitch" />
+      <div class="flex-grow-1">
+         <loading :themeSwitch="themeSwitch" />
+      </div>
+      <div class="text-center py-2 bg-primary text-white">
+         <span class="small">Чарники {{ version }} by AndrejevVE</span>
+      </div>
    </div>
 </template>
 
 <script>
-import CharacterComponent from './components/character.vue';
+import LoadingComponent from './components/loading.vue';
 import ThemeSwitch from './helpers/theme-switch';
 
 export default {
    name: 'App',
    components: {
-      character: CharacterComponent,
+      loading: LoadingComponent,
    },
    data() {
       return {
+         version: 'v1.4.0',
          themeSwitch: ThemeSwitch,
       };
    },

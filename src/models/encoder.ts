@@ -1,5 +1,5 @@
-import LZUTF8 from "lzutf8/build/production/lzutf8";
-import Character from "./character";
+import LZUTF8 from 'lzutf8/build/production/lzutf8';
+import Character from './character';
 
 export default class Encoder {
    dict: string[];
@@ -14,12 +14,12 @@ export default class Encoder {
       this.dict.push(',"inventory":[');
       this.dict.push('{"name":');
       this.dict.push(',"capacity":');
-      this.dict.push("health");
+      this.dict.push('health');
    }
 
    compress(src: any): string {
       let json = JSON.stringify(src);
-      if (!json) return "";
+      if (!json) return '';
 
       this.dict.forEach((value, index) => {
          json = json.split(value).join(String.fromCharCode(index + 1));
@@ -34,13 +34,6 @@ export default class Encoder {
       return JSON.parse(src);
    }
 
-   encode64(src: any): string {
-      const string = this.compress(src);
-      const binary = LZUTF8.encodeUTF8(string);
-      const encoded = LZUTF8.encodeBase64(binary);
-      return encoded;
-   }
-
    encode256(src: any): string {
       const string = this.compress(src);
       const binary = LZUTF8.encodeUTF8(string);
@@ -48,23 +41,16 @@ export default class Encoder {
       return encoded;
    }
 
-   decode64(src: string) {
-      const binary = LZUTF8.decodeBase64(src);
-      const string: any = LZUTF8.decodeUTF8(binary);
-      const data = this.decompress(string);
-      return this.parse(data, new Character());
-   }
-
-   decode256(src: string) {
+   decode256(src: string, saveSlot: number) {
       const binary = LZUTF8.decodeStorageBinaryString(src);
       const string: any = LZUTF8.decodeUTF8(binary);
       const data = this.decompress(string);
-      const parsed = this.parse(data, new Character());
+      const parsed = this.parse(data, new Character(saveSlot));
       return parsed;
    }
 
    parse(data: any, object: any): any {
-      if (typeof data !== "object" || data === null) {
+      if (typeof data !== 'object' || data === null) {
          return data;
       }
 
@@ -73,7 +59,7 @@ export default class Encoder {
       }
 
       Object.keys(data).forEach((key) => {
-         if (key == "ctor") return;
+         if (key == 'ctor') return;
          object[key] = this.parse(data[key], object[key]);
       });
       return object;

@@ -1,5 +1,5 @@
-import { ClassType } from "../data-layer/classes/class-type";
-import ClassData from "../data-layer/classes/class-data";
+import { ClassType } from '../data-layer/classes/class-type';
+import ClassData from '../data-layer/classes/class-data';
 
 export default class CharacterClass {
    type: ClassType;
@@ -9,7 +9,7 @@ export default class CharacterClass {
    }
 
    get name(): string {
-      return this.all.find((x) => x.id == this.type)?.name ?? "";
+      return this.all.find((x) => x.id == this.type)?.name ?? 'Выбрать';
    }
 
    get bone(): number {
@@ -17,6 +17,6 @@ export default class CharacterClass {
    }
 
    get all(): ClassData[] {
-      return require("../data-layer/classes/classes.json");
+      return require('../data-layer/classes/classes.json');
    }
 }

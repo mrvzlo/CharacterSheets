@@ -36,8 +36,11 @@ export default class Character {
    perks = new DynamicArray<Perk>(Perk);
    class = new CharacterClass();
    settings = new Settings();
+   saveSlot: number;
 
-   constructor() {
+   constructor(saveSlot: number) {
+      this.saveSlot = saveSlot;
+
       for (let i = 0; i < 6; i++) {
          this.attributes.push(new Attribute(i));
       }

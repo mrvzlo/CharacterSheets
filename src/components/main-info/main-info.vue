@@ -101,7 +101,6 @@ import DerivativesComponent from './derivatives.vue';
 import HealthComponent from './health.vue';
 import HealthBonesComponent from './health-bones.vue';
 import RestComponent from './rest.vue';
-import FixedMessageModel from '@/models/fixed-message';
 import OctagonComponent from '@/components/helpers/octagon.vue';
 import CountableListComponent from './countable-list.vue';
 
@@ -109,7 +108,6 @@ export default {
    name: 'top-info',
    props: {
       character: Character,
-      headerMessage: FixedMessageModel,
    },
    data() {
       return {
