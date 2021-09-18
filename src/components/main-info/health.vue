@@ -36,8 +36,8 @@ export default {
             this.editModel.health = this.editModel.healthMax;
          }
          Object.assign(this.character, { health: this.editModel.health });
-         Object.assign(this.character, { healthBonus: this.editModel.healthBonus });
-         Object.assign(this.character, { healthMax: this.editModel.healthMax });
+         Object.assign(this.character, { healthBonus: +this.editModel.healthBonus });
+         Object.assign(this.character, { healthMax: +this.editModel.healthMax });
       },
       getData() {
          this.editModel = this.character;

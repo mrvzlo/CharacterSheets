@@ -27,9 +27,6 @@ export default class SaveService {
    }
 
    makeSave(character: Character) {
-      if (character.name.length === 0) {
-         character.name = 'Неизвестный';
-      }
       const encoded = this.encoder.encode256(character);
       new SaveData(character.saveSlot).setData(encoded, character.name);
    }

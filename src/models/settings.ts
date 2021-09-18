@@ -1,4 +1,4 @@
 export default class Settings {
    locked = false;
-   autoSavesIntervalMs = 1000 * 30;
+   autoSavesIntervalMs = 1000 * 10;
 }

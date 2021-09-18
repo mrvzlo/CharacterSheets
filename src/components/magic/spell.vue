@@ -69,6 +69,7 @@ export default {
          handler() {
             this.setData();
          },
+         deep: true,
       },
    },
    components: {},

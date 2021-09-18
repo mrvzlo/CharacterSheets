@@ -74,8 +74,8 @@ export default {
       setData() {
          Object.assign(this.item, { name: this.editModel.name });
          Object.assign(this.item, { description: this.editModel.description });
-         Object.assign(this.item, { count: this.editModel.count });
-         Object.assign(this.item, { max: this.editModel.max });
+         Object.assign(this.item, { count: +this.editModel.count });
+         Object.assign(this.item, { max: +this.editModel.max });
          Object.assign(this.item, { delete: this.editModel.delete });
          Object.assign(this.item, { expand: this.editModel.expand });
       },
@@ -99,6 +99,7 @@ export default {
          handler() {
             this.setData();
          },
+         deep: true,
       },
    },
    computed: {

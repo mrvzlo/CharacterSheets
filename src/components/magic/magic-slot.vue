@@ -6,9 +6,9 @@
             <span class="px-1">{{ name }}</span>
          </div>
          <div class="d-flex align-items-center" v-if="index > 0 && index <= 9">
-            <input type="number" v-model="editModel.uses" @change="setData" class="plain w-50px text-white text-center" min="0" />
+            <input type="number" v-model="editModel.uses" class="plain w-50px text-white text-center" min="0" />
             <span class="">/</span>
-            <input type="number" v-model="editModel.limit" @change="setData" class="plain w-50px text-white text-center" min="0" />
+            <input type="number" v-model="editModel.limit" class="plain w-50px text-white text-center" min="0" />
          </div>
       </div>
       <div class="card-body p-1" v-if="editModel.expand">
@@ -48,9 +48,9 @@ export default {
          this.editModel = this.magicSlot;
       },
       setData() {
-         Object.assign(this.magicSlot, { uses: this.uses });
-         Object.assign(this.magicSlot, { limit: this.limit });
-         Object.assign(this.magicSlot, { delete: this.delete });
+         Object.assign(this.magicSlot, { uses: +this.editModel.uses });
+         Object.assign(this.magicSlot, { limit: +this.editModel.limit });
+         Object.assign(this.magicSlot, { delete: this.editModel.delete });
       },
       addItem() {
          this.magicSlot.addItem();
@@ -72,6 +72,7 @@ export default {
          handler() {
             this.setData();
          },
+         deep: true,
       },
    },
    components: { spell: SpellComponent },

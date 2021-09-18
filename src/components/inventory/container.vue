@@ -53,7 +53,7 @@ export default {
       },
       setData() {
          Object.assign(this.container, { name: this.editModel.name });
-         Object.assign(this.container, { capacity: this.editModel.capacity });
+         Object.assign(this.container, { capacity: +this.editModel.capacity });
          Object.assign(this.container, { expand: this.editModel.expand });
          Object.assign(this.container, { delete: this.editModel.delete });
       },
@@ -77,6 +77,7 @@ export default {
          handler() {
             this.setData();
          },
+         deep: true,
       },
    },
    components: { item: ItemComponent },

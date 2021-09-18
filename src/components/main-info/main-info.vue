@@ -9,7 +9,7 @@
          <div v-on:click="showClasses = !showClasses">
             {{ editModel.class.name }}
          </div>
-         <ul :class="'dropdown-menu ' + (showClasses ? 'show' : '')">
+         <ul :class="'dropdown-menu ' + (showClasses ? 'show' : '')" v-if="!locked">
             <a class="dropdown-item" v-for="classType in classOptions()" v-bind:key="classType" v-on:click="setClass(classType.id)">
                {{ classType.name }}
             </a>
@@ -28,7 +28,7 @@
          <div v-on:click="showSizes = !showSizes">
             {{ sizes[editModel.size] }}
          </div>
-         <ul :class="'dropdown-menu ' + (showSizes ? 'show' : '')">
+         <ul :class="'dropdown-menu ' + (showSizes ? 'show' : '')" v-if="!locked">
             <a class="dropdown-item" v-for="(sizeType, index) in sizes" v-bind:key="sizeType" v-on:click="setSize(index)">
                {{ sizeType }}
             </a>
@@ -39,7 +39,7 @@
          <div v-on:click="showAlignments = !showAlignments">
             {{ alignments[editModel.alignment] }}
          </div>
-         <ul :class="'dropdown-menu ' + (showAlignments ? 'show' : '')">
+         <ul :class="'dropdown-menu ' + (showAlignments ? 'show' : '')" v-if="!locked">
             <a class="dropdown-item" v-for="(alignment, index) in alignments" v-bind:key="alignment" v-on:click="setAlignment(index)">
                {{ alignment }}
             </a>
@@ -173,6 +173,7 @@ export default {
          handler() {
             this.setData();
          },
+         deep: true,
       },
    },
    components: {

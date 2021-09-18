@@ -2,11 +2,13 @@ import { Filesystem, Directory, Encoding, ReadFileResult } from '@capacitor/file
 
 export default class SaveData {
    id: number;
+   empty: boolean;
    name: string = '';
    datetime: Date = new Date();
 
    constructor(id: number) {
       this.id = id;
+      this.empty = true;
    }
 
    async fillFields(): Promise<void> {
@@ -15,6 +17,7 @@ export default class SaveData {
       const splitted = result.data.split('\n');
       this.name = splitted[0];
       this.datetime = new Date(splitted[1]);
+      this.empty = false;
    }
 
    async getEncoded(): Promise<string> {
@@ -64,6 +67,7 @@ export default class SaveData {
          path: this.fileName(),
          directory: Directory.Data,
       });
+      this.empty = true;
    }
 
    fileName() {

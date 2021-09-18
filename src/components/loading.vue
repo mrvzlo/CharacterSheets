@@ -1,13 +1,18 @@
 <template>
    <template v-if="showStart">
-      <div class="bg-primary p-2 h-50px mb-5">
+      <div class="bg-primary p-2 h-50px mb-5 text-white">
          <div class="h4 fw-bold text-center my-1">Выберите персонажа</div>
       </div>
 
-      <div v-for="(x, index) in list" :key="index" class="my-3 d-flex rounded-row mx-5">
-         <div class="border bg-primary text-light px-2 py-1">{{ index + 1 }}</div>
-         <div :class="'border py-1 px-2 flex-grow-1 border-start-0 ' + (index == selected ? 'bg-primary text-white' : '')" v-on:click="select(index)">
-            {{ savedName(index) }} <span class="float-end text-secondary">{{ savedDate(index) }}</span>
+      <div class="container">
+         <div v-for="(x, index) in list" :key="index" class="my-3 d-flex rounded-row">
+            <div class="border bg-primary text-light px-2 py-1">{{ index + 1 }}</div>
+            <div
+               :class="'border py-1 px-2 flex-grow-1 border-start-0 ' + (index == selected ? 'bg-primary text-white' : '')"
+               v-on:click="select(index)"
+            >
+               {{ savedName(index) }} <span class="float-end text-secondary">{{ savedDate(index) }}</span>
+            </div>
          </div>
       </div>
 
@@ -70,12 +75,18 @@ export default {
 
       load() {
          if (!this.hasSave(this.selected)) {
-            return this.show(new Character(this.selected));
+            this.show(new Character(this.selected));
+            this.saveService.makeSave(this.character);
+            return;
          }
+
          this.saveService.getSaveData(this.selected).then((data) => {
             const result = this.saveService.importCharacter(data, this.selected);
-            if (result.status) return this.show(result.character);
-            this.headerMessage.showHeader('Ошибка загрузки');
+            if (!result.status) {
+               this.headerMessage.showHeader('Ошибка загрузки');
+               return;
+            }
+            this.show(result.character);
          });
       },
 
@@ -94,7 +105,7 @@ export default {
       savedName(id) {
          if (!this.hasSave(id)) return 'Пустой слот';
          const textLimit = 15;
-         const name = this.list[id].name;
+         const name = this.list[id].name.length ? this.list[id].name : 'Неизвестный';
          return name.length > textLimit ? name.substring(0, textLimit) + '...' : name;
       },
 
@@ -114,15 +125,15 @@ export default {
       },
 
       hasSave(id) {
-         return this.list[id]?.name ?? false;
+         return !this.list[id]?.empty ?? false;
       },
 
       formatTwoDigits(number) {
          return number > 9 ? number : '0' + number;
       },
 
-      makeSave() {
-         this.saveService.makeSave(this.character);
+      makeSave(character) {
+         this.saveService.makeSave(character);
          this.reloadList();
       },
 

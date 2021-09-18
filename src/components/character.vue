@@ -32,10 +32,6 @@
       <i class="fas fa-2x fa-lock mx-2" v-if="character.settings.locked"></i>
       <i class="fas fa-2x fa-unlock mx-2" v-else></i>
    </div>
-
-   <fixed-message :model="footerMessage" :msgClass="'bottom-0 start-0 op-08 m-1'">
-      <i class="fas fa-save fa-fw fa-2x mx-2"></i>
-   </fixed-message>
 </template>
 
 <script>
@@ -59,7 +55,6 @@ export default {
    },
    data() {
       return {
-         footerMessage: FixedMessage,
          tab: 1,
          icons: ['id-card', 'running', 'clipboard-list', 'suitcase', 'hand-sparkles', 'cog'],
       };
@@ -68,7 +63,6 @@ export default {
       autoSave() {
          if (this.$parent.showStart) return;
          this.$parent.makeSave(this.character);
-         this.footerMessage.showHeader();
          setTimeout(this.autoSave, this.character.settings.autoSavesIntervalMs);
       },
       toStart() {
@@ -76,7 +70,6 @@ export default {
       },
    },
    created() {
-      this.footerMessage = new FixedMessage();
       setTimeout(this.autoSave, this.character.settings.autoSavesIntervalMs);
    },
    mounted() {
