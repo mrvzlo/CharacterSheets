@@ -48,8 +48,8 @@ export default {
       },
       setData() {
          Object.assign(this.item, { name: this.editModel.name });
-         Object.assign(this.item, { count: +this.editModel.count });
-         Object.assign(this.item, { max: +this.editModel.max });
+         Object.assign(this.item, { count: this.editModel.count });
+         Object.assign(this.item, { max: this.editModel.max });
          Object.assign(this.item, { delete: this.editModel.delete });
       },
       toggleDelete() {

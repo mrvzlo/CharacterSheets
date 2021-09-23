@@ -1,6 +1,6 @@
 <template>
    <template v-if="showStart">
-      <div class="bg-primary p-2 h-50px mb-5 text-white">
+      <div class="bg-primary p-2 h-50px text-white">
          <div class="h4 fw-bold text-center my-1">Выберите персонажа</div>
       </div>
 
@@ -16,13 +16,20 @@
          </div>
       </div>
 
-      <div class="text-center">
-         <button type="button" class="btn btn-success fw mx-2" data-bs-dismiss="modal" v-on:click="load" v-if="selected !== appConfig.unselected">
+      <div class="text-center" v-if="selected !== appConfig.unselected">
+         <button type="button" class="btn btn-success fw mx-2" data-bs-dismiss="modal" v-on:click="load">
             Загрузить
          </button>
-         <button type="button" class="btn btn-danger fw mx-2" v-on:click="deleteSave" v-if="hasSave(selected)">
+         <button type="button" class="btn btn-danger fw mx-2" data-bs-toggle="modal" data-bs-target=".confirmationModal" v-if="hasSave(selected)">
             Удалить
          </button>
+      </div>
+
+      <div class="mb-1">&nbsp;</div>
+      <div class="position-absolute bottom-0 start-0 p-1" v-on:click="toggleTheme">
+         <div class="btn btn-primary">
+            <i class="fas fa-fw fa-palette"></i>
+         </div>
       </div>
    </template>
 
@@ -39,6 +46,12 @@
          </div>
       </div>
    </fixed-message>
+
+   <deleteConfirmation class="confirmationModal">
+      <button type="button" class="btn btn-danger fw mx-2" v-on:click="deleteSave" data-bs-dismiss="modal">
+         <i class="fas fa-trash"></i>
+      </button>
+   </deleteConfirmation>
 </template>
 
 <script>
@@ -50,6 +63,7 @@ import Character from '@/models/character';
 import SaveData from '@/models/saving/save-data';
 import FixedMessageComponent from './fixed-message.vue';
 import CharacterComponent from './character.vue';
+import deleteConfirmationComponent from './delete-confirmation.vue';
 
 export default {
    name: 'loading',
@@ -69,6 +83,10 @@ export default {
       themeSwitch: ThemeSwitch,
    },
    methods: {
+      toggleTheme() {
+         this.themeSwitch.toggleTheme();
+      },
+
       select(num) {
          this.selected = this.selected == num ? this.appConfig.unselected : num;
       },
@@ -151,6 +169,7 @@ export default {
    components: {
       fixedMessage: FixedMessageComponent,
       character: CharacterComponent,
+      deleteConfirmation: deleteConfirmationComponent,
    },
 };
 </script>

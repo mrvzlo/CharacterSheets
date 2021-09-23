@@ -10,7 +10,7 @@ export default class SaveService {
 
    async getAll(): Promise<SaveData[]> {
       const list = [];
-      for (let i = 0; i <= this.config.saveSlots; i++) {
+      for (let i = 0; i < this.config.saveSlots; i++) {
          list.push(new SaveData(i));
          await list[i].fillFields();
       }

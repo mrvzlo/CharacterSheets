@@ -48,8 +48,8 @@ export default {
          this.editModel = this.magicSlot;
       },
       setData() {
-         Object.assign(this.magicSlot, { uses: +this.editModel.uses });
-         Object.assign(this.magicSlot, { limit: +this.editModel.limit });
+         Object.assign(this.magicSlot, { uses: this.editModel.uses });
+         Object.assign(this.magicSlot, { limit: this.editModel.limit });
          Object.assign(this.magicSlot, { delete: this.editModel.delete });
       },
       addItem() {

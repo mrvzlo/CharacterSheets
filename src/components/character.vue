@@ -28,16 +28,15 @@
 
       <settings :character="character" :themeSwitch="themeSwitch" v-if="tab == 6" />
    </div>
-   <div class="position-fixed end-0 bottom-0 op-08 m-1" v-if="tab < 4 || tab == 5">
-      <i class="fas fa-2x fa-lock mx-2" v-if="character.settings.locked"></i>
-      <i class="fas fa-2x fa-unlock mx-2" v-else></i>
+   <div class="position-sticky text-end bottom-0 op-08 pb-1 px-2 mt-n4" v-if="tab < 6">
+      <i class="fas fa-2x fa-lock" v-if="character.settings.locked"></i>
+      <i class="fas fa-2x fa-unlock" v-else></i>
    </div>
 </template>
 
 <script>
 import Character from '../models/character';
-import FixedMessage from '../models/fixed-message';
-import SettingsComponent from './menu/settings.vue';
+import SettingsComponent from './settings/settings.vue';
 import FixedMessageComponent from './fixed-message.vue';
 import InventoryComponent from './inventory/inventory.vue';
 import PerksListComponent from './perks/perks-list.vue';
@@ -66,6 +65,7 @@ export default {
          setTimeout(this.autoSave, this.character.settings.autoSavesIntervalMs);
       },
       toStart() {
+         this.$parent.makeSave(this.character);
          this.$parent.showStart = true;
       },
    },

@@ -1,4 +1,4 @@
 export default class AppConfig {
-   saveSlots = 5;
+   saveSlots = 9;
    unselected = -1;
 }

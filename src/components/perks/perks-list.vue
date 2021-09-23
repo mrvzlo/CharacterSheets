@@ -1,9 +1,10 @@
 <template>
-   <div class="text-center h4 my-3 fw-bold">Способности</div>
+   <div class="text-center h4 my-3 fw-bold">Способности и черты</div>
    <div class="flex-grow-1">
       <div class="pb-2" v-for="item in character.perks" :key="item">
          <perk :item="item" :character="character" :deleteMode="deleteMode" />
       </div>
+      <proficiencies :character="character" />
    </div>
    <div v-if="!deleteMode && !locked" class="text-center">
       <button class="btn fw btn-success m-2" v-on:click="add">
@@ -30,6 +31,7 @@
 <script>
 import Character from '@/models/character';
 import PerkComponent from './perk.vue';
+import ProficienciesComponent from './proficiencies.vue';
 
 export default {
    name: 'container',
@@ -60,6 +62,6 @@ export default {
          return this.character.settings.locked;
       },
    },
-   components: { perk: PerkComponent },
+   components: { perk: PerkComponent, proficiencies: ProficienciesComponent },
 };
 </script>

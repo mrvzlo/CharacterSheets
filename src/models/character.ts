@@ -8,9 +8,12 @@ import Countable from './countable';
 import Container from './inventory/container';
 import MagicSlot from './magic/magic-slot';
 import Perk from './perks/perk';
+import Proficiencies from './proficiencies/proficiencies';
 import Settings from './settings';
 
 export default class Character {
+   saveSlot: number;
+
    name = '';
    race = '';
    story = '';
@@ -36,7 +39,7 @@ export default class Character {
    perks = new DynamicArray<Perk>(Perk);
    class = new CharacterClass();
    settings = new Settings();
-   saveSlot: number;
+   proficiencies = new Proficiencies();
 
    constructor(saveSlot: number) {
       this.saveSlot = saveSlot;
