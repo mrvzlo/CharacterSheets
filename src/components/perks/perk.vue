@@ -72,12 +72,11 @@ export default {
          this.editModel = this.item;
       },
       setData() {
-         Object.assign(this.item, { name: this.editModel.name });
-         Object.assign(this.item, { description: this.editModel.description });
-         Object.assign(this.item, { count: this.editModel.count });
-         Object.assign(this.item, { max: this.editModel.max });
-         Object.assign(this.item, { delete: this.editModel.delete });
-         Object.assign(this.item, { expand: this.editModel.expand });
+         Object.keys(this.item).forEach((x) => {
+            let temp = {};
+            temp[x] = this.editModel[x];
+            Object.assign(this.item, temp);
+         });
       },
       toggleDelete() {
          this.editModel.delete = !this.editModel.delete;

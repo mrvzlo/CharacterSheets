@@ -43,11 +43,11 @@ export default {
          this.editModel = this.character.proficiencies;
       },
       setData() {
-         Object.assign(this.character.proficiencies, { armors: this.editModel.armors });
-         Object.assign(this.character.proficiencies, { weapons: this.editModel.weapons });
-         Object.assign(this.character.proficiencies, { tools: this.editModel.tools });
-         Object.assign(this.character.proficiencies, { languages: this.editModel.languages });
-         Object.assign(this.character.proficiencies, { expand: this.editModel.expand });
+         Object.keys(this.character.proficiencies).forEach((x) => {
+            let temp = {};
+            temp[x] = this.editModel[x];
+            Object.assign(this.character.proficiencies, temp);
+         });
       },
    },
    watch: {
