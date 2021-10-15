@@ -18,7 +18,7 @@
 
       <div class="text-center" v-if="selected !== appConfig.unselected">
          <button type="button" class="btn btn-success fw mx-2" data-bs-dismiss="modal" v-on:click="load">
-            Загрузить
+            {{ list[selected].empty ? 'Создать' : 'Загрузить' }}
          </button>
          <button type="button" class="btn btn-danger fw mx-2" data-bs-toggle="modal" data-bs-target=".confirmationModal" v-if="hasSave(selected)">
             Удалить

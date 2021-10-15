@@ -28,9 +28,11 @@
 
       <settings :character="character" :themeSwitch="themeSwitch" v-if="tab == 6" />
    </div>
-   <div class="position-sticky text-end bottom-0 op-08 pb-1 px-2 mt-n4" v-if="tab < 6">
-      <i class="fas fa-2x fa-lock" v-if="character.settings.locked"></i>
-      <i class="fas fa-2x fa-unlock" v-else></i>
+   <div class="position-sticky text-end bottom-0 op-08 px-2 h-0" v-if="tab < 6">
+      <div class="position-relative top-n42px d-inline">
+         <i class="fas fa-2x fa-lock" v-if="character.settings.locked"></i>
+         <i class="fas fa-2x fa-unlock" v-else></i>
+      </div>
    </div>
 </template>
 
