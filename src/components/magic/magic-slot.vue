@@ -1,7 +1,7 @@
 <template>
    <div class="card">
       <div class="card-header d-flex justify-content-between px-1 bg-primary text-white">
-         <div class="flex-grow-1 text-start" @click="editModel.expand = !editModel.expand">
+         <div class="flex-grow-1 text-start" @click="toggleExpand">
             <i class="fas fa-eye text-white px-2"></i>
             <span class="px-1">{{ name }}</span>
          </div>
@@ -58,6 +58,10 @@ export default {
       toggleDelete() {
          this.editModel.delete = !this.editModel.delete;
          this.magicSlot.toggleDeleteMode(true);
+      },
+      toggleExpand() {
+         if (!this.editModel.expand) this.$parent.hideAll();
+         this.editModel.expand = !this.editModel.expand;
       },
    },
    watch: {

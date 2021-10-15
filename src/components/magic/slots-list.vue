@@ -36,18 +36,19 @@
          </div>
       </div>
 
-      <div v-if="magicLimit > 0" class="row mx-0">
-         <div v-for="(magicSlot, index) in magicLimit" :key="index" class="col-12 col-md-6 mt-2 px-2">
-            <magic-slot
-               :magicSlot="character.magicSlots[index]"
-               :index="index"
-               :deleteMode="deleteMode"
-               :name="index == 0 ? 'Заговоры' : index + ' ячейка'"
-               :locked="character.settings.locked"
-            />
-         </div>
-      </div>
       <div class="row mx-0">
+         <template v-if="magicLimit > 0">
+            <div v-for="(_, index) in magicLimit" :key="index" class="col-12 col-md-6 mt-2 px-2">
+               <magic-slot
+                  :magicSlot="character.magicSlots[index]"
+                  :index="index"
+                  :deleteMode="deleteMode"
+                  :name="index == 0 ? 'Заговоры' : index + ' ячейка'"
+                  :locked="character.settings.locked"
+               />
+            </div>
+         </template>
+
          <div class="col-12 col-md-6 mt-2 px-2">
             <magic-slot
                :magicSlot="otherSpells()"
@@ -116,6 +117,9 @@ export default {
       },
       otherSpells() {
          return this.character.magicSlots[this.character.magicSlots.length - 1];
+      },
+      hideAll() {
+         this.character.magicSlots.forEach((x) => (x.expand = false));
       },
    },
    watch: {

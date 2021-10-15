@@ -5,7 +5,7 @@ export default class MagicSlot {
    name = '';
    uses = 0;
    limit = 0;
-   expand = true;
+   expand = false;
    spells = new DynamicArray<Spell>(Spell);
 
    reset() {
