@@ -1,3 +1,8 @@
+html,
+body {
+   overflow: hidden;
+}
+
 body,
 .modal-content {
    background-color: var(--background);
@@ -138,5 +143,18 @@ hr {
    &:focus,
    &:active {
       box-shadow: none;
+   }
+}
+
+.deck {
+   height: calc(100vh - 90px);
+   width: 600vw;
+   transition: 0.3s ease-in-out;
+   transform: translateX(calc(-100vw * var(--pos)));
+
+   & > * {
+      width: 100vw;
+      height: calc(100vh - 90px);
+      overflow-y: auto;
    }
 }

@@ -6,29 +6,16 @@
    </div>
 
    <div class="col-12 col-lg-9 col-xl-7 px-0 mx-auto flex-grow-1">
-      <div class="d-flex flex-column h-100" v-if="tab == 1">
+      <div class="deck d-flex" :style="{ '--pos': tab - 1 }">
          <main-info :character="character" />
-      </div>
-
-      <div class="row justify-content-center mx-0" v-if="tab == 2">
          <attributes-list :character="character" />
-      </div>
-
-      <div class="d-flex flex-column h-100" v-if="tab == 3">
          <perks-list :character="character" />
-      </div>
-
-      <div class="d-flex flex-column h-100" v-if="tab == 4">
          <inventory :character="character" />
-      </div>
-
-      <div class="d-flex flex-column h-100" v-if="tab == 5">
          <slots-list :character="character" />
+         <settings :character="character" :themeSwitch="themeSwitch" />
       </div>
-
-      <settings :character="character" :themeSwitch="themeSwitch" v-if="tab == 6" />
    </div>
-   <div class="position-sticky text-end bottom-0 op-08 px-2 h-0" v-if="tab < 6">
+   <div class="position-sticky text-end bottom-0 op-08 px-2 h-0">
       <div class="position-relative top-n42px d-inline">
          <i class="fas fa-2x fa-lock" v-if="character.settings.locked"></i>
          <i class="fas fa-2x fa-unlock" v-else></i>
@@ -38,6 +25,7 @@
 
 <script>
 import Character from '../models/character';
+import GestureTracker from '../helpers/gesture-tracker';
 import SettingsComponent from './settings/settings.vue';
 import FixedMessageComponent from './fixed-message.vue';
 import InventoryComponent from './inventory/inventory.vue';
@@ -73,6 +61,9 @@ export default {
    },
    created() {
       setTimeout(this.autoSave, this.character.settings.autoSavesIntervalMs);
+      const tracker = new GestureTracker();
+      tracker.track(document.body, 'Left', () => (this.tab < 6 ? this.tab++ : null));
+      tracker.track(document.body, 'Right', () => (this.tab > 1 ? this.tab-- : null));
    },
    mounted() {
       new BootstrapHelper().initTooltips();
