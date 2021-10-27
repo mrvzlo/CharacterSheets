@@ -5,7 +5,7 @@
 <template>
    <div class="d-flex flex-column vh-100 position-relative">
       <div class="flex-grow-1 position-relative d-flex flex-column">
-         <loading :themeSwitch="themeSwitch" :localeSwitch="localeSwitch" />
+         <loading :themeStorage="themeStorage" :localeStorage="localeStorage" />
       </div>
       <div class="text-center py-2 bg-primary text-white">
          <span class="small">{{ $t('title') }} {{ version }} by AndrejevVE</span>
@@ -15,8 +15,8 @@
 
 <script>
 import LoadingComponent from './components/loading.vue';
-import ThemeSwitch from './helpers/theme-switch';
-import LocaleSwitch from './helpers/locale-switch';
+import ThemeStorage from '@/data-layer/local-storage/theme-storage';
+import LocaleStorage from '@/data-layer/local-storage/locale-storage';
 
 export default {
    name: 'App',
@@ -26,13 +26,13 @@ export default {
    data() {
       return {
          version: 'v1.4.2',
-         themeSwitch: ThemeSwitch,
-         localeSwitch: LocaleSwitch,
+         themeStorage: ThemeStorage,
+         localeStorage: LocaleStorage,
       };
    },
    created() {
-      this.themeSwitch = new ThemeSwitch();
-      this.localeSwitch = new LocaleSwitch(this.$i18n);
+      this.themeStorage = new ThemeStorage();
+      this.localeStorage = new LocaleStorage(this.$i18n);
    },
 };
 </script>

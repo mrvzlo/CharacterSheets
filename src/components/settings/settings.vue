@@ -8,8 +8,8 @@
             :text="character.settings.locked ? $t('lock') : $t('unlock')"
          />
       </div>
-      <settings-button v-on:click="toggleTheme" :icon="'fas fa-palette'" :text="themeSwitch.isDark ? $t('light_theme') : $t('dark_theme')" />
-      <settings-button v-on:click="toggleLocale" :icon="'fas fa-language'" :text="localeSwitch.nextLocaleNativeName()" />
+      <settings-button v-on:click="toggleTheme" :icon="'fas fa-palette'" :text="themeStorage.isDark ? $t('light_theme') : $t('dark_theme')" />
+      <settings-button v-on:click="toggleLocale" :icon="'fas fa-language'" :text="localeStorage.nextLocaleNativeName()" />
       <settings-button v-on:click="toStart" :icon="'fas fa-sync'" :text="$t('change_character')" />
       <a href="https://t.me/andrejevve" target="_blank">
          <settings-button :icon="'fab fa-telegram-plane'" :text="$t('contact_author')" />
@@ -19,16 +19,16 @@
 
 <script>
 import Character from '@/models/character';
-import LocaleSwitch from '@/helpers/locale-switch';
-import ThemeSwitch from '@/helpers/theme-switch';
+import LocaleStorage from '@/data-layer/local-storage/locale-storage';
+import ThemeStorage from '@/data-layer/local-storage/theme-storage';
 import SettingsButtonComponent from './settings-button.vue';
 
 export default {
    name: 'settings',
    props: {
       character: Character,
-      themeSwitch: ThemeSwitch,
-      localeSwitch: LocaleSwitch,
+      themeStorage: ThemeStorage,
+      localeStorage: LocaleStorage,
    },
    methods: {
       lock: function() {
@@ -38,10 +38,10 @@ export default {
          return this.$parent.importCharacter(a, b);
       },
       toggleTheme() {
-         this.themeSwitch.toggleTheme();
+         this.themeStorage.toggleTheme();
       },
       toggleLocale() {
-         this.localeSwitch.toggleLocale();
+         this.localeStorage.toggleLocale();
       },
       toStart() {
          this.$parent.toStart();

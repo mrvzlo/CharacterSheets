@@ -1,4 +1,4 @@
-import AppConfig from '@/app-config';
+import { AppConfig } from '@/app-config';
 import Character from '../character';
 import Encoder from '../encoder';
 import SaveData from './save-data';
@@ -6,11 +6,10 @@ import SaveResponse from './save-response';
 
 export default class SaveService {
    encoder = new Encoder();
-   config = new AppConfig();
 
    async getAll(): Promise<SaveData[]> {
       const list = [];
-      for (let i = 0; i < this.config.saveSlots; i++) {
+      for (let i = 0; i < AppConfig.saveSlots; i++) {
          list.push(new SaveData(i));
          await list[i].fillFields();
       }

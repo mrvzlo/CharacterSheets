@@ -1,4 +1,6 @@
-export default class AppConfig {
-   saveSlots = 9;
-   unselected = -1;
-}
+const AppConfig = {
+   saveSlots: 9,
+   unselected: -1,
+};
+
+export { AppConfig };

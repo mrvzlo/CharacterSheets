@@ -12,7 +12,7 @@
          <perks-list :character="character" />
          <inventory :character="character" />
          <slots-list :character="character" />
-         <settings :character="character" :themeSwitch="themeSwitch" :localeSwitch="localeSwitch" />
+         <settings :character="character" :themeStorage="themeStorage" :localeStorage="localeStorage" />
       </div>
    </div>
    <div class="position-sticky text-end bottom-0 op-08 px-2 h-0">
@@ -25,7 +25,7 @@
 
 <script>
 import Character from '../models/character';
-import LocaleSwitch from '@/helpers/locale-switch';
+import LocaleStorage from '@/data-layer/local-storage/locale-storage';
 import GestureTracker from '../helpers/gesture-tracker';
 import SettingsComponent from './settings/settings.vue';
 import FixedMessageComponent from './fixed-message.vue';
@@ -35,14 +35,14 @@ import AttributesListComponent from './attributes-skills/attributes-list.vue';
 import MainInfoComponent from './main-info/main-info';
 import SlotsListComponent from './magic/slots-list.vue';
 import BootstrapHelper from '@/helpers/bootstrap-helper';
-import ThemeSwitch from '@/helpers/theme-switch';
+import ThemeStorage from '@/data-layer/local-storage/theme-storage';
 
 export default {
    name: 'character',
    props: {
-      themeSwitch: ThemeSwitch,
+      themeStorage: ThemeStorage,
       character: Character,
-      localeSwitch: LocaleSwitch,
+      localeStorage: LocaleStorage,
    },
    data() {
       return {
@@ -58,7 +58,7 @@ export default {
       },
       toStart() {
          this.$parent.makeSave(this.character);
-         this.$parent.showStart = true;
+         this.$parent.toStart();
       },
    },
    created() {

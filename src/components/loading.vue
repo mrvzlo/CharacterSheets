@@ -18,7 +18,7 @@
 
       <div class="text-center" v-if="selected !== appConfig.unselected">
          <button type="button" class="btn btn-success fw mx-2" data-bs-dismiss="modal" v-on:click="load">
-            {{ list[selected].empty ? $t('create') : $t('load') }}
+            {{ list[selected]?.empty ? $t('create') : $t('load') }}
          </button>
          <button type="button" class="btn btn-danger fw mx-2" data-bs-toggle="modal" data-bs-target=".confirmationModal" v-if="hasSave(selected)">
             {{ $t('delete') }}
@@ -34,11 +34,11 @@
       </div>
 
       <div class="position-absolute bottom-0 end-0 p-1" v-on:click="toggleLocale">
-         <div class="btn btn-primary text-uppercase">{{ localeSwitch.nextLocale() }}</div>
+         <div class="btn btn-primary text-uppercase">{{ localeStorage.nextLocale() }}</div>
       </div>
    </template>
 
-   <character :character="character" :themeSwitch="themeSwitch" :localeSwitch="localeSwitch" v-else />
+   <character :character="character" :themeStorage="themeStorage" :localeStorage="localeStorage" v-else />
 
    <fixed-message :model="headerMessage" :msgClass="'top-0 start-0 w-100'">
       <div class="text-white rounded bg-danger">
@@ -61,9 +61,10 @@
 
 <script>
 import SaveService from '@/models/saving/save-service';
-import AppConfig from '@/app-config';
-import ThemeSwitch from '@/helpers/theme-switch';
-import LocaleSwitch from '@/helpers/locale-switch';
+import { AppConfig } from '@/app-config';
+import ThemeStorage from '@/data-layer/local-storage/theme-storage';
+import LocaleStorage from '@/data-layer/local-storage/locale-storage';
+import CharacterStorage from '@/data-layer/local-storage/character-storage';
 import FixedMessage from '@/models/fixed-message';
 import Character from '@/models/character';
 import SaveData from '@/models/saving/save-data';
@@ -77,29 +78,30 @@ export default {
       return {
          importData: '',
          selected: Number,
-         appConfig: AppConfig,
          headerMessage: FixedMessage,
          character: Character,
          saveService: SaveService,
          list: [SaveData],
          showStart: true,
+         characterStorage: CharacterStorage,
+         appConfig: AppConfig,
       };
    },
    props: {
-      themeSwitch: ThemeSwitch,
-      localeSwitch: LocaleSwitch,
+      themeStorage: ThemeStorage,
+      localeStorage: LocaleStorage,
    },
    methods: {
       toggleTheme() {
-         this.themeSwitch.toggleTheme();
+         this.themeStorage.toggleTheme();
       },
 
       toggleLocale() {
-         this.localeSwitch.toggleLocale();
+         this.localeStorage.toggleLocale();
       },
 
       select(num) {
-         this.selected = this.selected == num ? this.appConfig.unselected : num;
+         this.selected = this.selected == num ? AppConfig.unselected : num;
       },
 
       load() {
@@ -115,19 +117,20 @@ export default {
                this.headerMessage.showHeader('Ошибка загрузки');
                return;
             }
+            this.characterStorage.saveChoice(this.selected);
             this.show(result.character);
          });
       },
 
       deleteSave: function() {
          this.saveService.deleteSave(this.selected);
-         this.selected = this.appConfig.unselected;
+         this.selected = AppConfig.unselected;
          this.reloadList();
       },
 
       show(character) {
          this.character = character;
-         this.selected = this.appConfig.unselected;
+         this.selected = AppConfig.unselected;
          this.showStart = false;
       },
 
@@ -146,7 +149,7 @@ export default {
             this.formatTwoDigits(formatted.getDate()) +
             '.' +
             this.formatTwoDigits(1 + formatted.getMonth()) +
-            ' ' +
+            '. ' +
             this.formatTwoDigits(formatted.getHours()) +
             ':' +
             this.formatTwoDigits(formatted.getMinutes())
@@ -169,12 +172,22 @@ export default {
       reloadList() {
          this.saveService.getAll().then((x) => (this.list = x));
       },
+
+      toStart() {
+         this.showStart = true;
+         this.characterStorage.saveChoice(AppConfig.unselected);
+      },
    },
    created() {
-      this.appConfig = new AppConfig();
+      this.appConfig = AppConfig;
       this.saveService = new SaveService();
       this.headerMessage = new FixedMessage();
-      this.selected = this.appConfig.unselected;
+      this.selected = AppConfig.unselected;
+      this.characterStorage = new CharacterStorage();
+      this.characterStorage.getChoice().then((x) => {
+         this.selected = x;
+         if (this.selected !== AppConfig.unselected) this.load();
+      });
       this.reloadList();
    },
    components: {

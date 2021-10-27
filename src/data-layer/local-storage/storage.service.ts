@@ -7,14 +7,14 @@ export default class StorageService {
       this.key = key;
    }
 
-   setTheme = async (theme: string) => {
+   setData = async (theme: string) => {
       await Storage.set({
          key: this.key,
          value: theme,
       });
    };
 
-   checkTheme = async (defaultValue: string): Promise<string> => {
+   getData = async (defaultValue: string): Promise<string> => {
       const { value } = await Storage.get({ key: this.key });
       return value ?? defaultValue;
    };

@@ -1,12 +1,12 @@
 import StorageService from './storage.service';
 
-export default class ThemeSwitch extends StorageService {
+export default class ThemeStorage extends StorageService {
    darkThemeClass = 'dark-mode';
    isDark = false;
 
    constructor() {
       super('theme');
-      this.checkTheme('').then((res) => {
+      this.getData('').then((res) => {
          this.isDark = res == this.darkThemeClass;
          this.applyTheme();
          document.body.style.backgroundColor = '';
@@ -22,7 +22,7 @@ export default class ThemeSwitch extends StorageService {
    applyTheme() {
       if (this.isDark) document.body.classList.add(this.darkThemeClass);
       else document.body.classList.remove(this.darkThemeClass);
-      this.setTheme(this.isDark ? this.darkThemeClass : '');
+      this.setData(this.isDark ? this.darkThemeClass : '');
    }
 
    addAnimation(): void {
