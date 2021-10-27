@@ -1,12 +1,12 @@
-import { Storage } from '@capacitor/storage';
+import StorageService from './storage.service';
 
-export default class ThemeSwitch {
-   key = 'theme';
+export default class ThemeSwitch extends StorageService {
    darkThemeClass = 'dark-mode';
    isDark = false;
 
    constructor() {
-      this.checkTheme().then((res) => {
+      super('theme');
+      this.checkTheme('').then((res) => {
          this.isDark = res == this.darkThemeClass;
          this.applyTheme();
          document.body.style.backgroundColor = '';
@@ -24,18 +24,6 @@ export default class ThemeSwitch {
       else document.body.classList.remove(this.darkThemeClass);
       this.setTheme(this.isDark ? this.darkThemeClass : '');
    }
-
-   setTheme = async (theme: string) => {
-      await Storage.set({
-         key: this.key,
-         value: theme,
-      });
-   };
-
-   checkTheme = async () => {
-      const { value } = await Storage.get({ key: this.key });
-      return value ?? '';
-   };
 
    addAnimation(): void {
       document.body.classList.add('theme-transition');

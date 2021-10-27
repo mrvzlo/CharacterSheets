@@ -8,7 +8,7 @@
    </div>
    <div class="d-flex my-2 mx-1 mt-0" v-if="!character.settings.locked">
       <div class="mx-1 btn btn-primary" @click="toggleExpand">
-         Счётчики
+         {{ $t('counters') }}
          <i :class="'fas px-1 fa-angle-' + (expand ? 'left' : 'right')"></i>
       </div>
       <template v-if="expand">

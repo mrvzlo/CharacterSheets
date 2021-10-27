@@ -1,6 +1,6 @@
 <template>
    <div class="my-2 w-100 p-1 bones position-relative">
-      <span class="px-1">Кость здоровья</span>
+      <span class="px-1"> {{ $t('character_hit_dice') }}</span>
       <span class="plain float-end fw-bold pe-2"> d{{ character.class.bone }} </span>
       <div class="d-flex justify-content-center border-top dorder-dark">
          <input v-model="bones" class="plain w-50px text-center" type="number" min="0" :max="character.level" @change="setData" />

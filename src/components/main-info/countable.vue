@@ -1,7 +1,7 @@
 <template>
    <div class="position-relative pt-1">
       <div class="d-flex mx-1 border-bottom">
-         <input v-model="editModel.name" class="border-0 plain text-center" placeholder="Название" :disabled="locked" />
+         <input v-model="editModel.name" class="border-0 plain text-center w-100" :placeholder="$t('counter_name')" :disabled="locked" />
       </div>
       <div class="d-flex justify-content-center align-items-center p-1" v-if="!deleteMode">
          <button class="btn p-0 btn-outline lh-0" type="button" v-on:click="editModel.inc()" v-if="locked">

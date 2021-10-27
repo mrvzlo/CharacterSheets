@@ -8,8 +8,12 @@ export default class CharacterClass {
       this.type = type;
    }
 
+   get chosen(): boolean {
+      return this.type !== ClassType.Unknown;
+   }
+
    get name(): string {
-      return this.all.find((x) => x.id == this.type)?.name ?? 'Выбрать';
+      return this.all.find((x) => x.id == this.type)?.name ?? '';
    }
 
    get bone(): number {

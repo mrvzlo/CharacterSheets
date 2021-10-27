@@ -1,7 +1,7 @@
 <template>
    <template v-if="showStart">
       <div class="bg-primary p-2 h-50px text-white">
-         <div class="h4 fw-bold text-center my-1">Выберите персонажа</div>
+         <div class="h4 fw-bold text-center my-1">{{ $t('character_pick') }}</div>
       </div>
 
       <div class="container">
@@ -18,22 +18,27 @@
 
       <div class="text-center" v-if="selected !== appConfig.unselected">
          <button type="button" class="btn btn-success fw mx-2" data-bs-dismiss="modal" v-on:click="load">
-            {{ list[selected].empty ? 'Создать' : 'Загрузить' }}
+            {{ list[selected].empty ? $t('create') : $t('load') }}
          </button>
          <button type="button" class="btn btn-danger fw mx-2" data-bs-toggle="modal" data-bs-target=".confirmationModal" v-if="hasSave(selected)">
-            Удалить
+            {{ $t('delete') }}
          </button>
       </div>
 
       <div class="mb-1">&nbsp;</div>
+
       <div class="position-absolute bottom-0 start-0 p-1" v-on:click="toggleTheme">
          <div class="btn btn-primary">
             <i class="fas fa-fw fa-palette"></i>
          </div>
       </div>
+
+      <div class="position-absolute bottom-0 end-0 p-1" v-on:click="toggleLocale">
+         <div class="btn btn-primary text-uppercase">{{ localeSwitch.nextLocale() }}</div>
+      </div>
    </template>
 
-   <character :character="character" :themeSwitch="themeSwitch" v-else />
+   <character :character="character" :themeSwitch="themeSwitch" :localeSwitch="localeSwitch" v-else />
 
    <fixed-message :model="headerMessage" :msgClass="'top-0 start-0 w-100'">
       <div class="text-white rounded bg-danger">
@@ -58,6 +63,7 @@
 import SaveService from '@/models/saving/save-service';
 import AppConfig from '@/app-config';
 import ThemeSwitch from '@/helpers/theme-switch';
+import LocaleSwitch from '@/helpers/locale-switch';
 import FixedMessage from '@/models/fixed-message';
 import Character from '@/models/character';
 import SaveData from '@/models/saving/save-data';
@@ -81,10 +87,15 @@ export default {
    },
    props: {
       themeSwitch: ThemeSwitch,
+      localeSwitch: LocaleSwitch,
    },
    methods: {
       toggleTheme() {
          this.themeSwitch.toggleTheme();
+      },
+
+      toggleLocale() {
+         this.localeSwitch.toggleLocale();
       },
 
       select(num) {
@@ -121,9 +132,9 @@ export default {
       },
 
       savedName(id) {
-         if (!this.hasSave(id)) return 'Пустой слот';
+         if (!this.hasSave(id)) return this.$t('character_empty');
          const textLimit = 15;
-         const name = this.list[id].name.length ? this.list[id].name : 'Неизвестный';
+         const name = this.list[id].name.length ? this.list[id].name : this.$t('character_unknown');
          return name.length > textLimit ? name.substring(0, textLimit) + '...' : name;
       },
 

@@ -9,11 +9,15 @@
             <input v-model="editModel.healthMax" class="plain w-100" type="number" min="0" :disabled="character.settings.locked" />
          </div>
       </div>
-      <div class="mb-1">Здоровье</div>
+      <div class="mb-1">
+         {{ $t('character_health') }}
+      </div>
       <div class="hex" style="--color: -10deg">
          <input v-model="editModel.healthBonus" class="plain w-100" type="number" min="0" />
       </div>
-      <div class="small">Бонус</div>
+      <div class="small">
+         {{ $t('character_health_bonus') }}
+      </div>
    </div>
 </template>
 

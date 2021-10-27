@@ -12,7 +12,7 @@
          <perks-list :character="character" />
          <inventory :character="character" />
          <slots-list :character="character" />
-         <settings :character="character" :themeSwitch="themeSwitch" />
+         <settings :character="character" :themeSwitch="themeSwitch" :localeSwitch="localeSwitch" />
       </div>
    </div>
    <div class="position-sticky text-end bottom-0 op-08 px-2 h-0">
@@ -25,6 +25,7 @@
 
 <script>
 import Character from '../models/character';
+import LocaleSwitch from '@/helpers/locale-switch';
 import GestureTracker from '../helpers/gesture-tracker';
 import SettingsComponent from './settings/settings.vue';
 import FixedMessageComponent from './fixed-message.vue';
@@ -41,6 +42,7 @@ export default {
    props: {
       themeSwitch: ThemeSwitch,
       character: Character,
+      localeSwitch: LocaleSwitch,
    },
    data() {
       return {
