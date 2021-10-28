@@ -32,14 +32,6 @@ export default class Attribute {
       this.checks.push(new Check(type));
    }
 
-   get name(): string {
-      return this.data?.short ?? '';
-   }
-
-   get longName(): string {
-      return this.data?.long ?? '';
-   }
-
    get color(): string {
       return this.data?.color ?? '';
    }

@@ -31,10 +31,6 @@ export default class Check {
       return '';
    }
 
-   get name(): string {
-      return this.data?.name ?? '';
-   }
-
    get type(): CheckType {
       return this.data?.type ?? 0;
    }

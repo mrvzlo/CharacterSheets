@@ -21,19 +21,19 @@
       </div>
       <div class="card-body p-0" v-if="editModel.expand">
          <div class="d-flex px-2 border-bottom">
-            <div class="py-1 w-50">Восстановление</div>
+            <div class="py-1 w-50">{{ $t('regain') }}</div>
             <select v-model="editModel.cooldown" class="plain w-50 p-1" :disabled="locked">
-               <option :value="cooldownType.Permanent" selected>Не требуется</option>
-               <option :value="cooldownType.Turn">В начале хода</option>
-               <option :value="cooldownType.ShortRest">За короткий отдых</option>
-               <option :value="cooldownType.LongRest">За длинный отдых</option>
+               <option :value="cooldownType.Permanent" selected>{{ $t('not_required') }}</option>
+               <option :value="cooldownType.Turn">{{ $t('each_turn') }}</option>
+               <option :value="cooldownType.ShortRest">{{ $t('after_short_rest') }}</option>
+               <option :value="cooldownType.LongRest">{{ $t('after_long_rest') }}</option>
             </select>
          </div>
-         <div class="px-2 py-1">Описание</div>
+         <div class="px-2 py-1">{{ $t('description') }}</div>
          <textarea v-model="editModel.description" class="w-100 py-1 px-2 d-block" rows="2" :disabled="locked"></textarea>
       </div>
       <div class="card-footer d-flex px-0 py-1 align-items-center" v-if="editModel.cooldown !== cooldownType.Permanent">
-         <div class="py-0 px-2 col-3">Заряды</div>
+         <div class="py-0 px-2 col-3">{{ $t('uses') }}</div>
          <div class="d-flex align-items-center col-6 justify-content-center">
             <button class="btn btn-sm btn-outline" type="button" v-on:click="editModel.inc()" v-if="locked">
                <i class="fas fa-fw fa-plus-circle"></i>

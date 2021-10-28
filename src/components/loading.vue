@@ -1,5 +1,5 @@
 <template>
-   <template v-if="showStart">
+   <template v-if="showStart && list.length === appConfig.saveSlots">
       <div class="bg-primary p-2 h-50px text-white">
          <div class="h4 fw-bold text-center my-1">{{ $t('character_pick') }}</div>
       </div>
@@ -38,7 +38,7 @@
       </div>
    </template>
 
-   <character :character="character" :themeStorage="themeStorage" :localeStorage="localeStorage" v-else />
+   <character :character="character" :themeStorage="themeStorage" :localeStorage="localeStorage" v-if="!showStart" />
 
    <fixed-message :model="headerMessage" :msgClass="'top-0 start-0 w-100'">
       <div class="text-white rounded bg-danger">
@@ -114,7 +114,7 @@ export default {
          this.saveService.getSaveData(this.selected).then((data) => {
             const result = this.saveService.importCharacter(data, this.selected);
             if (!result.status) {
-               this.headerMessage.showHeader('Ошибка загрузки');
+               this.headerMessage.showHeader(this.$t('error'));
                return;
             }
             this.characterStorage.saveChoice(this.selected);
@@ -161,7 +161,7 @@ export default {
       },
 
       formatTwoDigits(number) {
-         return number > 9 ? number : '0' + number;
+         return isNaN(number) ? '00' : number > 9 ? number : '0' + number;
       },
 
       makeSave(character) {

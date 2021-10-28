@@ -1,6 +1,6 @@
 <template>
    <div class="d-flex flex-column">
-      <div class="text-center h4 my-3 fw-bold">Инвентарь</div>
+      <div class="text-center h4 my-3 fw-bold">{{ $t('inventory') }}</div>
       <div class="flex-grow-1">
          <div class="row justify-content-center mx-0">
             <div class="col-12 col-md-6 mb-2 px-2" v-for="(container, index) in character.inventory" v-bind:key="index">
@@ -11,21 +11,21 @@
       <div v-if="!deleteMode" class="text-center">
          <button class="btn fw btn-success m-2" v-on:click="addContainer">
             <i class="fas fa-plus-circle me-2"></i>
-            Добавить
+            {{ $t('create') }}
          </button>
          <button class="btn fw btn-danger m-2" v-on:click="openDeleteMode" :disabled="!character.inventory.length">
             <i class="fas fa-trash me-2"></i>
-            Удалить
+            {{ $t('delete') }}
          </button>
       </div>
       <div v-if="deleteMode" class="text-center">
          <button class="btn fw btn-danger m-2" v-on:click="confirmDelete">
             <i class="fas fa-trash me-2"></i>
-            Удалить
+            {{ $t('delete') }}
          </button>
          <button class="btn fw btn-secondary m-2" v-on:click="this.deleteMode = false">
             <i class="fas fa-times me-2"></i>
-            Отмена
+            {{ $t('cancel') }}
          </button>
       </div>
    </div>

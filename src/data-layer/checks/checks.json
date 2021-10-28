@@ -2,145 +2,121 @@
    {
       "id": 0,
       "type": 0,
-      "attribute": 0,
-      "name": "Спасбросок"
+      "attribute": 0
    },
    {
       "id": 1,
       "type": 0,
-      "attribute": 1,
-      "name": "Спасбросок"
+      "attribute": 1
    },
    {
       "id": 2,
       "type": 0,
-      "attribute": 2,
-      "name": "Спасбросок"
+      "attribute": 2
    },
    {
       "id": 3,
       "type": 0,
-      "attribute": 3,
-      "name": "Спасбросок"
+      "attribute": 3
    },
    {
       "id": 4,
       "type": 0,
-      "attribute": 4,
-      "name": "Спасбросок"
+      "attribute": 4
    },
    {
       "id": 5,
       "type": 0,
-      "attribute": 5,
-      "name": "Спасбросок"
+      "attribute": 5
    },
    {
       "id": 6,
       "type": 10,
-      "attribute": 1,
-      "name": "Акробатика"
+      "attribute": 1
    },
    {
       "id": 9,
       "type": 13,
-      "attribute": 0,
-      "name": "Атлетика"
+      "attribute": 0
    },
    {
       "id": 14,
       "type": 18,
-      "attribute": 3,
-      "name": "Анализ"
+      "attribute": 3
    },
    {
       "id": 17,
       "type": 21,
-      "attribute": 4,
-      "name": "Внимательность"
+      "attribute": 4
    },
    {
       "id": 21,
       "type": 25,
-      "attribute": 4,
-      "name": "Выживание"
+      "attribute": 4
    },
    {
       "id": 18,
       "type": 22,
-      "attribute": 5,
-      "name": "Выступление"
+      "attribute": 5
    },
    {
       "id": 13,
       "type": 17,
-      "attribute": 5,
-      "name": "Запугивание"
+      "attribute": 5
    },
    {
       "id": 11,
       "type": 15,
-      "attribute": 3,
-      "name": "История"
+      "attribute": 3
    },
    {
       "id": 20,
       "type": 24,
-      "attribute": 1,
-      "name": "Ловкость рук"
+      "attribute": 1
    },
    {
       "id": 8,
       "type": 12,
-      "attribute": 3,
-      "name": "Магия"
+      "attribute": 3
    },
    {
       "id": 15,
       "type": 19,
-      "attribute": 4,
-      "name": "Медицина"
+      "attribute": 4
    },
    {
       "id": 10,
       "type": 14,
-      "attribute": 5,
-      "name": "Обман"
+      "attribute": 5
    },
    {
       "id": 12,
       "type": 16,
-      "attribute": 4,
-      "name": "Проницательность"
+      "attribute": 4
    },
    {
       "id": 16,
       "type": 20,
-      "attribute": 3,
-      "name": "Природа"
+      "attribute": 3
    },
    {
       "id": 19,
       "type": 23,
-      "attribute": 5,
-      "name": "Убеждение"
+      "attribute": 5
    },
    {
       "id": 7,
       "type": 11,
-      "attribute": 4,
-      "name": "Уход за животными"
+      "attribute": 4
    },
    {
       "id": 22,
       "type": 26,
-      "attribute": 1,
-      "name": "Скрытность"
+      "attribute": 1
    },
    {
       "id": 23,
       "type": 27,
-      "attribute": 3,
-      "name": "Религия"
+      "attribute": 3
    }
 ]

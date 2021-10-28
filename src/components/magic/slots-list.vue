@@ -5,34 +5,31 @@
             <div class="text-start mx-auto d-inline-block mt-2">
                <div class="d-inline-flex p-1">
                   <select v-model="magicAttribute" class="plain block me-2" @change="setData" style="--color: 200deg">
-                     <option value="-1">Нет</option>
-                     <option value="3">Инт</option>
-                     <option value="4">Муд</option>
-                     <option value="5">Хар</option>
+                     <option :value="x" v-for="x in magicAbilities()" v-bind:key="x">{{ $t(`abilities[${x + 1}]`) }}</option>
                   </select>
-                  Заклинательная характеристика
+                  {{ $t('spellcasting_ability') }}
                </div>
                <br />
                <div class="d-inline-flex p-1">
                   <select v-model="magicLimit" class="plain block me-2" @change="setData" style="--color: 200deg">
-                     <option value="0">Нет</option>
+                     <option value="0">{{ $t('none') }}</option>
                      <option v-for="(slotOption, slotIndex) in 10" :key="slotIndex" :value="slotOption">{{ slotIndex }}</option>
                   </select>
-                  Максимальная ячейка
+                  {{ $t('spell_maximum') }}
                </div>
                <br />
                <div class="d-inline-flex p-1">
                   <div class="hex me-2 text-center" style="--color: 300deg">
                      {{ character.magicBonus }}
                   </div>
-                  Модификатор атак
+                  {{ $t('spell_attack_bonus') }}
                </div>
                <br />
                <div class="d-inline-flex p-1">
                   <div class="hex me-2 text-center" style="--color: 300deg">
                      {{ character.spellDifficulty }}
                   </div>
-                  Сложность спасбросков
+                  {{ $t('spell_save_dc') }}
                </div>
             </div>
          </div>
@@ -44,7 +41,7 @@
                      :magicSlot="character.magicSlots[index]"
                      :index="index"
                      :deleteMode="deleteMode"
-                     :name="index == 0 ? 'Заговоры' : index + ' ячейка'"
+                     :name="index == 0 ? $t('spell_slot_0') : $t('spell_slot_x', [index])"
                      :locked="character.settings.locked"
                   />
                </div>
@@ -55,7 +52,7 @@
                   :magicSlot="otherSpells()"
                   :index="10"
                   :deleteMode="deleteMode"
-                  :name="'Прочие заклинания'"
+                  :name="$t('spell_slot_misc')"
                   :locked="character.settings.locked"
                />
             </div>
@@ -65,23 +62,24 @@
       <div v-if="!deleteMode" class="text-center">
          <button class="btn fw btn-danger m-2 pe-3" v-on:click="openDeleteMode">
             <i class="fas fa-trash me-2"></i>
-            Удалить
+            {{ $t('delete') }}
          </button>
       </div>
       <div v-if="deleteMode" class="text-center">
          <button class="btn fw btn-danger m-2 pe-3" v-on:click="confirmDelete">
             <i class="fas fa-trash me-2"></i>
-            Удалить
+            {{ $t('delete') }}
          </button>
          <button class="btn fw btn-secondary m-2 pe-3" v-on:click="this.deleteMode = false">
             <i class="fas fa-times me-2"></i>
-            Отмена
+            {{ $t('cancel') }}
          </button>
       </div>
    </div>
 </template>
 
 <script>
+import { AttributeType } from '@/data-layer/attributes/attribute-type';
 import Character from '@/models/character';
 import MagicSlotComponent from './magic-slot';
 
@@ -98,6 +96,9 @@ export default {
       };
    },
    methods: {
+      magicAbilities() {
+         return [AttributeType.Unknown, AttributeType.Intelligence, AttributeType.Wisdom, AttributeType.Charisma];
+      },
       getData() {
          this.magicAttribute = this.character.magicAttribute;
          this.magicLimit = this.character.magicLimit;

@@ -7,7 +7,9 @@
       </div>
       <div class="col-9 ps-0 pe-2 d-flex flex-column justify-content-center">
          <div class="mt-2 position-relative py-2">
-            <div class="mb-1 fw-bold text-center h5">Спасброски</div>
+            <div class="mb-1 fw-bold text-center h5">
+               {{ $t('saving_throws') }}
+            </div>
             <div v-for="check in saving()" v-bind:key="check.id">
                <check
                   :check="check"
@@ -18,7 +20,9 @@
             </div>
          </div>
          <div class="mt-2 position-relative py-2 border-top">
-            <div class="mb-1 fw-bold text-center h5">Навыки</div>
+            <div class="mb-1 fw-bold text-center h5">
+               {{ $t('skills') }}
+            </div>
             <div class="position-relative" v-for="check in skills()" v-bind:key="check.id">
                <check
                   :check="check"
@@ -30,15 +34,11 @@
          </div>
       </div>
       <div class="col-12 text-center">
-         <div
-            class="d-inline-flex m-2"
-            data-bs-toggle="popover"
-            data-bs-content="Бонус добавляется только к проверкам навыков для тех характеристик, которые указаны в правилах выбранного класса"
-         >
+         <div class="d-inline-flex m-2" data-bs-toggle="popover" :data-bs-content="$t('half_of_proficiency_description')">
             <div class="hex me-2" style="--color: 310deg">
                {{ character.proficiency >> 1 }}
             </div>
-            Половинный бонус
+            {{ $t('half_of_proficiency') }}
             <button class="fas fa-question-circle p-0 mx-2 my-0 btn btn-outline"></button>
          </div>
       </div>

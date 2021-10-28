@@ -15,7 +15,9 @@
          <div class="pt-3 pb-1 position-relative d-flex flex-column mt-n3 attribute" :style="'--oct-bg:rgb(' + attribute.color + ')'">
             <div></div>
             <div class="m-0 h1">{{ attribute.bonus > 0 ? '+' + attribute.bonus : attribute.bonus }}</div>
-            {{ attribute.name }}
+            <div class="text-uppercase">
+               {{ $t(`abilities.${attribute.type + 1}`) }}
+            </div>
             <octagon />
          </div>
       </div>

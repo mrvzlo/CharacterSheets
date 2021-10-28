@@ -4,18 +4,16 @@
          <div @click="toggleExpand">
             <i class="fas fa-eye text-white px-3"></i>
          </div>
-         <div>
-            Владения
-         </div>
+         <div>{{ $t('proficiencies') }}</div>
       </div>
       <div class="card-body p-0" v-if="editModel.expand">
-         <div class="px-2 py-1">Броня</div>
+         <div class="px-2 py-1">{{ $t('armor') }}</div>
          <textarea v-model="editModel.armors" class="w-100 py-1 px-2 d-block" rows="1" :disabled="locked"></textarea>
-         <div class="px-2 py-1">Оружие</div>
+         <div class="px-2 py-1">{{ $t('weapons') }}</div>
          <textarea v-model="editModel.weapons" class="w-100 py-1 px-2 d-block" rows="1" :disabled="locked"></textarea>
-         <div class="px-2 py-1">Инструменты</div>
+         <div class="px-2 py-1">{{ $t('tools') }}</div>
          <textarea v-model="editModel.tools" class="w-100 py-1 px-2 d-block" rows="1" :disabled="locked"></textarea>
-         <div class="px-2 py-1">Языки</div>
+         <div class="px-2 py-1">{{ $t('languages') }}</div>
          <textarea v-model="editModel.languages" class="w-100 py-1 px-2 d-block" rows="1" :disabled="locked"></textarea>
       </div>
    </div>

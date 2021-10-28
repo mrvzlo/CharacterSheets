@@ -3,21 +3,21 @@
       <div class="hex me-2" style="--color: 120deg">
          <input v-model="speed" class="plain w-100" type="number" min="0" :disabled="character.settings.locked" @change="setData" />
       </div>
-      {{ $t('character_speed') }}
+      {{ $t('speed') }}
    </div>
    <br />
    <div class="d-inline-flex p-1">
       <div class="hex me-2" style="--color: 120deg">
          <input v-model="initiative" class="plain w-100" type="number" :disabled="character.settings.locked" @change="setData" />
       </div>
-      {{ $t('character_initiative') }}
+      {{ $t('initiative') }}
    </div>
    <br />
    <div class="d-inline-flex p-1">
       <div class="hex me-2" style="--color: 120deg">
          <input v-model="armor" class="plain w-100" type="number" :disabled="character.settings.locked" @change="setData" />
       </div>
-      {{ $t('character_armor_class') }}
+      {{ $t('armor_class') }}
    </div>
 </template>
 

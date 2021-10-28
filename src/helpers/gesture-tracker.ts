@@ -18,7 +18,8 @@ export default class GestureTracker {
    handleGesture(startTouch: Touch, endTouch: Touch, condition: 'Left' | 'Right' | 'Up' | 'Down', action: Function) {
       const deltaX = endTouch.screenX - startTouch.screenX;
       const deltaY = endTouch.screenY - startTouch.screenY;
-      if (Math.abs(deltaX) < 100 && Math.abs(deltaY) < 100) return;
+      const distance = 40;
+      if (Math.abs(deltaX) < distance) return;
       if (deltaX < 0 && condition === 'Left') action();
       if (deltaX > 0 && condition === 'Right') action();
    }

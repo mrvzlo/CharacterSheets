@@ -8,11 +8,11 @@
          </div>
          <div class="p-1 mb-1 col-4 col-md-3 dropdown">
             <a class="text-decoration-none text-reset d-block" data-bs-toggle="dropdown">
-               {{ editModel.class.chosen ? editModel.class.name : $t('pick_class') }}
+               {{ editModel.class.chosen ? $t(`character_classes.${editModel.class.type}`) : $t('pick_class') }}
             </a>
             <ul class="dropdown-menu" v-if="!locked">
-               <a class="dropdown-item" v-for="classType in classOptions()" v-bind:key="classType" v-on:click="setClass(classType.id)">
-                  {{ classType.name }}
+               <a class="dropdown-item" v-for="x in classesCount()" v-bind:key="x" v-on:click="setClass(x)">
+                  {{ $t(`character_classes.${x}`) }}
                </a>
             </ul>
             <div class="text-secondary small border-top mx-1">{{ $t('character_class') }}</div>
@@ -78,7 +78,7 @@
                   <div class="hex me-2 text-center" style="--color: 300deg">
                      {{ character.proficiency }}
                   </div>
-                  {{ $t('character_proficiency') }}
+                  {{ $t('proficiency') }}
                </div>
                <br />
                <derivatives :character="character" />
@@ -100,11 +100,9 @@
 <script>
 import Character from '@/models/character';
 import { ClassType } from '@/data-layer/classes/class-type';
-import CharacterClass from '@/models/character-class';
 import DerivativesComponent from './derivatives.vue';
 import HealthComponent from './health.vue';
 import HealthBonesComponent from './health-bones.vue';
-import RestComponent from './rest.vue';
 import OctagonComponent from '@/components/helpers/octagon.vue';
 import CountableListComponent from './countable-list.vue';
 
@@ -119,8 +117,8 @@ export default {
       };
    },
    methods: {
-      classOptions() {
-         return new CharacterClass(ClassType.Unknown).all;
+      classesCount() {
+         return Object.keys(ClassType).length / 2 - 1;
       },
       setData() {
          Object.assign(this.character, { race: this.editModel.race });
@@ -178,7 +176,6 @@ export default {
    components: {
       derivatives: DerivativesComponent,
       health: HealthComponent,
-      rest: RestComponent,
       healthBones: HealthBonesComponent,
       octagon: OctagonComponent,
       countableList: CountableListComponent,

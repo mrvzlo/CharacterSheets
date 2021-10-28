@@ -12,7 +12,7 @@
          </div>
       </div>
       <div class="card-body p-1" v-if="editModel.expand">
-         <div v-if="magicSlot.spells.length == 0" class="text-center">Ничего не изучено</div>
+         <div v-if="magicSlot.spells.length == 0" class="text-center">{{ $t('no_spells') }}</div>
          <div v-for="(item, itemIndex) in magicSlot.spells" v-bind:key="itemIndex">
             <spell :spell="item" :index="itemIndex" :magicSlot="magicSlot" :deleteMode="deleteMode" :locked="locked" />
          </div>

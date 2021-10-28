@@ -12,10 +12,6 @@ export default class CharacterClass {
       return this.type !== ClassType.Unknown;
    }
 
-   get name(): string {
-      return this.all.find((x) => x.id == this.type)?.name ?? '';
-   }
-
    get bone(): number {
       return this.all.find((x) => x.id == this.type)?.bone ?? 0;
    }

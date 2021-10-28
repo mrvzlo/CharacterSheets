@@ -6,9 +6,9 @@
       </span>
       <div class="d-flex justify-content-between flex-grow-1">
          <span class="text-nowrap">
-            {{ saving ? attribute.longName : check.name }}
+            {{ saving ? $t(`abilities_long.${attribute.type + 1}`) : $t(`skills_list.${check.type}`) }}
          </span>
-         <span class="small text-secondary" v-if="!saving">({{ attribute.name.toLowerCase() }})</span>
+         <span class="small text-secondary text-lowercase" v-if="!saving">({{ $t(`abilities.${attribute.type + 1}`) }})</span>
       </div>
    </div>
 </template>

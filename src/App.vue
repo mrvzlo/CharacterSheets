@@ -25,7 +25,7 @@ export default {
    },
    data() {
       return {
-         version: 'v1.4.2',
+         version: 'v1.5.0',
          themeStorage: ThemeStorage,
          localeStorage: LocaleStorage,
       };
