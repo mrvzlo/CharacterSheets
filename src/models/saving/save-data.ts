@@ -1,13 +1,11 @@
 import { Filesystem, Directory, Encoding, ReadFileResult } from '@capacitor/filesystem';
 
 export default class SaveData {
-   id: number;
    empty: boolean;
    name: string = '';
    datetime: Date = new Date();
 
-   constructor(id: number) {
-      this.id = id;
+   constructor(private id: number) {
       this.empty = true;
    }
 

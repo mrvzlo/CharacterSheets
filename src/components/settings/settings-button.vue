@@ -1,10 +1,10 @@
 <template>
    <div class="btn-group d-block mb-4">
-      <div class="btn btn-primary">
+      <div :class="'btn btn-' + color">
          <i :class="'fa-fw ' + icon"></i>
       </div>
-      <div class="btn btn-outline border-primary col-6">{{ text }}</div>
-      <div class="btn btn-primary"><i class="fa-fw fas">&nbsp;</i></div>
+      <div :class="'col-6 btn btn-outline border-' + color">{{ text }}</div>
+      <div :class="'btn btn-' + color"><i class="fa-fw fas">&nbsp;</i></div>
    </div>
 </template>
 
@@ -14,6 +14,7 @@ export default {
    props: {
       icon: String,
       text: String,
+      color: { type: String, default: 'primary' },
    },
 };
 </script>

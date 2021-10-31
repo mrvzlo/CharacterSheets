@@ -7,15 +7,15 @@
 
    <div class="col-12 col-lg-9 col-xl-7 px-0 mx-auto flex-grow-1">
       <div class="deck d-flex" :style="{ '--pos': tab - 1 }">
-         <main-info :character="character" />
-         <attributes-list :character="character" />
+         <main-info :character="character" :locale="localeStorage.current" />
+         <attributes-list :character="character" :locale="localeStorage.current" />
          <perks-list :character="character" />
          <inventory :character="character" />
          <slots-list :character="character" />
          <settings :character="character" :themeStorage="themeStorage" :localeStorage="localeStorage" />
       </div>
    </div>
-   <div class="position-sticky text-end bottom-0 op-08 px-2 h-0">
+   <div class="position-sticky text-end bottom-0 op-08 px-2 h-0 z-100">
       <div class="position-relative top-n42px d-inline">
          <i class="fas fa-2x fa-lock" v-if="character.settings.locked"></i>
          <i class="fas fa-2x fa-unlock" v-else></i>

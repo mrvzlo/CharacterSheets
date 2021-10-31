@@ -4,16 +4,13 @@ import { AttributeType } from '../data-layer/attributes/attribute-type';
 import AttributeData from '@/data-layer/attributes/attribute-data';
 
 export default class Attribute {
-   type: AttributeType;
-   value: number = 10;
+   value = 10;
    checks: Check[] = [];
 
-   constructor(type: AttributeType) {
-      this.type = type;
-   }
+   constructor(public type: AttributeType) {}
 
    get bonus() {
-      return Math.floor(this.value / 2) - 5;
+      return (this.value >> 1) - 5;
    }
 
    getChecks(type: CheckType) {
@@ -24,7 +21,7 @@ export default class Attribute {
 
    get skillChecks() {
       return this.checks.filter(function(x) {
-         return x.type >= 10;
+         return x.type > CheckType.Saving;
       });
    }
 

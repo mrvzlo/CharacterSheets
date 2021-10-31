@@ -12,8 +12,6 @@ import Proficiencies from './proficiencies/proficiencies';
 import Settings from './settings';
 
 export default class Character {
-   saveSlot: number;
-
    name = '';
    race = '';
    story = '';
@@ -41,9 +39,7 @@ export default class Character {
    settings = new Settings();
    proficiencies = new Proficiencies();
 
-   constructor(saveSlot: number) {
-      this.saveSlot = saveSlot;
-
+   constructor(public saveSlot: number) {
       for (let i = 0; i < 6; i++) {
          this.attributes.push(new Attribute(i));
       }

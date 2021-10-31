@@ -6,7 +6,7 @@
       </span>
       <div class="d-flex justify-content-between flex-grow-1">
          <span class="text-nowrap">
-            {{ saving ? $t(`abilities_long.${attribute.type + 1}`) : $t(`skills_list.${check.type}`) }}
+            {{ saving ? $t(`abilities_long.${attribute.type + 1}`) : check.name }}
          </span>
          <span class="small text-secondary text-lowercase" v-if="!saving">({{ $t(`abilities.${attribute.type + 1}`) }})</span>
       </div>

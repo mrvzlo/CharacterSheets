@@ -11,8 +11,8 @@
                {{ editModel.class.chosen ? $t(`character_classes.${editModel.class.type}`) : $t('pick_class') }}
             </a>
             <ul class="dropdown-menu" v-if="!locked">
-               <a class="dropdown-item" v-for="x in classesCount()" v-bind:key="x" v-on:click="setClass(x)">
-                  {{ $t(`character_classes.${x}`) }}
+               <a class="dropdown-item" v-for="x in classes" v-bind:key="x" v-on:click="setClass(x.id)">
+                  {{ x.name }}
                </a>
             </ul>
             <div class="text-secondary small border-top mx-1">{{ $t('character_class') }}</div>
@@ -110,10 +110,12 @@ export default {
    name: 'top-info',
    props: {
       character: Character,
+      locale: String,
    },
    data() {
       return {
          editModel: Character,
+         classes: [],
       };
    },
    methods: {
@@ -152,6 +154,19 @@ export default {
          this.editModel.alignment = id;
          this.showAlignments = false;
       },
+      sortClasses() {
+         this.classes.forEach((x) => (x.name = this.$t(`character_classes.${x.id}`)));
+         this.classes = this.classes.sort((a, b) => (a.name > b.name ? 1 : -1));
+      },
+   },
+   created() {
+      const count = Object.keys(ClassType).length / 2;
+      this.classes = Object.keys(ClassType)
+         .slice(1, count)
+         .map((x) => {
+            return { id: x };
+         });
+      this.sortClasses();
    },
    computed: {
       locked: function() {
@@ -171,6 +186,11 @@ export default {
             this.setData();
          },
          deep: true,
+      },
+      locale: {
+         handler() {
+            this.sortClasses();
+         },
       },
    },
    components: {

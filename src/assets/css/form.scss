@@ -5,7 +5,7 @@
 }
 
 input.text-center,
-select.text-center {
+select {
    text-align-last: center;
    text-align: -webkit-center;
 }
@@ -24,4 +24,9 @@ textarea {
 .dropdown-menu,
 .dropdown-item {
    color: var(--input-color);
+}
+
+select {
+   -webkit-appearance: none;
+   -moz-appearance: none;
 }

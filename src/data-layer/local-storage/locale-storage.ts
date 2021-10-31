@@ -5,6 +5,7 @@ export default class LocaleStorage extends StorageService {
    private $i18n: VueI18n;
    private locales = ['ru', 'en'];
    private nativeNames = ['Русский', 'English'];
+   public current = '';
 
    constructor($i18n: VueI18n) {
       super('locale');
@@ -32,6 +33,7 @@ export default class LocaleStorage extends StorageService {
    }
 
    setLocale(newLocale: string) {
+      this.current = newLocale;
       this.$i18n.locale = newLocale;
       this.setData(newLocale);
    }

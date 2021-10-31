@@ -2,12 +2,10 @@ import CheckData from '@/data-layer/checks/check-data';
 import { CheckType } from '@/data-layer/checks/check-type';
 
 export default class Check {
-   id: number;
    knowledge: number = 0;
+   name: string = '';
 
-   constructor(id: number = 0) {
-      this.id = id;
-   }
+   constructor(private id: number = 0) {}
 
    get(proficiency: number, value: number) {
       return value + proficiency * this.knowledge;

@@ -23,7 +23,7 @@
             <div class="mb-1 fw-bold text-center h5">
                {{ $t('skills') }}
             </div>
-            <div class="position-relative" v-for="check in skills()" v-bind:key="check.id">
+            <div class="position-relative" v-for="check in skills" v-bind:key="check.id">
                <check
                   :check="check"
                   :proficiency="character.proficiency"
@@ -59,41 +59,33 @@ export default {
    props: {
       character: Character,
       locked: Boolean,
+      locale: String,
    },
    data() {
       return {
-         bones: 0,
          attributeType: { default: AttributeType }, //I dont give a **** why
          checkType: { default: CheckType },
+         skills: [],
       };
    },
    methods: {
-      setData() {
-         Object.assign(this.character, { healthBones: this.bones });
-      },
-      getData() {
-         this.bones = this.character.healthBones;
-      },
       saving() {
          return this.character.attributes.flatMap((x) => x.getChecks(CheckType.Saving));
       },
-      skills() {
-         return this.character.attributes.flatMap((x) => x.skillChecks).sort((a, b) => (a.name > b.name ? 1 : -1));
+      sortSkills() {
+         this.skills.forEach((x) => (x.name = this.$t(`skills_list.${x.type}`)));
+         this.skills = this.skills.sort((a, b) => (a.name > b.name ? 1 : -1));
       },
       getAttributeByCheck(id) {
          const attributes = this.character.attributes.filter((x) => x.checks.map((y) => y.id).includes(id));
          return attributes[0];
       },
    },
-   watch: {
-      character() {
-         this.getData();
-      },
-   },
    created() {
       this.attributeType = AttributeType;
       this.checkType = CheckType;
-      this.getData();
+      this.skills = this.character.attributes.flatMap((x) => x.skillChecks);
+      this.sortSkills();
    },
    mounted() {
       new BootstrapHelper().initTooltips();
@@ -102,6 +94,13 @@ export default {
       attribute: AttributeComponent,
       check: CheckComponent,
       octagon: OctagonComponent,
+   },
+   watch: {
+      locale: {
+         handler() {
+            this.sortSkills();
+         },
+      },
    },
 };
 </script>
