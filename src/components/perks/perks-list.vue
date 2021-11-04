@@ -7,25 +7,23 @@
          </div>
          <proficiencies :character="character" />
       </div>
-      <div v-if="!deleteMode && !locked" class="text-center">
-         <button class="btn fw btn-success m-2" v-on:click="add">
-            <i class="fas fa-plus-circle me-2"></i>
-            {{ $t('create') }}
-         </button>
-         <button class="btn fw btn-danger m-2" v-on:click="openDeleteMode" :disabled="!character.perks.length">
-            <i class="fas fa-trash me-2"></i>
-            {{ $t('delete') }}
-         </button>
-      </div>
-      <div v-if="deleteMode" class="text-center">
-         <button class="btn fw btn-danger m-2" v-on:click="confirmDelete">
-            <i class="fas fa-trash me-2"></i>
-            {{ $t('delete') }}
-         </button>
-         <button class="btn fw btn-secondary m-2" v-on:click="this.deleteMode = false">
-            <i class="fas fa-times me-2"></i>
-            {{ $t('cancel') }}
-         </button>
+      <div v-if="!locked" class="text-center">
+         <div v-if="!deleteMode">
+            <button class="btn btn-success m-2 px-4" v-on:click="add">
+               <i class="fas fa-plus-circle fa-fw mx-2"></i>
+            </button>
+            <button class="btn btn-danger m-2 px-4" v-on:click="openDeleteMode" :disabled="!character.perks.length">
+               <i class="fas fa-trash fa-fw mx-2"></i>
+            </button>
+         </div>
+         <div v-else>
+            <button class="btn btn-danger m-2 px-4" v-on:click="confirmDelete" :disabled="!anyMarked()">
+               <i class="fas fa-trash fa-fw mx-2"></i>
+            </button>
+            <button class="btn btn-secondary m-2 px-4" v-on:click="this.deleteMode = false">
+               <i class="fas fa-times fa-fw mx-2"></i>
+            </button>
+         </div>
       </div>
    </div>
 </template>
@@ -49,6 +47,9 @@ export default {
    methods: {
       add() {
          this.character.addPerk();
+      },
+      anyMarked() {
+         return this.character.perks.filter((x) => x.delete).length > 0;
       },
       openDeleteMode() {
          this.deleteMode = true;

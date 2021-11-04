@@ -1,10 +1,10 @@
 <template>
-   <div class="d-flex mt-2">
+   <div class="d-flex mt-2 align-items-end">
       <div v-on:click="editModel.marked = !editModel.marked">
          <i :class="'p-1 ' + (editModel.marked ? 'fas fa-circle' : 'far fa-circle')"></i>
       </div>
       <input v-model="editModel.name" class="border-0 px-1 py-0 border-bottom flex-grow-1" :placeholder="$t('name')" :disabled="locked" />
-      <div class="block light mx-1" v-if="deleteMode">
+      <div class="block light mx-1 mb-n1px" v-if="deleteMode">
          <div v-on:click="editModel.delete = !editModel.delete" class="w-100 h-100">
             <i v-if="spell.delete" class="fas fa-times"></i>
          </div>

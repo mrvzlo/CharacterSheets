@@ -1,6 +1,6 @@
 <template>
    <div class="card">
-      <div class="card-header d-flex justify-content-between px-1 bg-primary text-white">
+      <div class="card-header d-flex justify-content-between px-1 bg-primary text-white align-items-end">
          <div @click="editModel.expand = !editModel.expand">
             <i class="fas fa-eye text-white px-3"></i>
          </div>
@@ -12,13 +12,13 @@
             <span>/</span>
             <input type="number" v-model="editModel.capacity" class="plain w-50px text-white text-center" min="0" />
          </div>
-         <div v-if="deleteMode" class="block light mx-1">
+         <div v-if="deleteMode" class="block light mx-1 mb-n1px">
             <div v-on:click="toggleDelete" class="w-100 h-100">
                <i v-if="container.delete" class="fas fa-times"></i>
             </div>
          </div>
       </div>
-      <div class="card-body p-1" v-if="editModel.expand">
+      <div class="card-body p-1 pt-0" v-if="editModel.expand">
          <div v-for="(item, itemIndex) in container.inner" v-bind:key="itemIndex">
             <item :item="item" :index="itemIndex" :container="container" :deleteMode="deleteMode" />
          </div>

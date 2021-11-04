@@ -4,14 +4,26 @@
          <div class="text-center">
             <div class="text-start mx-auto d-inline-block mt-2">
                <div class="d-inline-flex p-1">
-                  <select v-model="magicAttribute" class="plain block me-2" @change="setData" style="--color: 200deg">
+                  <select
+                     v-model="magicAttribute"
+                     class="plain block me-2"
+                     @change="setData"
+                     style="--color: 200deg"
+                     :disabled="character.settings.locked"
+                  >
                      <option :value="x" v-for="x in magicAbilities()" v-bind:key="x">{{ $t(`abilities[${x + 1}]`) }}</option>
                   </select>
                   {{ $t('spellcasting_ability') }}
                </div>
                <br />
                <div class="d-inline-flex p-1">
-                  <select v-model="magicLimit" class="plain block me-2" @change="setData" style="--color: 200deg">
+                  <select
+                     v-model="magicLimit"
+                     class="plain block me-2"
+                     @change="setData"
+                     style="--color: 200deg"
+                     :disabled="character.settings.locked"
+                  >
                      <option value="0">{{ $t('none') }}</option>
                      <option v-for="(slotOption, slotIndex) in 10" :key="slotIndex" :value="slotOption">{{ slotIndex }}</option>
                   </select>
@@ -59,22 +71,21 @@
          </div>
       </div>
 
-      <div v-if="!deleteMode" class="text-center">
-         <button class="btn fw btn-danger m-2 pe-3" v-on:click="openDeleteMode">
-            <i class="fas fa-trash me-2"></i>
-            {{ $t('delete') }}
-         </button>
-      </div>
-      <div v-if="deleteMode" class="text-center">
-         <button class="btn fw btn-danger m-2 pe-3" v-on:click="confirmDelete">
-            <i class="fas fa-trash me-2"></i>
-            {{ $t('delete') }}
-         </button>
-         <button class="btn fw btn-secondary m-2 pe-3" v-on:click="this.deleteMode = false">
-            <i class="fas fa-times me-2"></i>
-            {{ $t('cancel') }}
-         </button>
-      </div>
+      <template v-if="!character.settings.locked">
+         <div v-if="!deleteMode" class="text-center">
+            <button class="btn btn-danger m-2 px-4" v-on:click="openDeleteMode" :disabled="!anySpell()">
+               <i class="fas fa-trash fa-fw mx-2"></i>
+            </button>
+         </div>
+         <div v-if="deleteMode" class="text-center">
+            <button class="btn btn-danger m-2 px-4" v-on:click="confirmDelete" :disabled="!anyMarked()">
+               <i class="fas fa-trash fa-fw mx-2"></i>
+            </button>
+            <button class="btn btn-secondary m-2 px-4" v-on:click="this.deleteMode = false">
+               <i class="fas fa-times fa-fw mx-2"></i>
+            </button>
+         </div>
+      </template>
    </div>
 </template>
 
@@ -98,6 +109,12 @@ export default {
    methods: {
       magicAbilities() {
          return [AttributeType.Unknown, AttributeType.Intelligence, AttributeType.Wisdom, AttributeType.Charisma];
+      },
+      anySpell() {
+         return this.character.magicSlots.filter((x) => x.spells.length > 0).length > 0;
+      },
+      anyMarked() {
+         return this.character.magicSlots.filter((x) => x.spells.filter((x) => x.delete).length > 0).length > 0;
       },
       getData() {
          this.magicAttribute = this.character.magicAttribute;

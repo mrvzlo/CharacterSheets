@@ -16,31 +16,23 @@
          </div>
       </div>
 
-      <div class="text-center row mx-2 justify-content-center" v-if="selected !== appConfig.unselected">
-         <div class="col-4">
-            <button type="button" class="btn btn-success w-100 px-0" data-bs-dismiss="modal" v-on:click="load">
-               {{ hasSave(selected) ? $t('load') : $t('create') }}
-            </button>
-         </div>
+      <div class="text-center d-flex mx-2 justify-content-center" v-if="selected !== appConfig.unselected">
+         <button type="button" class="btn btn-success px-4 mx-2" data-bs-dismiss="modal" v-on:click="load">
+            <i class="fas fa-play fa-fw mx-2"></i>
+         </button>
          <template v-if="hasSave(selected)">
-            <div class="col-4">
-               <button type="button" class="btn btn-info w-100 px-0" v-on:click="download">
-                  {{ $t('download') }}
-               </button>
-            </div>
-            <div class="col-4">
-               <button type="button" class="btn btn-danger w-100 px-0" data-bs-toggle="modal" data-bs-target=".confirmationModal">
-                  {{ $t('delete') }}
-               </button>
-            </div>
+            <button type="button" class="btn btn-info px-4 mx-2" v-on:click="download">
+               <i class="fas fa-download fa-fw mx-2"></i>
+            </button>
+            <button type="button" class="btn btn-danger px-4 mx-2" data-bs-toggle="modal" data-bs-target=".confirmationModal">
+               <i class="fas fa-trash fa-fw mx-2"></i>
+            </button>
          </template>
          <template v-else>
-            <div class="col-4">
-               <label for="upload" class="btn btn-info w-100 px-0">
-                  {{ $t('upload') }}
-               </label>
-               <input type="file" id="upload" class="hidden" v-on:change="upload" />
-            </div>
+            <label for="upload" class="btn btn-info px-4 mx-2">
+               <i class="fas fa-upload fa-fw mx-2"></i>
+            </label>
+            <input type="file" id="upload" class="hidden" v-on:change="upload" />
          </template>
       </div>
 

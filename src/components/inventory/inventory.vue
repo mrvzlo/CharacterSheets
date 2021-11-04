@@ -9,23 +9,19 @@
          </div>
       </div>
       <div v-if="!deleteMode" class="text-center">
-         <button class="btn fw btn-success m-2" v-on:click="addContainer">
-            <i class="fas fa-plus-circle me-2"></i>
-            {{ $t('create') }}
+         <button class="btn btn-success m-2 px-4" v-on:click="addContainer">
+            <i class="fas fa-plus-circle fa-fw mx-2"></i>
          </button>
-         <button class="btn fw btn-danger m-2" v-on:click="openDeleteMode" :disabled="!character.inventory.length">
-            <i class="fas fa-trash me-2"></i>
-            {{ $t('delete') }}
+         <button class="btn btn-danger m-2 px-4" v-on:click="openDeleteMode" :disabled="!character.inventory.length">
+            <i class="fas fa-trash fa-fw mx-2"></i>
          </button>
       </div>
       <div v-if="deleteMode" class="text-center">
-         <button class="btn fw btn-danger m-2" v-on:click="confirmDelete">
-            <i class="fas fa-trash me-2"></i>
-            {{ $t('delete') }}
+         <button class="btn btn-danger m-2 px-4" v-on:click="confirmDelete" :disabled="!anyMarked()">
+            <i class="fas fa-trash fa-fw mx-2"></i>
          </button>
-         <button class="btn fw btn-secondary m-2" v-on:click="this.deleteMode = false">
-            <i class="fas fa-times me-2"></i>
-            {{ $t('cancel') }}
+         <button class="btn btn-secondary m-2 px-4" v-on:click="this.deleteMode = false">
+            <i class="fas fa-times fa-fw mx-2"></i>
          </button>
       </div>
    </div>
@@ -48,6 +44,9 @@ export default {
    methods: {
       addContainer() {
          this.character.addContainer();
+      },
+      anyMarked() {
+         return this.character.inventory.filter((x) => x.delete || x.inner.filter((x) => x.delete).length > 0).length > 0;
       },
       openDeleteMode() {
          this.deleteMode = true;
