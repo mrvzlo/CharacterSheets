@@ -35,9 +35,6 @@ export default {
       lock: function() {
          Object.assign(this.character.settings, { locked: !this.character.settings.locked });
       },
-      importCharacter: function(a, b) {
-         return this.$parent.importCharacter(a, b);
-      },
       toggleTheme() {
          this.themeStorage.toggleTheme();
       },

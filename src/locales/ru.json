@@ -114,5 +114,8 @@
    },
    "delete_confirm_title": "Подтвердите удаление",
    "delete_confirm_word": "удалить",
-   "delete_confirm_message": "Напишите {0} для пожтверждения"
+   "delete_confirm_message": "Напишите {0} для пожтверждения",
+   "mark": "Отметить",
+   "download": "Скачать",
+   "upload": "Загрузить"
 }

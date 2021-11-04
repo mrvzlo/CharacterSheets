@@ -105,5 +105,8 @@
    },
    "delete_confirm_title": "Confirm deletion",
    "delete_confirm_word": "delete",
-   "delete_confirm_message": "Type {0} to confirm"
+   "delete_confirm_message": "Type {0} to confirm",
+   "mark": "Mark",
+   "download": "Download",
+   "upload": "Upload"
 }

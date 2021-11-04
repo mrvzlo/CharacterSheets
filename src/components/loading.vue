@@ -16,13 +16,32 @@
          </div>
       </div>
 
-      <div class="text-center" v-if="selected !== appConfig.unselected">
-         <button type="button" class="btn btn-success fw mx-2" data-bs-dismiss="modal" v-on:click="load">
-            {{ list[selected]?.empty ? $t('create') : $t('load') }}
-         </button>
-         <button type="button" class="btn btn-danger fw mx-2" data-bs-toggle="modal" data-bs-target=".confirmationModal" v-if="hasSave(selected)">
-            {{ $t('delete') }}
-         </button>
+      <div class="text-center row mx-2 justify-content-center" v-if="selected !== appConfig.unselected">
+         <div class="col-4">
+            <button type="button" class="btn btn-success w-100 px-0" data-bs-dismiss="modal" v-on:click="load">
+               {{ hasSave(selected) ? $t('load') : $t('create') }}
+            </button>
+         </div>
+         <template v-if="hasSave(selected)">
+            <div class="col-4">
+               <button type="button" class="btn btn-info w-100 px-0" v-on:click="download">
+                  {{ $t('download') }}
+               </button>
+            </div>
+            <div class="col-4">
+               <button type="button" class="btn btn-danger w-100 px-0" data-bs-toggle="modal" data-bs-target=".confirmationModal">
+                  {{ $t('delete') }}
+               </button>
+            </div>
+         </template>
+         <template v-else>
+            <div class="col-4">
+               <label for="upload" class="btn btn-info w-100 px-0">
+                  {{ $t('upload') }}
+               </label>
+               <input type="file" id="upload" class="hidden" v-on:change="upload" />
+            </div>
+         </template>
       </div>
 
       <div class="mb-1">&nbsp;</div>
@@ -106,20 +125,22 @@ export default {
 
       load() {
          if (!this.hasSave(this.selected)) {
-            this.show(new Character(this.selected));
+            this.showCharacter(new Character(this.selected));
             this.saveService.makeSave(this.character);
             return;
          }
 
-         this.saveService.getSaveData(this.selected).then((data) => {
-            const result = this.saveService.importCharacter(data, this.selected);
-            if (!result.status) {
-               this.headerMessage.showHeader(this.$t('error'));
-               return;
-            }
-            this.characterStorage.saveChoice(this.selected);
-            this.show(result.character);
-         });
+         this.saveService.loadBySaveSlot(this.selected).then(this.showCharacterResult);
+      },
+
+      download() {
+         this.saveService.downloadBlob(this.selected, this.savedName(this.selected));
+      },
+
+      upload(e) {
+         var files = e.target.files || e.dataTransfer.files;
+         if (!files.length) return;
+         this.saveService.import(this.selected, files[0]).then(this.showCharacterResult);
       },
 
       deleteSave: function() {
@@ -128,7 +149,16 @@ export default {
          this.reloadList();
       },
 
-      show(character) {
+      showCharacterResult(result) {
+         if (!result.status) {
+            this.headerMessage.showHeader(this.$t('error'));
+            return;
+         }
+         this.characterStorage.saveChoice(this.selected);
+         this.showCharacter(result.character);
+      },
+
+      showCharacter(character) {
          this.character = character;
          this.selected = AppConfig.unselected;
          this.showStart = false;

@@ -19,7 +19,7 @@ export default class SaveData {
    }
 
    async getEncoded(): Promise<string> {
-      const result = await await this.getSave();
+      const result = await this.getSave();
       if (!result) return '';
       const splitted = result.data.split('\n');
       return !splitted ? '' : splitted[2];
@@ -45,10 +45,10 @@ export default class SaveData {
       return dir.files.filter((x) => x === name).length > 0;
    }
 
-   setData(value: string, name: string) {
+   async setData(value: string, name: string): Promise<void> {
       this.name = name;
       this.datetime = new Date();
-      this.save(value);
+      await this.save(value);
    }
 
    private async save(value: string) {

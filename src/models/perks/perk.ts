@@ -1,17 +1,13 @@
+import Deletable from '../base/deletable';
 import { CooldownType } from './cooldown-type';
 
-export default class Perk {
+export default class Perk extends Deletable {
    name = '';
    description = '';
    count = 0;
    max = 1;
    expand = true;
-   delete = false;
    cooldown = CooldownType.Permanent;
-
-   toggleDeleteMode(mode: boolean) {
-      this.delete = mode;
-   }
 
    inc() {
       if (this.count < this.max) this.count++;

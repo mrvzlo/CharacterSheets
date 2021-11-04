@@ -3,10 +3,12 @@
       <div class="hex light mx-1">
          <input v-model="editModel.count" class="plain w-100" type="number" min="0" max="999" />
       </div>
-      <input v-model="editModel.name" class="border-0 px-1 py-0 border-bottom flex-grow-1" :placeholder="$t('item')" />
+      <div class="border-bottom flex-grow-1">
+         <input v-model="editModel.name" class="border-0 px-1 py-0 w-100" :placeholder="$t('item')" />
+      </div>
       <div class="block light mx-1">
          <input v-model="editModel.weight" v-if="!deleteMode" class="plain w-100" type="number" min="0" max="999" />
-         <div v-on:click="toggleDelete" class="w-100 h-100" v-if="deleteMode">
+         <div v-on:click="editModel.delete = !editModel.delete" class="w-100 h-100" v-if="deleteMode">
             <i v-if="item.delete || container.delete" class="fas fa-times"></i>
          </div>
       </div>
@@ -40,10 +42,6 @@ export default {
             temp[x] = this.editModel[x];
             Object.assign(this.item, temp);
          });
-      },
-      toggleDelete() {
-         this.editModel.delete = !this.editModel.delete;
-         this.setData();
       },
    },
    watch: {

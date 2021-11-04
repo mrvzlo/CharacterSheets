@@ -1,15 +1,12 @@
-export default class Spell {
-   name = "";
-   components = "";
+import Deletable from '../base/deletable';
+
+export default class Spell extends Deletable {
+   name = '';
+   components = '';
    marked = false;
    verbal = false;
    material = false;
    somatic = false;
    ritual = false;
-   delete = false;
    concentration = false;
-
-   toggleDeleteMode(mode: boolean) {
-      this.delete = mode;
-   }
 }

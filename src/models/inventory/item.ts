@@ -1,10 +1,8 @@
-export default class Item {
-   name: string = "";
-   count: number = 1;
-   weight: number = 0;
-   delete = false;
+import Deletable from '../base/deletable';
 
-   toggleDeleteMode(mode: boolean) {
-      this.delete = mode;
-   }
+export default class Item extends Deletable {
+   name = '';
+   count = 1;
+   weight = 0;
+   marked = false;
 }
