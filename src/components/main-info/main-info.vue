@@ -1,5 +1,5 @@
 <template>
-   <div class="d-flex flex-column">
+   <div class="d-flex flex-column h-100">
       <div class="row mx-1 text-center lh-initial">
          <div class="px-1 col-12 col-md-6 col-lg-5">
             <div class="border-bottom my-3 mx-1">

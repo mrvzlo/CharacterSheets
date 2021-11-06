@@ -1,5 +1,5 @@
 <template>
-   <div class="d-flex flex-column">
+   <div class="d-flex flex-column h-100">
       <div class="text-center h4 my-3 fw-bold">{{ $t('skills_and_feats') }}</div>
       <div class="flex-grow-1">
          <div class="pb-2" v-for="item in character.perks" :key="item">

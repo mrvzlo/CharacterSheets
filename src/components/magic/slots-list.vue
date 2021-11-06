@@ -1,5 +1,5 @@
 <template>
-   <div class="d-flex flex-column">
+   <div class="d-flex flex-column h-100">
       <div class="flex-grow-1">
          <div class="text-center">
             <div class="text-start mx-auto d-inline-block mt-2">

@@ -7,7 +7,7 @@
       <div class="flex-grow-1 position-relative d-flex flex-column">
          <loading :themeStorage="themeStorage" :localeStorage="localeStorage" />
       </div>
-      <div class="text-center py-2 bg-primary text-white">
+      <div class="text-center py-2 bg-primary text-white border-top border-contrast">
          <span class="small">{{ $t('title') }} {{ version }} by AndrejevVE</span>
       </div>
    </div>

@@ -1,17 +1,31 @@
 <template>
-   <div class="d-flex justify-content-around bg-primary p-2">
-      <div v-for="index in icons.length" :key="index" :class="'mx-2 btn ' + (tab != index ? 'op-03' : '')" v-on:click="tab = index">
-         <i :class="'fas fa-fw fa-' + icons[index - 1]"></i>
+   <div class="d-flex justify-content-around bg-primary p-2 border-bottom border-contrast">
+      <div v-for="(_, index) in icons.length" :key="index" :class="'mx-2 btn ' + (tab != index ? 'op-03' : '')" v-on:click="slideTo(index)">
+         <i :class="'fas fa-fw fa-' + icons[index]"></i>
       </div>
    </div>
 
-   <div class="deck d-flex flex-grow-1" :style="{ '--pos': tab - 1 }">
-      <main-info :character="character" :locale="localeStorage.current" />
-      <attributes-list :character="character" :locale="localeStorage.current" />
-      <perks-list :character="character" />
-      <inventory :character="character" />
-      <slots-list :character="character" />
-      <settings :character="character" :themeStorage="themeStorage" :localeStorage="localeStorage" />
+   <div class="flex-grow-1">
+      <swiper @swiper="setSwiperRef">
+         <swiper-slide>
+            <main-info :character="character" :locale="localeStorage.current" />
+         </swiper-slide>
+         <swiper-slide>
+            <attributes-list :character="character" :locale="localeStorage.current" />
+         </swiper-slide>
+         <swiper-slide>
+            <perks-list :character="character" />
+         </swiper-slide>
+         <swiper-slide>
+            <inventory :character="character" />
+         </swiper-slide>
+         <swiper-slide>
+            <slots-list :character="character" />
+         </swiper-slide>
+         <swiper-slide>
+            <settings :character="character" :themeStorage="themeStorage" :localeStorage="localeStorage" />
+         </swiper-slide>
+      </swiper>
    </div>
 
    <div class="position-sticky text-end bottom-0 op-08 px-2 h-0 z-100">
@@ -25,7 +39,6 @@
 <script>
 import Character from '../models/character';
 import LocaleStorage from '@/data-layer/local-storage/locale-storage';
-import GestureTracker from '../helpers/gesture-tracker';
 import SettingsComponent from './settings/settings.vue';
 import FixedMessageComponent from './fixed-message.vue';
 import InventoryComponent from './inventory/inventory.vue';
@@ -35,6 +48,7 @@ import MainInfoComponent from './main-info/main-info';
 import SlotsListComponent from './magic/slots-list.vue';
 import BootstrapHelper from '@/helpers/bootstrap-helper';
 import ThemeStorage from '@/data-layer/local-storage/theme-storage';
+import { Swiper, SwiperSlide } from 'swiper/vue';
 
 export default {
    name: 'character',
@@ -45,8 +59,8 @@ export default {
    },
    data() {
       return {
-         tab: 1,
          icons: ['id-card', 'running', 'clipboard-list', 'suitcase', 'hand-sparkles', 'cog'],
+         swiperRef: null,
       };
    },
    methods: {
@@ -59,15 +73,23 @@ export default {
          this.$parent.makeSave(this.character);
          this.$parent.toStart();
       },
+      setSwiperRef(swiper) {
+         this.swiperRef = swiper;
+      },
+      slideTo(index) {
+         this.swiperRef.slideTo(index, 500);
+      },
    },
    created() {
       setTimeout(this.autoSave, this.character.settings.autoSavesIntervalMs);
-      const tracker = new GestureTracker();
-      tracker.track(document.body, 'Left', () => (this.tab < 6 ? this.tab++ : null));
-      tracker.track(document.body, 'Right', () => (this.tab > 1 ? this.tab-- : null));
    },
    mounted() {
       new BootstrapHelper().initTooltips();
+   },
+   computed: {
+      tab: function() {
+         return this.swiperRef?.activeIndex ?? 0;
+      },
    },
    components: {
       settings: SettingsComponent,
@@ -77,6 +99,8 @@ export default {
       inventory: InventoryComponent,
       slotsList: SlotsListComponent,
       perksList: PerksListComponent,
+      Swiper,
+      SwiperSlide,
    },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-   <div class="d-flex flex-column">
+   <div class="d-flex flex-column h-100">
       <div class="text-center h4 my-3 fw-bold">{{ $t('inventory') }}</div>
       <div class="flex-grow-1">
          <div class="row justify-content-center mx-0">

@@ -94,11 +94,6 @@ hr {
    word-break: break-all;
 }
 
-.loading-bar {
-   background: linear-gradient(90deg, rgba(150, 255, 150, 0.7) var(--percent), var(--background) var(--percent));
-   opacity: 0.8;
-}
-
 .message {
    z-index: 1000;
 }
@@ -148,15 +143,7 @@ hr {
    }
 }
 
-.deck {
+.swiper-slide {
    height: calc(100vh - 90px);
-   width: 600vw;
-   transition: 0.3s ease-in-out;
-   transform: translateX(calc(-100vw * var(--pos)));
-
-   & > * {
-      width: 100vw;
-      height: calc(100vh - 90px);
-      overflow-y: auto;
-   }
+   overflow-y: auto;
 }

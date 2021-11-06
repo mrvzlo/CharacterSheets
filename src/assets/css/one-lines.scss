@@ -62,3 +62,8 @@
 .mb-n1px {
    margin-bottom: -1px;
 }
+
+.border-contrast {
+   --border: var(--background);
+   transition: border-color 0.5s;
+}
