@@ -1,6 +1,6 @@
 <template>
    <div class="text-center my-4 position-relative">
-      <div class="text-default d-inline-block mb-2">{{ $t('character_edit') }}</div>
+      <div class="h6 fw-bold mb-1 text-default d-inline-block">{{ $t('character_edit') }}</div>
       <settings-button v-on:click="toStart" :icon="'fas fa-sync'" :text="$t('change_character')" :color="'danger'" />
       <settings-button
          v-on:click="lock"
@@ -8,11 +8,11 @@
          :text="character.settings.locked ? $t('unlock') : $t('lock')"
       />
 
-      <div class="text-default d-inline-block my-2">{{ $t('application_settings') }}</div>
+      <div class="h6 fw-bold mb-1 text-default d-inline-block mt-3">{{ $t('application_settings') }}</div>
       <settings-button v-on:click="toggleTheme" :icon="'fas fa-palette'" :text="themeStorage.isDark ? $t('light_theme') : $t('dark_theme')" />
       <settings-button v-on:click="toggleLocale" :icon="'fas fa-language'" :text="localeStorage.nextLocaleNativeName()" />
 
-      <div class="text-default d-inline-block my-2">{{ $t('contact_author') }}</div>
+      <div class="h6 fw-bold mb-1 text-default d-inline-block mt-3">{{ $t('contact_author') }}</div>
       <a href="https://t.me/andrejevve">
          <settings-button v-on:click="toggleTheme" :icon="'fab fa-telegram-plane'" :text="'Telegram'" />
       </a>

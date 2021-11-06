@@ -1,5 +1,5 @@
 <template>
-   <div class="btn-group d-block mb-3">
+   <div class="btn-group d-block mb-2 mt-1">
       <div :class="'btn btn-' + color">
          <i :class="'fa-fw ' + icon"></i>
       </div>

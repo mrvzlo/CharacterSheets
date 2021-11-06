@@ -9,7 +9,7 @@
          </div>
          <div class="d-flex align-items-center text-center" v-if="!deleteMode">
             <span :class="'w-50px ' + (container.weight > container.capacity ? 'text-danger' : '')">{{ container.weight }}</span>
-            <span>/</span>
+            <i class="fas fa-slash"></i>
             <input type="number" v-model="editModel.capacity" class="plain w-50px text-white text-center" min="0" />
          </div>
          <div v-if="deleteMode" class="block light mx-1 mb-n1px">

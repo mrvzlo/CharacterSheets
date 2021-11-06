@@ -81,7 +81,7 @@ import Character from '@/models/character';
 import SaveData from '@/models/saving/save-data';
 import FixedMessageComponent from './fixed-message.vue';
 import CharacterComponent from './character.vue';
-import deleteConfirmationComponent from './delete-confirmation.vue';
+import DeleteConfirmationComponent from './delete-confirmation.vue';
 
 export default {
    name: 'loading',
@@ -186,6 +186,12 @@ export default {
          return isNaN(number) ? '00' : number > 9 ? number : '0' + number;
       },
 
+      toStart() {
+         this.showStart = true;
+         this.makeSave(this.character);
+         this.characterStorage.saveChoice(AppConfig.unselected);
+      },
+
       makeSave(character) {
          this.saveService.makeSave(character);
          this.reloadList();
@@ -193,11 +199,6 @@ export default {
 
       reloadList() {
          this.saveService.getAll().then((x) => (this.list = x));
-      },
-
-      toStart() {
-         this.showStart = true;
-         this.characterStorage.saveChoice(AppConfig.unselected);
       },
    },
    created() {
@@ -215,7 +216,7 @@ export default {
    components: {
       fixedMessage: FixedMessageComponent,
       character: CharacterComponent,
-      deleteConfirmation: deleteConfirmationComponent,
+      deleteConfirmation: DeleteConfirmationComponent,
    },
 };
 </script>

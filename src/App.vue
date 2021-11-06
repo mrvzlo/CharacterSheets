@@ -7,7 +7,7 @@
       <div class="flex-grow-1 position-relative d-flex flex-column">
          <loading :themeStorage="themeStorage" :localeStorage="localeStorage" />
       </div>
-      <div class="text-center py-2 bg-primary text-white border-top border-contrast">
+      <div class="text-center py-2 bg-primary text-white">
          <span class="small">{{ $t('title') }} {{ version }} by AndrejevVE</span>
       </div>
    </div>
@@ -25,7 +25,7 @@ export default {
    },
    data() {
       return {
-         version: 'v1.5.0',
+         version: 'v1.5.1',
          themeStorage: ThemeStorage,
          localeStorage: LocaleStorage,
       };

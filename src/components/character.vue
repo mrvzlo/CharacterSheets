@@ -70,7 +70,6 @@ export default {
          setTimeout(this.autoSave, this.character.settings.autoSavesIntervalMs);
       },
       toStart() {
-         this.$parent.makeSave(this.character);
          this.$parent.toStart();
       },
       setSwiperRef(swiper) {
