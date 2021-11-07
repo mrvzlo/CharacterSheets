@@ -45,17 +45,17 @@ export default class SaveData {
       return dir.files.filter((x) => x === name).length > 0;
    }
 
-   async setData(value: string, name: string): Promise<void> {
+   async saveToData(value: string, name: string): Promise<void> {
       this.name = name;
       this.datetime = new Date();
-      await this.save(value);
+      await this.save(value, Directory.Data);
    }
 
-   private async save(value: string) {
+   private async save(value: string, dir: Directory) {
       await Filesystem.writeFile({
          path: this.fileName(),
          data: `${this.name}\n${this.datetime}\n${value}`,
-         directory: Directory.Data,
+         directory: dir,
          encoding: Encoding.UTF8,
       });
    }

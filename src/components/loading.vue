@@ -21,8 +21,8 @@
             <i class="fas fa-play fa-fw mx-2"></i>
          </button>
          <template v-if="hasSave(selected)">
-            <button type="button" class="btn btn-info px-4 mx-2" v-on:click="download">
-               <i class="fas fa-download fa-fw mx-2"></i>
+            <button type="button" class="btn btn-info px-4 mx-2" v-on:click="exportSave">
+               <i class="fas fa-share-alt fa-fw mx-2"></i>
             </button>
             <button type="button" class="btn btn-danger px-4 mx-2" data-bs-toggle="modal" data-bs-target=".confirmationModal">
                <i class="fas fa-trash fa-fw mx-2"></i>
@@ -30,7 +30,7 @@
          </template>
          <template v-else>
             <label for="upload" class="btn btn-info px-4 mx-2">
-               <i class="fas fa-upload fa-fw mx-2"></i>
+               <i class="fas fa-file-upload fa-fw mx-2"></i>
             </label>
             <input type="file" id="upload" class="hidden" v-on:change="upload" />
          </template>
@@ -123,8 +123,8 @@ export default {
          this.saveService.loadBySaveSlot(this.selected).then(this.showCharacterResult);
       },
 
-      download() {
-         this.saveService.downloadBlob(this.selected, this.savedName(this.selected));
+      exportSave() {
+         this.saveService.export(this.selected, this.savedName(this.selected));
       },
 
       upload(e) {

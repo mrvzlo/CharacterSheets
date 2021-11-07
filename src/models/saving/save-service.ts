@@ -4,6 +4,8 @@ import Encoder from '../encoder';
 import SaveData from './save-data';
 import SaveResponse from './save-response';
 import { readAsText } from 'promise-file-reader';
+import { FileSharer } from '@byteowls/capacitor-filesharer';
+import { Capacitor } from '@capacitor/core';
 
 export default class SaveService {
    encoder = new Encoder();
@@ -33,18 +35,32 @@ export default class SaveService {
 
    async makeSave(character: Character): Promise<void> {
       const encoded = this.encoder.encode256(character);
-      await new SaveData(character.saveSlot).setData(encoded, character.name);
+      await new SaveData(character.saveSlot).saveToData(encoded, character.name);
    }
 
    deleteSave(id: number) {
       new SaveData(id).delete();
    }
 
-   async downloadBlob(id: number, name: string): Promise<void> {
+   async export(id: number, name: string): Promise<void> {
       const data = await this.getSaveData(id);
+      const isWeb = Capacitor.getPlatform() === 'web';
+      isWeb ? this.webExport(data, name) : this.androidExport(data, name);
+   }
+
+   private webExport(data: string, name: string) {
       const blob = new Blob([data], { type: 'text/plain;charset=utf-8' });
       const fs = require('file-saver');
       fs.saveAs(blob, `${name}.save`);
+   }
+
+   private androidExport(data: string, name: string) {
+      const base64Data = btoa(unescape(encodeURIComponent(data)));
+      FileSharer.share({
+         filename: name + '.save',
+         base64Data: base64Data,
+         contentType: 'text/plain',
+      });
    }
 
    async import(id: number, file: File): Promise<SaveResponse> {
