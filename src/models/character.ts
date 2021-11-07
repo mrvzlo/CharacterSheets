@@ -1,11 +1,11 @@
 import { AttributeType } from '@/data-layer/attributes/attribute-type';
 import Attribute from './attribute';
 import DynamicArray from './base/dynamic-array';
-import TypedArray from './base/typed-array';
 import CharacterClass from './character-class';
 import Check from './check';
 import Countable from './countable';
 import Container from './inventory/container';
+import Item from './inventory/item';
 import MagicSlot from './magic/magic-slot';
 import Perk from './perks/perk';
 import Proficiencies from './proficiencies/proficiencies';
@@ -40,11 +40,14 @@ export default class Character {
    proficiencies = new Proficiencies();
 
    constructor(public saveSlot: number) {
-      for (let i = 0; i < 6; i++) {
+      const attributeCount = 6;
+      const magicLevelsCount = 11;
+
+      for (let i = 0; i < attributeCount; i++) {
          this.attributes.push(new Attribute(i));
       }
 
-      for (let i = 0; i < 11; i++) {
+      for (let i = 0; i < magicLevelsCount; i++) {
          this.magicSlots.push(new MagicSlot());
       }
 
@@ -87,10 +90,17 @@ export default class Character {
    }
 
    get magicBonus() {
-      return (this.magicAttribute < 0 ? 0 : this.attributes[this.magicAttribute].bonus) + this.proficiency;
+      let result = this.proficiency;
+      if (this.magicAttribute === AttributeType.Unknown) return result;
+      result += this.attributes[this.magicAttribute].bonus;
+      return result;
    }
 
    get spellDifficulty() {
       return 8 + this.magicBonus;
+   }
+
+   get markedItems(): Item[] {
+      return this.inventory.flatMap((x) => x.marked());
    }
 }

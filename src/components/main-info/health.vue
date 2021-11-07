@@ -4,7 +4,7 @@
          <div class="hex big mb-n1px" style="--color: -10deg">
             <input v-model="editModel.health" class="plain w-100" type="number" :max="editModel.healthMax" min="0" />
          </div>
-         <div class="mx-1 mb-0 mt-auto h3 lh-1">/</div>
+         <div class="h5 mb-0"><i class="fas fa-slash"></i></div>
          <div class="hex big mb-n1px" style="--color: -10deg">
             <input v-model="editModel.healthMax" class="plain w-100" type="number" min="0" :disabled="character.settings.locked" />
          </div>

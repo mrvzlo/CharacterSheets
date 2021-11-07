@@ -59,7 +59,6 @@ export default {
    props: {
       character: Character,
       locked: Boolean,
-      locale: String,
    },
    data() {
       return {
@@ -94,6 +93,11 @@ export default {
       attribute: AttributeComponent,
       check: CheckComponent,
       octagon: OctagonComponent,
+   },
+   computed: {
+      locale: function() {
+         return this.$root.localeStorage.current;
+      },
    },
    watch: {
       locale: {

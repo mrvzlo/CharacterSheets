@@ -9,8 +9,8 @@
       />
 
       <div class="h6 fw-bold mb-1 text-default d-inline-block mt-3">{{ $t('application_settings') }}</div>
-      <settings-button v-on:click="toggleTheme" :icon="'fas fa-palette'" :text="themeStorage.isDark ? $t('light_theme') : $t('dark_theme')" />
-      <settings-button v-on:click="toggleLocale" :icon="'fas fa-language'" :text="localeStorage.nextLocaleNativeName()" />
+      <settings-button v-on:click="toggleTheme" :icon="'fas fa-palette'" :text="isDark() ? $t('light_theme') : $t('dark_theme')" />
+      <settings-button v-on:click="toggleLocale" :icon="'fas fa-language'" :text="localeName()" />
 
       <div class="h6 fw-bold mb-1 text-default d-inline-block mt-3">{{ $t('contact_author') }}</div>
       <a href="https://t.me/andrejevve">
@@ -24,29 +24,31 @@
 
 <script>
 import Character from '@/models/character';
-import LocaleStorage from '@/data-layer/local-storage/locale-storage';
-import ThemeStorage from '@/data-layer/local-storage/theme-storage';
 import SettingsButtonComponent from './settings-button.vue';
 
 export default {
    name: 'settings',
    props: {
       character: Character,
-      themeStorage: ThemeStorage,
-      localeStorage: LocaleStorage,
    },
    methods: {
       lock: function() {
          Object.assign(this.character.settings, { locked: !this.character.settings.locked });
       },
+      isDark() {
+         return this.$root.themeStorage.isDark;
+      },
+      localeName() {
+         return this.$root.localeStorage.nextLocaleNativeName();
+      },
       toggleTheme() {
-         this.themeStorage.toggleTheme();
+         this.$root.themeStorage.toggleTheme();
       },
       toggleLocale() {
-         this.localeStorage.toggleLocale();
+         this.$root.localeStorage.toggleLocale();
       },
       toStart() {
-         this.$parent.toStart();
+         this.$root.emitter.emit('goToStart');
       },
    },
    components: {

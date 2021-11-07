@@ -25,4 +25,8 @@ export default class Container extends Deletable {
    clear() {
       this.inner.clear();
    }
+
+   marked(): Item[] {
+      return this.inner.filter((x) => x.marked);
+   }
 }

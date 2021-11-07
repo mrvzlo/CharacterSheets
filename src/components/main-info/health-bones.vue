@@ -1,10 +1,12 @@
 <template>
    <div class="my-2 w-100 p-1 bones position-relative">
-      <span class="px-1"> {{ $t('character_hit_dice') }}</span>
-      <span class="plain float-end fw-bold pe-2"> d{{ character.class.bone }} </span>
-      <div class="d-flex justify-content-center border-top dorder-dark">
+      <div class="text-center">
+         <span class="px-1 d-inline-block"> {{ $t('character_hit_dice') }}</span>
+         <span class="plain d-inline-block fw-bold pe-2"> d{{ character.class.bone }} </span>
+      </div>
+      <div class="d-flex justify-content-center border-top align-items-center">
          <input v-model="bones" class="plain w-50px text-center" type="number" min="0" :max="character.level" @change="setData" />
-         <span>/</span>
+         <i class="fas fa-slash"></i>
          <span class="w-50px text-center">{{ character.level }}</span>
       </div>
    </div>

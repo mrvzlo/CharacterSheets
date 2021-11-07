@@ -8,10 +8,10 @@
    <div class="flex-grow-1">
       <swiper @swiper="setSwiperRef">
          <swiper-slide>
-            <main-info :character="character" :locale="localeStorage.current" />
+            <main-info :character="character" />
          </swiper-slide>
          <swiper-slide>
-            <attributes-list :character="character" :locale="localeStorage.current" />
+            <attributes-list :character="character" />
          </swiper-slide>
          <swiper-slide>
             <perks-list :character="character" />
@@ -23,7 +23,7 @@
             <slots-list :character="character" />
          </swiper-slide>
          <swiper-slide>
-            <settings :character="character" :themeStorage="themeStorage" :localeStorage="localeStorage" />
+            <settings :character="character" />
          </swiper-slide>
       </swiper>
    </div>
@@ -38,7 +38,6 @@
 
 <script>
 import Character from '../models/character';
-import LocaleStorage from '@/data-layer/local-storage/locale-storage';
 import SettingsComponent from './settings/settings.vue';
 import FixedMessageComponent from './fixed-message.vue';
 import InventoryComponent from './inventory/inventory.vue';
@@ -47,15 +46,12 @@ import AttributesListComponent from './attributes-skills/attributes-list.vue';
 import MainInfoComponent from './main-info/main-info';
 import SlotsListComponent from './magic/slots-list.vue';
 import BootstrapHelper from '@/helpers/bootstrap-helper';
-import ThemeStorage from '@/data-layer/local-storage/theme-storage';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
 export default {
    name: 'character',
    props: {
-      themeStorage: ThemeStorage,
       character: Character,
-      localeStorage: LocaleStorage,
    },
    data() {
       return {
@@ -68,9 +64,6 @@ export default {
          if (this.$parent.showStart) return;
          this.$parent.makeSave(this.character);
          setTimeout(this.autoSave, this.character.settings.autoSavesIntervalMs);
-      },
-      toStart() {
-         this.$parent.toStart();
       },
       setSwiperRef(swiper) {
          this.swiperRef = swiper;

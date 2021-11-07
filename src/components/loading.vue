@@ -45,11 +45,11 @@
       </div>
 
       <div class="position-absolute bottom-0 end-0 p-1" v-on:click="toggleLocale">
-         <div class="btn btn-primary text-uppercase">{{ localeStorage.nextLocale() }}</div>
+         <div class="btn btn-primary text-uppercase">{{ nextLocale() }}</div>
       </div>
    </template>
 
-   <character :character="character" :themeStorage="themeStorage" :localeStorage="localeStorage" v-if="!showStart" />
+   <character :character="character" v-if="!showStart" />
 
    <fixed-message :model="headerMessage" :msgClass="'top-0 start-0 w-100'">
       <div class="text-white rounded bg-danger">
@@ -73,8 +73,6 @@
 <script>
 import SaveService from '@/models/saving/save-service';
 import { AppConfig } from '@/app-config';
-import ThemeStorage from '@/data-layer/local-storage/theme-storage';
-import LocaleStorage from '@/data-layer/local-storage/locale-storage';
 import CharacterStorage from '@/data-layer/local-storage/character-storage';
 import FixedMessage from '@/models/fixed-message';
 import Character from '@/models/character';
@@ -98,17 +96,17 @@ export default {
          appConfig: AppConfig,
       };
    },
-   props: {
-      themeStorage: ThemeStorage,
-      localeStorage: LocaleStorage,
-   },
    methods: {
       toggleTheme() {
-         this.themeStorage.toggleTheme();
+         this.$root.themeStorage.toggleTheme();
       },
 
       toggleLocale() {
-         this.localeStorage.toggleLocale();
+         this.$root.localeStorage.toggleLocale();
+      },
+
+      nextLocale() {
+         return this.$root.localeStorage.nextLocale();
       },
 
       select(num) {
@@ -212,6 +210,7 @@ export default {
          if (this.selected !== AppConfig.unselected) this.load();
       });
       this.reloadList();
+      this.$root.emitter.on('goToStart', this.toStart);
    },
    components: {
       fixedMessage: FixedMessageComponent,

@@ -5,7 +5,7 @@
 <template>
    <div class="d-flex flex-column vh-100 position-relative">
       <div class="flex-grow-1 position-relative d-flex flex-column">
-         <loading :themeStorage="themeStorage" :localeStorage="localeStorage" />
+         <loading />
       </div>
       <div class="text-center py-2 bg-primary text-white">
          <span class="small">{{ $t('title') }} {{ version }} by AndrejevVE</span>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import mitt from 'mitt';
 import LoadingComponent from './components/loading.vue';
 import ThemeStorage from '@/data-layer/local-storage/theme-storage';
 import LocaleStorage from '@/data-layer/local-storage/locale-storage';
@@ -28,6 +29,7 @@ export default {
          version: 'v1.5.1',
          themeStorage: ThemeStorage,
          localeStorage: LocaleStorage,
+         emitter: mitt(),
       };
    },
    created() {

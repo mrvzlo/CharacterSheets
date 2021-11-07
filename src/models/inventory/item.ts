@@ -5,4 +5,5 @@ export default class Item extends Deletable {
    count = 1;
    weight = 0;
    marked = false;
+   bonus = 0;
 }

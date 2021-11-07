@@ -89,9 +89,8 @@
             <health-bones :character="character" />
          </div>
       </div>
-      <div class="m-2 mb-0 px-1">
-         <div class="border-top"></div>
-      </div>
+
+      <marked-items :character="character" />
 
       <countable-list :character="character" />
    </div>
@@ -104,13 +103,13 @@ import DerivativesComponent from './derivatives.vue';
 import HealthComponent from './health.vue';
 import HealthBonesComponent from './health-bones.vue';
 import OctagonComponent from '@/components/helpers/octagon.vue';
-import CountableListComponent from './countable-list.vue';
+import CountableListComponent from './countable/list.vue';
+import MakedItemsComponent from './marked-items/list.vue';
 
 export default {
    name: 'top-info',
    props: {
       character: Character,
-      locale: String,
    },
    data() {
       return {
@@ -172,6 +171,9 @@ export default {
       locked: function() {
          return this.character.settings.locked;
       },
+      locale: function() {
+         return this.$root.localeStorage.current;
+      },
    },
    watch: {
       character: {
@@ -199,6 +201,7 @@ export default {
       healthBones: HealthBonesComponent,
       octagon: OctagonComponent,
       countableList: CountableListComponent,
+      markedItems: MakedItemsComponent,
    },
 };
 </script>
