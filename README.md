@@ -1,4 +1,4 @@
-# Russian Character Sheets 
+# Character Sheets 
 
 This tool uses VueJs 3 server for character sheet display. This is meant to be used with D&D player handbook 5 edition. Player can fill fields according to guidelines. Lock and unlock changes, save and export the character.
 
