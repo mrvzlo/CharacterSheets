@@ -1,7 +1,7 @@
 <template>
-   <div class="d-flex justify-content-around bg-primary p-2 border-bottom border-contrast">
+   <div class="d-flex justify-content-around bg-primary p-1 border-bottom border-contrast">
       <div v-for="(_, index) in icons.length" :key="index" :class="'mx-2 btn ' + (tab != index ? 'op-03' : '')" v-on:click="slideTo(index)">
-         <i :class="'fas fa-fw fa-' + icons[index]"></i>
+         <i :class="'icon icon-' + icons[index]"></i>
       </div>
    </div>
 
@@ -28,10 +28,10 @@
       </swiper>
    </div>
 
-   <div class="position-sticky text-end bottom-0 op-08 px-2 h-0 z-100">
-      <div class="position-relative top-n42px d-inline">
-         <i class="fas fa-2x fa-lock" v-if="character.settings.locked"></i>
-         <i class="fas fa-2x fa-unlock" v-else></i>
+   <div class="position-sticky text-end bottom-0 op-08 pe-2 h-0 z-100">
+      <div class="position-relative lock-shift d-inline m-1">
+         <i class="h1 icon icon-lock" v-if="character.settings.locked"></i>
+         <i class="h1 icon icon-lock-open" v-else></i>
       </div>
    </div>
 </template>
@@ -55,7 +55,7 @@ export default {
    },
    data() {
       return {
-         icons: ['id-card', 'running', 'clipboard-list', 'suitcase', 'hand-sparkles', 'cog'],
+         icons: ['user', 'strong', 'list', 'suitcase', 'stars', 'cog'],
          swiperRef: null,
       };
    },

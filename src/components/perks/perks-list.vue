@@ -10,18 +10,18 @@
       <div v-if="!locked" class="text-center">
          <div v-if="!deleteMode">
             <button class="btn btn-success m-2 px-4" v-on:click="add">
-               <i class="fas fa-plus-circle fa-fw mx-2"></i>
+               <i class="icon icon-plus mx-2"></i>
             </button>
             <button class="btn btn-danger m-2 px-4" v-on:click="openDeleteMode" :disabled="!character.perks.length">
-               <i class="fas fa-trash fa-fw mx-2"></i>
+               <i class="icon icon-trash mx-2"></i>
             </button>
          </div>
          <div v-else>
             <button class="btn btn-danger m-2 px-4" v-on:click="confirmDelete" :disabled="!anyMarked()">
-               <i class="fas fa-trash fa-fw mx-2"></i>
+               <i class="icon icon-trash mx-2"></i>
             </button>
             <button class="btn btn-secondary m-2 px-4" v-on:click="this.deleteMode = false">
-               <i class="fas fa-times fa-fw mx-2"></i>
+               <i class="icon icon-cancel mx-2"></i>
             </button>
          </div>
       </div>

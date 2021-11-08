@@ -1,8 +1,13 @@
 @font-face {
    font-family: 'Lora';
-   src: url('~@/assets/fonts/Lora-Bold.ttf');
-   src: url('~@/assets/fonts/Lora-Italic.ttf');
    src: url('~@/assets/fonts/Lora-Regular.ttf');
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: 'Lora';
+   src: url('~@/assets/fonts/Lora-Bold.ttf');
+   font-weight: bold;
 }
 
 * {

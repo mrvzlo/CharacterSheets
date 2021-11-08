@@ -4,19 +4,13 @@
          <input v-model="editModel.name" class="border-bottom plain flex-grow-1 px-1" :placeholder="$t('name')" :disabled="locked" />
 
          <div v-if="!deleteMode" class="border-bottom d-flex align-items-center">
-            <button class="btn p-0 btn-outline lh-0" type="button" v-on:click="editModel.inc()" v-if="locked">
-               <i class="fas fa-fw fa-plus-circle"></i>
-            </button>
             <input v-model="editModel.count" class="plain w-30px text-center" type="number" :max="editModel.max" min="0" />
-            <i class="fas fa-slash"></i>
+            <i class="icon icon-slash"></i>
             <input v-model="editModel.max" class="plain w-30px text-center" type="number" min="0" :disabled="locked" />
-            <button class="btn p-0 btn-outline lh-0" type="button" v-on:click="editModel.dec()" v-if="locked">
-               <i class="fas fa-fw fa-minus-circle"></i>
-            </button>
          </div>
          <div v-else class="block light ms-1 w-50px mb-n1px">
             <div v-on:click="toggleDelete" class="w-100 h-100 text-center">
-               <i v-if="item.delete" class="fas fa-times"></i>
+               <i v-if="item.delete" class="icon icon-cancel"></i>
                <i v-else>&nbsp;</i>
             </div>
          </div>

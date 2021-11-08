@@ -48,7 +48,7 @@
 
          <div class="row mx-0">
             <template v-if="magicLimit > 0">
-               <div v-for="(_, index) in magicLimit" :key="index" class="col-12 col-md-6 mt-2 px-2">
+               <div v-for="(_, index) in magicLimit" :key="index" class="col-12 mt-2 px-2">
                   <magic-slot
                      :magicSlot="character.magicSlots[index]"
                      :index="index"
@@ -59,7 +59,7 @@
                </div>
             </template>
 
-            <div class="col-12 col-md-6 mt-2 px-2">
+            <div class="col-12 mt-2 px-2">
                <magic-slot
                   :magicSlot="otherSpells()"
                   :index="10"
@@ -74,15 +74,15 @@
       <template v-if="!character.settings.locked">
          <div v-if="!deleteMode" class="text-center">
             <button class="btn btn-danger m-2 px-4" v-on:click="openDeleteMode" :disabled="!anySpell()">
-               <i class="fas fa-trash fa-fw mx-2"></i>
+               <i class="icon icon-trash mx-2"></i>
             </button>
          </div>
          <div v-if="deleteMode" class="text-center">
             <button class="btn btn-danger m-2 px-4" v-on:click="confirmDelete" :disabled="!anyMarked()">
-               <i class="fas fa-trash fa-fw mx-2"></i>
+               <i class="icon icon-trash mx-2"></i>
             </button>
             <button class="btn btn-secondary m-2 px-4" v-on:click="this.deleteMode = false">
-               <i class="fas fa-times fa-fw mx-2"></i>
+               <i class="icon icon-cancel mx-2"></i>
             </button>
          </div>
       </template>

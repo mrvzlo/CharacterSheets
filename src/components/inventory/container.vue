@@ -2,19 +2,19 @@
    <div class="card">
       <div class="card-header d-flex justify-content-between px-1 bg-primary text-white align-items-end">
          <div @click="editModel.expand = !editModel.expand">
-            <i class="fas fa-eye text-white px-3"></i>
+            <i class="icon icon-eye text-white px-2"></i>
          </div>
-         <div class="flex-grow-1">
+         <div class="flex-grow-1 ps-1">
             <input type="text" v-model="editModel.name" class="border-0 border-bottom border-white px-1 w-100 h-100 text-white bg-primary" />
          </div>
          <div class="d-flex align-items-center text-center" v-if="!deleteMode">
             <span :class="'w-50px ' + (container.weight > container.capacity ? 'text-danger' : '')">{{ container.weight }}</span>
-            <i class="fas fa-slash"></i>
+            <i class="icon icon-slash"></i>
             <input type="number" v-model="editModel.capacity" class="plain w-50px text-white text-center" min="0" />
          </div>
          <div v-if="deleteMode" class="block light mx-1 mb-n1px">
             <div v-on:click="toggleDelete" class="w-100 h-100">
-               <i v-if="container.delete" class="fas fa-times"></i>
+               <i v-if="container.delete" class="icon icon-cancel"></i>
             </div>
          </div>
       </div>
@@ -24,7 +24,7 @@
          </div>
          <div class="text-start mt-2">
             <div class="btn btn-success p-1 btn-sm lh-0" v-on:click="addItem">
-               <i class="fas fa-plus-circle"></i>
+               <i class="icon icon-plus"></i>
             </div>
          </div>
       </div>

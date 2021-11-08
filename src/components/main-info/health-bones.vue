@@ -5,9 +5,9 @@
          <span class="plain d-inline-block fw-bold pe-2"> d{{ character.class.bone }} </span>
       </div>
       <div class="d-flex justify-content-center border-top align-items-center">
-         <input v-model="bones" class="plain w-50px text-center" type="number" min="0" :max="character.level" @change="setData" />
-         <i class="fas fa-slash"></i>
-         <span class="w-50px text-center">{{ character.level }}</span>
+         <input v-model="bones" class="plain w-30px text-center" type="number" min="0" :max="character.level" @change="setData" />
+         <i class="icon icon-slash"></i>
+         <span class="w-30px text-center">{{ character.level }}</span>
       </div>
    </div>
 </template>

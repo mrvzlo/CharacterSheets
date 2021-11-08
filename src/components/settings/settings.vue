@@ -1,23 +1,23 @@
 <template>
    <div class="text-center my-4 position-relative">
       <div class="h6 fw-bold mb-1 text-default d-inline-block">{{ $t('character_edit') }}</div>
-      <settings-button v-on:click="toStart" :icon="'fas fa-sync'" :text="$t('change_character')" :color="'danger'" />
+      <settings-button v-on:click="toStart" :icon="'icon icon-swap'" :text="$t('change_character')" :color="'danger'" />
       <settings-button
          v-on:click="lock"
-         :icon="character.settings.locked ? 'fas fa-unlock' : 'fas fa-lock'"
+         :icon="character.settings.locked ? 'icon icon-lock-open' : 'icon icon-lock'"
          :text="character.settings.locked ? $t('unlock') : $t('lock')"
       />
 
       <div class="h6 fw-bold mb-1 text-default d-inline-block mt-3">{{ $t('application_settings') }}</div>
-      <settings-button v-on:click="toggleTheme" :icon="'fas fa-palette'" :text="isDark() ? $t('light_theme') : $t('dark_theme')" />
-      <settings-button v-on:click="toggleLocale" :icon="'fas fa-language'" :text="localeName()" />
+      <settings-button v-on:click="toggleTheme" :icon="'icon icon-colors'" :text="isDark() ? $t('light_theme') : $t('dark_theme')" />
+      <settings-button v-on:click="toggleLocale" :icon="'icon icon-language'" :text="localeName()" />
 
       <div class="h6 fw-bold mb-1 text-default d-inline-block mt-3">{{ $t('contact_author') }}</div>
       <a href="https://t.me/andrejevve">
-         <settings-button v-on:click="toggleTheme" :icon="'fab fa-telegram-plane'" :text="'Telegram'" />
+         <settings-button v-on:click="toggleTheme" :icon="'icon icon-telegram'" :text="'Telegram'" />
       </a>
       <a href="https://twitter.com/andrejevve">
-         <settings-button v-on:click="toggleTheme" :icon="'fab fa-twitter'" :text="'Twitter'" />
+         <settings-button v-on:click="toggleTheme" :icon="'icon icon-twitter'" :text="'Twitter'" />
       </a>
    </div>
 </template>

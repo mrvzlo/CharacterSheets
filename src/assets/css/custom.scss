@@ -60,25 +60,12 @@ hr {
 }
 
 .check {
-   height: 20px;
-
-   &,
-   .fas,
-   .far {
-      line-height: 20px !important;
-   }
+   line-height: 20px;
 
    .bonus {
       display: inline-block;
       width: 30px;
       text-align: center;
-   }
-}
-
-.far,
-.fas {
-   &::before {
-      vertical-align: middle;
    }
 }
 
@@ -144,6 +131,6 @@ hr {
 }
 
 .swiper-slide {
-   height: calc(100vh - 90px);
+   height: calc(100vh - 83px);
    overflow-y: auto;
 }

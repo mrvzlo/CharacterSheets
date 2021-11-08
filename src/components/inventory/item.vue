@@ -6,10 +6,13 @@
       <div class="border-bottom flex-grow-1">
          <input v-model="editModel.name" class="border-0 px-1 py-0 w-100" :placeholder="$t('item')" />
       </div>
+      <div v-on:click="editModel.marked = !editModel.marked" class=" mb-n1px">
+         <i :class="'icon op-05 ' + (editModel.marked ? 'icon-star' : 'icon-star-empty')"></i>
+      </div>
       <div class="block light mx-1 mb-n1px">
          <input v-model="editModel.weight" v-if="!deleteMode" class="plain w-100" type="number" min="0" max="999" />
          <div v-on:click="editModel.delete = !editModel.delete" class="w-100 h-100" v-if="deleteMode">
-            <i v-if="item.delete || container.delete" class="fas fa-times"></i>
+            <i v-if="item.delete || container.delete" class="icon icon-cancel"></i>
          </div>
       </div>
    </div>

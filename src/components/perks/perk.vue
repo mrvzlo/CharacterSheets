@@ -2,9 +2,9 @@
    <div class="card mx-2">
       <div class="card-header px-1 bg-primary text-white d-flex">
          <div @click="editModel.expand = !editModel.expand">
-            <i class="fas fa-eye text-white px-3"></i>
+            <i class="icon icon-eye text-white px-2"></i>
          </div>
-         <div class="flex-grow-1">
+         <div class="flex-grow-1 ps-1">
             <input
                type="text"
                v-model="editModel.name"
@@ -14,7 +14,7 @@
          </div>
          <div v-if="deleteMode" class="block light mx-1">
             <div v-on:click="toggleDelete" class="w-100 h-100">
-               <i v-if="item.delete" class="fas fa-times"></i>
+               <i v-if="item.delete" class="icon icon-cancel"></i>
             </div>
          </div>
          <div v-else class="mx-4 ps-1"></div>
@@ -36,13 +36,13 @@
          <div class="py-0 px-2 col-3">{{ $t('uses') }}</div>
          <div class="d-flex align-items-center col-6 justify-content-center">
             <button class="btn btn-sm btn-outline" type="button" v-on:click="editModel.inc()" v-if="locked">
-               <i class="fas fa-fw fa-plus-circle"></i>
+               <i class="icon icon-plus"></i>
             </button>
             <input v-model="editModel.count" class="plain w-50px text-center" type="number" :max="editModel.max" min="0" />
-            <i class="fas fa-slash"></i>
+            <i class="icon icon-slash"></i>
             <input v-model="editModel.max" class="plain w-50px text-center" type="number" min="0" :disabled="locked" />
             <button class="btn btn-sm btn-outline" type="button" v-on:click="editModel.dec()" v-if="locked">
-               <i class="fas fa-fw fa-minus-circle"></i>
+               <i class="icon icon-minus"></i>
             </button>
          </div>
       </div>

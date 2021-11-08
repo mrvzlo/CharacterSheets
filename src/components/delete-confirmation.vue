@@ -5,7 +5,7 @@
             <div class="modal-header">
                <h5 class="modal-title">{{ $t('delete_confirm_title') }}</h5>
                <button type="button" class="btn btn-outline p-0" data-bs-dismiss="modal">
-                  <i class="fas fa-times h2 m-0"></i>
+                  <i class="icon icon-cancel h2 m-0"></i>
                </button>
             </div>
             <div class="modal-body">

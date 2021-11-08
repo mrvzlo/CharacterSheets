@@ -1,10 +1,10 @@
 <template>
    <div class="btn-group d-block mb-2 mt-1">
       <div :class="'btn btn-' + color">
-         <i :class="'fa-fw ' + icon"></i>
+         <i :class="'icon ' + icon"></i>
       </div>
       <div :class="'col-6 btn btn-outline border-' + color">{{ text }}</div>
-      <div :class="'btn btn-' + color"><i class="fa-fw fas">&nbsp;</i></div>
+      <div :class="'btn btn-' + color"><i class="icon"></i></div>
    </div>
 </template>
 

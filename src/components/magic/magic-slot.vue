@@ -2,12 +2,12 @@
    <div class="card">
       <div class="card-header d-flex justify-content-between px-1 bg-primary text-white">
          <div class="flex-grow-1 text-start" @click="toggleExpand">
-            <i class="fas fa-eye text-white px-2"></i>
+            <i class="icon icon-eye text-white px-2"></i>
             <span class="px-1">{{ name }}</span>
          </div>
          <div class="d-flex align-items-center" v-if="index > 0 && index <= 9">
             <input type="number" v-model="editModel.uses" class="plain w-50px text-white text-center" min="0" />
-            <i class="fas fa-slash"></i>
+            <i class="icon icon-slash"></i>
             <input type="number" v-model="editModel.limit" class="plain w-50px text-white text-center" min="0" />
          </div>
       </div>
@@ -18,7 +18,7 @@
          </div>
          <div class="mt-2" v-if="!locked">
             <button class="btn btn-success p-1 btn-sm lh-0" v-on:click="addItem">
-               <i class="fas fa-plus-circle"></i>
+               <i class="icon icon-plus"></i>
             </button>
          </div>
       </div>

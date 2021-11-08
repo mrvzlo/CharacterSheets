@@ -1,12 +1,12 @@
 <template>
    <div class="d-flex flex-column h-100">
       <div class="row mx-1 text-center lh-initial">
-         <div class="px-1 col-12 col-md-6 col-lg-5">
+         <div class="px-1 col-12">
             <div class="border-bottom my-3 mx-1">
                <input v-model="editModel.name" class="plain w-100 px-2 h4 m-0 text-center" :placeholder="$t('character_name')" :disabled="locked" />
             </div>
          </div>
-         <div class="p-1 mb-1 col-4 col-md-3 dropdown">
+         <div class="p-1 mb-1 col-4 dropdown">
             <a class="text-decoration-none text-reset d-block" data-bs-toggle="dropdown">
                {{ editModel.class.chosen ? $t(`character_classes.${editModel.class.type}`) : $t('pick_class') }}
             </a>
@@ -17,15 +17,15 @@
             </ul>
             <div class="text-secondary small border-top mx-1">{{ $t('character_class') }}</div>
          </div>
-         <div class="p-1 mb-1 col-5 col-md-4">
+         <div class="p-1 mb-1 col-5">
             <input v-model="editModel.race" class="plain w-100 text-center" :disabled="locked" />
             <div class="text-secondary small border-top mx-1">{{ $t('character_race') }}</div>
          </div>
-         <div class="p-1 mb-1 col-3 col-md-3 col-lg-2">
+         <div class="p-1 mb-1 col-3">
             <input v-model="editModel.level" class="plain w-100 text-center" type="number" min="1" max="20" :disabled="locked" />
             <div class="text-secondary small border-top mx-1">{{ $t('character_level') }}</div>
          </div>
-         <div class="p-1 mb-1 col-6 col-md-3 dropdown">
+         <div class="p-1 mb-1 col-6 dropdown">
             <a class="text-decoration-none text-reset d-block" data-bs-toggle="dropdown">
                {{ $t(`character_sizes.${editModel.size}`) }}
             </a>
@@ -36,7 +36,7 @@
             </ul>
             <div class="text-secondary small border-top mx-1">{{ $t('character_size') }}</div>
          </div>
-         <div class="p-1 mb-1 col-6 col-md-3 dropdown">
+         <div class="p-1 mb-1 col-6 dropdown">
             <a class="text-decoration-none text-reset d-block" data-bs-toggle="dropdown">
                {{ $t(`character_alignments.${editModel.alignment}`) }}
             </a>
@@ -57,7 +57,7 @@
                <div class="d-flex px-1 justify-content-center small">
                   <div class="mx-2">
                      <div class="hex m-auto d-block" style="--color: 250deg" v-on:click="toggleInspiration">
-                        <span v-if="editModel.masterInspiration" class="fas fa-check"></span>
+                        <span v-if="editModel.masterInspiration" class="icon icon-check"></span>
                      </div>
                      <div class="text-secondary">{{ $t('character_inspiration_master') }}</div>
                   </div>

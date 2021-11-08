@@ -19,11 +19,11 @@ export default class Check {
    get level(): string {
       switch (this.knowledge) {
          case 0:
-            return 'far fa-circle';
+            return 'icon icon-circle-empty';
          case 1:
-            return 'fas fa-dot-circle';
+            return 'icon icon-dot-circled';
          case 2:
-            return 'fas fa-circle';
+            return 'icon icon-circle';
       }
 
       return '';

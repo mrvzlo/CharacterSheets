@@ -2,9 +2,9 @@
    <div class="card mx-2">
       <div class="card-header px-1 bg-primary text-white d-flex">
          <div @click="toggleExpand">
-            <i class="fas fa-eye text-white px-3"></i>
+            <i class="icon icon-eye text-white px-2"></i>
          </div>
-         <div>{{ $t('proficiencies') }}</div>
+         <div class="ps-1">{{ $t('proficiencies') }}</div>
       </div>
       <div class="card-body p-0" v-if="editModel.expand">
          <div class="px-2 py-1">{{ $t('armor') }}</div>

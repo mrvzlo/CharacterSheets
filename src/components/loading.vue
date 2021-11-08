@@ -18,19 +18,19 @@
 
       <div class="text-center d-flex mx-2 justify-content-center" v-if="selected !== appConfig.unselected">
          <button type="button" class="btn btn-success px-4 mx-2" data-bs-dismiss="modal" v-on:click="load">
-            <i class="fas fa-play fa-fw mx-2"></i>
+            <i class="icon icon-play mx-2"></i>
          </button>
          <template v-if="hasSave(selected)">
             <button type="button" class="btn btn-info px-4 mx-2" v-on:click="exportSave">
-               <i class="fas fa-share-alt fa-fw mx-2"></i>
+               <i class="icon icon-share mx-2"></i>
             </button>
             <button type="button" class="btn btn-danger px-4 mx-2" data-bs-toggle="modal" data-bs-target=".confirmationModal">
-               <i class="fas fa-trash fa-fw mx-2"></i>
+               <i class="icon icon-trash mx-2"></i>
             </button>
          </template>
          <template v-else>
             <label for="upload" class="btn btn-info px-4 mx-2">
-               <i class="fas fa-file-upload fa-fw mx-2"></i>
+               <i class="icon icon-upload mx-2"></i>
             </label>
             <input type="file" id="upload" class="hidden" v-on:change="upload" />
          </template>
@@ -40,7 +40,7 @@
 
       <div class="position-absolute bottom-0 start-0 p-1" v-on:click="toggleTheme">
          <div class="btn btn-primary">
-            <i class="fas fa-fw fa-palette"></i>
+            <i class="icon icon-colors"></i>
          </div>
       </div>
 
@@ -54,7 +54,7 @@
    <fixed-message :model="headerMessage" :msgClass="'top-0 start-0 w-100'">
       <div class="text-white rounded bg-danger">
          <div class="d-flex justify-content-center px-3">
-            <i class="m-auto fas fa-exclamation-triangle"></i>
+            <i class="m-auto icon icon-error"></i>
             <div class="toast-body text-center py-2">
                {{ headerMessage.text }}
             </div>
@@ -65,7 +65,7 @@
 
    <deleteConfirmation class="confirmationModal">
       <button type="button" class="btn btn-danger fw mx-2" v-on:click="deleteSave" data-bs-dismiss="modal">
-         <i class="fas fa-trash"></i>
+         <i class="icon icon-trash"></i>
       </button>
    </deleteConfirmation>
 </template>

@@ -39,7 +39,7 @@
                {{ character.proficiency >> 1 }}
             </div>
             {{ $t('half_of_proficiency') }}
-            <button class="fas fa-question-circle p-0 mx-2 my-0 btn btn-outline"></button>
+            <button class="icon icon-help p-0 mx-2 my-0 btn btn-outline"></button>
          </div>
       </div>
    </div>
