@@ -26,7 +26,7 @@ export default {
    },
    data() {
       return {
-         version: 'v1.5.1',
+         version: 'v1.5.2',
          themeStorage: ThemeStorage,
          localeStorage: LocaleStorage,
          emitter: mitt(),

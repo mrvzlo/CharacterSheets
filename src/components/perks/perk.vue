@@ -18,9 +18,9 @@
             </div>
          </div>
          <div class="d-flex align-items-center" v-else-if="editModel.cooldown !== cooldownType.Permanent">
-            <input v-model="editModel.count" class="plain w-50px text-center" type="number" :max="editModel.max" min="0" />
+            <input v-model="editModel.count" class="plain w-50px text-center text-white" type="number" :max="editModel.max" min="0" />
             <i class="icon icon-slash"></i>
-            <input v-model="editModel.max" class="plain w-50px text-center" type="number" min="0" :disabled="locked" />
+            <input v-model="editModel.max" class="plain w-50px text-center text-white" type="number" min="0" :disabled="locked" />
          </div>
          <div v-else class="mx-4 ps-1"></div>
       </div>

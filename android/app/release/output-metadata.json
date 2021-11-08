@@ -1,18 +1,18 @@
 {
-  "version": 2,
-  "artifactType": {
-    "type": "APK",
-    "kind": "Directory"
-  },
-  "applicationId": "ru.charactersheets",
-  "variantName": "release",
-  "elements": [
-    {
-      "type": "SINGLE",
-      "filters": [],
-      "versionCode": 7,
-      "versionName": "1.5.1",
-      "outputFile": "character-sheets.apk"
-    }
-  ]
+   "version": 2,
+   "artifactType": {
+      "type": "APK",
+      "kind": "Directory"
+   },
+   "applicationId": "ru.charactersheets",
+   "variantName": "release",
+   "elements": [
+      {
+         "type": "SINGLE",
+         "filters": [],
+         "versionCode": 8,
+         "versionName": "1.5.2",
+         "outputFile": "app-release.apk"
+      }
+   ]
 }

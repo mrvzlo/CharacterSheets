@@ -1,15 +1,13 @@
 <template>
    <div class="my-2 flex-grow-1">
       <div class="row mx-1 justify-content-center" v-if="character.countable.length">
-         <div class="col-6 px-1 my-1" v-for="item in character.countable" :key="item">
-            <countable :item="item" :character="character" :deleteMode="deleteMode" />
-         </div>
+         <countable v-for="item in character.countable" :key="item" :item="item" :character="character" :deleteMode="deleteMode" />
       </div>
    </div>
    <div class="d-flex my-2 mx-1 mt-0" v-if="!character.settings.locked">
       <div class="mx-1 btn btn-primary" @click="toggleExpand">
          {{ $t('counters') }}
-         <i :class="'icon px-1 icon-' + (expand ? 'left' : 'right')"></i>
+         <i :class="'icon icon-' + (expand ? 'left' : 'right')"></i>
       </div>
       <template v-if="expand">
          <template v-if="!deleteMode">

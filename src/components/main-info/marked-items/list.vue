@@ -1,9 +1,7 @@
 <template>
    <div v-if="character.markedItems.length">
-      <div class="mx-1 row">
-         <div v-for="item in character.markedItems" v-bind:key="item" class="col-6 pt-2">
-            <item :item="item" :locked="character?.settings.locked" />
-         </div>
+      <div class="mx-1 d-flex flex-wrap justify-content-center">
+         <item v-for="item in character.markedItems" v-bind:key="item" :item="item" :locked="character?.settings.locked" />
       </div>
    </div>
 </template>
