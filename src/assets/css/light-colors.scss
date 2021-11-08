@@ -1,10 +1,11 @@
 :root {
    --background: #faf9f8;
-   --border: #000;
+   --text-color: #000;
+   --border: var(--text-color);
    --input-bg: var(--background);
-   --input-color: #000;
+   --input-color: var(--text-color);
    --input-focus-bg: var(--input-bg);
-   --input-focus-color: #000;
+   --input-focus-color: var(--text-color);
    --input-disabled-bg: #eee;
    --bones-bg: #fdd;
    --yellow-bg: #fec;

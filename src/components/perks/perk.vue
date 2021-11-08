@@ -17,6 +17,11 @@
                <i v-if="item.delete" class="icon icon-cancel"></i>
             </div>
          </div>
+         <div class="d-flex align-items-center" v-else-if="editModel.cooldown !== cooldownType.Permanent">
+            <input v-model="editModel.count" class="plain w-50px text-center" type="number" :max="editModel.max" min="0" />
+            <i class="icon icon-slash"></i>
+            <input v-model="editModel.max" class="plain w-50px text-center" type="number" min="0" :disabled="locked" />
+         </div>
          <div v-else class="mx-4 ps-1"></div>
       </div>
       <div class="card-body p-0" v-if="editModel.expand">
@@ -31,20 +36,6 @@
          </div>
          <div class="px-2 py-1">{{ $t('description') }}</div>
          <textarea v-model="editModel.description" class="w-100 py-1 px-2 d-block" rows="2" :disabled="locked"></textarea>
-      </div>
-      <div class="card-footer d-flex px-0 py-1 align-items-center" v-if="editModel.cooldown !== cooldownType.Permanent">
-         <div class="py-0 px-2 col-3">{{ $t('uses') }}</div>
-         <div class="d-flex align-items-center col-6 justify-content-center">
-            <button class="btn btn-sm btn-outline" type="button" v-on:click="editModel.inc()" v-if="locked">
-               <i class="icon icon-plus"></i>
-            </button>
-            <input v-model="editModel.count" class="plain w-50px text-center" type="number" :max="editModel.max" min="0" />
-            <i class="icon icon-slash"></i>
-            <input v-model="editModel.max" class="plain w-50px text-center" type="number" min="0" :disabled="locked" />
-            <button class="btn btn-sm btn-outline" type="button" v-on:click="editModel.dec()" v-if="locked">
-               <i class="icon icon-minus"></i>
-            </button>
-         </div>
       </div>
    </div>
 </template>
