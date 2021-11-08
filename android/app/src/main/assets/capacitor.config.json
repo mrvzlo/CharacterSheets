@@ -1,6 +1,13 @@
 {
 	"appId": "charsheets",
-	"appName": "Чарники",
+	"appName": "CharSheets",
 	"webDir": "dist",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 1000,
+			"launchAutoHide": true,
+			"useDialog": true
+		}
+	}
 }

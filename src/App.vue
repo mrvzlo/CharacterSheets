@@ -2,7 +2,7 @@
 @import '@/assets/css/style.scss';
 </style>
 
-<template>
+<template v-cloak>
    <div class="d-flex flex-column vh-100 position-relative">
       <div class="flex-grow-1 position-relative d-flex flex-column">
          <loading />

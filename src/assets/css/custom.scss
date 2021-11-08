@@ -134,3 +134,7 @@ hr {
    height: calc(100vh - 83px);
    overflow-y: auto;
 }
+
+[v-cloak] {
+   display: none;
+}
