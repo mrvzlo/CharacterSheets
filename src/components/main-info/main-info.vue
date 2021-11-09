@@ -138,9 +138,6 @@ export default {
       toggleInspiration() {
          this.editModel.masterInspiration = !this.editModel.masterInspiration;
       },
-      longRest() {
-         this.$parent.longRest();
-      },
       setClass(id) {
          this.editModel.class.type = id;
          this.showClasses = false;

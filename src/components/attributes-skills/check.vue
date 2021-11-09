@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import Check from '../../models/check';
-import { CheckType } from '../../data-layer/checks/check-type';
+import Check from '@/models/check';
+import { CheckType } from '@/data-layer/checks/check-type';
 import Attribute from '@/models/attribute';
 
 export default {
