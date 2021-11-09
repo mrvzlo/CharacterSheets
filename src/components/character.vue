@@ -30,7 +30,7 @@
 
    <div class="position-sticky text-end bottom-0 op-08 pe-2 h-0 z-100">
       <div class="position-relative lock-shift d-inline m-1">
-         <i class="h1 icon icon-lock" v-if="character.settings.locked"></i>
+         <i :class="'h1 icon icon-lock ' + (pulse ? 'pulse' : '')" v-if="character.settings.locked"></i>
          <i class="h1 icon icon-lock-open" v-else></i>
       </div>
    </div>
@@ -57,6 +57,7 @@ export default {
       return {
          icons: ['user', 'strong', 'list', 'suitcase', 'stars', 'cog'],
          swiperRef: null,
+         pulse: false,
       };
    },
    methods: {
@@ -71,12 +72,23 @@ export default {
       slideTo(index) {
          this.swiperRef.slideTo(index, 500);
       },
+      checkDisabled(event) {
+         const hasDisabled = event.path.filter((x) => this.isDisabled(x));
+         if (hasDisabled.length === 0) return;
+         this.pulse = false;
+         setTimeout(() => (this.pulse = true), 1);
+      },
+      isDisabled(element) {
+         if (!(element instanceof HTMLElement)) return false;
+         return element.disabled || element.getAttribute('disabled') === true.toString();
+      },
    },
    created() {
       setTimeout(this.autoSave, this.character.settings.autoSavesIntervalMs);
    },
    mounted() {
       new BootstrapHelper().initTooltips();
+      document.addEventListener('click', this.checkDisabled, false);
    },
    computed: {
       tab: function() {

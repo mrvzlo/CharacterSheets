@@ -5,7 +5,7 @@
             <button class="btn p-0 pe-2 text-default btn-outline" type="button" data-bs-toggle="dropdown">
                <i :class="'icon icon-' + icons[item.category]"></i>
             </button>
-            <div class="dropdown-menu">
+            <div :class="'dropdown-menu ' + (locked ? 'd-none' : '')">
                <div class="d-flex justify-content-evenly">
                   <div v-for="(icon, index) in icons" v-bind:key="icon" class="p-1 m-1" v-on:click="editModel.category = index">
                      <i :class="'icon icon-' + icon"></i>

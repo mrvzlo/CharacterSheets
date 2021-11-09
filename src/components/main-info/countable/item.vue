@@ -9,7 +9,7 @@
                <i class="icon icon-slash"></i>
                <input v-model="editModel.max" class="plain w-30px text-center" type="number" min="0" :disabled="locked" />
             </div>
-            <div v-else class="block light ms-1 w-50px mb-n1px">
+            <div v-else class="block light w-50px d-block mx-auto">
                <div v-on:click="toggleDelete" class="w-inherit text-center">
                   <i v-if="item.delete" class="icon icon-cancel"></i>
                   <i v-else>&nbsp;</i>

@@ -1,5 +1,5 @@
 <template>
-   <div class="check px-1 d-flex mt-1 align-items-center" v-on:click="!locked && clickable ? check.inc() : ''">
+   <div class="check px-1 d-flex mt-1 align-items-center" :disabled="locked" v-on:click="!locked ? check.inc() : ''">
       <div :class="color + ' ' + check.level"></div>
       <span class="bonus px-1">
          {{ check.get(proficiency, attribute.bonus) }}
@@ -27,11 +27,6 @@ export default {
       proficiency: {
          type: Number,
          default: 0,
-      },
-      clickable: {
-         type: Boolean,
-         default: true,
-         checkType: { default: CheckType },
       },
       locked: Boolean,
    },

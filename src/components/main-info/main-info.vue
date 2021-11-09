@@ -7,10 +7,10 @@
             </div>
          </div>
          <div class="p-1 mb-1 col-4 dropdown">
-            <a class="text-decoration-none text-reset d-block" data-bs-toggle="dropdown">
+            <a class="text-decoration-none text-reset d-block" data-bs-toggle="dropdown" :disabled="locked">
                {{ editModel.class.chosen ? $t(`character_classes.${editModel.class.type}`) : $t('pick_class') }}
             </a>
-            <ul class="dropdown-menu" v-if="!locked">
+            <ul :class="'dropdown-menu ' + (locked ? 'd-none' : '')">
                <a class="dropdown-item" v-for="x in classes" v-bind:key="x" v-on:click="setClass(x.id)">
                   {{ x.name }}
                </a>
@@ -26,10 +26,10 @@
             <div class="text-secondary small border-top mx-1">{{ $t('character_level') }}</div>
          </div>
          <div class="p-1 mb-1 col-6 dropdown">
-            <a class="text-decoration-none text-reset d-block" data-bs-toggle="dropdown">
+            <a class="text-decoration-none text-reset d-block" data-bs-toggle="dropdown" :disabled="locked">
                {{ $t(`character_sizes.${editModel.size}`) }}
             </a>
-            <ul class="dropdown-menu" v-if="!locked">
+            <ul :class="'dropdown-menu ' + (locked ? 'd-none' : '')">
                <a class="dropdown-item" v-for="(_, index) in 5" v-bind:key="index" v-on:click="setSize(index)">
                   {{ $t(`character_sizes.${index}`) }}
                </a>
@@ -37,10 +37,10 @@
             <div class="text-secondary small border-top mx-1">{{ $t('character_size') }}</div>
          </div>
          <div class="p-1 mb-1 col-6 dropdown">
-            <a class="text-decoration-none text-reset d-block" data-bs-toggle="dropdown">
+            <a class="text-decoration-none text-reset d-block" data-bs-toggle="dropdown" :disabled="locked">
                {{ $t(`character_alignments.${editModel.alignment}`) }}
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" v-if="!locked">
+            <ul :class="'dropdown-menu dropdown-menu-end ' + (locked ? 'd-none' : '')">
                <a class="dropdown-item" v-for="(_, index) in 9" v-bind:key="index" v-on:click="setAlignment(index)">
                   {{ $t(`character_alignments.${index}`) }}
                </a>

@@ -8,7 +8,7 @@
          <div class="d-flex align-items-center" v-if="index > 0 && index <= 9">
             <input type="number" v-model="editModel.uses" class="plain w-30px text-white text-center" min="0" />
             <i class="icon icon-slash"></i>
-            <input type="number" v-model="editModel.limit" class="plain w-30px text-white text-center" min="0" />
+            <input type="number" v-model="editModel.limit" class="plain w-30px text-white text-center" min="0" :disabled="locked" />
          </div>
       </div>
       <div class="card-body p-1" v-if="editModel.expand">
