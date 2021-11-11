@@ -10,7 +10,7 @@
          </div>
       </div>
    </div>
-   <div class="d-flex py-1">
+   <div class="d-flex py-1" :disabled="locked">
       <div v-on:click="locked ? null : (editModel.verbal = !editModel.verbal)" :class="editModel.verbal ? '' : 'op-03'">
          <i class="icon icon-voice mx-1 icon-md"></i>
       </div>
