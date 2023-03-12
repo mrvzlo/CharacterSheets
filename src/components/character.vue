@@ -73,6 +73,7 @@ export default {
          this.swiperRef.slideTo(index, 500);
       },
       checkDisabled(event) {
+         if (!event.path) return;
          const hasDisabled = event.path.filter((x) => this.isDisabled(x));
          if (hasDisabled.length === 0) return;
          this.pulse = false;

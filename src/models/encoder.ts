@@ -36,14 +36,14 @@ export default class Encoder {
 
    encode256(src: any): string {
       const string = this.compress(src);
-      const binary = LZUTF8.encodeUTF8(string);
+      const binary = LZUTF8.compress(string);
       const encoded = LZUTF8.encodeStorageBinaryString(binary);
       return encoded;
    }
 
    decode256(src: string, saveSlot: number) {
       const binary = LZUTF8.decodeStorageBinaryString(src);
-      const string: any = LZUTF8.decodeUTF8(binary);
+      const string: any = LZUTF8.decompress(binary);
       const data = this.decompress(string);
       const parsed = this.parse(data, new Character(saveSlot));
       return parsed;
